@@ -11,12 +11,14 @@ public class Player extends BaseObject {
     private Library library;
     private Hand hand = new Hand();
     private Game gameReference;
+    private Manapool manapool;
 
     public Player(String name, Game game, Library library) {
         super();
         this.name = name;
         gameReference  = game;
         this.library = library;
+        manapool = new Manapool();
     }
 
     public void shuffle() {
