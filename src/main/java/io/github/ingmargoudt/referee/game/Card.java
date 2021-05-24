@@ -1,8 +1,12 @@
 package io.github.ingmargoudt.referee.game;
 
-public class Card extends BaseObject{
+import java.util.UUID;
+
+public class Card extends MagicObject{
 
     String name;
+    UUID controller;
+    UUID owner;
 
     Card(String name){
         super();

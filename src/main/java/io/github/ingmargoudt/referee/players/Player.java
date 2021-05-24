@@ -46,4 +46,6 @@ public class Player extends BaseObject {
         EventBus.report(name + "'s life is set to "+startingLife);
 
     }
+
+    
 }
