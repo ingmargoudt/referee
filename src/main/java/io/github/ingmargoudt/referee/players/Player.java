@@ -2,6 +2,9 @@ package io.github.ingmargoudt.referee.players;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Optional;
 
@@ -12,6 +15,8 @@ public class Player extends BaseObject {
     private Hand hand = new Hand();
     private Game gameReference;
     private Manapool manapool;
+    @Getter
+    private int life;
 
     public Player(String name, Game game, Library library) {
         super();
@@ -37,4 +42,8 @@ public class Player extends BaseObject {
         }
     }
 
+    public void setLife(int startingLife) {
+        EventBus.report(name + "'s life is set to "+startingLife);
+
+    }
 }
