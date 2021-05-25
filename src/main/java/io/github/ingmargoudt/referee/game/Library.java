@@ -1,15 +1,22 @@
 package io.github.ingmargoudt.referee.game;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Optional;
+import java.util.*;
+
 
 public class Library {
 
     private LinkedList<Card> cards = new LinkedList<>();
 
-    public Library() {
+    public Library(List<Card> cardList) {
+        for (Card c : cardList) {
+            cards.addFirst(c);
+        }
+    }
 
+    public void setOwner(UUID owner){
+        for(Card card : cards){
+            card.owner = owner;
+        }
     }
 
     public void shuffle() {
@@ -17,6 +24,6 @@ public class Library {
     }
 
     public Optional<Card> drawCard() {
-        return Optional.ofNullable(cards.peekFirst());
+        return Optional.ofNullable(cards.pop());
     }
 }

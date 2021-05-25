@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class BaseObject {
 
-    private final UUID id;
+    protected final UUID id;
 
     public BaseObject(){
         id = UUID.randomUUID();

@@ -23,6 +23,7 @@ public class Player extends BaseObject {
         this.name = name;
         gameReference  = game;
         this.library = library;
+        this.library.setOwner(this.id);
         manapool = new Manapool();
     }
 
@@ -47,5 +48,5 @@ public class Player extends BaseObject {
 
     }
 
-    
+
 }
