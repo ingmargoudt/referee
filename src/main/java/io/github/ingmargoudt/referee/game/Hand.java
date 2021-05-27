@@ -11,5 +11,12 @@ public class Hand {
         cards.add(card);
     }
 
+    public Set<Card> getCards(){
+        return cards;
+    }
 
+
+    public int getSize() {
+        return cards.size();
+    }
 }

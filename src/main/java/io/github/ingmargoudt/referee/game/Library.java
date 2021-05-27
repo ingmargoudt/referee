@@ -26,4 +26,8 @@ public class Library {
     public Optional<Card> drawCard() {
         return Optional.ofNullable(cards.pop());
     }
+
+    public void putOnTop(Card card) {
+        cards.addFirst(card);
+    }
 }

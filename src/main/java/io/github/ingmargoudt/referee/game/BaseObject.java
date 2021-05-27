@@ -1,7 +1,10 @@
 package io.github.ingmargoudt.referee.game;
 
+import lombok.Getter;
+
 import java.util.UUID;
 
+@Getter
 public class BaseObject {
 
     protected final UUID id;

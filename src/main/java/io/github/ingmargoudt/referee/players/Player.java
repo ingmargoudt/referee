@@ -1,10 +1,9 @@
 package io.github.ingmargoudt.referee.players;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
+import io.github.ingmargoudt.referee.framework.Question;
 import io.github.ingmargoudt.referee.game.*;
-import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Optional;
 
@@ -21,15 +20,21 @@ public class Player extends BaseObject {
     public Player(String name, Game game, Library library) {
         super();
         this.name = name;
-        gameReference  = game;
+        gameReference = game;
         this.library = library;
         this.library.setOwner(this.id);
         manapool = new Manapool();
     }
 
     public void shuffle() {
-        EventBus.report(name +" shuffles");
+        EventBus.report(name + " shuffles");
         library.shuffle();
+    }
+
+    public void drawCard(int amount) {
+        for (int i = 0; i < amount; i++) {
+            drawCard();
+        }
     }
 
     public void drawCard() {
@@ -44,9 +49,27 @@ public class Player extends BaseObject {
     }
 
     public void setLife(int startingLife) {
-        EventBus.report(name + "'s life is set to "+startingLife);
+        EventBus.report(name + "'s life is set to " + startingLife);
 
     }
 
+    public void mulligan() {
+        int mulligans = 0;
 
+        while (Question.askYesNo(getId(), "Would you like to mulligan down to "+(7-1-mulligans)) && (7-mulligans) > 0) {
+            mulligans++;
+            for (Card card : hand.getCards()) {
+                putCardOnTop(card);
+            }
+            shuffle();
+            drawCard(7 - mulligans);
+        }
+        EventBus.report(name + " keeps their hand of "+hand.getSize());
+    }
+
+
+
+    public void putCardOnTop(Card card) {
+        library.putOnTop(card);
+    }
 }

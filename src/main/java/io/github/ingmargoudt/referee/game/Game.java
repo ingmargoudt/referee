@@ -4,9 +4,11 @@ import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 public class Game {
 
+    UUID activePlayer;
     Battlefield battlefield;
     Player[] players = new Player[2];
     @Getter
@@ -42,5 +44,10 @@ public class Game {
         starting life totals
          */
         Arrays.stream(players).forEach(player -> player.setLife(startingLife));
+        /*
+        103.4. Each player draws a number of cards equal to their starting hand size, which is normally seven.
+         */
+        Arrays.stream(players).forEach(player -> player.drawCard(7));
+        Arrays.stream(players).forEach(Player::mulligan);
     }
 }
