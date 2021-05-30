@@ -9,6 +9,7 @@ import java.util.UUID;
 public class Game {
 
     UUID activePlayer;
+    UUID playerWithPriority;
     Battlefield battlefield;
     Player[] players = new Player[2];
     @Getter
