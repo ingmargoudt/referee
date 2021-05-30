@@ -8,4 +8,8 @@ public class Spell extends MagicObject implements Stackable{
         super();
         this.card = card;
     }
+
+    public void resolve(){
+        
+    }
 }
