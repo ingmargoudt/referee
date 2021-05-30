@@ -1,6 +1,6 @@
 package io.github.ingmargoudt.referee.game;
 
-public class Spell extends MagicObject{
+public class Spell extends MagicObject implements Stackable{
 
     Card card;
 
