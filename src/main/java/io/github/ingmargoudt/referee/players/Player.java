@@ -76,4 +76,8 @@ public class Player extends BaseObject {
     public void putCardOnTop(Card card) {
         library.putOnTop(card);
     }
+
+    public String getName(){
+        return name;
+    }
 }

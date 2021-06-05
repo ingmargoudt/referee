@@ -57,4 +57,8 @@ public class Game {
     public void putOnStack(Spell spell){
         stack.putOnStack(spell);
     }
+
+    public Player getPlayer(UUID controller) {
+        return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst().get();
+    }
 }

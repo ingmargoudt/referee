@@ -1,5 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
+import java.util.UUID;
+
 public class Spell extends MagicObject implements Stackable{
 
     Card card;
@@ -11,5 +13,9 @@ public class Spell extends MagicObject implements Stackable{
 
     public void resolve(){
         
+    }
+
+    public UUID getController(){
+        return card.controller;
     }
 }
