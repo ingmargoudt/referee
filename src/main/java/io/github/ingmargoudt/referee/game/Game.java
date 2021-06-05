@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
@@ -15,7 +16,7 @@ public class Game {
     @Getter
     final int startingLife = 20;
 
-    Stack stack = new Stack();
+    private Stack stack = new Stack();
 
     public Game(){
         battlefield = new Battlefield();
@@ -52,6 +53,10 @@ public class Game {
          */
         Arrays.stream(players).forEach(player -> player.drawCard(7));
         Arrays.stream(players).forEach(Player::mulligan);
+        activePlayer = players[0].getId();
+        playerWithPriority = activePlayer;
+        EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
+        new Turn().run(this);
     }
 
     public void putOnStack(Spell spell){
@@ -60,5 +65,36 @@ public class Game {
 
     public Player getPlayer(UUID controller) {
         return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst().get();
+    }
+
+    public Player getActivePlayer(){
+        return Arrays.stream(players).filter(player -> player.getId().equals(activePlayer)).findFirst().get();
+
+    }
+
+    public void setPriority(UUID playerId){
+        playerWithPriority = playerId;
+        EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
+    }
+
+
+
+    public void passPriority(){
+        stack.pass(this, playerWithPriority);
+        if(stack.allPlayersPassed()){
+            return;
+        }
+        if(players[0].getId().equals(playerWithPriority)){
+            setPriority(players[1].getId());
+        }
+        else{
+            setPriority(players[0].getId());
+        }
+
+
+    }
+
+    public Stack getStack(){
+        return stack;
     }
 }

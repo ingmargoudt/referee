@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.players;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
+import io.github.ingmargoudt.referee.framework.InputBus;
 import io.github.ingmargoudt.referee.framework.Question;
 import io.github.ingmargoudt.referee.game.*;
 import lombok.Getter;
@@ -79,5 +80,13 @@ public class Player extends BaseObject {
 
     public String getName(){
         return name;
+    }
+
+    public void doAction(){
+        passPriority();
+    }
+
+    private void passPriority() {
+        gameReference.passPriority();
     }
 }

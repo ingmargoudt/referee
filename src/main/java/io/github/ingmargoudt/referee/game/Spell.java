@@ -18,4 +18,8 @@ public class Spell extends MagicObject implements Stackable{
     public UUID getController(){
         return card.controller;
     }
+
+    public String getName(){
+        return card.name;
+    }
 }

@@ -6,4 +6,6 @@ public interface Stackable {
 
     void resolve();
     UUID getController();
+
+    String getName();
 }
