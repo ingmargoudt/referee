@@ -15,6 +15,8 @@ public class Game {
     @Getter
     final int startingLife = 20;
 
+    Stack stack = new Stack();
+
     public Game(){
         battlefield = new Battlefield();
     }
@@ -50,5 +52,9 @@ public class Game {
          */
         Arrays.stream(players).forEach(player -> player.drawCard(7));
         Arrays.stream(players).forEach(Player::mulligan);
+    }
+
+    public void putOnStack(Spell spell){
+        stack.putOnStack(spell);
     }
 }

@@ -19,4 +19,8 @@ public class Hand {
     public int getSize() {
         return cards.size();
     }
+
+    public void remove(Card card) {
+        cards.removeIf(c -> c.getId().equals(card.id));
+    }
 }

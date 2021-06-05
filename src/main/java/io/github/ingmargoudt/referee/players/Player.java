@@ -67,6 +67,10 @@ public class Player extends BaseObject {
         EventBus.report(name + " keeps their hand of "+hand.getSize());
     }
 
+    public void castSpell(Card card){
+        gameReference.putOnStack(new Spell(card));
+        hand.remove(card);
+    }
 
 
     public void putCardOnTop(Card card) {
