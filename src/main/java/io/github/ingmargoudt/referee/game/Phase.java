@@ -47,6 +47,7 @@ public enum Phase {
 
     void mainPhase(Game game){
         do{
+            game.getStack().checkIfAllPlayersPassed();
             game.getPlayer(game.playerWithPriority).doAction();
         }
         while(!game.getStack().isEmpty() || (game.getStack().isEmpty() && !game.getStack().allPlayersPassed()));

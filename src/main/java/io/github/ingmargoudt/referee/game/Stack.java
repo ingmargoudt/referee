@@ -11,6 +11,12 @@ public class Stack {
 
     private LinkedList<Stackable> stackEntries = new LinkedList<>();
 
+    private Game game;
+
+    public Stack(Game game){
+        this.game = game;
+    }
+
 
 
    public void putOnStack(Stackable stackable){
@@ -22,7 +28,7 @@ public class Stack {
    public void resolve(Game game){
        Stackable topOfStack = stackEntries.peekFirst();
        Player controller = game.getPlayer(topOfStack.getController());
-       EventBus.report(controller.getName() + "'s" +stackEntries.peekFirst() + " resolves");
+       EventBus.report(controller.getName() + " " +stackEntries.peekFirst().getName() + " resolves");
        Stackable stackable = stackEntries.pop();
        stackable.resolve();
        game.setPriority(stackable.getController());
@@ -45,6 +51,12 @@ public class Stack {
         else{
 
             EventBus.report(game.getPlayer(playerWithPriority).getName() + " passes on "+stackEntries.peekFirst().getName());
+        }
+    }
+
+    public void checkIfAllPlayersPassed() {
+        if(allPlayersPassed()){
+            resolve(game);
         }
     }
 }

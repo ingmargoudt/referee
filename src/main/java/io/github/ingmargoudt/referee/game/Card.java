@@ -8,8 +8,9 @@ public class Card extends MagicObject{
     UUID controller;
     UUID owner;
 
-    public Card(String name){
+    public Card(String name, UUID controller){
         super();
         this.name = name;
+        this.controller = controller;
     }
 }

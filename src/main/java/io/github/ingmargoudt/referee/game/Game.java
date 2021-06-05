@@ -16,7 +16,7 @@ public class Game {
     @Getter
     final int startingLife = 20;
 
-    private Stack stack = new Stack();
+    private Stack stack = new Stack(this);
 
     public Game(){
         battlefield = new Battlefield();

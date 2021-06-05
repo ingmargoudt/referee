@@ -19,7 +19,7 @@ public class BaseGame {
     private Library createLibraries(){
         ArrayList<Card>cards = new ArrayList<>();
         for(int i = 0; i<60;i++){
-            cards.add(new Card("Mountain"));
+            cards.add(new Card("Mountain", UUID.randomUUID()));
         }
         return new Library(cards);
     }
