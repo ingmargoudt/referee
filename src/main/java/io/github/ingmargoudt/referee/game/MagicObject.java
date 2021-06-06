@@ -1,6 +1,11 @@
 package io.github.ingmargoudt.referee.game;
 
+import lombok.Getter;
+
 import java.util.*;
+
+
+@Getter
 public class MagicObject extends BaseObject {
 
     /*

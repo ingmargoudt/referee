@@ -7,7 +7,7 @@ public class Spell extends MagicObject implements Stackable{
     Card card;
 
     public Spell(Card card){
-        super();
+        super(card.getName());
         this.card = card;
     }
 
@@ -20,6 +20,6 @@ public class Spell extends MagicObject implements Stackable{
     }
 
     public String getName(){
-        return card.name;
+        return card.getName();
     }
 }
