@@ -75,8 +75,12 @@ public class Game {
     public void setPriority(UUID playerId){
         playerWithPriority = playerId;
         EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
+        checkStateBasedActions();
     }
 
+    private void checkStateBasedActions() {
+        EventBus.report("Checking statebased actions");
+    }
 
 
     public void passPriority(){
