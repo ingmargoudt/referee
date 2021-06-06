@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.game.abilities.Ability;
 import lombok.Getter;
 
 import java.util.*;
