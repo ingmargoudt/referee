@@ -24,4 +24,9 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     private int toughness;
     private int handmodifier;
     private int lifemodifier;
+
+
+    public MagicObject(String name){
+        this.name = name;
+    }
 }

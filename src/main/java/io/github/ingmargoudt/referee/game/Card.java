@@ -1,16 +1,17 @@
 package io.github.ingmargoudt.referee.game;
 
+import lombok.Getter;
+
 import java.util.UUID;
 
+@Getter
 public class Card extends MagicObject{
 
-    String name;
     UUID controller;
     UUID owner;
 
     public Card(String name, UUID controller){
-        super();
-        this.name = name;
+        super(name);
         this.controller = controller;
     }
 }
