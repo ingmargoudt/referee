@@ -4,7 +4,8 @@ import java.util.UUID;
 
 public class Permanent {
 
-    Card card;
+    Card base;
+    Card current;
 
     /*
     110.5. A permanent’s status is its physical state. There are four status categories, each of which has two
@@ -23,11 +24,15 @@ see rule 111.2). A permanent’s controller is, by default, the player under who
 the battlefield. Every permanent has a controller.
      */
     public Permanent(Card card){
-        this.card = card;
+        this.base = card;
+        reset();
+    }
+    public void reset(){
+        this.current = base;
     }
 
     public UUID getOwner(){
-        return card.getOwner();
+        return base.getOwner();
     }
 
     public void tap(){

@@ -8,4 +8,8 @@ public class Battlefield {
     public void add(Permanent permanent){
         permanents.add(permanent);
     }
+
+    public void resetBase() {
+        permanents.forEach(Permanent::reset);
+    }
 }

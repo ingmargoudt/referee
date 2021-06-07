@@ -81,6 +81,7 @@ public class Game {
 
     private void applyContinuousEffects() {
         EventBus.report("Applying continuous effects");
+        battlefield.resetBase();
     }
 
     private void checkStateBasedActions() {
