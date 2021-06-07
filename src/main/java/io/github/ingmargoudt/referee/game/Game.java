@@ -75,7 +75,12 @@ public class Game {
     public void setPriority(UUID playerId){
         playerWithPriority = playerId;
         EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
+        applyContinuousEffects();
         checkStateBasedActions();
+    }
+
+    private void applyContinuousEffects() {
+        EventBus.report("Applying contiunous effects");
     }
 
     private void checkStateBasedActions() {
