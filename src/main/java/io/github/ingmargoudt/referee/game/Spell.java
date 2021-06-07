@@ -11,7 +11,11 @@ public class Spell extends MagicObject implements Stackable{
         this.card = card;
     }
 
-    public void resolve(){
+    public void resolve(Game game){
+        if(card.isPermanent()){
+            game.moveToBattlefield(card);
+
+        }
         
     }
 

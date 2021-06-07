@@ -14,4 +14,8 @@ public class Card extends MagicObject{
         super(name);
         this.controller = controller;
     }
+
+    public boolean isPermanent() {
+        return getCardtypes().isPermanent();
+    }
 }

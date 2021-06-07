@@ -106,4 +106,8 @@ public class Game {
     public Stack getStack(){
         return stack;
     }
+
+    public void moveToBattlefield(Card card) {
+        battlefield.add(new Permanent(card));
+    }
 }
