@@ -8,4 +8,9 @@ public class CardTypes {
     public boolean isPermanent() {
         return cardTypes.contains(CardType.CREATURE);
     }
+
+    public void add(CardType ... types){
+        cardTypes.addAll(Arrays.asList(types));
+
+    }
 }

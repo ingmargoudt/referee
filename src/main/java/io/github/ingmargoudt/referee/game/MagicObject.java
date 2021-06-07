@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.*;
 
@@ -26,7 +27,9 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     private SuperTypes superTypes;
     private String rulesText;
     private List<Ability> abilities;
+    @Setter
     private int power;
+    @Setter
     private int toughness;
     private int handmodifier;
     private int lifemodifier;
