@@ -80,7 +80,7 @@ public class Game {
     }
 
     private void applyContinuousEffects() {
-        EventBus.report("Applying contiunous effects");
+        EventBus.report("Applying continuous effects");
     }
 
     private void checkStateBasedActions() {
