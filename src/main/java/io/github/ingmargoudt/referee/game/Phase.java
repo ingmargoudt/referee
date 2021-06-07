@@ -45,6 +45,12 @@ public enum Phase {
         game.setPriority(game.activePlayer);
     }
 
+    /*
+    500.2. A phase or step in which players receive priority ends when the stack is empty and all players
+pass in succession. Simply having the stack become empty doesn’t cause such a phase or step to
+end; all players have to pass in succession with the stack empty. Because of this, each player gets a
+chance to add new things to the stack before that phase or step ends.
+     */
     void mainPhase(Game game){
         do{
             game.getStack().checkIfAllPlayersPassed();
