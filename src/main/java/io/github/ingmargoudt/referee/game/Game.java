@@ -15,6 +15,14 @@ public class Game {
     Player[] players = new Player[2];
     @Getter
     final int startingLife = 20;
+    @Getter
+    private boolean running;
+    @Getter
+    private int turnNumber = 1;
+    @Getter
+    private int stopAtTurn;
+    @Getter
+    private Phase stopAtPhase;
 
     private Stack stack = new Stack(this);
 
@@ -31,11 +39,21 @@ public class Game {
         }
     }
 
-    public void gameloop(){
-        startTheGame();
+    public void stopAt(int turn, Phase phase){
+        stopAtTurn = turn;
+        stopAtPhase = phase;
     }
 
-    private void startTheGame() {
+    public void stop(){
+        running = false;
+    }
+
+
+    public void start() {
+        if(running){
+            return;
+        }
+        running = true;
         /*
         . 103.2
         After the starting player has been determined, each player shuffles their deck so that the cards
@@ -56,7 +74,10 @@ public class Game {
         activePlayer = players[0].getId();
         playerWithPriority = activePlayer;
         EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
-        new Turn().run(this);
+        while(running) {
+            new Turn().run(this);
+            turnNumber++;
+        }
     }
 
     public void putOnStack(Spell spell){

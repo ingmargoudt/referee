@@ -1,5 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.framework.EventBus;
+
 import java.util.LinkedList;
 
 public class Turn {
@@ -21,8 +23,14 @@ public class Turn {
     }
 
     public void run(Game game){
-        while(!phases.isEmpty()){
-            phases.pop().run(game);
+        EventBus.report("Starting turn "+game.getTurnNumber());
+        while(!phases.isEmpty() && game.isRunning()){
+            Phase currentPhase = phases.pop();
+            currentPhase.run(game);
+            if(game.getStopAtPhase() == currentPhase && game.getStopAtTurn() == game.getTurnNumber()){
+                game.stop();
+                return;
+            }
         }
     }
 }

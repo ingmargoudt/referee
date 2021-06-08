@@ -1,11 +1,11 @@
-package io.github.ingmargoudt.referee;
+package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.framework.*;
 import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.Library;
+import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.players.Player;
-import io.github.ingmargoudt.referee.players.TestPlayer;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -14,7 +14,7 @@ public class BaseGame {
 
     protected Player player1;
     protected Player player2;
-    protected Game game;
+    private Game game;
     private TestInputListener inputListener;
 
     private Library createLibraries(){
@@ -36,6 +36,18 @@ public class BaseGame {
         EventBus.registerListener(new ConsoleListener());
         InputBus.registerListener(inputListener);
 
+    }
+
+    public void castSpell(int turn, Phase phase, TestPlayer player,Card card){
+        player.addAction(new CastSpellAction(turn, phase, card));
+    }
+
+    public void stopAt(int turn, Phase phase){
+        game.stopAt(turn, phase);
+    }
+
+    public void start(){
+        game.start();
     }
 
     public void addCommand(UUID uuid, String command){

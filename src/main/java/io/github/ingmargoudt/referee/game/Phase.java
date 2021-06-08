@@ -57,6 +57,7 @@ chance to add new things to the stack before that phase or step ends.
             game.getPlayer(game.playerWithPriority).doAction();
         }
         while(!game.getStack().isEmpty() || (game.getStack().isEmpty() && !game.getStack().allPlayersPassed()));
+        game.getStack().reset();
     }
 
 }

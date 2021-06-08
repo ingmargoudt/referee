@@ -39,6 +39,11 @@ public class Stack {
        return stackEntries.isEmpty();
    }
 
+   public void reset(){
+       stackEntries.clear();
+       passed.clear();
+   }
+
     public boolean allPlayersPassed() {
        return passed.size() == 2;
     }
@@ -46,7 +51,7 @@ public class Stack {
     public void pass(Game game, UUID playerWithPriority) {
        passed.add(playerWithPriority);
         if(stackEntries.isEmpty()){
-            EventBus.report(game.getPlayer(playerWithPriority).getName() + " passes");
+            EventBus.report(game.getPlayer(playerWithPriority).getName() + " passes on empty stack");
         }
         else{
 
