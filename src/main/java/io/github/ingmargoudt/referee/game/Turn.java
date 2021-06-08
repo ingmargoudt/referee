@@ -1,12 +1,15 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
+import lombok.Getter;
 
 import java.util.LinkedList;
 
 public class Turn {
 
     private LinkedList<Phase> phases = new LinkedList<>();
+    @Getter
+    private Phase currentPhase;
 
     /*
     500.1. A turn consists of five phases, in this order: beginning, precombat main, combat, postcombat
@@ -22,10 +25,11 @@ public class Turn {
         phases.add(Phase.END_PHASE);
     }
 
+
     public void run(Game game){
         EventBus.report("Starting turn "+game.getTurnNumber());
         while(!phases.isEmpty() && game.isRunning()){
-            Phase currentPhase = phases.pop();
+            currentPhase = phases.pop();
             currentPhase.run(game);
             if(game.getStopAtPhase() == currentPhase && game.getStopAtTurn() == game.getTurnNumber()){
                 game.stop();
@@ -33,4 +37,6 @@ public class Turn {
             }
         }
     }
+
+
 }

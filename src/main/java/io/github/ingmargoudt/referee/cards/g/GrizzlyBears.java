@@ -6,8 +6,8 @@ import io.github.ingmargoudt.referee.game.CardType;
 import java.util.UUID;
 
 public class GrizzlyBears extends Card {
-    public GrizzlyBears(UUID controller) {
-        super("Grizzly Bears", controller);
+    public GrizzlyBears() {
+        super("Grizzly Bears");
         getCardtypes().add(CardType.CREATURE);
         setPower(2);
         setToughness(2);

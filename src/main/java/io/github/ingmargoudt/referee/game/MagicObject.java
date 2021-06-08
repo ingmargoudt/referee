@@ -37,5 +37,9 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
 
     public MagicObject(String name){
         this.name = name;
+        cardtypes = new CardTypes();
+        subTypes = new SubTypes();
+        superTypes = new SuperTypes();
+        abilities = new ArrayList<>();
     }
 }

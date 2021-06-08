@@ -12,8 +12,8 @@ public class Player extends BaseObject {
 
     private final String name;
     private Library library;
-    private Hand hand = new Hand();
-    private Game gameReference;
+    protected Hand hand = new Hand();
+    protected Game gameReference;
     private Manapool manapool;
     @Getter
     private int life;
@@ -69,6 +69,7 @@ public class Player extends BaseObject {
     }
 
     public void castSpell(Card card){
+        EventBus.report(getName() + " casts "+card.getName());
         gameReference.putOnStack(new Spell(card));
         hand.remove(card);
     }
@@ -86,7 +87,7 @@ public class Player extends BaseObject {
         passPriority();
     }
 
-    private void passPriority() {
+    protected void passPriority() {
         gameReference.passPriority();
     }
 }

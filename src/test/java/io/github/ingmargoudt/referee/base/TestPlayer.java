@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.Hand;
 import io.github.ingmargoudt.referee.game.Library;
 import io.github.ingmargoudt.referee.players.Player;
 
@@ -19,10 +20,32 @@ public class TestPlayer extends Player {
         actions.add(playerAction);
     }
 
+    public Hand getHand(){
+        return hand;
+    }
+
     @Override
     public void mulligan() {
 
     }
 
 
+
+    @Override
+    public void doAction() {
+        Iterator<PlayerAction> playerActionIterator = actions.listIterator();
+        while(playerActionIterator.hasNext()){
+            PlayerAction action = playerActionIterator.next();
+            if(action.phase == gameReference.getCurrentPhase() && action.turn == gameReference.getTurnNumber())
+            {
+                if(action instanceof CastSpellAction){
+                    action.execute(this);
+                    playerActionIterator.remove();
+                    return;
+                }
+            };
+        }
+        passPriority();
+
+    }
 }

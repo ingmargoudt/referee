@@ -1,10 +1,8 @@
 package io.github.ingmargoudt.referee.base;
 
+import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.framework.*;
-import io.github.ingmargoudt.referee.game.Card;
-import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.Library;
-import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.*;
 import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.ArrayList;
@@ -12,15 +10,15 @@ import java.util.UUID;
 
 public class BaseGame {
 
-    protected Player player1;
-    protected Player player2;
+    protected TestPlayer player1;
+    protected TestPlayer player2;
     private Game game;
     private TestInputListener inputListener;
 
     private Library createLibraries(){
         ArrayList<Card>cards = new ArrayList<>();
         for(int i = 0; i<60;i++){
-            cards.add(new Card("Mountain", UUID.randomUUID()));
+            cards.add(new Card("Mountain"));
         }
         return new Library(cards);
     }
@@ -48,6 +46,13 @@ public class BaseGame {
 
     public void start(){
         game.start();
+    }
+
+    public void addCard(Zone zone, TestPlayer player, Card card, int i) {
+        if(zone == Zone.HAND){
+            card.setController(player.getId());
+            player.getHand().addCard(card);
+        }
     }
 
     public void addCommand(UUID uuid, String command){

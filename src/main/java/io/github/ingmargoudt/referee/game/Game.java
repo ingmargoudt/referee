@@ -23,6 +23,8 @@ public class Game {
     private int stopAtTurn;
     @Getter
     private Phase stopAtPhase;
+    @Getter
+    private Turn currentTurn;
 
     private Stack stack = new Stack(this);
 
@@ -75,9 +77,14 @@ public class Game {
         playerWithPriority = activePlayer;
         EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
         while(running) {
-            new Turn().run(this);
+            currentTurn = new Turn();
+            currentTurn.run(this);
             turnNumber++;
         }
+    }
+
+    public Phase getCurrentPhase(){
+        return currentTurn.getCurrentPhase();
     }
 
     public void putOnStack(Spell spell){
