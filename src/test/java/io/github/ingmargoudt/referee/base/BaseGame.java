@@ -1,9 +1,7 @@
 package io.github.ingmargoudt.referee.base;
 
-import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.framework.*;
 import io.github.ingmargoudt.referee.game.*;
-import io.github.ingmargoudt.referee.players.Player;
 import org.assertj.core.api.Fail;
 
 import java.util.ArrayList;
@@ -64,9 +62,12 @@ public class BaseGame {
     }
 
     public void addCard(Zone zone, TestPlayer player, Card card, int i) {
+        card.setController(player.getId());
         if(zone == Zone.HAND){
-            card.setController(player.getId());
             player.getHand().addCard(card);
+        }
+        if(zone == Zone.BATTLEFIELD){
+         game.getBattlefield().add(new Permanent(card));
         }
     }
 
@@ -74,13 +75,37 @@ public class BaseGame {
         int amount = 0;
         if(zone == Zone.BATTLEFIELD) {
             for (Permanent permanent : game.getBattlefield().getAll()) {
-                if (permanent.getCurrent().getName().equals(theCard.getName()) && permanent.getCurrent().getController().equals(player.getId())) {
+                if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
                     amount++;
                 }
 
             }
         }
         assertThat(amount).as("Wrong number of %s controlled by %s, expected %s, got %s", theCard.getName(), player.getName(), i, amount).isEqualTo(i);
+
+    }
+
+    public void assertPermanentPower(Zone zone, TestPlayer player, Card theCard, int power){
+        if(zone == Zone.BATTLEFIELD) {
+            for (Permanent permanent : game.getBattlefield().getAll()) {
+                if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
+                   assertThat(permanent.getPower()).isEqualTo(power);
+                }
+
+            }
+        }
+
+    }
+
+    public void assertPermanentToughness(Zone zone, TestPlayer player, Card theCard, int toughness){
+        if(zone == Zone.BATTLEFIELD) {
+            for (Permanent permanent : game.getBattlefield().getAll()) {
+                if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
+                    assertThat(permanent.getToughness()).isEqualTo(toughness);
+                }
+
+            }
+        }
 
     }
 

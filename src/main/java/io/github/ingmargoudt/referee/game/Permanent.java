@@ -1,5 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.players.Player;
+
 import java.util.UUID;
 
 public class Permanent {
@@ -68,9 +70,24 @@ the battlefield. Every permanent has a controller.
         isPhasedOut = true;
     }
 
-    public Card getCurrent(){
-        return current.copy();
+
+    public String getName(){
+        return current.getName();
     }
+
+    public int getPower(){
+        return current.getPower();
+    }
+
+    public int getToughness(){
+        return current.getToughness();
+    }
+
+    public boolean isControlledBy(Player thePlayer){
+        return current.getController().equals(thePlayer.getId());
+    }
+
+
 
 
 }

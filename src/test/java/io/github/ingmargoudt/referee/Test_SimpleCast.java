@@ -21,5 +21,24 @@ public class Test_SimpleCast extends BaseGame {
         assertPermanent(Zone.BATTLEFIELD, player1, bears, 1);
     }
 
+    @Test
+    public void creatureHasPower() {
+        addCard(Zone.BATTLEFIELD, player1, bears, 1);
+
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertPermanentPower(Zone.BATTLEFIELD, player1, bears, 2);
+    }
+
+    @Test
+    public void creatureHasToughness() {
+        addCard(Zone.BATTLEFIELD, player1, bears, 1);
+
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertPermanentToughness(Zone.BATTLEFIELD, player1, bears, 2);
+    }
+
+
 
 }
