@@ -10,7 +10,10 @@ import java.util.*;
 
 public class TestPlayer extends Player {
 
+
     private List<PlayerAction> actions = new ArrayList<>();
+
+
 
     public TestPlayer(String name, Game game, Library library) {
         super(name, game, library);
@@ -27,6 +30,15 @@ public class TestPlayer extends Player {
     @Override
     public void mulligan() {
 
+    }
+
+    @Override
+    public void shuffle(){
+
+    }
+
+    public boolean hasRemainingActions(){
+        return !actions.isEmpty();
     }
 
 

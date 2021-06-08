@@ -5,6 +5,7 @@ import java.util.UUID;
 public class Permanent {
 
     Card base;
+
     Card current;
 
     /*
@@ -65,6 +66,10 @@ the battlefield. Every permanent has a controller.
 
     public void phaseOut(){
         isPhasedOut = true;
+    }
+
+    public Card getCurrent(){
+        return current.copy();
     }
 
 

@@ -12,4 +12,8 @@ public class Battlefield {
     public void resetBase() {
         permanents.forEach(Permanent::reset);
     }
+
+    public List<Permanent> getAll(){
+        return new ArrayList<>(permanents);
+    }
 }

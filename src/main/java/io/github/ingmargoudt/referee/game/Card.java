@@ -19,4 +19,14 @@ public class Card extends MagicObject{
     public boolean isPermanent() {
         return getCardtypes().isPermanent();
     }
+
+    public Card copy(){
+        return new Card(this);
+    }
+
+    public Card(Card card){
+        super(card.getName());
+        this.controller = card.getController();
+        this.owner = card.getOwner();
+    }
 }

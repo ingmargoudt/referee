@@ -11,7 +11,7 @@ public class Game {
 
     UUID activePlayer;
     UUID playerWithPriority;
-    Battlefield battlefield;
+    protected Battlefield battlefield;
     Player[] players = new Player[2];
     @Getter
     final int startingLife = 20;
