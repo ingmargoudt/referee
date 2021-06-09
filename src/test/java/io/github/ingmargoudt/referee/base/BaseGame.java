@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.framework.InputBus;
 import io.github.ingmargoudt.referee.framework.TestInputListener;
 import io.github.ingmargoudt.referee.game.*;
 import org.assertj.core.api.Fail;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 
@@ -31,7 +32,15 @@ public class BaseGame {
 
     @BeforeEach
     public void before(TestInfo testInfo) {
-        EventBus.report("Starting " + testInfo.getTestMethod());
+        testInfo.getTestMethod().ifPresent(method -> {
+            EventBus.report("*********************************");
+            EventBus.report("Starting " + method.getName());
+            EventBus.report("*********************************");
+        });
+    }
+    @AfterEach
+    public void after(){
+        EventBus.report("");
     }
 
 
