@@ -20,7 +20,6 @@ public class BaseGame {
     protected TestPlayer player1;
     protected TestPlayer player2;
     private TestGame game;
-    private TestInputListener inputListener;
 
     private Library createLibraries() {
         ArrayList<Card> cards = new ArrayList<>();
@@ -45,14 +44,12 @@ public class BaseGame {
 
 
     public BaseGame() {
-        inputListener = new TestInputListener();
         game = new TestGame();
         player1 = new TestPlayer("Player 1", game, createLibraries());
         player2 = new TestPlayer("Player 2", game, createLibraries());
         game.addPlayer(player1);
         game.addPlayer(player2);
         EventBus.registerListener(new ConsoleListener());
-        InputBus.registerListener(inputListener);
 
     }
 
@@ -80,13 +77,16 @@ public class BaseGame {
         }
     }
 
-    public void addCard(Zone zone, TestPlayer player, Card card, int i) {
+    public void addCard(Zone zone, TestPlayer player, Card card, int amount) {
         card.setController(player.getId());
-        if (zone == Zone.HAND) {
-            player.getHand().addCard(card);
-        }
-        if (zone == Zone.BATTLEFIELD) {
-            game.getBattlefield().add(new Permanent(card));
+        for(int i = 0; i<amount; i++) {
+            if (zone == Zone.HAND) {
+                player.getHand().addCard(card);
+            }
+            if (zone == Zone.BATTLEFIELD) {
+
+                game.getBattlefield().add(new Permanent(card));
+            }
         }
     }
 
@@ -126,9 +126,5 @@ public class BaseGame {
             }
         }
 
-    }
-
-    public void addCommand(UUID uuid, String command) {
-        inputListener.addInput(uuid, command);
     }
 }
