@@ -33,6 +33,7 @@ public class Turn {
             currentPhase.run(game);
             if(game.getStopAtPhase() == currentPhase && game.getStopAtTurn() == game.getTurnNumber()){
                 game.stop();
+                EventBus.report("Pausing game");
                 return;
             }
         }
