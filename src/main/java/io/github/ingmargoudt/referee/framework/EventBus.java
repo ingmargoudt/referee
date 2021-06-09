@@ -8,7 +8,11 @@ public class EventBus {
     private static List<EventListener> listeners = new ArrayList<>();
 
     public static void registerListener(EventListener eventListener){
-        listeners.add(eventListener);
+        Class c = eventListener.getClass();
+        if(listeners.stream().noneMatch(listener -> listener.getClass().equals(eventListener.getClass()))){
+            listeners.add(eventListener);
+        }
+
     }
 
     public static void report(String message){
