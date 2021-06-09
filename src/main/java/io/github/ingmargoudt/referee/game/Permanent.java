@@ -1,8 +1,11 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.players.Player;
 
+import java.util.ArrayList;
 import java.util.UUID;
+import java.util.*;
 
 public class Permanent {
 
@@ -31,7 +34,7 @@ the battlefield. Every permanent has a controller.
         reset();
     }
     public void reset(){
-        this.current = base;
+        this.current = base.copy();
     }
 
     public UUID getOwner(){
@@ -83,11 +86,25 @@ the battlefield. Every permanent has a controller.
         return current.getToughness();
     }
 
+    public void setPower(int power){
+        current.setPower(power);
+    }
+
+    public void setToughness(int toughness){
+        current.setToughness(toughness);
+    }
+
     public boolean isControlledBy(Player thePlayer){
         return current.getController().equals(thePlayer.getId());
     }
 
+    public boolean isCreature(){
+        return current.isCreature();
+    }
 
+    public List<Ability> getAbilities(){
+        return new ArrayList<>(current.getAbilities());
+    }
 
 
 }

@@ -42,4 +42,8 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         superTypes = new SuperTypes();
         abilities = new ArrayList<>();
     }
+
+    public boolean isCreature() {
+        return getCardtypes().isCreature();
+    }
 }

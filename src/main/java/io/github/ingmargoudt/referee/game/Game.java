@@ -1,6 +1,8 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
+import io.github.ingmargoudt.referee.game.abilities.Ability;
+import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
@@ -11,6 +13,7 @@ public class Game {
 
     UUID activePlayer;
     UUID playerWithPriority;
+    @Getter
     protected Battlefield battlefield;
     Player[] players = new Player[2];
     @Getter
@@ -28,31 +31,31 @@ public class Game {
 
     private Stack stack = new Stack(this);
 
-    public Game(){
+    public Game() {
         battlefield = new Battlefield();
     }
 
-    public void addPlayer(Player player){
-        for(int i = 0 ; i < players.length ; i++){
-            if(players[i] == null){
+    public void addPlayer(Player player) {
+        for (int i = 0; i < players.length; i++) {
+            if (players[i] == null) {
                 players[i] = player;
                 return;
             }
         }
     }
 
-    public void stopAt(int turn, Phase phase){
+    public void stopAt(int turn, Phase phase) {
         stopAtTurn = turn;
         stopAtPhase = phase;
     }
 
-    public void stop(){
+    public void stop() {
         running = false;
     }
 
 
     public void start() {
-        if(running){
+        if (running) {
             return;
         }
         running = true;
@@ -76,18 +79,19 @@ public class Game {
         activePlayer = players[0].getId();
         playerWithPriority = activePlayer;
         EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
-        while(running) {
+        while (running) {
             currentTurn = new Turn();
             currentTurn.run(this);
             turnNumber++;
         }
+        applyContinuousEffects();
     }
 
-    public Phase getCurrentPhase(){
+    public Phase getCurrentPhase() {
         return currentTurn.getCurrentPhase();
     }
 
-    public void putOnStack(Spell spell){
+    public void putOnStack(Spell spell) {
         stack.putOnStack(spell);
     }
 
@@ -95,12 +99,12 @@ public class Game {
         return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst().get();
     }
 
-    public Player getActivePlayer(){
+    public Player getActivePlayer() {
         return Arrays.stream(players).filter(player -> player.getId().equals(activePlayer)).findFirst().get();
 
     }
 
-    public void setPriority(UUID playerId){
+    public void setPriority(UUID playerId) {
         playerWithPriority = playerId;
         EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
         applyContinuousEffects();
@@ -108,35 +112,43 @@ public class Game {
     }
 
     private void applyContinuousEffects() {
-        EventBus.report("Applying continuous effects");
         battlefield.resetBase();
-    }
+        EventBus.report("Applying continuous effects");
+        for (Player player : players) {
+            for (Permanent permanent : battlefield.getAll()) {
+                for (Ability ability : permanent.getAbilities()) {
+                    if (ability instanceof StaticAbility) {
+                        ((StaticAbility) ability).apply(player, this);
+                    }
+                }
+            }
 
-    private void checkStateBasedActions() {
-        EventBus.report("Checking statebased actions");
-    }
-
-
-    public void passPriority(){
-        stack.pass(this, playerWithPriority);
-        if(stack.allPlayersPassed()){
-            return;
         }
-        if(players[0].getId().equals(playerWithPriority)){
-            setPriority(players[1].getId());
-        }
-        else{
-            setPriority(players[0].getId());
+    }
+        private void checkStateBasedActions () {
+            EventBus.report("Checking statebased actions");
         }
 
 
-    }
+        public void passPriority () {
+            stack.pass(this, playerWithPriority);
+            if (stack.allPlayersPassed()) {
+                return;
+            }
+            if (players[0].getId().equals(playerWithPriority)) {
+                setPriority(players[1].getId());
+            } else {
+                setPriority(players[0].getId());
+            }
 
-    public Stack getStack(){
-        return stack;
-    }
 
-    public void moveToBattlefield(Card card) {
-        battlefield.add(new Permanent(card));
+        }
+
+        public Stack getStack () {
+            return stack;
+        }
+
+        public void moveToBattlefield (Card card){
+            battlefield.add(new Permanent(card));
+        }
     }
-}
