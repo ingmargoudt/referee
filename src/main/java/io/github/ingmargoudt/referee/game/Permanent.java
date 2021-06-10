@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.*;
 
-public class Permanent {
+public class Permanent extends BaseObject{
 
     Card base;
 
