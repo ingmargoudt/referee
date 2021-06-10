@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.players.Player;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -11,6 +12,7 @@ public class Permanent {
 
     Card base;
 
+    @Getter
     Card current;
 
     /*
@@ -107,4 +109,7 @@ the battlefield. Every permanent has a controller.
     }
 
 
+    public UUID getId() {
+        return base.id;
+    }
 }

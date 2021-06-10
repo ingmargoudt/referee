@@ -53,6 +53,16 @@ public class Test_SimpleCast extends BaseGame {
         assertPermanentToughness(Zone.BATTLEFIELD, player1, bears, 3);
     }
 
+    @Test
+    public void gloriousAnthemNotBoostsOtherPlayersCreature() {
+        addCard(Zone.BATTLEFIELD, player2, bears, 1);
+        addCard(Zone.BATTLEFIELD, player1, gloriousAnthem, 1);
+
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertPermanentPower(Zone.BATTLEFIELD, player2, bears, 2);
+        assertPermanentToughness(Zone.BATTLEFIELD, player2, bears, 2);
+    }
 
 
 }

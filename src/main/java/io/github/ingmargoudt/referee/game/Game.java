@@ -114,41 +114,43 @@ public class Game {
     private void applyContinuousEffects() {
         battlefield.resetBase();
         EventBus.report("Applying continuous effects");
-        for (Player player : players) {
-            for (Permanent permanent : battlefield.getAll()) {
-                for (Ability ability : permanent.getAbilities()) {
-                    if (ability instanceof StaticAbility) {
-                        ((StaticAbility) ability).apply(player, this);
-                    }
+        for (Permanent permanent : battlefield.getAll()) {
+            for (Ability ability : permanent.getAbilities()) {
+                if (ability instanceof StaticAbility) {
+                    ((StaticAbility) ability).apply(this);
                 }
             }
-
         }
     }
-        private void checkStateBasedActions () {
-            EventBus.report("Checking statebased actions");
-        }
 
-
-        public void passPriority () {
-            stack.pass(this, playerWithPriority);
-            if (stack.allPlayersPassed()) {
-                return;
-            }
-            if (players[0].getId().equals(playerWithPriority)) {
-                setPriority(players[1].getId());
-            } else {
-                setPriority(players[0].getId());
-            }
-
-
-        }
-
-        public Stack getStack () {
-            return stack;
-        }
-
-        public void moveToBattlefield (Card card){
-            battlefield.add(new Permanent(card));
-        }
+    private void checkStateBasedActions() {
+        EventBus.report("Checking statebased actions");
     }
+
+
+    public void passPriority() {
+        stack.pass(this, playerWithPriority);
+        if (stack.allPlayersPassed()) {
+            return;
+        }
+        if (players[0].getId().equals(playerWithPriority)) {
+            setPriority(players[1].getId());
+        } else {
+            setPriority(players[0].getId());
+        }
+
+
+    }
+
+    public Stack getStack() {
+        return stack;
+    }
+
+    public void moveToBattlefield(Card card) {
+        battlefield.add(new Permanent(card));
+    }
+
+    public Card getCard(UUID source) {
+        return battlefield.getAll().stream().filter(permanent -> permanent.getId().equals(source)).findFirst().get().getCurrent();
+    }
+}

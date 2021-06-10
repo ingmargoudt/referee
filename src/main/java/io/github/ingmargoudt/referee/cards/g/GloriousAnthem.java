@@ -9,6 +9,6 @@ public class GloriousAnthem extends Card {
 
     public GloriousAnthem() {
         super("Glorious Anthem");
-        getAbilities().add(new StaticAbility(new BoostAllControlledCreatures(1, 1)));
+        getAbilities().add(new StaticAbility(new BoostAllControlledCreatures(1, 1), this.getId()));
     }
 }
