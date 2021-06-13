@@ -17,7 +17,7 @@ public class StaticAbility extends Ability {
         effects.add(effect);
     }
 
-    public void apply(Game game) {
+    public void resolve(Game game) {
         for (ContinuousEffect continuousEffect : effects) {
             continuousEffect.apply(this, game);
         }

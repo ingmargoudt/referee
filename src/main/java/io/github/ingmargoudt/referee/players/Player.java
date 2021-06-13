@@ -14,6 +14,7 @@ public class Player extends BaseObject {
     private Library library;
     protected Hand hand = new Hand();
     protected Game gameReference;
+    @Getter
     private Manapool manapool;
     @Getter
     private int life;

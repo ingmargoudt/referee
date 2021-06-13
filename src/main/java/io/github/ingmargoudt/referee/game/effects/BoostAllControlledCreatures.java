@@ -26,7 +26,7 @@ public class BoostAllControlledCreatures extends ContinuousEffect {
         Player controller = game.getPlayer(card.getController());
         for (Permanent permanent : game.getBattlefield().getAll()) {
             if(permanent.isControlledBy(controller) && permanent.isCreature()){
-                EventBus.report("Applying "+getClass().getSimpleName() + " to "+controller.getName()+"'s "+permanent.getName());
+                EventBus.report("Applying "+card.getName()+" "+getClass().getSimpleName() + " to "+controller.getName()+"'s "+permanent.getName());
                 permanent.setPower(permanent.getPower()+power);
                 permanent.setToughness(permanent.getToughness()+toughness);
             }

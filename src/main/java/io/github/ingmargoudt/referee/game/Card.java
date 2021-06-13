@@ -33,5 +33,10 @@ public class Card extends MagicObject{
         this.setToughness(card.getToughness());
         this.getAbilities().addAll(card.getAbilities());
         this.getCardtypes().addAll(card.getCardtypes());
+        this.getSubTypes().addAll(card.getSubTypes());
+    }
+
+    public boolean isLand() {
+        return getCardtypes().isLand();
     }
 }

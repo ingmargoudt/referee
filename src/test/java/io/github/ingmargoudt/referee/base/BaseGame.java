@@ -5,6 +5,8 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.framework.InputBus;
 import io.github.ingmargoudt.referee.framework.TestInputListener;
 import io.github.ingmargoudt.referee.game.*;
+import io.github.ingmargoudt.referee.game.abilities.Ability;
+import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
 import org.assertj.core.api.Fail;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -127,4 +129,13 @@ public class BaseGame {
         }
 
     }
+    public void assertPermanentHasAbility(TestPlayer thePlayer, Card theCard, Class<? extends Ability> theAbility){
+        for(Permanent permanent : game.getBattlefield().getAll()){
+            if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
+                assertThat(permanent.hasAbility(theAbility));
+            }
+        }
+    }
+
+
 }

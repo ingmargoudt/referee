@@ -8,5 +8,4 @@ public abstract class ContinuousEffect extends Effect {
 
 
 
-    public abstract void apply(Ability source, Game game);
 }

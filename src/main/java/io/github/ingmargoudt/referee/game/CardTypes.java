@@ -29,4 +29,8 @@ public class CardTypes {
     public void addAll(CardTypes cardtypes) {
         this.cardTypes.addAll(cardtypes.cardTypes);
     }
+
+    public boolean isLand() {
+        return cardTypes.contains(CardType.LAND);
+    }
 }

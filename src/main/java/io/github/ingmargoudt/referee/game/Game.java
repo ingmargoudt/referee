@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
+import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
@@ -114,10 +115,24 @@ public class Game {
     private void applyContinuousEffects() {
         battlefield.resetBase();
         EventBus.report("Applying continuous effects");
+        //apply land mana abilities for the base card
+        applyLandManaAbilities();
         for (Permanent permanent : battlefield.getAll()) {
             for (Ability ability : permanent.getAbilities()) {
                 if (ability instanceof StaticAbility) {
-                    ((StaticAbility) ability).apply(this);
+                    ((StaticAbility) ability).resolve(this);
+                }
+            }
+        }
+        //apply land mana abilities again for the current card
+        applyLandManaAbilities();
+    }
+
+    private void applyLandManaAbilities() {
+        for (Permanent permanent : battlefield.getAll()) {
+            if (permanent.hasSubType(SubType.Mountain)) {
+                if(!permanent.hasAbility(AddRedManaAbility.class)) {
+                    permanent.addAbility(new AddRedManaAbility(permanent.id));
                 }
             }
         }
