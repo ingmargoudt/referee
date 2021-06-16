@@ -129,4 +129,8 @@ the battlefield. Every permanent has a controller.
     public boolean hasAbility(Class<? extends Ability> abilityClass) {
         return current.getAbilities().stream().map(a -> a.getClass()).anyMatch(cl -> cl.equals(abilityClass));
     }
+
+    public void destroy(Game game){
+        game.moveToGraveyard(this.current);
+    }
 }

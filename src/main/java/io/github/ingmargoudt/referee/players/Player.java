@@ -12,6 +12,7 @@ public class Player extends BaseObject {
 
     private final String name;
     private Library library;
+    private Graveyard graveyard;
     protected Hand hand = new Hand();
     protected Game gameReference;
     @Getter
@@ -90,5 +91,9 @@ public class Player extends BaseObject {
 
     protected void passPriority() {
         gameReference.passPriority();
+    }
+
+    public void putCardInGraveyard(Card card) {
+        graveyard.add(card);
     }
 }

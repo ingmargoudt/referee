@@ -168,4 +168,11 @@ public class Game {
     public Card getCard(UUID source) {
         return battlefield.getAll().stream().filter(permanent -> permanent.getId().equals(source)).findFirst().get().getCurrent();
     }
+
+    public void moveToGraveyard(Card card) {
+        Player controller = getPlayer(card.getController());
+        battlefield.remove(card);
+        controller.putCardInGraveyard(card);
+
+    }
 }

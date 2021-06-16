@@ -16,4 +16,8 @@ public class Battlefield {
     public List<Permanent> getAll(){
         return new ArrayList<>(permanents);
     }
+
+    public void remove(Card card) {
+        permanents.removeIf(permanent -> permanent.getId().equals(card.getId()));
+    }
 }
