@@ -1,8 +1,8 @@
 package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.Hand;
-import io.github.ingmargoudt.referee.game.Library;
+import io.github.ingmargoudt.referee.game.zones.Hand;
+import io.github.ingmargoudt.referee.game.zones.Library;
 import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.ArrayList;

@@ -17,6 +17,12 @@ public class Card extends MagicObject{
         super(name);
     }
 
+    public void setOwner(UUID owner){
+        if(this.owner == null){
+            this.owner = owner;
+        }
+    }
+
     public boolean isPermanent() {
         return getCardtypes().isPermanent();
     }

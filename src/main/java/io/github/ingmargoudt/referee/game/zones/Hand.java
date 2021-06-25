@@ -1,4 +1,6 @@
-package io.github.ingmargoudt.referee.game;
+package io.github.ingmargoudt.referee.game.zones;
+
+import io.github.ingmargoudt.referee.game.Card;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +23,6 @@ public class Hand {
     }
 
     public void remove(Card card) {
-        cards.removeIf(c -> c.getId().equals(card.id));
+        cards.removeIf(c -> c.getId().equals(card.getId()));
     }
 }

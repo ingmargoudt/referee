@@ -1,9 +1,11 @@
 package io.github.ingmargoudt.referee.players;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.framework.InputBus;
 import io.github.ingmargoudt.referee.framework.Question;
 import io.github.ingmargoudt.referee.game.*;
+import io.github.ingmargoudt.referee.game.zones.Graveyard;
+import io.github.ingmargoudt.referee.game.zones.Hand;
+import io.github.ingmargoudt.referee.game.zones.Library;
 import lombok.Getter;
 
 import java.util.Optional;

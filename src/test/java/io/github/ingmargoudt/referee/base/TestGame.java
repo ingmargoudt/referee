@@ -1,6 +1,6 @@
 package io.github.ingmargoudt.referee.base;
 
-import io.github.ingmargoudt.referee.game.Battlefield;
+import io.github.ingmargoudt.referee.game.zones.Battlefield;
 import io.github.ingmargoudt.referee.game.Game;
 
 public class TestGame extends Game {

@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
+import io.github.ingmargoudt.referee.game.zones.Battlefield;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 

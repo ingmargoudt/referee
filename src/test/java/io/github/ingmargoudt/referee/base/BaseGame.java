@@ -2,18 +2,16 @@ package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.framework.ConsoleListener;
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.framework.InputBus;
-import io.github.ingmargoudt.referee.framework.TestInputListener;
 import io.github.ingmargoudt.referee.game.*;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
-import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
+import io.github.ingmargoudt.referee.game.zones.Library;
+import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.assertj.core.api.Fail;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,4 +1,7 @@
-package io.github.ingmargoudt.referee.game;
+package io.github.ingmargoudt.referee.game.zones;
+
+import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.Permanent;
 
 import java.util.*;
 public class Battlefield {
