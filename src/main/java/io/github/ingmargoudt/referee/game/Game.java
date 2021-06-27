@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
+import io.github.ingmargoudt.referee.game.abilities.AddWhiteManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
 import io.github.ingmargoudt.referee.game.zones.Battlefield;
 import io.github.ingmargoudt.referee.players.Player;
@@ -135,6 +136,17 @@ public class Game {
                 if(!permanent.hasAbility(AddRedManaAbility.class)) {
                     permanent.addAbility(new AddRedManaAbility(permanent.id));
                 }
+            }
+            else{
+                permanent.removeAbility(AddRedManaAbility.class);
+            }
+            if (permanent.hasSubType(SubType.Plains)) {
+                if(!permanent.hasAbility(AddWhiteManaAbility.class)) {
+                    permanent.addAbility(new AddWhiteManaAbility(permanent.id));
+                }
+            }
+            else{
+                permanent.removeAbility(AddWhiteManaAbility.class);
             }
         }
     }

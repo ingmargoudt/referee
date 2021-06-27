@@ -1,7 +1,6 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.game.abilities.Ability;
-import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
@@ -127,10 +126,14 @@ the battlefield. Every permanent has a controller.
     }
 
     public boolean hasAbility(Class<? extends Ability> abilityClass) {
-        return current.getAbilities().stream().map(a -> a.getClass()).anyMatch(cl -> cl.equals(abilityClass));
+        return current.getAbilities().stream().map(Ability::getClass).anyMatch(cl -> cl.equals(abilityClass));
     }
 
     public void destroy(Game game){
         game.moveToGraveyard(this.current);
+    }
+
+    public void removeAbility(Class<? extends Ability> abilityClass) {
+        current.getAbilities().removeIf(ability -> ability.getClass().equals(abilityClass));
     }
 }
