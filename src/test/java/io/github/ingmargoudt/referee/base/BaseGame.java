@@ -36,6 +36,7 @@ public class BaseGame {
             EventBus.report("Starting " + method.getName());
             EventBus.report("*********************************");
         });
+
     }
     @AfterEach
     public void after(){
@@ -55,6 +56,10 @@ public class BaseGame {
 
     public void castSpell(int turn, Phase phase, TestPlayer player, Card card) {
         player.addAction(new CastSpellAction(turn, phase, card));
+    }
+
+    protected void disablePlayerActionLogging() {
+        EventBus.clear();
     }
 
     public void stopAt(int turn, Phase phase) {
