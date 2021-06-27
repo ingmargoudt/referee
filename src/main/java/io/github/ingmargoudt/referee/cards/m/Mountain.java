@@ -6,7 +6,7 @@ import io.github.ingmargoudt.referee.game.SubType;
 
 public class Mountain extends Card {
     public Mountain() {
-        super("Montain");
+        super("Mountain");
         getCardtypes().add(CardType.LAND);
         getSubTypes().add(SubType.Mountain);
     }

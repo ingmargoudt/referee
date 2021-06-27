@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.game.*;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import io.github.ingmargoudt.referee.game.zones.Zone;
+import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Fail;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Log4j2
 public class BaseGame {
 
     protected TestPlayer player1;
@@ -32,15 +34,15 @@ public class BaseGame {
     @BeforeEach
     public void before(TestInfo testInfo) {
         testInfo.getTestMethod().ifPresent(method -> {
-            EventBus.report("*********************************");
-            EventBus.report("Starting " + method.getName());
-            EventBus.report("*********************************");
+            log.info("*********************************");
+            log.info("Starting " + method.getName());
+            log.info("*********************************");
         });
 
     }
     @AfterEach
     public void after(){
-        EventBus.report("");
+        log.info("");
     }
 
 
@@ -70,11 +72,11 @@ public class BaseGame {
         game.start();
         boolean ok = true;
         if (player1.hasRemainingActions()) {
-            EventBus.report(player1.getName() + " has remaining actions");
+            log.error(player1.getName() + " has remaining actions");
             ok = false;
         }
         if (player2.hasRemainingActions()) {
-            EventBus.report(player2.getName() + " has remaining actions");
+            log.error(player2.getName() + " has remaining actions");
             ok = false;
         }
         if (!ok) {
@@ -136,6 +138,7 @@ public class BaseGame {
         for(Permanent permanent : game.getBattlefield().getAll()){
             if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
                 assertThat(permanent.hasAbility(theAbility));
+                log.info(theCard.getName() + " of "+thePlayer.getName() + " has the "+theAbility.getSimpleName());
             }
         }
     }
