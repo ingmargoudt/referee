@@ -29,6 +29,7 @@ public class Test_lands_have_mana_abilities extends BaseGame {
 
     @Test
     public void plains(){
+        disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, plains, 1);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
