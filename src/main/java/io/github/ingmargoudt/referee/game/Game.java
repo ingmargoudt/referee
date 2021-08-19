@@ -22,6 +22,8 @@ public class Game {
     @Getter
     final int startingLife = 20;
     @Getter
+    final int startingHandSize = 7;
+    @Getter
     private boolean running;
     @Getter
     private int turnNumber = 1;
@@ -77,7 +79,7 @@ public class Game {
         /*
         103.4. Each player draws a number of cards equal to their starting hand size, which is normally seven.
          */
-        Arrays.stream(players).forEach(player -> player.drawCard(7));
+        Arrays.stream(players).forEach(player -> player.drawCard(startingHandSize));
         Arrays.stream(players).forEach(Player::mulligan);
         activePlayer = players[0].getId();
         playerWithPriority = activePlayer;
