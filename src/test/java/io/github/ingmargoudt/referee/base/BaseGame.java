@@ -84,6 +84,10 @@ public class BaseGame {
         }
     }
 
+    public void addCard(Zone zone, TestPlayer player, Card card){
+        addCard(zone, player, card, 1);
+    }
+
     public void addCard(Zone zone, TestPlayer player, Card card, int amount) {
         card.setController(player.getId());
         for(int i = 0; i<amount; i++) {
