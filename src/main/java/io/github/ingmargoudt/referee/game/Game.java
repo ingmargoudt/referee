@@ -121,15 +121,19 @@ public class Game {
         EventBus.report("Applying continuous effects");
         //apply land mana abilities for the base card
         applyLandManaAbilities();
+        applyStaticAbilities();
+        //apply land mana abilities again for the current card
+        applyLandManaAbilities();
+    }
+
+    private void applyStaticAbilities() {
         for (Permanent permanent : battlefield.getAll()) {
             for (Ability ability : permanent.getAbilities()) {
                 if (ability instanceof StaticAbility) {
-                    ((StaticAbility) ability).resolve(this);
+                    ability.resolve(this);
                 }
             }
         }
-        //apply land mana abilities again for the current card
-        applyLandManaAbilities();
     }
 
     private void applyLandManaAbilities() {
