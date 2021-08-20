@@ -3,8 +3,10 @@ package io.github.ingmargoudt.referee.lands;
 import io.github.ingmargoudt.referee.base.BaseGame;
 import io.github.ingmargoudt.referee.cards.m.Mountain;
 import io.github.ingmargoudt.referee.cards.p.Plains;
+import io.github.ingmargoudt.referee.cards.s.Swamp;
 import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.abilities.AddBlackManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.AddWhiteManaAbility;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
@@ -14,6 +16,7 @@ public class Test_lands_have_mana_abilities extends BaseGame {
 
     private static final Card mountain= new Mountain();
     private static final Card plains = new Plains();
+    private static final Card swamp = new Swamp();
 
     @Test
     public void mountain(){
@@ -22,10 +25,7 @@ public class Test_lands_have_mana_abilities extends BaseGame {
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertPermanentHasAbility(player1, mountain, AddRedManaAbility.class);
-
     }
-
-
 
     @Test
     public void plains(){
@@ -34,6 +34,14 @@ public class Test_lands_have_mana_abilities extends BaseGame {
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertPermanentHasAbility(player1, plains, AddWhiteManaAbility.class);
+    }
 
+    @Test
+    public void swamp(){
+        disablePlayerActionLogging();
+        addCard(Zone.BATTLEFIELD, player1, swamp, 1);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertPermanentHasAbility(player1, swamp, AddBlackManaAbility.class);
     }
 }

@@ -120,6 +120,7 @@ public class BaseGame {
             for (Permanent permanent : game.getBattlefield().getAll()) {
                 if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
                     assertThat(permanent.getPower()).isEqualTo(power);
+                    log.info(theCard.getName() + " with power "+power +" found under control of player "+player.getName());
                 }
 
             }
@@ -132,6 +133,7 @@ public class BaseGame {
             for (Permanent permanent : game.getBattlefield().getAll()) {
                 if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
                     assertThat(permanent.getToughness()).isEqualTo(toughness);
+                    log.info(theCard.getName() + " with toughness "+toughness +" found under control of player "+player.getName());
                 }
 
             }
@@ -141,7 +143,7 @@ public class BaseGame {
     public void assertPermanentHasAbility(TestPlayer thePlayer, Card theCard, Class<? extends Ability> theAbility){
         for(Permanent permanent : game.getBattlefield().getAll()){
             if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
-                assertThat(permanent.hasAbility(theAbility));
+                assertThat(permanent.hasAbility(theAbility)).as(theCard.getName() + " does not have the " +theAbility.getSimpleName()).isTrue();
                 log.info(theCard.getName() + " of "+thePlayer.getName() + " has the "+theAbility.getSimpleName());
             }
         }

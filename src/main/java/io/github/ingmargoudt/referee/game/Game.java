@@ -1,10 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.game.abilities.Ability;
-import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
-import io.github.ingmargoudt.referee.game.abilities.AddWhiteManaAbility;
-import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
+import io.github.ingmargoudt.referee.game.abilities.*;
 import io.github.ingmargoudt.referee.game.zones.Battlefield;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
@@ -153,6 +150,14 @@ public class Game {
             }
             else{
                 permanent.removeAbility(AddWhiteManaAbility.class);
+            }
+            if (permanent.hasSubType(SubType.Swamp)) {
+                if(!permanent.hasAbility(AddBlackManaAbility.class)) {
+                    permanent.addAbility(new AddBlackManaAbility(permanent.id));
+                }
+            }
+            else{
+                permanent.removeAbility(AddBlackManaAbility.class);
             }
         }
     }
