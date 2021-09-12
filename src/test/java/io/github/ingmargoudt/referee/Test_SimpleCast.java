@@ -25,6 +25,7 @@ public class Test_SimpleCast extends BaseGame {
 
     @Test
     public void creatureHasPower() {
+        disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, bears, 1);
 
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
@@ -34,6 +35,7 @@ public class Test_SimpleCast extends BaseGame {
 
     @Test
     public void creatureHasToughness() {
+        disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, bears, 1);
 
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
@@ -44,6 +46,7 @@ public class Test_SimpleCast extends BaseGame {
 
     @Test
     public void gloriousAnthemBoosts() {
+        disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, bears, 1);
         addCard(Zone.BATTLEFIELD, player1, gloriousAnthem, 1);
 
@@ -55,6 +58,7 @@ public class Test_SimpleCast extends BaseGame {
 
     @Test
     public void gloriousAnthemNotBoostsOtherPlayersCreature() {
+        disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player2, bears, 1);
         addCard(Zone.BATTLEFIELD, player1, gloriousAnthem, 1);
 
