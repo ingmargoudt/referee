@@ -82,8 +82,7 @@ public class Game {
         Arrays.stream(players).forEach(player -> player.drawCard(startingHandSize));
         Arrays.stream(players).forEach(Player::mulligan);
         activePlayer = players[0].getId();
-        playerWithPriority = activePlayer;
-        EventBus.report(getPlayer(playerWithPriority).get().getName() + " gets priority");
+        setPriority(activePlayer);
         while (running) {
             currentTurn = new Turn();
             currentTurn.run(this);
