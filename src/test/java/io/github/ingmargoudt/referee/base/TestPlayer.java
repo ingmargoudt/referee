@@ -11,7 +11,7 @@ import java.util.*;
 public class TestPlayer extends Player {
 
 
-    private List<PlayerAction> actions = new ArrayList<>();
+    private List<TestPlayerAction> actions = new ArrayList<>();
 
 
 
@@ -19,7 +19,7 @@ public class TestPlayer extends Player {
         super(name, game, library);
     }
 
-    public void addAction(PlayerAction playerAction){
+    public void addAction(TestPlayerAction playerAction){
         actions.add(playerAction);
     }
 
@@ -45,9 +45,9 @@ public class TestPlayer extends Player {
 
     @Override
     public void doAction() {
-        Iterator<PlayerAction> playerActionIterator = actions.listIterator();
+        Iterator<TestPlayerAction> playerActionIterator = actions.listIterator();
         while(playerActionIterator.hasNext()){
-            PlayerAction action = playerActionIterator.next();
+            TestPlayerAction action = playerActionIterator.next();
             if(action.phase == gameReference.getCurrentPhase() && action.turn == gameReference.getTurnNumber())
             {
                 if(action instanceof CastSpellAction){

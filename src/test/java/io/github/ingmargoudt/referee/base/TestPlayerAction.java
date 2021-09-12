@@ -1,13 +1,14 @@
 package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.players.Player;
 
-public abstract class PlayerAction {
+public abstract class TestPlayerAction {
 
     int turn;
     Phase phase;
 
-    public PlayerAction(int turn , Phase phase){
+    public TestPlayerAction(int turn , Phase phase){
         this.turn  = turn;
         this.phase = phase;
     }
