@@ -151,6 +151,10 @@ public class BaseGame {
         }
     }
 
+    public void assertLife(TestPlayer testPlayer, int amount){
+        assertThat(testPlayer.getLife()).isEqualTo(amount);
+    }
+
     public Player[] getPlayers(){
         return game.getPlayers();
     }

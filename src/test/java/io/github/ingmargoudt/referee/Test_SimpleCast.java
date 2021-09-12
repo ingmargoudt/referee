@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee;
 
 import io.github.ingmargoudt.referee.base.BaseGame;
+import io.github.ingmargoudt.referee.cards.a.AngelsMercy;
 import io.github.ingmargoudt.referee.cards.g.GloriousAnthem;
 import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.game.Card;
@@ -12,6 +13,7 @@ public class Test_SimpleCast extends BaseGame {
 
     private final Card bears = new GrizzlyBears();
     private final Card gloriousAnthem = new GloriousAnthem();
+    private final Card angelsMercy = new AngelsMercy();
 
     @Test
     public void simple_cast_and_resolve() {
@@ -22,6 +24,18 @@ public class Test_SimpleCast extends BaseGame {
         start();
         assertPermanent(Zone.BATTLEFIELD, player1, bears, 1);
     }
+
+    @Test
+    public void simple_cast_instant_and_resolve() {
+        addCard(Zone.HAND, player1, angelsMercy, 1);
+
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, angelsMercy);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertLife(player1, 27);
+
+    }
+
 
     @Test
     public void creatureHasPower() {

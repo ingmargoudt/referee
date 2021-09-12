@@ -55,6 +55,7 @@ public class Player extends BaseObject {
 
     public void setLife(int startingLife) {
         EventBus.report(name + "'s life is set to " + startingLife);
+        this.life = startingLife;
 
     }
 
@@ -97,5 +98,10 @@ public class Player extends BaseObject {
 
     public void putCardInGraveyard(Card card) {
         graveyard.add(card);
+    }
+
+    public void gainLife(int amount) {
+        EventBus.report(getName() + " gains "+amount + " life");
+        life+=amount;
     }
 }

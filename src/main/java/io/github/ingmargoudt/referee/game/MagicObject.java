@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.game.abilities.Ability;
+import io.github.ingmargoudt.referee.game.effects.SpellEffect;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,6 +35,8 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     private int handmodifier;
     private int lifemodifier;
 
+    private List<SpellEffect> effects;
+
 @Setter
     private UUID controller;
 
@@ -44,6 +47,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         subTypes = new SubTypes();
         superTypes = new SuperTypes();
         abilities = new ArrayList<>();
+        effects = new ArrayList<>();
     }
 
     public boolean isCreature() {

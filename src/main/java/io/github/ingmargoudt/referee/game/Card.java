@@ -39,6 +39,7 @@ public class Card extends MagicObject{
         this.getAbilities().addAll(card.getAbilities());
         this.getCardtypes().addAll(card.getCardtypes());
         this.getSubTypes().addAll(card.getSubTypes());
+        this.getEffects().addAll(card.getEffects());
     }
 
     public boolean isLand() {
