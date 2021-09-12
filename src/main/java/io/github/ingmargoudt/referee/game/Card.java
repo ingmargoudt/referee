@@ -10,7 +10,6 @@ import java.util.UUID;
 public class Card extends MagicObject{
 
     @Setter
-    UUID controller;
     UUID owner;
 
     public Card(String name){
@@ -33,7 +32,7 @@ public class Card extends MagicObject{
 
     private Card(Card card){
         super(card.getName());
-        this.controller = card.getController();
+        this.setController(card.getController());
         this.owner = card.getOwner();
         this.setPower(card.getPower());
         this.setToughness(card.getToughness());

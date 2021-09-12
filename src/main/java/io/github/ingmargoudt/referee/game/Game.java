@@ -139,7 +139,7 @@ public class Game {
         for (Permanent permanent : battlefield.getAll()) {
             if (permanent.hasSubType(SubType.Mountain)) {
                 if(!permanent.hasAbility(AddRedManaAbility.class)) {
-                    permanent.addAbility(new AddRedManaAbility(permanent.id));
+                    permanent.addAbility(new AddRedManaAbility(permanent));
                 }
             }
             else{
@@ -147,7 +147,7 @@ public class Game {
             }
             if (permanent.hasSubType(SubType.Plains)) {
                 if(!permanent.hasAbility(AddWhiteManaAbility.class)) {
-                    permanent.addAbility(new AddWhiteManaAbility(permanent.id));
+                    permanent.addAbility(new AddWhiteManaAbility(permanent));
                 }
             }
             else{
@@ -155,7 +155,7 @@ public class Game {
             }
             if (permanent.hasSubType(SubType.Swamp)) {
                 if(!permanent.hasAbility(AddBlackManaAbility.class)) {
-                    permanent.addAbility(new AddBlackManaAbility(permanent.id));
+                    permanent.addAbility(new AddBlackManaAbility(permanent));
                 }
             }
             else{

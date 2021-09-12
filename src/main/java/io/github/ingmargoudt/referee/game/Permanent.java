@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.*;
 
-public class Permanent extends BaseObject{
+public class Permanent extends MagicObject{
 
     Card base;
 
@@ -32,6 +32,7 @@ see rule 111.2). A permanent’s controller is, by default, the player under who
 the battlefield. Every permanent has a controller.
      */
     public Permanent(Card card){
+        super(card.getName());
         this.base = card;
         reset();
     }

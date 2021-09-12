@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.cost.Cost;
 import io.github.ingmargoudt.referee.game.effects.Effect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
@@ -12,9 +13,11 @@ public class ActivatedAbility extends Ability{
     protected List<Cost> costs = new ArrayList<>();
     protected Effects effects;
 
-    public ActivatedAbility(List<Cost> costsList, Effects effects){
+    public ActivatedAbility(List<Cost> costsList, Effects effects, MagicObject source){
+        super(source);
      this.costs = costsList;
      this.effects = effects;
+
     }
 
     @Override

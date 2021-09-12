@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.cost.Cost;
 import io.github.ingmargoudt.referee.game.effects.AddManaEffect;
 import io.github.ingmargoudt.referee.game.effects.Effect;
@@ -11,9 +12,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class ActivatedManaAbility extends ActivatedAbility {
-    public ActivatedManaAbility(List<Cost> costsList, Effects effects, UUID source) {
-        super(costsList,effects);
-        this.source = source;
+    public ActivatedManaAbility(List<Cost> costsList, Effects effects, MagicObject source) {
+        super(costsList,effects, source);
     }
 
     @Override

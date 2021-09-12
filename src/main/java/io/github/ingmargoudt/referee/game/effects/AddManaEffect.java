@@ -15,8 +15,7 @@ public class AddManaEffect extends Effect {
     }
     @Override
     public void apply(Ability source, Game game) {
-        Card card = game.getCard(source.getSource());
-        game.getPlayer(card.getController()).ifPresent(controller -> {
+        game.getPlayer(source.getController()).ifPresent(controller -> {
             controller.getManapool().add(manaType);
         });
     }

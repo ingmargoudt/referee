@@ -34,6 +34,9 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     private int handmodifier;
     private int lifemodifier;
 
+@Setter
+    private UUID controller;
+
 
     public MagicObject(String name){
         this.name = name;

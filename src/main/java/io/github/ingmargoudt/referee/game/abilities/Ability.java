@@ -1,7 +1,7 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.effects.Effect;
+import io.github.ingmargoudt.referee.game.MagicObject;
 import lombok.Getter;
 
 import java.util.*;
@@ -10,9 +10,17 @@ import java.util.*;
 public abstract class Ability {
 
 
-    protected UUID source;
+    private MagicObject source;
+
+    public Ability(MagicObject source){
+        this.source = source;
+    }
 
     public abstract void resolve(Game game);
+
+    public UUID getController(){
+        return source.getController();
+    }
 
 
 }
