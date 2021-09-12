@@ -7,6 +7,7 @@ import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 public class Game {
@@ -82,7 +83,7 @@ public class Game {
         Arrays.stream(players).forEach(Player::mulligan);
         activePlayer = players[0].getId();
         playerWithPriority = activePlayer;
-        EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
+        EventBus.report(getPlayer(playerWithPriority).get().getName() + " gets priority");
         while (running) {
             currentTurn = new Turn();
             currentTurn.run(this);
@@ -99,8 +100,8 @@ public class Game {
         stack.putOnStack(spell);
     }
 
-    public Player getPlayer(UUID controller) {
-        return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst().get();
+    public Optional<Player> getPlayer(UUID controller) {
+        return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst();
     }
 
     public Player getActivePlayer() {
@@ -110,7 +111,7 @@ public class Game {
 
     public void setPriority(UUID playerId) {
         playerWithPriority = playerId;
-        EventBus.report(getPlayer(playerWithPriority).getName() + " gets priority");
+        EventBus.report(getPlayer(playerWithPriority).get().getName() + " gets priority");
         applyContinuousEffects();
         checkStateBasedActions();
     }
@@ -192,9 +193,10 @@ public class Game {
     }
 
     public void moveToGraveyard(Card card) {
-        Player controller = getPlayer(card.getController());
-        battlefield.remove(card);
-        controller.putCardInGraveyard(card);
+        getPlayer(card.getController()).ifPresent(controller -> {
+            battlefield.remove(card);
+            controller.putCardInGraveyard(card);
 
+        });
     }
 }
