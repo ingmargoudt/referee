@@ -6,6 +6,8 @@ import io.github.ingmargoudt.referee.game.*;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import io.github.ingmargoudt.referee.game.zones.Zone;
+import io.github.ingmargoudt.referee.players.Player;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Fail;
 import org.junit.jupiter.api.AfterEach;
@@ -147,6 +149,10 @@ public class BaseGame {
                 log.info(theCard.getName() + " of "+thePlayer.getName() + " has the "+theAbility.getSimpleName());
             }
         }
+    }
+
+    public Player[] getPlayers(){
+        return game.getPlayers();
     }
 
 
