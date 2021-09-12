@@ -42,8 +42,10 @@ public enum Phase {
 
     void startMessage(Game game){
 
-        EventBus.report(game.getActivePlayer().getName() + " starts " + this);
-        game.setPriority(game.activePlayer);
+        game.getActivePlayer().ifPresent(activePlayer -> {
+            EventBus.report(activePlayer.getName() + " starts " + this);
+            game.setPriority(activePlayer.getId());
+        });
     }
 
     /*

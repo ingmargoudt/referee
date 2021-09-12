@@ -103,8 +103,8 @@ public class Game {
         return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst();
     }
 
-    public Player getActivePlayer() {
-        return Arrays.stream(players).filter(player -> player.getId().equals(activePlayer)).findFirst().get();
+    public Optional<Player> getActivePlayer() {
+        return Arrays.stream(players).filter(player -> player.getId().equals(activePlayer)).findFirst();
 
     }
 
