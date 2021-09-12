@@ -187,10 +187,6 @@ public class Game {
         battlefield.add(new Permanent(card));
     }
 
-    public Card getCard(UUID source) {
-        return battlefield.getAll().stream().filter(permanent -> permanent.getId().equals(source)).findFirst().get().getCurrent();
-    }
-
     public void moveToGraveyard(Card card) {
         getPlayer(card.getController()).ifPresent(controller -> {
             battlefield.remove(card);
