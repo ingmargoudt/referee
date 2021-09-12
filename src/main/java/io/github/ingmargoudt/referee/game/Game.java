@@ -31,10 +31,12 @@ public class Game {
     @Getter
     private Turn currentTurn;
 
-    private Stack stack = new Stack(this);
+    @Getter
+    private final Stack stack;
 
     public Game() {
         battlefield = new Battlefield();
+        stack  = new Stack(this);
     }
 
     public void addPlayer(Player player) {
@@ -179,10 +181,6 @@ public class Game {
         }
 
 
-    }
-
-    public Stack getStack() {
-        return stack;
     }
 
     public void moveToBattlefield(Card card) {
