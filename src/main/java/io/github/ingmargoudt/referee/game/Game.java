@@ -185,6 +185,21 @@ public class Game {
 
     public void moveToBattlefield(Card card) {
         battlefield.add(new Permanent(card));
+        raiseEvent(Event.ENTERS_THE_BATTLEFIELD, card);
+    }
+
+    public void raiseEvent(Event event, MagicObject source){
+        battlefield.getAll().forEach(permanent -> {
+            permanent.getAbilities().forEach(ability -> {
+                if(ability instanceof TriggeredAbility){
+                    TriggeredAbility triggeredAbility = (TriggeredAbility) ability;
+                    if(triggeredAbility.checkTrigger(event)){
+                        EventBus.report(triggeredAbility.getName()+ " is put on the stack");
+                        stack.putOnStack(triggeredAbility);
+                    }
+                }
+            });
+        });
     }
 
     public void moveToGraveyard(Card card) {
