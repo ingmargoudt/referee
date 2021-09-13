@@ -16,7 +16,7 @@ public class Spell extends MagicObject implements Stackable{
             game.moveToBattlefield(card);
         }
         else{
-            card.getEffects().forEach(effect -> effect.apply(this, game));
+            card.getSpellEffects().forEach(effect -> effect.apply(this, game));
         }
         
     }

@@ -7,9 +7,11 @@ import java.util.UUID;
 
 public abstract class Effect {
 
-    UUID id;
-    UUID source;
+    private final UUID id;
 
+    public Effect(){
+        id = UUID.randomUUID();
+    }
 
     public abstract void apply(Ability source, Game game);
 }

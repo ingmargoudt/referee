@@ -3,7 +3,6 @@ package io.github.ingmargoudt.referee.game;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 @Getter
@@ -39,7 +38,7 @@ public class Card extends MagicObject{
         this.getAbilities().addAll(card.getAbilities());
         this.getCardtypes().addAll(card.getCardtypes());
         this.getSubTypes().addAll(card.getSubTypes());
-        this.getEffects().addAll(card.getEffects());
+        this.getSpellEffects().addAll(card.getSpellEffects());
     }
 
     public boolean isLand() {
