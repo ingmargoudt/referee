@@ -1,11 +1,14 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.game.abilities.Abilities;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 
 @Getter
@@ -27,7 +30,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     private SubTypes subTypes;
     private SuperTypes superTypes;
     private String rulesText;
-    private List<Ability> abilities;
+    private Abilities abilities;
     @Setter
     private int power;
     @Setter
@@ -37,16 +40,16 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
 
     private List<OneShotEffect> spellEffects;
 
-@Setter
+    @Setter
     private UUID controller;
 
 
-    public MagicObject(String name){
+    public MagicObject(String name) {
         this.name = name;
         cardtypes = new CardTypes();
         subTypes = new SubTypes();
         superTypes = new SuperTypes();
-        abilities = new ArrayList<>();
+        abilities = new Abilities();
         spellEffects = new ArrayList<>();
     }
 
@@ -54,5 +57,17 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         return getCardtypes().isCreature();
     }
 
+    public boolean hasAbility(Class<? extends Ability> abilityClass) {
+        return getAbilities().has(abilityClass);
+    }
 
+    public void addAbility(Ability ability) {
+        abilities.add(ability);
+    }
+
+
+    protected void removeAbility(Class<? extends Ability> abilityClass) {
+        getAbilities().remove(abilityClass);
+
+    }
 }

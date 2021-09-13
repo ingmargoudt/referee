@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.game.abilities.Abilities;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
@@ -105,8 +106,9 @@ the battlefield. Every permanent has a controller.
         return current.isCreature();
     }
 
-    public List<Ability> getAbilities(){
-        return new ArrayList<>(current.getAbilities());
+
+    public Abilities getAbilities(){
+        return current.getAbilities();
     }
 
     public void addAbility(Ability ability){
@@ -127,7 +129,7 @@ the battlefield. Every permanent has a controller.
     }
 
     public boolean hasAbility(Class<? extends Ability> abilityClass) {
-        return current.getAbilities().stream().map(Ability::getClass).anyMatch(cl -> cl.equals(abilityClass));
+        return current.hasAbility(abilityClass);
     }
 
     public void destroy(Game game){
@@ -135,6 +137,6 @@ the battlefield. Every permanent has a controller.
     }
 
     public void removeAbility(Class<? extends Ability> abilityClass) {
-        current.getAbilities().removeIf(ability -> ability.getClass().equals(abilityClass));
+        current.removeAbility(abilityClass);
     }
 }
