@@ -10,6 +10,6 @@ public abstract class TriggeredAbility extends Ability {
         super();
     }
 
-    public abstract boolean checkTrigger(Event event);
+    public abstract boolean checkTrigger(Event event, MagicObject source, MagicObject self);
 
 }

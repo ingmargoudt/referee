@@ -184,8 +184,9 @@ public class Game {
     }
 
     public void moveToBattlefield(Card card) {
-        battlefield.add(new Permanent(card));
-        raiseEvent(Event.ENTERS_THE_BATTLEFIELD, card);
+        Permanent permanent = new Permanent(card);
+        battlefield.add(permanent);
+        raiseEvent(Event.ENTERS_THE_BATTLEFIELD, permanent);
     }
 
     public void raiseEvent(Event event, MagicObject source){
@@ -193,7 +194,7 @@ public class Game {
             permanent.getAbilities().forEach(ability -> {
                 if(ability instanceof TriggeredAbility){
                     TriggeredAbility triggeredAbility = (TriggeredAbility) ability;
-                    if(triggeredAbility.checkTrigger(event)){
+                    if(triggeredAbility.checkTrigger(event, source, permanent)){
                         stack.putOnStack(new StackAbility(triggeredAbility, permanent));
                     }
                 }
