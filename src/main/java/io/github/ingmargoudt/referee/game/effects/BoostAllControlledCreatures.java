@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game.effects;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.Permanent;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.players.Player;
@@ -21,11 +22,11 @@ public class BoostAllControlledCreatures extends ContinuousEffect {
     }
 
 
-    public void apply(Ability ability, Game game){
-        game.getPlayer(ability.getController()).ifPresent(controller -> {
+    public void apply(MagicObject source, Game game){
+        game.getPlayer(source.getController()).ifPresent(controller -> {
             for (Permanent permanent : game.getBattlefield().getAll()) {
                 if (permanent.isControlledBy(controller) && permanent.isCreature()) {
-                    EventBus.report("Applying " + ability.getSource().getName() + " " + getClass().getSimpleName() + " to " + controller.getName() + "'s " + permanent.getName());
+                    EventBus.report("Applying " + source.getName() + " " + getClass().getSimpleName() + " to " + controller.getName() + "'s " + permanent.getName());
                     permanent.setPower(permanent.getPower() + power);
                     permanent.setToughness(permanent.getToughness() + toughness);
                 }

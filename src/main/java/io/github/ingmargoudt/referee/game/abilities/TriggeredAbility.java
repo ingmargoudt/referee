@@ -4,10 +4,10 @@ import io.github.ingmargoudt.referee.game.Event;
 import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.Stackable;
 
-public abstract class TriggeredAbility extends Ability implements Stackable {
+public abstract class TriggeredAbility extends Ability {
 
-    public TriggeredAbility(MagicObject source){
-        super(source);
+    public TriggeredAbility(){
+        super();
     }
 
     public abstract boolean checkTrigger(Event event);

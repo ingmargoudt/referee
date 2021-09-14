@@ -12,17 +12,17 @@ import java.util.List;
 import java.util.UUID;
 
 public class ActivatedManaAbility extends ActivatedAbility {
-    public ActivatedManaAbility(List<Cost> costsList, Effects effects, MagicObject source) {
-        super(costsList,effects, source);
+    public ActivatedManaAbility(List<Cost> costsList, Effects effects) {
+        super(costsList,effects);
     }
 
     @Override
-    public void resolve(Game game) {
+    public void resolve(MagicObject source, Game game) {
         //Card card = game.getCard(source);
         //Player controller = game.getPlayer(card.getController());
         for (Effect effect : effects.get()) {
             if (effect instanceof AddManaEffect) {
-                effect.apply(this, game);
+                effect.apply(source, game);
             }
         }
     }

@@ -10,8 +10,8 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
 
     public List<OneShotEffect> effects = new ArrayList<>();
 
-    public EntersTheBattlefieldAbility(OneShotEffect effect, MagicObject source){
-        super(source);
+    public EntersTheBattlefieldAbility(OneShotEffect effect){
+        super();
         effects.add(effect);
     }
 
@@ -20,13 +20,9 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
         return event == Event.ENTERS_THE_BATTLEFIELD;
     }
 
-    @Override
-    public String getName() {
-        return effects.get(0).getClass().getSimpleName() + " from "+getSource().getName();
-    }
 
     @Override
-    public void resolve(Game game) {
-        effects.forEach(effect -> effect.apply(getSource(), game));
+    public void resolve(MagicObject source, Game game) {
+        effects.forEach(effect -> effect.apply(source, game));
     }
 }

@@ -10,17 +10,12 @@ import java.util.*;
 public abstract class Ability {
 
 
-    private MagicObject source;
 
-    public Ability(MagicObject source){
-        this.source = source;
+    public Ability(){
     }
 
-    public abstract void resolve(Game game);
+    public abstract void resolve(MagicObject source, Game game);
 
-    public UUID getController(){
-        return source.getController();
-    }
 
 
 }

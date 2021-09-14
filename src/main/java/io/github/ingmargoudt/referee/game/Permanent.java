@@ -139,4 +139,9 @@ the battlefield. Every permanent has a controller.
     public void removeAbility(Class<? extends Ability> abilityClass) {
         current.removeAbility(abilityClass);
     }
+
+    @Override
+    public UUID getController() {
+        return current.getController();
+    }
 }

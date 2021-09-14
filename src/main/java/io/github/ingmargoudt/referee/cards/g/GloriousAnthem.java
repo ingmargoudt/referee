@@ -11,6 +11,6 @@ public class GloriousAnthem extends Card {
     public GloriousAnthem() {
         super("Glorious Anthem");
         getCardtypes().add(CardType.ENCHANTMENT);
-        getAbilities().add(new StaticAbility(new BoostAllControlledCreatures(1, 1), this));
+        getAbilities().add(new StaticAbility(new BoostAllControlledCreatures(1, 1)));
     }
 }

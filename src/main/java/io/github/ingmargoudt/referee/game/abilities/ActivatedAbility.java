@@ -13,14 +13,17 @@ public class ActivatedAbility extends Ability{
     protected List<Cost> costs = new ArrayList<>();
     protected Effects effects;
 
-    public ActivatedAbility(List<Cost> costsList, Effects effects, MagicObject source){
-        super(source);
+    public ActivatedAbility(List<Cost> costsList, Effects effects){
+        super();
      this.costs = costsList;
      this.effects = effects;
 
     }
 
+
+
     @Override
-    public void resolve(Game game) {
+    public void resolve(MagicObject source, Game game) {
+
     }
 }

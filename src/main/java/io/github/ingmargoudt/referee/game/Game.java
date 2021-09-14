@@ -129,7 +129,7 @@ public class Game {
         for (Permanent permanent : battlefield.getAll()) {
             for (Ability ability : permanent.getAbilities()) {
                 if (ability instanceof StaticAbility) {
-                    ability.resolve(this);
+                    ability.resolve(permanent,this);
                 }
             }
         }
@@ -139,7 +139,7 @@ public class Game {
         for (Permanent permanent : battlefield.getAll()) {
             if (permanent.hasSubType(SubType.Mountain)) {
                 if(!permanent.hasAbility(AddRedManaAbility.class)) {
-                    permanent.addAbility(new AddRedManaAbility(permanent));
+                    permanent.addAbility(new AddRedManaAbility());
                 }
             }
             else{
@@ -147,7 +147,7 @@ public class Game {
             }
             if (permanent.hasSubType(SubType.Plains)) {
                 if(!permanent.hasAbility(AddWhiteManaAbility.class)) {
-                    permanent.addAbility(new AddWhiteManaAbility(permanent));
+                    permanent.addAbility(new AddWhiteManaAbility());
                 }
             }
             else{
@@ -155,7 +155,7 @@ public class Game {
             }
             if (permanent.hasSubType(SubType.Swamp)) {
                 if(!permanent.hasAbility(AddBlackManaAbility.class)) {
-                    permanent.addAbility(new AddBlackManaAbility(permanent));
+                    permanent.addAbility(new AddBlackManaAbility());
                 }
             }
             else{
@@ -194,8 +194,7 @@ public class Game {
                 if(ability instanceof TriggeredAbility){
                     TriggeredAbility triggeredAbility = (TriggeredAbility) ability;
                     if(triggeredAbility.checkTrigger(event)){
-                        EventBus.report(triggeredAbility.getName()+ " is put on the stack");
-                        stack.putOnStack(triggeredAbility);
+                        stack.putOnStack(new StackAbility(triggeredAbility, permanent));
                     }
                 }
             });

@@ -12,7 +12,7 @@ public class AddBlackManaAbility extends ActivatedManaAbility {
 
     private static final Effects addManaEffect = Effects.of(new AddManaEffect(ManaType.Black));
 
-    public AddBlackManaAbility(MagicObject source) {
-        super(new ArrayList<>(), addManaEffect, source);
+    public AddBlackManaAbility() {
+        super(new ArrayList<>(), addManaEffect);
     }
 }

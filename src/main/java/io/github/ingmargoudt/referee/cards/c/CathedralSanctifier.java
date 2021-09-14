@@ -12,6 +12,6 @@ public class CathedralSanctifier extends Card {
         getCardtypes().add(CardType.CREATURE);
         setPower(0);
         setToughness(3);
-        getAbilities().add(new EntersTheBattlefieldAbility(new YouGainLifeEffect(3),this));
+        getAbilities().add(new EntersTheBattlefieldAbility(new YouGainLifeEffect(3)));
     }
 }

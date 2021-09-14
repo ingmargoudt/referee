@@ -20,6 +20,7 @@ public class Stack {
 
     public void putOnStack(Stackable stackable) {
         stackEntries.addFirst(stackable);
+        EventBus.report(stackable.getName()+ " is put on the stack");
     }
 
     private List<UUID> passed = new ArrayList<>();
