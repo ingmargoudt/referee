@@ -74,9 +74,14 @@ public class Player extends BaseObject {
     }
 
     public void castSpell(Card card){
-        EventBus.report(getName() + " casts "+card.getName());
-        gameReference.putOnStack(new Spell(card));
-        hand.remove(card);
+        if(hand.remove(card)) {
+            EventBus.report(getName() + " casts " + card.getName());
+            gameReference.putOnStack(new Spell(card));
+        }
+        else{
+            EventBus.report(card.getName() + " not found in "+getName()+"'s hand");
+        }
+
     }
 
 

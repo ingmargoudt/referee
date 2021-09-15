@@ -22,7 +22,7 @@ public class Hand {
         return cards.size();
     }
 
-    public void remove(Card card) {
-        cards.removeIf(c -> c.getId().equals(card.getId()));
+    public boolean remove(Card card) {
+        return cards.removeIf(c -> c.getId().equals(card.getId()));
     }
 }

@@ -27,6 +27,20 @@ public class Test_SimpleCast extends BaseGame {
         assertPermanent(Zone.BATTLEFIELD, player1, bears, 1);
     }
 
+
+    @Test
+    public void simple_cast_and_resolve_two_permanents() {
+        Card otherbear = new GrizzlyBears();
+        addCard(Zone.HAND, player1, bears, 1);
+        addCard(Zone.HAND, player1, otherbear, 1);
+
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bears);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, otherbear);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertPermanent(Zone.BATTLEFIELD, player1, bears, 2);
+    }
+
     @Test
     public void simple_cast_and_resolve_trigger() {
         addCard(Zone.HAND, player1, cathedralSanctifier, 1);

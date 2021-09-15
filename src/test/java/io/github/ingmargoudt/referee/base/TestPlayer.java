@@ -15,7 +15,7 @@ public class TestPlayer extends Player {
 
 
 
-    public TestPlayer(String name, Game game, Library library) {
+    public TestPlayer(String name, TestGame game, Library library) {
         super(name, game, library);
     }
 
@@ -50,7 +50,7 @@ public class TestPlayer extends Player {
             TestPlayerAction action = playerActionIterator.next();
             if(action.phase == gameReference.getCurrentPhase() && action.turn == gameReference.getTurnNumber())
             {
-                if(action instanceof CastSpellAction){
+                if(action instanceof CastSpellAction && gameReference.isPlayable(this, ((CastSpellAction) action).getCard())){
                     action.execute(this);
                     playerActionIterator.remove();
                     return;

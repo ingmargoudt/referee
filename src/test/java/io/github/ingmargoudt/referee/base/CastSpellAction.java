@@ -3,9 +3,11 @@ package io.github.ingmargoudt.referee.base;
 import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.players.Player;
+import lombok.Getter;
 
 public class CastSpellAction extends TestPlayerAction {
 
+    @Getter
     private Card card;
 
 

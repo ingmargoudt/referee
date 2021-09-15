@@ -209,4 +209,20 @@ public class Game {
 
         });
     }
+
+
+    public boolean isPlayable(Player player, Card card){
+
+        if(!player.getId().equals(playerWithPriority)){
+            return false;
+        }
+        if(!stack.isEmpty()){
+            if(card.isPermanent()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }
