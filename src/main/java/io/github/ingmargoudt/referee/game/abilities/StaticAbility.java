@@ -18,6 +18,7 @@ public class StaticAbility extends Ability {
         effects.add(effect);
     }
 
+    @Override
     public void resolve(MagicObject source, Game game) {
         for (ContinuousEffect continuousEffect : effects) {
             continuousEffect.apply(source, game);

@@ -16,8 +16,8 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
     }
 
     @Override
-    public boolean checkTrigger(Event event, MagicObject sourceOfTrigger, MagicObject self) {
-        return event == Event.ENTERS_THE_BATTLEFIELD && Objects.equals(sourceOfTrigger, self) ;
+    public boolean checkTrigger(Event event, MagicObject sourceOfTrigger, MagicObject parentObject) {
+        return event == Event.ENTERS_THE_BATTLEFIELD && Objects.equals(sourceOfTrigger, parentObject) ;
     }
 
 
