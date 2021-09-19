@@ -22,26 +22,26 @@ characteristic. For example, characteristics don’t include whether a permanent
 target, an object’s owner or controller, what an Aura enchants, and so on.
      */
 
-    private String name;
-    private ManaCost manaCost;
-    private Color color;
-    private Color colorIndicator;
-    private CardTypes cardtypes;
-    private SubTypes subTypes;
-    private SuperTypes superTypes;
-    private String rulesText;
-    private Abilities abilities;
+    protected String name;
+    protected ManaCost manaCost;
+    protected Color color;
+    protected Color colorIndicator;
+    protected CardTypes cardtypes;
+    protected SubTypes subTypes;
+    protected SuperTypes superTypes;
+    protected String rulesText;
+    protected Abilities abilities;
     @Setter
-    private int power;
+    protected int power;
     @Setter
-    private int toughness;
-    private int handmodifier;
-    private int lifemodifier;
+    protected int toughness;
+    protected int handmodifier;
+    protected int lifemodifier;
 
-    private List<OneShotEffect> spellEffects;
+    protected List<OneShotEffect> spellEffects;
 
     @Setter
-    private UUID controller;
+    protected UUID controller;
 
 
     public MagicObject(String name) {
@@ -66,7 +66,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     }
 
 
-    protected void removeAbility(Class<? extends Ability> abilityClass) {
+    public  void removeAbility(Class<? extends Ability> abilityClass) {
         getAbilities().remove(abilityClass);
 
     }

@@ -17,4 +17,8 @@ public class SubTypes {
     public void addAll(SubTypes subTypes) {
         subTypeList.addAll(subTypes.subTypeList);
     }
+
+    public void clear() {
+        subTypeList.clear();
+    }
 }

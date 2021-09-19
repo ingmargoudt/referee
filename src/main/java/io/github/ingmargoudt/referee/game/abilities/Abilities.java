@@ -35,4 +35,8 @@ public class Abilities implements Iterable<Ability> {
     public void remove(Class<? extends Ability> abilityClass){
         abilityList.removeIf(ability -> ability.getClass().equals(abilityClass));
     }
+
+    public void clear(){
+        abilityList.clear();
+    }
 }

@@ -3,18 +3,14 @@ package io.github.ingmargoudt.referee.game;
 import io.github.ingmargoudt.referee.game.abilities.Abilities;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.players.Player;
-import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.UUID;
-import java.util.*;
 
 public class Permanent extends MagicObject{
 
     Card base;
 
-    @Getter
-    Card current;
+    //Card current;
 
     /*
     110.5. A permanent’s status is its physical state. There are four status categories, each of which has two
@@ -35,10 +31,22 @@ the battlefield. Every permanent has a controller.
     public Permanent(Card card){
         super(card.getName());
         this.base = card;
+        this.controller = base.getOwner();
         reset();
     }
     public void reset(){
-        this.current = base.copy();
+
+        this.setPower(base.getPower());
+        this.setToughness(base.getToughness());
+        this.getAbilities().clear();
+        this.getAbilities().addAll(base.getAbilities());
+        this.getCardtypes().clear();
+        this.getCardtypes().addAll(base.getCardtypes());
+        this.getSubTypes().clear();
+        this.getSubTypes().addAll(base.getSubTypes());
+        this.getSpellEffects().clear();
+        this.getSpellEffects().addAll(base.getSpellEffects());
+
     }
 
     public UUID getOwner(){
@@ -78,70 +86,24 @@ the battlefield. Every permanent has a controller.
     }
 
 
-    public String getName(){
-        return current.getName();
-    }
 
-    public int getPower(){
-        return current.getPower();
-    }
-
-    public int getToughness(){
-        return current.getToughness();
-    }
-
-    public void setPower(int power){
-        current.setPower(power);
-    }
-
-    public void setToughness(int toughness){
-        current.setToughness(toughness);
-    }
 
     public boolean isControlledBy(Player thePlayer){
-        return current.getController().equals(thePlayer.getId());
+        return getController().equals(thePlayer.getId());
     }
-
-    public boolean isCreature(){
-        return current.isCreature();
-    }
-
-
-    public Abilities getAbilities(){
-        return current.getAbilities();
-    }
-
-    public void addAbility(Ability ability){
-        current.getAbilities().add(ability);
-    }
-
 
     public UUID getId() {
         return base.id;
     }
 
-    public boolean isLand() {
-        return current.isLand();
-    }
-
     public boolean hasSubType(SubType subType) {
-        return current.getSubTypes().has(subType);
+        return getSubTypes().has(subType);
     }
 
-    public boolean hasAbility(Class<? extends Ability> abilityClass) {
-        return current.hasAbility(abilityClass);
-    }
 
     public void destroy(Game game){
-        game.moveToGraveyard(this.current);
+        game.moveToGraveyard(base);
     }
 
-    public void removeAbility(Class<? extends Ability> abilityClass) {
-        current.removeAbility(abilityClass);
-    }
 
-    @Override
-    public UUID getController() {
-        return current.getController();
-    }
 }
