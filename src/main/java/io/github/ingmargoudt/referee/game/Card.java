@@ -41,7 +41,4 @@ public class Card extends MagicObject{
         this.getSpellEffects().addAll(card.getSpellEffects());
     }
 
-    public boolean isLand() {
-        return getCardtypes().isLand();
-    }
 }

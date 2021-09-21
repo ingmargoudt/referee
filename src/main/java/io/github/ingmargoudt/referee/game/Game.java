@@ -186,6 +186,7 @@ public class Game {
     public void moveToBattlefield(Card card) {
         Permanent permanent = new Permanent(card);
         battlefield.add(permanent);
+        applyContinuousEffects();
         raiseEvent(Event.ENTERS_THE_BATTLEFIELD, permanent);
     }
 
@@ -206,6 +207,8 @@ public class Game {
             });
         });
     }
+
+
 
     public void moveToGraveyard(Card card) {
         getPlayer(card.getController()).ifPresent(controller -> {

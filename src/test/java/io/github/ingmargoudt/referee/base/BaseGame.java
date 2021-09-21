@@ -175,4 +175,15 @@ public class BaseGame {
         }
         Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
     }
+
+    public void assertUntapped(TestPlayer thePlayer, Card theCard){
+        for(Permanent permanent : game.getBattlefield().getAll()){
+            if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
+                assertThat(permanent.isTapped()).isFalse();
+                log.info(theCard.getName() + " of "+thePlayer.getName() + " is untapped");
+                return;
+            }
+        }
+        Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
+    }
 }
