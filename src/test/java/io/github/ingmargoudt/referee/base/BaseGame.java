@@ -62,6 +62,10 @@ public class BaseGame {
         player.addAction(new CastSpellAction(turn, phase, card));
     }
 
+    public void playLand(TestPlayer player, int turnNumber, Phase phase, Card card){
+        player.addAction(new PlayLandAction(turnNumber, phase, card));
+    }
+
     protected void disablePlayerActionLogging() {
         EventBus.clear();
     }
@@ -161,4 +165,14 @@ public class BaseGame {
     }
 
 
+    public void assertTapped(TestPlayer thePlayer, Card theCard){
+        for(Permanent permanent : game.getBattlefield().getAll()){
+            if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
+                assertThat(permanent.isTapped()).isTrue();
+                log.info(theCard.getName() + " of "+thePlayer.getName() + " is tapped");
+                return;
+            }
+        }
+        Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
+    }
 }

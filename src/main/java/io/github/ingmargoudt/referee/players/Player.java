@@ -109,4 +109,9 @@ public class Player extends BaseObject {
         EventBus.report(getName() + " gains "+amount + " life");
         life+=amount;
     }
+
+    public void playLand(Card card) {
+        hand.remove(card);
+        gameReference.moveToBattlefield(card);
+    }
 }

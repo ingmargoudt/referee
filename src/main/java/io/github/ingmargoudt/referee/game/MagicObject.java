@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game;
 import io.github.ingmargoudt.referee.game.abilities.Abilities;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,6 +40,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     protected int lifemodifier;
 
     protected List<OneShotEffect> spellEffects;
+    protected List<ReplacementEffect> replacementEffects;
 
     @Setter
     protected UUID controller;
@@ -51,6 +53,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         superTypes = new SuperTypes();
         abilities = new Abilities();
         spellEffects = new ArrayList<>();
+        replacementEffects = new ArrayList<>();
     }
 
     public boolean isCreature() {

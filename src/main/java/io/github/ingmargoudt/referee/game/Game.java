@@ -199,6 +199,11 @@ public class Game {
                     }
                 }
             });
+            permanent.getReplacementEffects().forEach(replacementEffect -> {
+                if(replacementEffect.checkEvent(event, source, permanent)){
+                    replacementEffect.apply(permanent, this);
+                }
+            });
         });
     }
 

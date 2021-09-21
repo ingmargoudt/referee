@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game;
 import io.github.ingmargoudt.referee.game.abilities.Abilities;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.players.Player;
+import lombok.Getter;
 
 import java.util.UUID;
 
@@ -17,7 +18,8 @@ public class Permanent extends MagicObject{
 possible values: tapped/untapped, flipped/unflipped, face up/face down, and phased in/phased out.
 Each permanent always has one of these values for each of these categories.
      */
-    boolean isTapped;
+    @Getter
+    boolean tapped;
     boolean isFlipped;
     boolean isFacedown;
     boolean isPhasedOut;
@@ -46,6 +48,8 @@ the battlefield. Every permanent has a controller.
         this.getSubTypes().addAll(base.getSubTypes());
         this.getSpellEffects().clear();
         this.getSpellEffects().addAll(base.getSpellEffects());
+        this.getReplacementEffects().clear();
+        this.getReplacementEffects().addAll(base.getReplacementEffects());
 
     }
 
@@ -54,11 +58,11 @@ the battlefield. Every permanent has a controller.
     }
 
     public void tap(){
-        isTapped = true;
+        tapped = true;
     }
 
     public void untap(){
-        isTapped = false;
+        tapped = false;
     }
 
     public void flip(){

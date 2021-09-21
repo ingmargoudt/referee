@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.base;
 
+import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.zones.Hand;
 import io.github.ingmargoudt.referee.game.zones.Library;
@@ -37,6 +38,8 @@ public class TestPlayer extends Player {
 
     }
 
+
+
     public boolean hasRemainingActions(){
         return !actions.isEmpty();
     }
@@ -51,6 +54,11 @@ public class TestPlayer extends Player {
             if(action.phase == gameReference.getCurrentPhase() && action.turn == gameReference.getTurnNumber())
             {
                 if(action instanceof CastSpellAction && gameReference.isPlayable(this, ((CastSpellAction) action).getCard())){
+                    action.execute(this);
+                    playerActionIterator.remove();
+                    return;
+                }
+                if(action instanceof PlayLandAction && gameReference.isPlayable(this, ((PlayLandAction) action).getCard())){
                     action.execute(this);
                     playerActionIterator.remove();
                     return;
