@@ -23,6 +23,10 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    
+    - name: run code coverage
+      run: mvn cobertura:cobertura
+      
     - name: Codecov
       uses: codecov/codecov-action@v2.1.0
 
