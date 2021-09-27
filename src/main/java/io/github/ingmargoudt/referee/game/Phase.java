@@ -57,7 +57,7 @@ chance to add new things to the stack before that phase or step ends.
     void mainPhase(Game game){
         do{
             game.getStack().checkIfAllPlayersPassed();
-            game.getPlayer(game.playerWithPriority).ifPresent(Player::doAction);
+            game.getPlayerWithPriority().ifPresent(Player::doAction);
         }
         while(!game.getStack().isEmpty() || (game.getStack().isEmpty() && !game.getStack().allPlayersPassed()));
         game.getStack().reset();

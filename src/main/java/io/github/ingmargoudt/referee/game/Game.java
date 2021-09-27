@@ -12,8 +12,8 @@ import java.util.UUID;
 
 public class Game {
 
-    UUID activePlayer;
-    UUID playerWithPriority;
+    private UUID activePlayer;
+    private UUID playerWithPriority;
     @Getter
     protected Battlefield battlefield;
     protected Player[] players = new Player[2];
@@ -105,8 +105,12 @@ public class Game {
 
     public Optional<Player> getActivePlayer() {
         return Arrays.stream(players).filter(player -> player.getId().equals(activePlayer)).findFirst();
-
     }
+
+    public Optional<Player> getPlayerWithPriority() {
+        return Arrays.stream(players).filter(player -> player.getId().equals(playerWithPriority)).findFirst();
+    }
+
 
     public void setPriority(UUID playerId) {
         playerWithPriority = playerId;
