@@ -10,7 +10,7 @@ public abstract class Effect {
 
     private final UUID id;
 
-    public Effect(){
+    protected Effect(){
         id = UUID.randomUUID();
     }
 

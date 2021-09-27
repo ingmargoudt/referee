@@ -11,7 +11,7 @@ public abstract class Ability {
 
 
 
-    public Ability(){
+    protected Ability(){
     }
 
     public abstract void resolve(MagicObject source, Game game);

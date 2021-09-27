@@ -8,7 +8,7 @@ import java.util.UUID;
 public abstract class OneShotEffect {
 
     private final UUID id;
-    public OneShotEffect(){
+    protected OneShotEffect(){
         id = UUID.randomUUID();
     }
 
