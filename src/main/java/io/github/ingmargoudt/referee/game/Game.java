@@ -37,7 +37,7 @@ public class Game {
 
     public Game() {
         battlefield = new Battlefield();
-        stack  = new Stack(this);
+        stack = new Stack(this);
     }
 
     public void addPlayer(Player player) {
@@ -110,9 +110,12 @@ public class Game {
 
     public void setPriority(UUID playerId) {
         playerWithPriority = playerId;
-        EventBus.report(getPlayer(playerWithPriority).get().getName() + " gets priority");
-        applyContinuousEffects();
-        checkStateBasedActions();
+        getPlayer(playerWithPriority).ifPresent(player -> {
+
+            EventBus.report(player.getName() + " gets priority");
+            applyContinuousEffects();
+            checkStateBasedActions();
+        });
     }
 
     private void applyContinuousEffects() {
@@ -129,7 +132,7 @@ public class Game {
         for (Permanent permanent : battlefield.getAll()) {
             for (Ability ability : permanent.getAbilities()) {
                 if (ability instanceof StaticAbility) {
-                    ability.resolve(permanent,this);
+                    ability.resolve(permanent, this);
                 }
             }
         }
@@ -138,27 +141,24 @@ public class Game {
     private void applyLandManaAbilities() {
         for (Permanent permanent : battlefield.getAll()) {
             if (permanent.hasSubType(SubType.Mountain)) {
-                if(!permanent.hasAbility(AddRedManaAbility.class)) {
+                if (!permanent.hasAbility(AddRedManaAbility.class)) {
                     permanent.addAbility(new AddRedManaAbility());
                 }
-            }
-            else{
+            } else {
                 permanent.removeAbility(AddRedManaAbility.class);
             }
             if (permanent.hasSubType(SubType.Plains)) {
-                if(!permanent.hasAbility(AddWhiteManaAbility.class)) {
+                if (!permanent.hasAbility(AddWhiteManaAbility.class)) {
                     permanent.addAbility(new AddWhiteManaAbility());
                 }
-            }
-            else{
+            } else {
                 permanent.removeAbility(AddWhiteManaAbility.class);
             }
             if (permanent.hasSubType(SubType.Swamp)) {
-                if(!permanent.hasAbility(AddBlackManaAbility.class)) {
+                if (!permanent.hasAbility(AddBlackManaAbility.class)) {
                     permanent.addAbility(new AddBlackManaAbility());
                 }
-            }
-            else{
+            } else {
                 permanent.removeAbility(AddBlackManaAbility.class);
             }
         }
@@ -190,24 +190,23 @@ public class Game {
         raiseEvent(Event.ENTERS_THE_BATTLEFIELD, permanent);
     }
 
-    public void raiseEvent(Event event, MagicObject source){
+    public void raiseEvent(Event event, MagicObject source) {
         battlefield.getAll().forEach(permanent -> {
             permanent.getAbilities().forEach(ability -> {
-                if(ability instanceof TriggeredAbility){
+                if (ability instanceof TriggeredAbility) {
                     TriggeredAbility triggeredAbility = (TriggeredAbility) ability;
-                    if(triggeredAbility.checkTrigger(event, source, permanent)){
+                    if (triggeredAbility.checkTrigger(event, source, permanent)) {
                         stack.putOnStack(new StackAbility(triggeredAbility, permanent));
                     }
                 }
             });
             permanent.getReplacementEffects().forEach(replacementEffect -> {
-                if(replacementEffect.checkEvent(event, source, permanent)){
+                if (replacementEffect.checkEvent(event, source, permanent)) {
                     replacementEffect.apply(permanent, this);
                 }
             });
         });
     }
-
 
 
     public void moveToGraveyard(Card card) {
@@ -219,13 +218,13 @@ public class Game {
     }
 
 
-    public boolean isPlayable(Player player, Card card){
+    public boolean isPlayable(Player player, Card card) {
 
-        if(!player.getId().equals(playerWithPriority)){
+        if (!player.getId().equals(playerWithPriority)) {
             return false;
         }
-        if(!stack.isEmpty()){
-            if(card.isPermanent()){
+        if (!stack.isEmpty()) {
+            if (card.isPermanent()) {
                 return false;
             }
         }
