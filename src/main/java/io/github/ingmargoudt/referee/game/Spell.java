@@ -34,6 +34,7 @@ public class Spell extends MagicObject implements Stackable{
         return card;
     }
 
+    @Override
     public String getName(){
         return card.getName();
     }

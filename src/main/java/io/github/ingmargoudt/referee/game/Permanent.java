@@ -2,10 +2,11 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.UUID;
 
-public class Permanent extends MagicObject implements Targetable{
+public class Permanent extends MagicObject implements Targetable {
 
     Card base;
 
@@ -28,13 +29,14 @@ Each permanent always has one of these values for each of these categories.
 see rule 111.2). A permanent’s controller is, by default, the player under whose control it entered
 the battlefield. Every permanent has a controller.
      */
-    public Permanent(Card card){
+    public Permanent(Card card) {
         super(card.getName());
         this.base = card;
         this.controller = base.getOwner();
         reset();
     }
-    public void reset(){
+
+    public void reset() {
 
         this.setPower(base.getPower());
         this.setToughness(base.getToughness());
@@ -51,49 +53,48 @@ the battlefield. Every permanent has a controller.
 
     }
 
-    public UUID getOwner(){
+    public UUID getOwner() {
         return base.getOwner();
     }
 
-    public void tap(){
+    public void tap() {
         tapped = true;
     }
 
-    public void untap(){
+    public void untap() {
         tapped = false;
     }
 
-    public void flip(){
+    public void flip() {
         isFlipped = true;
     }
 
-    public void unflip(){
+    public void unflip() {
         isFlipped = false;
     }
 
-    public void faseUp(){
+    public void faseUp() {
         isFacedown = false;
     }
 
-    public void faseDown(){
+    public void faseDown() {
         isFacedown = true;
     }
 
-    public void phaseIn(){
+    public void phaseIn() {
         isPhasedOut = false;
     }
 
-    public void phaseOut(){
+    public void phaseOut() {
         isPhasedOut = true;
     }
 
 
-
-
-    public boolean isControlledBy(Player thePlayer){
+    public boolean isControlledBy(Player thePlayer) {
         return getController().equals(thePlayer.getId());
     }
 
+    @Override
     public UUID getId() {
         return base.id;
     }
@@ -103,13 +104,13 @@ the battlefield. Every permanent has a controller.
     }
 
 
-    public void destroy(Game game){
+    public void destroy(Game game) {
         game.moveToGraveyard(base);
     }
 
 
     @Override
     public void damage(int amount) {
-
+        throw new NotImplementedException();
     }
 }

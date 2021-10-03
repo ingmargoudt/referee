@@ -20,15 +20,12 @@ class BloodMoonEffect extends ContinuousEffect {
     @Override
     public void apply(MagicObject source, Game game) {
         game.getBattlefield().getAll().forEach(permanent -> {
-            if (permanent.isLand()) {
-                if(!permanent.isBasic()){
+            if (permanent.isLand() && !permanent.isBasic()){
                     permanent.getAbilities().clear();
                     permanent.getSubTypes().clear();
                     permanent.getSubTypes().add(SubType.Mountain);
                     permanent.getReplacementEffects().clear();
                 }
-
-            }
         });
     }
 }

@@ -7,7 +7,7 @@ import io.github.ingmargoudt.referee.game.zones.Graveyard;
 import io.github.ingmargoudt.referee.game.zones.Hand;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import lombok.Getter;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;

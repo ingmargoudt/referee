@@ -21,9 +21,6 @@ public class DamageToAnyTargetEffect extends OneShotEffect implements TargetEffe
 
     @Override
     public boolean hasValidTargets(Game game) {
-        if (game.getBattlefield().getAll().stream().noneMatch(MagicObject::isCreature)) {
-            return false;
-        }
         return true;
     }
 

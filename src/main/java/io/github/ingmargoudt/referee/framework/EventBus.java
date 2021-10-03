@@ -9,7 +9,6 @@ public class EventBus {
     private static List<EventListener> listeners = new ArrayList<>();
 
     public static void registerListener(EventListener eventListener){
-        Class c = eventListener.getClass();
         if(listeners.stream().noneMatch(listener -> listener.getClass().equals(eventListener.getClass()))){
             listeners.add(eventListener);
         }
