@@ -11,7 +11,7 @@ import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
 
-public class Test_SimpleCast extends BaseGame {
+class Test_SimpleCast extends BaseGame {
 
     private final Card bears = new GrizzlyBears();
     private final Card gloriousAnthem = new GloriousAnthem();

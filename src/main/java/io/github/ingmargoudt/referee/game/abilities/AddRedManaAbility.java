@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class AddRedManaAbility extends ActivatedManaAbility {
 
-    private static final Effects addManaEffect = Effects.of(new AddManaEffect(ManaType.Red));
+    private static final Effects addManaEffect = Effects.of(new AddManaEffect(ManaType.RED));
 
     public AddRedManaAbility() {
         super(new ArrayList<>(), addManaEffect);

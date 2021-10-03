@@ -8,6 +8,6 @@ public class Plains extends Card {
     public Plains() {
         super("Plains");
         getCardtypes().add(CardType.LAND);
-        getSubTypes().add(SubType.Plains);
+        getSubTypes().add(SubType.PLAINS);
     }
 }

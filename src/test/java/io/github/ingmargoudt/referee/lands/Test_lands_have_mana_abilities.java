@@ -12,7 +12,7 @@ import io.github.ingmargoudt.referee.game.abilities.AddWhiteManaAbility;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
 
-public class Test_lands_have_mana_abilities extends BaseGame {
+class Test_lands_have_mana_abilities extends BaseGame {
 
     private static final Card mountain= new Mountain();
     private static final Card plains = new Plains();

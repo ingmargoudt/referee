@@ -8,7 +8,7 @@ import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
 
-public class Test_ReplacementEffect extends BaseGame {
+class Test_ReplacementEffect extends BaseGame {
 
     @Test
     void tap_land_comes_into_play_tapped(){

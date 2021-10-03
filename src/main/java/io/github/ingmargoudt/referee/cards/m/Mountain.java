@@ -8,6 +8,6 @@ public class Mountain extends Card {
     public Mountain() {
         super("Mountain");
         getCardtypes().add(CardType.LAND);
-        getSubTypes().add(SubType.Mountain);
+        getSubTypes().add(SubType.MOUNTAIN);
     }
 }

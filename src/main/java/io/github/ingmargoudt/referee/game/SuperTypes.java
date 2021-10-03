@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SuperTypes {
-    List<SuperType> superTypes = new ArrayList<>();
+    List<SuperType> supertypesList = new ArrayList<>();
     public boolean isBasic() {
-        return superTypes.contains(SuperType.Basic);
+        return supertypesList.contains(SuperType.BASIC);
     }
 }

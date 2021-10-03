@@ -144,21 +144,21 @@ public class Game {
 
     private void applyLandManaAbilities() {
         for (Permanent permanent : battlefield.getAll()) {
-            if (permanent.hasSubType(SubType.Mountain)) {
+            if (permanent.hasSubType(SubType.MOUNTAIN)) {
                 if (!permanent.hasAbility(AddRedManaAbility.class)) {
                     permanent.addAbility(new AddRedManaAbility());
                 }
             } else {
                 permanent.removeAbility(AddRedManaAbility.class);
             }
-            if (permanent.hasSubType(SubType.Plains)) {
+            if (permanent.hasSubType(SubType.PLAINS)) {
                 if (!permanent.hasAbility(AddWhiteManaAbility.class)) {
                     permanent.addAbility(new AddWhiteManaAbility());
                 }
             } else {
                 permanent.removeAbility(AddWhiteManaAbility.class);
             }
-            if (permanent.hasSubType(SubType.Swamp)) {
+            if (permanent.hasSubType(SubType.SWAMP)) {
                 if (!permanent.hasAbility(AddBlackManaAbility.class)) {
                     permanent.addAbility(new AddBlackManaAbility());
                 }

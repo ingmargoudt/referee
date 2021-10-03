@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Test_100 extends BaseGame {
+class Test_100 extends BaseGame {
 
     //100.1. These Magic rules apply to any Magic game with two or more players, including two-player
     //games and multiplayer games.

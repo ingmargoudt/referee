@@ -8,6 +8,6 @@ public class Swamp extends Card {
     public Swamp() {
         super("Swamp");
         getCardtypes().add(CardType.LAND);
-        getSubTypes().add(SubType.Swamp);
+        getSubTypes().add(SubType.SWAMP);
     }
 }

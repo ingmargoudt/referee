@@ -5,14 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 public class CardTypes {
 
-    private List<CardType> cardTypes = new ArrayList<>();
+    private List<CardType> cardtypesList = new ArrayList<>();
 
     public boolean isPermanent() {
-        return cardTypes.contains(CardType.CREATURE);
+        return cardtypesList.contains(CardType.CREATURE);
     }
 
     public void add(CardType ... types){
-        cardTypes.addAll(Arrays.asList(types));
+        cardtypesList.addAll(Arrays.asList(types));
 
     }
 
@@ -21,22 +21,22 @@ public class CardTypes {
     }
 
     public CardTypes(List<CardType> cardTypes){
-        this.cardTypes.addAll(cardTypes);
+        this.cardtypesList.addAll(cardTypes);
     }
 
     public boolean isCreature() {
-        return cardTypes.contains(CardType.CREATURE);
+        return cardtypesList.contains(CardType.CREATURE);
     }
 
     public void addAll(CardTypes cardtypes) {
-        this.cardTypes.addAll(cardtypes.cardTypes);
+        this.cardtypesList.addAll(cardtypes.cardtypesList);
     }
 
     public boolean isLand() {
-        return cardTypes.contains(CardType.LAND);
+        return cardtypesList.contains(CardType.LAND);
     }
 
     public void clear() {
-        cardTypes.clear();
+        cardtypesList.clear();
     }
 }

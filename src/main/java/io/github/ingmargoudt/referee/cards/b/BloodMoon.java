@@ -23,7 +23,7 @@ class BloodMoonEffect extends ContinuousEffect {
             if (permanent.isLand() && !permanent.isBasic()){
                     permanent.getAbilities().clear();
                     permanent.getSubTypes().clear();
-                    permanent.getSubTypes().add(SubType.Mountain);
+                    permanent.getSubTypes().add(SubType.MOUNTAIN);
                     permanent.getReplacementEffects().clear();
                 }
         });
