@@ -1,6 +1,8 @@
 package io.github.ingmargoudt.referee.game;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 public class CardTypes {
 
     private List<CardType> cardTypes = new ArrayList<>();

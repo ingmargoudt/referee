@@ -1,7 +1,6 @@
 package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.game.Phase;
-import io.github.ingmargoudt.referee.players.Player;
 
 public abstract class TestPlayerAction {
 

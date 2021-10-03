@@ -3,10 +3,10 @@ package io.github.ingmargoudt.referee.game.abilities;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.cost.Cost;
-import io.github.ingmargoudt.referee.game.effects.Effect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActivatedAbility extends Ability{
 

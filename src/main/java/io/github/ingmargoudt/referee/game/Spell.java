@@ -1,5 +1,8 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+
+import java.util.List;
 import java.util.UUID;
 
 public class Spell extends MagicObject implements Stackable{
@@ -26,7 +29,22 @@ public class Spell extends MagicObject implements Stackable{
         return card.getController();
     }
 
+    @Override
+    public MagicObject getSource() {
+        return card;
+    }
+
     public String getName(){
         return card.getName();
+    }
+
+    @Override
+    public boolean hasTargets() {
+        return card.getSpellEffects().stream().anyMatch(OneShotEffect::hasTargets);
+    }
+
+    @Override
+    public List<OneShotEffect> getEffects() {
+        return card.getSpellEffects();
     }
 }

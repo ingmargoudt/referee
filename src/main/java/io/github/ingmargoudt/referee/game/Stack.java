@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
+import io.github.ingmargoudt.referee.game.effects.TargetEffect;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,7 +21,15 @@ public class Stack {
 
     public void putOnStack(Stackable stackable) {
         stackEntries.addFirst(stackable);
-        EventBus.report(stackable.getName()+ " is put on the stack");
+        EventBus.report(stackable.getName() + " is put on the stack");
+        if (stackable.hasTargets()) {
+            stackable.getEffects().forEach(effect -> {
+                if (effect instanceof TargetEffect) {
+                    TargetEffect targetEffect = (TargetEffect) effect;
+                    targetEffect.choose(stackable, game);
+                }
+            });
+        }
     }
 
     private List<UUID> passed = new ArrayList<>();

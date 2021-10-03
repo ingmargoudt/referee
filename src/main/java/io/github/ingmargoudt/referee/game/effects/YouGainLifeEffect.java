@@ -2,8 +2,6 @@ package io.github.ingmargoudt.referee.game.effects;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
-import io.github.ingmargoudt.referee.game.Spell;
-import io.github.ingmargoudt.referee.game.abilities.Ability;
 
 public class YouGainLifeEffect extends OneShotEffect{
 

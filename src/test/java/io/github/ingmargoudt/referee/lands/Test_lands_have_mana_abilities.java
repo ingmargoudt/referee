@@ -7,9 +7,9 @@ import io.github.ingmargoudt.referee.cards.s.Swamp;
 import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.abilities.AddBlackManaAbility;
+import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.AddWhiteManaAbility;
 import io.github.ingmargoudt.referee.game.zones.Zone;
-import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;
 import org.junit.jupiter.api.Test;
 
 public class Test_lands_have_mana_abilities extends BaseGame {

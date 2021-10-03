@@ -1,7 +1,9 @@
 package io.github.ingmargoudt.referee.cards.b;
 
-import io.github.ingmargoudt.referee.cards.m.Mountain;
-import io.github.ingmargoudt.referee.game.*;
+import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.MagicObject;
+import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
 import io.github.ingmargoudt.referee.game.effects.ContinuousEffect;
 

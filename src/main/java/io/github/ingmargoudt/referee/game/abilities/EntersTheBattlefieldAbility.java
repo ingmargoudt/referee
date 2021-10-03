@@ -3,12 +3,12 @@ package io.github.ingmargoudt.referee.game.abilities;
 import io.github.ingmargoudt.referee.game.Event;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
-import java.util.*;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+
+import java.util.Objects;
 
 public class EntersTheBattlefieldAbility extends TriggeredAbility {
 
-    public List<OneShotEffect> effects = new ArrayList<>();
 
     public EntersTheBattlefieldAbility(OneShotEffect effect){
         super();

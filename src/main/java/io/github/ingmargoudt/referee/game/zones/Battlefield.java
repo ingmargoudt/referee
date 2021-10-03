@@ -3,7 +3,8 @@ package io.github.ingmargoudt.referee.game.zones;
 import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Permanent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 public class Battlefield {
 
     private List<Permanent> permanents = new ArrayList<>();

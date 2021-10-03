@@ -5,6 +5,7 @@ import io.github.ingmargoudt.referee.cards.a.AngelsMercy;
 import io.github.ingmargoudt.referee.cards.c.CathedralSanctifier;
 import io.github.ingmargoudt.referee.cards.g.GloriousAnthem;
 import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
+import io.github.ingmargoudt.referee.cards.l.LightningBolt;
 import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.zones.Zone;
@@ -84,6 +85,15 @@ public class Test_SimpleCast extends BaseGame {
         assertPermanentToughness(Zone.BATTLEFIELD, player1, bears, 2);
     }
 
+    @Test
+    public void castSpellWithSingleTarget(){
+        Card bolt = new LightningBolt();
+        addCard(Zone.HAND, player1, bolt);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, player2);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertLife(player2, 17);
+    }
 
     @Test
     public void gloriousAnthemBoosts() {

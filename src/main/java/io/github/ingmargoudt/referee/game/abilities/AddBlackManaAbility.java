@@ -1,12 +1,10 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
-import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.ManaType;
 import io.github.ingmargoudt.referee.game.effects.AddManaEffect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class AddBlackManaAbility extends ActivatedManaAbility {
 

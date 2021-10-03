@@ -8,9 +8,10 @@ import io.github.ingmargoudt.referee.game.zones.Hand;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.Optional;
 
-public class Player extends BaseObject {
+public class Player extends BaseObject implements Targetable {
 
     private final String name;
     private Library library;
@@ -113,5 +114,15 @@ public class Player extends BaseObject {
     public void playLand(Card card) {
         hand.remove(card);
         gameReference.moveToBattlefield(card);
+    }
+
+    @Override
+    public void damage(int amount) {
+        life -= amount;
+
+    }
+
+    public Targetable chooseTarget(List<Targetable> validTargets) {
+        return null;
     }
 }

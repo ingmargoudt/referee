@@ -3,7 +3,7 @@ package io.github.ingmargoudt.referee.game.zones;
 import io.github.ingmargoudt.referee.game.Card;
 
 import java.util.ArrayList;
-import java.util.*;
+import java.util.List;
 public class Graveyard {
 
     List<Card> cards = new ArrayList<>();

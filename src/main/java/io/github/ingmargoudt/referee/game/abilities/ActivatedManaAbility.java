@@ -7,9 +7,7 @@ import io.github.ingmargoudt.referee.game.effects.AddManaEffect;
 import io.github.ingmargoudt.referee.game.effects.Effect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class ActivatedManaAbility extends ActivatedAbility {
     public ActivatedManaAbility(List<Cost> costsList, Effects effects) {

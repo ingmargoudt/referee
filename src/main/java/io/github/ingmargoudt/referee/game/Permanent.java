@@ -1,13 +1,11 @@
 package io.github.ingmargoudt.referee.game;
 
-import io.github.ingmargoudt.referee.game.abilities.Abilities;
-import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
 import java.util.UUID;
 
-public class Permanent extends MagicObject{
+public class Permanent extends MagicObject implements Targetable{
 
     Card base;
 
@@ -110,4 +108,8 @@ the battlefield. Every permanent has a controller.
     }
 
 
+    @Override
+    public void damage(int amount) {
+
+    }
 }

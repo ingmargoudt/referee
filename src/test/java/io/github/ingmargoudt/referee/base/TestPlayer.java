@@ -1,18 +1,20 @@
 package io.github.ingmargoudt.referee.base;
 
-import io.github.ingmargoudt.referee.game.Card;
-import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.Targetable;
 import io.github.ingmargoudt.referee.game.zones.Hand;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import io.github.ingmargoudt.referee.players.Player;
+import org.assertj.core.api.Fail;
 
 import java.util.ArrayList;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 public class TestPlayer extends Player {
 
 
     private List<TestPlayerAction> actions = new ArrayList<>();
+    private TestPlayerAction currenAction;
 
 
 
@@ -51,6 +53,7 @@ public class TestPlayer extends Player {
         Iterator<TestPlayerAction> playerActionIterator = actions.listIterator();
         while(playerActionIterator.hasNext()){
             TestPlayerAction action = playerActionIterator.next();
+            currenAction = action;
             if(action.phase == gameReference.getCurrentPhase() && action.turn == gameReference.getTurnNumber())
             {
                 if(action instanceof CastSpellAction && gameReference.isPlayable(this, ((CastSpellAction) action).getCard())){
@@ -67,5 +70,13 @@ public class TestPlayer extends Player {
         }
         passPriority();
 
+    }
+
+    @Override
+    public Targetable chooseTarget(List<Targetable> validTargets) {
+        if(currenAction instanceof CastSpellAction){
+            return ((CastSpellAction) currenAction).consumeTarget();
+        }
+       return Fail.fail("Current action has no target");
     }
 }

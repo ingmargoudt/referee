@@ -1,14 +1,9 @@
 package io.github.ingmargoudt.referee.game.effects;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.Permanent;
-import io.github.ingmargoudt.referee.game.abilities.Ability;
-import io.github.ingmargoudt.referee.players.Player;
-
-import java.util.UUID;
 
 public class BoostAllControlledCreatures extends ContinuousEffect {
 

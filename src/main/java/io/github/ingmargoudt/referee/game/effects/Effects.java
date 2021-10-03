@@ -1,7 +1,7 @@
 package io.github.ingmargoudt.referee.game.effects;
 
 import java.util.ArrayList;
-import java.util.*;
+import java.util.List;
 public class Effects {
 
 

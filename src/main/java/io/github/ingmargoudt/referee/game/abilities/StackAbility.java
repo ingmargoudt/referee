@@ -3,7 +3,9 @@ package io.github.ingmargoudt.referee.game.abilities;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.Stackable;
+import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 
+import java.util.List;
 import java.util.UUID;
 
 public class StackAbility implements Stackable {
@@ -27,7 +29,22 @@ public class StackAbility implements Stackable {
     }
 
     @Override
+    public MagicObject getSource() {
+        return source;
+    }
+
+    @Override
     public String getName() {
         return triggeredAbility.getClass().getSimpleName() + " of " + source.getName();
+    }
+
+    @Override
+    public boolean hasTargets() {
+        return false;
+    }
+
+    @Override
+    public List<OneShotEffect> getEffects() {
+        return triggeredAbility.effects;
     }
 }

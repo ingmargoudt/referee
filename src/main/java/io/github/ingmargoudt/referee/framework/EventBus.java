@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.framework;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventBus {
 

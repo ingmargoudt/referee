@@ -2,12 +2,14 @@ package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.framework.ConsoleListener;
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.game.*;
+import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.Permanent;
+import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.Targetable;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import io.github.ingmargoudt.referee.players.Player;
-import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Fail;
 import org.junit.jupiter.api.AfterEach;
@@ -60,6 +62,10 @@ public class BaseGame {
 
     public void castSpell(int turn, Phase phase, TestPlayer player, Card card) {
         player.addAction(new CastSpellAction(turn, phase, card));
+    }
+
+    public void castSpell(int turn, Phase phase, TestPlayer player, Card card, Targetable targetable) {
+        player.addAction(new CastSpellAction(turn, phase, card, targetable));
     }
 
     public void playLand(TestPlayer player, int turnNumber, Phase phase, Card card){
