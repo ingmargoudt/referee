@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-public class TargetCreatureOrPlayer extends Target{
+public class TargetCreatureOrPlayer implements Target{
 
     Targetable theTarget;
 

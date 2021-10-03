@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public abstract class Target {
+public interface Target {
 
 
-    public abstract boolean isValid(MagicObject source, Game game);
-    public abstract List<Targetable> validTargets();
+     boolean isValid(MagicObject source, Game game);
+     List<Targetable> validTargets();
 
-    public abstract Optional<Targetable> resolve(Game game);
-    public abstract void choose(UUID source, Game game);
+     Optional<Targetable> resolve(Game game);
+     void choose(UUID source, Game game);
 
 }
