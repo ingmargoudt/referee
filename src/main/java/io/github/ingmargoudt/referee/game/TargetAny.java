@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class TargetCreatureOrPlayer implements Target {
+public class TargetAny implements Target {
 
     Targetable theTarget;
 

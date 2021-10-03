@@ -174,7 +174,7 @@ public class BaseGame {
     protected void assertTapped(TestPlayer thePlayer, Card theCard){
         for(Permanent permanent : game.getBattlefield().getAll()){
             if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
-                assertThat(permanent.isTapped()).isTrue();
+                assertThat(permanent.isTapped()).as(permanent.getName()+ " is expected to be tapped").isTrue();
                 log.info(theCard.getName() + " of "+thePlayer.getName() + " is tapped");
                 return;
             }
@@ -185,11 +185,15 @@ public class BaseGame {
     protected void assertUntapped(TestPlayer thePlayer, Card theCard){
         for(Permanent permanent : game.getBattlefield().getAll()){
             if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
-                assertThat(permanent.isTapped()).isFalse();
+                assertThat(permanent.isTapped()).as(permanent.getName()+ " is expected to be untapped").isFalse();
                 log.info(theCard.getName() + " of "+thePlayer.getName() + " is untapped");
                 return;
             }
         }
         Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
+    }
+
+    protected void setOption(TestPlayer testPlayer, String option){
+        testPlayer.addOption(option);
     }
 }

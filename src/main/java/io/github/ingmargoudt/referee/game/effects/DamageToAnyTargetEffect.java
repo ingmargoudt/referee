@@ -2,7 +2,7 @@ package io.github.ingmargoudt.referee.game.effects;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
-import io.github.ingmargoudt.referee.game.TargetCreatureOrPlayer;
+import io.github.ingmargoudt.referee.game.TargetAny;
 
 public class DamageToAnyTargetEffect extends OneShotEffect implements TargetEffect {
 
@@ -10,7 +10,7 @@ public class DamageToAnyTargetEffect extends OneShotEffect implements TargetEffe
 
     public DamageToAnyTargetEffect(int amount) {
         this.amount = amount;
-        targets.add(new TargetCreatureOrPlayer());
+        targets.add(new TargetAny());
     }
 
     @Override

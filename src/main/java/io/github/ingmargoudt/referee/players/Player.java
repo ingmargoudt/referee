@@ -131,4 +131,8 @@ public class Player extends BaseObject implements Targetable {
     public Targetable chooseTarget(List<Targetable> validTargets) {
         throw new NotImplementedException();
     }
+
+    public String choosesOption(List<String> options) {
+        return options.get(0);
+    }
 }

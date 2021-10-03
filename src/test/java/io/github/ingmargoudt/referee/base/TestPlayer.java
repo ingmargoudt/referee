@@ -15,6 +15,7 @@ public class TestPlayer extends Player {
 
     private List<TestPlayerAction> actions = new ArrayList<>();
     private TestPlayerAction currenAction;
+    private List<String> options = new ArrayList<>();
 
 
 
@@ -24,6 +25,10 @@ public class TestPlayer extends Player {
 
     void addAction(TestPlayerAction playerAction){
         actions.add(playerAction);
+    }
+
+    void addOption(String option){
+        options.add(option);
     }
 
     public Hand getHand(){
@@ -78,5 +83,10 @@ public class TestPlayer extends Player {
             return ((CastSpellAction) currenAction).consumeTarget();
         }
        return Fail.fail("Current action has no target");
+    }
+
+    @Override
+    public String choosesOption(List<String> options) {
+        return this.options.remove(0);
     }
 }
