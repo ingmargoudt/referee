@@ -1,5 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.framework.EventBus;
+import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.ArrayList;
@@ -34,9 +36,11 @@ public class TargetCreatureOrPlayer implements Target {
     }
 
     @Override
-    public void choose(UUID source, Game game) {
-        game.getPlayer(source).ifPresent(player ->
-                this.theTarget = player.chooseTarget(validTargets()));
+    public void choose(Stackable source, Game game, OneShotEffect oneShotEffect) {
+        game.getPlayer(source.getController()).ifPresent(player -> {
+            this.theTarget = player.chooseTarget(validTargets());
+            EventBus.report(player.getName() + " chooses " + theTarget.toString() + " for " + source.getName() +"'s "+ oneShotEffect.toString());
+        });
     }
 
 

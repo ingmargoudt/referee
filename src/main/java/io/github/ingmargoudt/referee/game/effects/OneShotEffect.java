@@ -13,20 +13,26 @@ public abstract class OneShotEffect {
 
     private final UUID id;
 
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
+
 
     List<Target> targets = new ArrayList<>();
-    protected OneShotEffect(){
+
+    protected OneShotEffect() {
         id = UUID.randomUUID();
     }
 
 
     public abstract void apply(MagicObject object, Game game);
 
-    public void choose(Stackable stackable, Game game){
-        targets.get(0).choose(stackable.getController(), game);
+    public void choose(Stackable stackable, Game game) {
+        targets.forEach(target -> target.choose(stackable, game, this));
     }
 
-    public boolean hasTargets(){
+    public boolean hasTargets() {
         return !targets.isEmpty();
     }
 }

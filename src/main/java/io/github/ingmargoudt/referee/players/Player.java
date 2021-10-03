@@ -123,6 +123,11 @@ public class Player extends BaseObject implements Targetable {
 
     }
 
+    @Override
+    public String toString(){
+        return name;
+    }
+
     public Targetable chooseTarget(List<Targetable> validTargets) {
         throw new NotImplementedException();
     }
