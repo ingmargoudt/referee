@@ -8,10 +8,6 @@ public class Abilities implements Iterable<Ability> {
 
     private List<Ability> abilityList = new ArrayList<>();
 
-    public Abilities() {
-
-    }
-
     @Override
     public Iterator<Ability> iterator() {
         return abilityList.iterator();

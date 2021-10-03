@@ -22,7 +22,7 @@ public class TestPlayer extends Player {
         super(name, game, library);
     }
 
-    public void addAction(TestPlayerAction playerAction){
+    void addAction(TestPlayerAction playerAction){
         actions.add(playerAction);
     }
 

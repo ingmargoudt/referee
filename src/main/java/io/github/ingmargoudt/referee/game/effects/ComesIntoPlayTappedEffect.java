@@ -7,7 +7,7 @@ import io.github.ingmargoudt.referee.game.Permanent;
 
 import java.util.Objects;
 
-public class ComesIntoPlayTappedEffect extends ReplacementEffect {
+public class ComesIntoPlayTappedEffect implements ReplacementEffect {
     @Override
     public boolean checkEvent(Event event, MagicObject source, MagicObject parentObject) {
         return event == Event.ENTERS_THE_BATTLEFIELD && Objects.equals(source, parentObject);

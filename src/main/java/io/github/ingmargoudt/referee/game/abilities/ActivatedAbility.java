@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.cost.Cost;
 import io.github.ingmargoudt.referee.game.effects.Effects;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,6 @@ public class ActivatedAbility extends Ability{
 
     @Override
     public void resolve(MagicObject source, Game game) {
-
+throw new NotImplementedException();
     }
 }

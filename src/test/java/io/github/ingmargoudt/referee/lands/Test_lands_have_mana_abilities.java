@@ -19,7 +19,7 @@ public class Test_lands_have_mana_abilities extends BaseGame {
     private static final Card swamp = new Swamp();
 
     @Test
-    public void mountain(){
+    void mountain(){
         disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, mountain, 1);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
@@ -28,7 +28,7 @@ public class Test_lands_have_mana_abilities extends BaseGame {
     }
 
     @Test
-    public void plains(){
+    void plains(){
         disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, plains, 1);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
@@ -37,7 +37,7 @@ public class Test_lands_have_mana_abilities extends BaseGame {
     }
 
     @Test
-    public void swamp(){
+    void swamp(){
         disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, swamp, 1);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);

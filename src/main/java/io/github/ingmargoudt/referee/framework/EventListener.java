@@ -1,6 +1,6 @@
 package io.github.ingmargoudt.referee.framework;
 
-public abstract class EventListener {
+public interface EventListener {
 
-    public abstract void report(String message);
+    void report(String message);
 }

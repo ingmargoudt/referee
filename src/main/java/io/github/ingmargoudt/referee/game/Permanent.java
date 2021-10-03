@@ -10,8 +10,6 @@ public class Permanent extends MagicObject implements Targetable {
 
     Card base;
 
-    //Card current;
-
     /*
     110.5. A permanent’s status is its physical state. There are four status categories, each of which has two
 possible values: tapped/untapped, flipped/unflipped, face up/face down, and phased in/phased out.

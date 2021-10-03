@@ -36,7 +36,7 @@ public class BaseGame {
     }
 
     @BeforeEach
-    public void before(TestInfo testInfo) {
+    void before(TestInfo testInfo) {
         testInfo.getTestMethod().ifPresent(method -> {
             log.info("*********************************");
             log.info("Starting " + method.getName());
@@ -45,7 +45,7 @@ public class BaseGame {
 
     }
     @AfterEach
-    public void after(){
+    void after(){
         log.info("");
     }
 
@@ -60,15 +60,15 @@ public class BaseGame {
 
     }
 
-    public void castSpell(int turn, Phase phase, TestPlayer player, Card card) {
+    protected void castSpell(int turn, Phase phase, TestPlayer player, Card card) {
         player.addAction(new CastSpellAction(turn, phase, card));
     }
 
-    public void castSpell(int turn, Phase phase, TestPlayer player, Card card, Targetable targetable) {
+    protected void castSpell(int turn, Phase phase, TestPlayer player, Card card, Targetable targetable) {
         player.addAction(new CastSpellAction(turn, phase, card, targetable));
     }
 
-    public void playLand(TestPlayer player, int turnNumber, Phase phase, Card card){
+    protected void playLand(TestPlayer player, int turnNumber, Phase phase, Card card){
         player.addAction(new PlayLandAction(turnNumber, phase, card));
     }
 
@@ -76,11 +76,11 @@ public class BaseGame {
         EventBus.clear();
     }
 
-    public void stopAt(int turn, Phase phase) {
+    protected void stopAt(int turn, Phase phase) {
         game.stopAt(turn, phase);
     }
 
-    public void start() {
+    protected void start() {
         game.start();
         boolean ok = true;
         if (player1.hasRemainingActions()) {
@@ -96,11 +96,11 @@ public class BaseGame {
         }
     }
 
-    public void addCard(Zone zone, TestPlayer player, Card card){
+    protected void addCard(Zone zone, TestPlayer player, Card card){
         addCard(zone, player, card, 1);
     }
 
-    public void addCard(Zone zone, TestPlayer player, Card card, int amount) {
+    protected void addCard(Zone zone, TestPlayer player, Card card, int amount) {
         card.setController(player.getId());
         card.setOwner(player.getId());
         for(int i = 0; i<amount; i++) {
@@ -114,7 +114,7 @@ public class BaseGame {
         }
     }
 
-    public void assertPermanent(Zone zone, TestPlayer player, Card theCard, int i) {
+    protected void assertPermanent(Zone zone, TestPlayer player, Card theCard, int i) {
         int amount = 0;
         if (zone == Zone.BATTLEFIELD) {
             for (Permanent permanent : game.getBattlefield().getAll()) {
@@ -128,7 +128,7 @@ public class BaseGame {
 
     }
 
-    public void assertPermanentPower(Zone zone, TestPlayer player, Card theCard, int power) {
+    protected void assertPermanentPower(Zone zone, TestPlayer player, Card theCard, int power) {
         if (zone == Zone.BATTLEFIELD) {
             for (Permanent permanent : game.getBattlefield().getAll()) {
                 if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
@@ -141,7 +141,7 @@ public class BaseGame {
 
     }
 
-    public void assertPermanentToughness(Zone zone, TestPlayer player, Card theCard, int toughness) {
+    protected void assertPermanentToughness(Zone zone, TestPlayer player, Card theCard, int toughness) {
         if (zone == Zone.BATTLEFIELD) {
             for (Permanent permanent : game.getBattlefield().getAll()) {
                 if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
@@ -153,7 +153,7 @@ public class BaseGame {
         }
 
     }
-    public void assertPermanentHasAbility(TestPlayer thePlayer, Card theCard, Class<? extends Ability> theAbility){
+    protected void assertPermanentHasAbility(TestPlayer thePlayer, Card theCard, Class<? extends Ability> theAbility){
         for(Permanent permanent : game.getBattlefield().getAll()){
             if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
                 assertThat(permanent.hasAbility(theAbility)).as(theCard.getName() + " does not have the " +theAbility.getSimpleName()).isTrue();
@@ -162,7 +162,7 @@ public class BaseGame {
         }
     }
 
-    public void assertLife(TestPlayer testPlayer, int amount){
+    protected void assertLife(TestPlayer testPlayer, int amount){
         assertThat(testPlayer.getLife()).isEqualTo(amount);
     }
 
@@ -171,7 +171,7 @@ public class BaseGame {
     }
 
 
-    public void assertTapped(TestPlayer thePlayer, Card theCard){
+    protected void assertTapped(TestPlayer thePlayer, Card theCard){
         for(Permanent permanent : game.getBattlefield().getAll()){
             if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
                 assertThat(permanent.isTapped()).isTrue();
@@ -182,7 +182,7 @@ public class BaseGame {
         Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
     }
 
-    public void assertUntapped(TestPlayer thePlayer, Card theCard){
+    protected void assertUntapped(TestPlayer thePlayer, Card theCard){
         for(Permanent permanent : game.getBattlefield().getAll()){
             if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
                 assertThat(permanent.isTapped()).isFalse();

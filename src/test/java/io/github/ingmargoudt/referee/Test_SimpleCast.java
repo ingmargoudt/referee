@@ -19,7 +19,7 @@ public class Test_SimpleCast extends BaseGame {
     private final Card cathedralSanctifier = new CathedralSanctifier();
 
     @Test
-    public void simple_cast_and_resolve() {
+    void simple_cast_and_resolve() {
         addCard(Zone.HAND, player1, bears, 1);
 
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bears);
@@ -30,7 +30,7 @@ public class Test_SimpleCast extends BaseGame {
 
 
     @Test
-    public void simple_cast_and_resolve_two_permanents() {
+    void simple_cast_and_resolve_two_permanents() {
         Card otherbear = new GrizzlyBears();
         addCard(Zone.HAND, player1, bears, 1);
         addCard(Zone.HAND, player1, otherbear, 1);
@@ -43,7 +43,7 @@ public class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    public void simple_cast_and_resolve_trigger() {
+    void simple_cast_and_resolve_trigger() {
         addCard(Zone.HAND, player1, cathedralSanctifier, 1);
 
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, cathedralSanctifier);
@@ -54,7 +54,7 @@ public class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    public void simple_cast_instant_and_resolve() {
+    void simple_cast_instant_and_resolve() {
         addCard(Zone.HAND, player1, angelsMercy, 1);
 
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, angelsMercy);
@@ -66,7 +66,7 @@ public class Test_SimpleCast extends BaseGame {
 
 
     @Test
-    public void creatureHasPower() {
+    void creatureHasPower() {
         disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, bears, 1);
 
@@ -76,7 +76,7 @@ public class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    public void creatureHasToughness() {
+    void creatureHasToughness() {
         disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, bears, 1);
 
@@ -86,7 +86,7 @@ public class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    public void castSpellWithSingleTarget(){
+    void castSpellWithSingleTarget(){
         Card bolt = new LightningBolt();
         addCard(Zone.HAND, player1, bolt);
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, player2);
@@ -96,7 +96,7 @@ public class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    public void gloriousAnthemBoosts() {
+    void gloriousAnthemBoosts() {
         disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, bears, 1);
         addCard(Zone.BATTLEFIELD, player1, gloriousAnthem, 1);
@@ -108,7 +108,7 @@ public class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    public void gloriousAnthemNotBoostsOtherPlayersCreature() {
+    void gloriousAnthemNotBoostsOtherPlayersCreature() {
         disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player2, bears, 1);
         addCard(Zone.BATTLEFIELD, player1, gloriousAnthem, 1);

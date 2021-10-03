@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class Test_ReplacementEffect extends BaseGame {
 
     @Test
-    public void tap_land_comes_into_play_tapped(){
+    void tap_land_comes_into_play_tapped(){
         Card forsakenSanctuary = new ForsakenSanctuary();
         addCard(Zone.HAND, player1, forsakenSanctuary);
         playLand(player1, 1, Phase.PRECOMBAT_MAINPHASE, forsakenSanctuary);
@@ -21,7 +21,7 @@ public class Test_ReplacementEffect extends BaseGame {
     }
 
     @Test
-    public void tap_land_comes_into_play_untapped_with_bloodmoon(){
+    void tap_land_comes_into_play_untapped_with_bloodmoon(){
         Card forsakenSanctuary = new ForsakenSanctuary();
         Card bloodmoon = new BloodMoon();
         addCard(Zone.HAND, player1, forsakenSanctuary);

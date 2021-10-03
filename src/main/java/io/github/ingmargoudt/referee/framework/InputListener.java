@@ -2,7 +2,7 @@ package io.github.ingmargoudt.referee.framework;
 
 import java.util.UUID;
 
-public abstract class InputListener {
+public interface InputListener {
 
-    public abstract String process(UUID source, String message);
+    String process(UUID source, String message);
 }

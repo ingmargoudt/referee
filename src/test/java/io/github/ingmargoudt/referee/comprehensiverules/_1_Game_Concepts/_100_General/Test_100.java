@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class _100 extends BaseGame {
+public class Test_100 extends BaseGame {
 
     //100.1. These Magic rules apply to any Magic game with two or more players, including two-player
     //games and multiplayer games.
 
     //100.1a A two-player game is a game that begins with only two players.
     @Test
-    public void _1a(){
+    void _1a(){
         assertThat(getPlayers()).hasSize(2);
 
     }
@@ -22,7 +22,7 @@ public class _100 extends BaseGame {
     //“Multiplayer Rules.”
     @Disabled
     @Test
-    public void _1b(){
+    void _1b(){
 
     }
 
