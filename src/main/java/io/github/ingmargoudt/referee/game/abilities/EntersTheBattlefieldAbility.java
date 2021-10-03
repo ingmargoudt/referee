@@ -12,7 +12,7 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
 
     public EntersTheBattlefieldAbility(OneShotEffect effect){
         super();
-        effects.add(effect);
+        getEffects().add(effect);
     }
 
     @Override
@@ -23,6 +23,6 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
 
     @Override
     public void resolve(MagicObject source, Game game) {
-        effects.forEach(effect -> effect.apply(source, game));
+        getEffects().forEach(effect -> effect.apply(source, game));
     }
 }

@@ -45,6 +45,6 @@ public class StackAbility implements Stackable {
 
     @Override
     public List<OneShotEffect> getEffects() {
-        return triggeredAbility.effects;
+        return triggeredAbility.getEffects();
     }
 }

@@ -7,6 +7,7 @@ import io.github.ingmargoudt.referee.game.zones.Graveyard;
 import io.github.ingmargoudt.referee.game.zones.Hand;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import lombok.Getter;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;
@@ -123,6 +124,6 @@ public class Player extends BaseObject implements Targetable {
     }
 
     public Targetable chooseTarget(List<Targetable> validTargets) {
-        return null;
+        throw new NotImplementedException();
     }
 }
