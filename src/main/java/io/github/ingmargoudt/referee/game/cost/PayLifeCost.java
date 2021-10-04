@@ -2,7 +2,6 @@ package io.github.ingmargoudt.referee.game.cost;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
-import io.github.ingmargoudt.referee.players.Player;
 
 public class PayLifeCost implements Cost {
 

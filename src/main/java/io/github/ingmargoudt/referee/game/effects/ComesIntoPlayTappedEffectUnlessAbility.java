@@ -7,9 +7,7 @@ import io.github.ingmargoudt.referee.game.Permanent;
 import io.github.ingmargoudt.referee.game.cost.Cost;
 import io.github.ingmargoudt.referee.game.cost.Costs;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 public class ComesIntoPlayTappedEffectUnlessAbility implements ReplacementEffect {

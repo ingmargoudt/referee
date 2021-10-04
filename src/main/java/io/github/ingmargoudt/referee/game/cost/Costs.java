@@ -4,8 +4,7 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
 
 import java.util.ArrayList;
-
-import java.util.*;
+import java.util.List;
 
 public class Costs {
 

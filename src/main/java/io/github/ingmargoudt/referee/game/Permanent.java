@@ -2,7 +2,6 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
-import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.UUID;
 

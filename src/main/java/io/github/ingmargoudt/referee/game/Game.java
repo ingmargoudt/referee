@@ -7,7 +7,10 @@ import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Optional;
+import java.util.UUID;
 
 @Log4j2
 public class Game {
