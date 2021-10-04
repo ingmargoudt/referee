@@ -5,9 +5,11 @@ import io.github.ingmargoudt.referee.game.abilities.*;
 import io.github.ingmargoudt.referee.game.zones.Battlefield;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.*;
 
+@Log4j2
 public class Game {
 
     private UUID activePlayer;
@@ -152,7 +154,7 @@ public class Game {
                         try {
                             permanent.addAbility(entry.getValue().newInstance());
                         } catch (InstantiationException | IllegalAccessException e) {
-                            e.printStackTrace();
+                            log.error(e.getMessage());
                         }
                     }
                 }
