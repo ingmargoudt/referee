@@ -143,7 +143,7 @@ public class Game {
     }
 
     private void applyLandManaAbilities() {
-        Map<SubType, Class<? extends Ability>> manaAbilities = new HashMap<>();
+        EnumMap<SubType, Class<? extends Ability>> manaAbilities = new EnumMap<>(SubType.class);
         manaAbilities.put(SubType.MOUNTAIN, AddRedManaAbility.class);
         manaAbilities.put(SubType.PLAINS, AddWhiteManaAbility.class);
         manaAbilities.put(SubType.SWAMP, AddBlackManaAbility.class);
