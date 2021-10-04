@@ -60,6 +60,7 @@ class Test_ReplacementEffect extends BaseGame {
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertUntapped(player1, bloodcrypt);
+        assertLife(player1, 18);
     }
 
     @Test

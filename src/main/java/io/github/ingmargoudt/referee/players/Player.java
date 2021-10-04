@@ -137,4 +137,8 @@ public class Player extends BaseObject implements Targetable, Damageable {
     public String choosesOption(List<String> options) {
         return options.get(0);
     }
+
+    public void loseLife(int amount){
+        life-=amount;
+    }
 }
