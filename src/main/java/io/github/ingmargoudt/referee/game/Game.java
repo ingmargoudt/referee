@@ -2,15 +2,20 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.abilities.*;
+import io.github.ingmargoudt.referee.game.cost.Cost;
+import io.github.ingmargoudt.referee.game.cost.TapCost;
 import io.github.ingmargoudt.referee.game.zones.Battlefield;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Optional;
 import java.util.UUID;
+
+import java.util.*;
 
 @Log4j2
 public class Game {
@@ -155,8 +160,8 @@ public class Game {
                 if (permanent.hasSubType(subtype)) {
                     if (!permanent.hasAbility(manaAbility)) {
                         try {
-                            permanent.addAbility(manaAbility.newInstance());
-                        } catch (InstantiationException | IllegalAccessException e) {
+                            permanent.addAbility(manaAbility.getConstructor(Cost[].class).newInstance((Object)new Cost[]{new TapCost()}));
+                        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                             log.error(e.getMessage());
                         }
                     }
