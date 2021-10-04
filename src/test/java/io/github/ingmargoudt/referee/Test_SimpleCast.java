@@ -96,6 +96,19 @@ class Test_SimpleCast extends BaseGame {
     }
 
     @Test
+    void castSpellWithSingleTargetCreature(){
+        Card bolt = new LightningBolt();
+        Card bears = new GrizzlyBears();
+        addCard(Zone.HAND, player1, bolt);
+        addCard(Zone.BATTLEFIELD, player2, bears);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, bears);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertLife(player2, 20);
+        assertGraveyard(player2, bears);
+    }
+
+    @Test
     void gloriousAnthemBoosts() {
         disablePlayerActionLogging();
         addCard(Zone.BATTLEFIELD, player1, bears, 1);

@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -64,6 +65,7 @@ public class BaseGame {
     protected void castSpell(int turn, Phase phase, TestPlayer player, Card card, Targetable targetable) {
         player.addAction(new CastSpellAction(turn, phase, card, targetable));
     }
+
 
     protected void playLand(TestPlayer player, int turnNumber, Phase phase, Card card){
         player.addAction(new PlayLandAction(turnNumber, phase, card));
@@ -205,5 +207,13 @@ public class BaseGame {
 
     protected void setOption(TestPlayer testPlayer, String option){
         testPlayer.addOption(option);
+    }
+
+    private Optional<Permanent> findPermanentByCard(TestPlayer thePlaer, Card theCard){
+        return game.getBattlefield().getAll().stream().filter(permanent -> permanent.isControlledBy(thePlaer) && permanent.getName().equals(theCard.getName())).findFirst();
+    }
+
+    protected void assertGraveyard(TestPlayer player, Card theCard){
+        assertThat(player.getGraveyard().contains(theCard)).isTrue();
     }
 }

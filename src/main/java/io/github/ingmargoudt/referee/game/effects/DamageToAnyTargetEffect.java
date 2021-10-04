@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.game.effects;
 
+import io.github.ingmargoudt.referee.game.Damageable;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
 import io.github.ingmargoudt.referee.game.TargetAny;
@@ -15,7 +16,11 @@ public class DamageToAnyTargetEffect extends OneShotEffect implements TargetEffe
 
     @Override
     public void apply(MagicObject object, Game game) {
-        targets.get(0).resolve(game).ifPresent(theTarget -> theTarget.damage(amount));
+        targets.get(0).resolve(game).ifPresent(theTarget -> {
+            if(theTarget instanceof Damageable){
+                ((Damageable)theTarget).damage(amount);
+            }
+        });
 
     }
 

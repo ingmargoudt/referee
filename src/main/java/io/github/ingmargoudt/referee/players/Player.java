@@ -12,10 +12,11 @@ import org.apache.commons.lang3.NotImplementedException;
 import java.util.List;
 import java.util.Optional;
 
-public class Player extends BaseObject implements Targetable {
+public class Player extends BaseObject implements Targetable, Damageable {
 
     private final String name;
     private Library library;
+    @Getter
     private Graveyard graveyard;
     protected Hand hand = new Hand();
     protected Game gameReference;
@@ -31,6 +32,7 @@ public class Player extends BaseObject implements Targetable {
         this.library = library;
         this.library.setOwner(this.id);
         manapool = new Manapool();
+        graveyard = new Graveyard();
     }
 
     public void shuffle() {

@@ -6,7 +6,7 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.UUID;
 
-public class Permanent extends MagicObject implements Targetable {
+public class Permanent extends MagicObject implements Targetable, Damageable {
 
     Card base;
 
@@ -20,6 +20,8 @@ Each permanent always has one of these values for each of these categories.
     boolean isFlipped;
     boolean isFacedown;
     boolean isPhasedOut;
+
+    int damageReceived = 0;
 
 
     /*
@@ -109,6 +111,10 @@ the battlefield. Every permanent has a controller.
 
     @Override
     public void damage(int amount) {
-        throw new NotImplementedException();
+        damageReceived += amount;
+    }
+
+    public int getReceivedDamage() {
+        return damageReceived;
     }
 }

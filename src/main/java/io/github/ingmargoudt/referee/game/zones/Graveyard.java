@@ -11,4 +11,8 @@ public class Graveyard {
     public void add(Card card) {
         cards.add(card);
     }
+
+    public boolean contains(Card card){
+        return cards.contains(card);
+    }
 }

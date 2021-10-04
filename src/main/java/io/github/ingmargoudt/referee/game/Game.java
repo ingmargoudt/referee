@@ -18,9 +18,9 @@ public class Game {
     protected Battlefield battlefield;
     protected Player[] players = new Player[2];
     @Getter
-    final int startingLife = 20;
+    static final int startingLife = 20;
     @Getter
-    final int startingHandSize = 7;
+    static final int startingHandSize = 7;
     @Getter
     private boolean running;
     @Getter
@@ -148,11 +148,11 @@ public class Game {
         manaAbilities.put(SubType.PLAINS, AddWhiteManaAbility.class);
         manaAbilities.put(SubType.SWAMP, AddBlackManaAbility.class);
         for (Permanent permanent : battlefield.getAll()) {
-            manaAbilities.entrySet().forEach(entry -> {
-                if(permanent.hasSubType(entry.getKey())){
-                    if(!permanent.hasAbility(entry.getValue())){
+            manaAbilities.forEach((subtype, manaAbility) -> {
+                if (permanent.hasSubType(subtype)) {
+                    if (!permanent.hasAbility(manaAbility)) {
                         try {
-                            permanent.addAbility(entry.getValue().newInstance());
+                            permanent.addAbility(manaAbility.newInstance());
                         } catch (InstantiationException | IllegalAccessException e) {
                             log.error(e.getMessage());
                         }
@@ -164,6 +164,11 @@ public class Game {
 
     private void checkStateBasedActions() {
         EventBus.report("Checking statebased actions");
+        getBattlefield().getAll().forEach(permanent -> {
+            if(permanent.getReceivedDamage() >= permanent.getToughness() && permanent.isCreature()){
+                permanent.destroy(this);
+            }
+        });
     }
 
 

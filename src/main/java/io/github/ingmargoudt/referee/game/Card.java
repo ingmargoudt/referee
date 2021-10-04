@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Getter
-public class Card extends MagicObject{
+public class Card extends MagicObject implements Targetable{
 
     @Setter
     UUID owner;
