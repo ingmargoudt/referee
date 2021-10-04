@@ -48,4 +48,6 @@ public class Spell extends MagicObject implements Stackable{
     public List<OneShotEffect> getEffects() {
         return card.getSpellEffects();
     }
+
+
 }

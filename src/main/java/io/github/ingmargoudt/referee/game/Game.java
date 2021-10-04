@@ -226,6 +226,9 @@ public class Game {
         if (!player.getId().equals(playerWithPriority)) {
             return false;
         }
+        if(!card.canBePlayed(this)){
+            return false;
+        }
         if (!stack.isEmpty()) {
             if (card.isPermanent()) {
                 return false;

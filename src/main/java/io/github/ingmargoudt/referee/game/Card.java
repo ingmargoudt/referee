@@ -1,5 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
+import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.effects.TargetEffect;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,6 +41,10 @@ public class Card extends MagicObject implements Targetable{
         this.getCardtypes().addAll(card.getCardtypes());
         this.getSubTypes().addAll(card.getSubTypes());
         this.getSpellEffects().addAll(card.getSpellEffects());
+    }
+
+    public boolean canBePlayed(Game game){
+        return getSpellEffects().stream().filter(oneShotEffect -> oneShotEffect instanceof TargetEffect).map(oneShotEffect -> (TargetEffect) oneShotEffect).allMatch(target-> target.hasValidTargets(game));
     }
 
 }
