@@ -7,7 +7,6 @@ import io.github.ingmargoudt.referee.players.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public class TargetAny implements Target {
 

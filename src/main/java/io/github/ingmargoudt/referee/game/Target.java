@@ -1,11 +1,9 @@
 package io.github.ingmargoudt.referee.game;
 
-import io.github.ingmargoudt.referee.game.effects.Effect;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface Target {
 

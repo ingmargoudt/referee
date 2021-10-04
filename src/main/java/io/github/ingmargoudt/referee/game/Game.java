@@ -6,9 +6,7 @@ import io.github.ingmargoudt.referee.game.zones.Battlefield;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class Game {
 
@@ -143,28 +141,22 @@ public class Game {
     }
 
     private void applyLandManaAbilities() {
+        Map<SubType, Class<? extends Ability>> manaAbilities = new HashMap<>();
+        manaAbilities.put(SubType.MOUNTAIN, AddRedManaAbility.class);
+        manaAbilities.put(SubType.PLAINS, AddWhiteManaAbility.class);
+        manaAbilities.put(SubType.SWAMP, AddBlackManaAbility.class);
         for (Permanent permanent : battlefield.getAll()) {
-            if (permanent.hasSubType(SubType.MOUNTAIN)) {
-                if (!permanent.hasAbility(AddRedManaAbility.class)) {
-                    permanent.addAbility(new AddRedManaAbility());
+            manaAbilities.entrySet().forEach(entry -> {
+                if(permanent.hasSubType(entry.getKey())){
+                    if(!permanent.hasAbility(entry.getValue())){
+                        try {
+                            permanent.addAbility(entry.getValue().newInstance());
+                        } catch (InstantiationException | IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-            } else {
-                permanent.removeAbility(AddRedManaAbility.class);
-            }
-            if (permanent.hasSubType(SubType.PLAINS)) {
-                if (!permanent.hasAbility(AddWhiteManaAbility.class)) {
-                    permanent.addAbility(new AddWhiteManaAbility());
-                }
-            } else {
-                permanent.removeAbility(AddWhiteManaAbility.class);
-            }
-            if (permanent.hasSubType(SubType.SWAMP)) {
-                if (!permanent.hasAbility(AddBlackManaAbility.class)) {
-                    permanent.addAbility(new AddBlackManaAbility());
-                }
-            } else {
-                permanent.removeAbility(AddBlackManaAbility.class);
-            }
+            });
         }
     }
 
