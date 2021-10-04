@@ -6,6 +6,8 @@ import io.github.ingmargoudt.referee.cards.b.BloodMoon;
 import io.github.ingmargoudt.referee.cards.f.ForsakenSanctuary;
 import io.github.ingmargoudt.referee.game.Card;
 import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.SubType;
+import io.github.ingmargoudt.referee.game.SubTypes;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
 
@@ -31,6 +33,9 @@ class Test_ReplacementEffect extends BaseGame {
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertUntapped(player1, forsakenSanctuary);
+        SubTypes expectedSubTypes = new SubTypes();
+        expectedSubTypes.add(SubType.MOUNTAIN);
+        assertSubTypes(player1, forsakenSanctuary, expectedSubTypes);
     }
 
     @Test

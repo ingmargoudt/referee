@@ -22,4 +22,17 @@ public class SubTypes {
     public void clear() {
         subTypeList.clear();
     }
+
+    @Override
+    public String toString(){
+        return subTypeList.toString();
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof SubTypes) {
+            return subTypeList.equals(((SubTypes)other).subTypeList);
+        }
+        return false;
+    }
 }

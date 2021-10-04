@@ -2,10 +2,7 @@ package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.framework.ConsoleListener;
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.game.Card;
-import io.github.ingmargoudt.referee.game.Permanent;
-import io.github.ingmargoudt.referee.game.Phase;
-import io.github.ingmargoudt.referee.game.Targetable;
+import io.github.ingmargoudt.referee.game.*;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import io.github.ingmargoudt.referee.game.zones.Zone;
@@ -191,6 +188,19 @@ public class BaseGame {
             }
         }
         Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
+    }
+
+
+    protected void assertSubTypes(TestPlayer thePlayer, Card theCard, SubTypes thesubtypes){
+        for(Permanent permanent : game.getBattlefield().getAll()){
+            if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
+                assertThat(permanent.getSubTypes()).as(permanent.getName()+ " has wrong set of subtypes").isEqualTo(thesubtypes);
+                log.info(theCard.getName() + " of "+thePlayer.getName() + " has subtypes "+thesubtypes);
+                return;
+            }
+        }
+        Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
+
     }
 
     protected void setOption(TestPlayer testPlayer, String option){
