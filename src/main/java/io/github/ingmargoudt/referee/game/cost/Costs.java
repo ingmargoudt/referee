@@ -10,6 +10,14 @@ public class Costs {
 
     private List<Cost> theCosts = new ArrayList<>();
 
+    public static Costs of(Cost ...costs){
+        Costs c = new Costs();
+        for (Cost cost : costs) {
+            c.addCost(cost);
+        }
+        return c;
+    }
+
     public void addCost(Cost cost){
         theCosts.add(cost);
     }

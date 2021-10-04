@@ -2,29 +2,28 @@ package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.MagicObject;
-import io.github.ingmargoudt.referee.game.cost.Cost;
-import io.github.ingmargoudt.referee.game.effects.Effects;
-import org.apache.commons.lang3.NotImplementedException;
+import io.github.ingmargoudt.referee.game.cost.Costs;
+import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ActivatedAbility extends Ability{
+public class ActivatedAbility extends Ability {
 
-    protected List<Cost> costs = new ArrayList<>();
-    protected Effects effects;
+    protected Costs costs;
+    protected List<OneShotEffect> effects;
 
-    public ActivatedAbility(List<Cost> costsList, Effects effects){
+    public ActivatedAbility(Costs costs, List<OneShotEffect> effects) {
         super();
-     this.costs = costsList;
-     this.effects = effects;
+        this.costs = costs;
+        this.effects = effects;
 
     }
 
 
-
     @Override
     public void resolve(MagicObject source, Game game) {
-throw new NotImplementedException();
+        game.getPlayer(source.getController()).ifPresent(player -> {
+            effects.forEach(effect -> effect.apply(source, game));
+        });
     }
 }
