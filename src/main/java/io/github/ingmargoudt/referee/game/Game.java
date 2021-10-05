@@ -19,6 +19,7 @@ import java.util.EnumMap;
 import java.util.Optional;
 import java.util.UUID;
 
+import java.util.*;
 @Log4j2
 public class Game {
 
@@ -26,6 +27,7 @@ public class Game {
     private UUID playerWithPriority;
     @Getter
     protected Battlefield battlefield;
+
     protected Player[] players = new Player[2];
     @Getter
     static final int startingLife = 20;
@@ -246,6 +248,8 @@ public class Game {
         }
         return true;
     }
+
+    public List<Player> getPlayers(){return Arrays.asList(players);}
 
 
 }

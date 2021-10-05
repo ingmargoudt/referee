@@ -10,8 +10,5 @@ public class TestGame extends Game {
         return battlefield;
     }
 
-    public Player[] getPlayers(){
-        return players;
-    }
 
 }

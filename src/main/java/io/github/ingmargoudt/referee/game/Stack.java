@@ -2,12 +2,16 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.effects.TargetEffect;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
+import io.github.ingmargoudt.referee.game.properties.Targetable;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Stack {
 
@@ -73,5 +77,18 @@ public class Stack {
         if (allPlayersPassed()) {
             resolve(game);
         }
+    }
+
+    public boolean containsObject(MagicObject source) {
+        return stackEntries.stream().anyMatch(stackable -> stackable.getId().equals(source.getId()));
+    }
+
+    public List<Targetable> show() {
+        return stackEntries.stream().map(stackable -> (Targetable) stackable).collect(Collectors.toList());
+    }
+
+    public void counter(Spell spell) {
+        game.moveToGraveyard(spell.getCard());
+        stackEntries.remove(spell);
     }
 }

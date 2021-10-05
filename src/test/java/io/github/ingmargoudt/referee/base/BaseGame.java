@@ -19,6 +19,8 @@ import org.junit.jupiter.api.TestInfo;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import java.util.*;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log4j2
@@ -86,11 +88,11 @@ public class BaseGame {
         game.start();
         boolean ok = true;
         if (player1.hasRemainingActions()) {
-            log.error(player1.getName() + " has remaining actions");
+            log.error(player1.getName() + " has remaining actions: "+player1.getActions());
             ok = false;
         }
         if (player2.hasRemainingActions()) {
-            log.error(player2.getName() + " has remaining actions");
+            log.error(player2.getName() + " has remaining actions: "+player2.getActions());
             ok = false;
         }
         if (!ok) {
@@ -168,7 +170,7 @@ public class BaseGame {
         assertThat(testPlayer.getLife()).isEqualTo(amount);
     }
 
-    public Player[] getPlayers(){
+    public List<Player> getPlayers(){
         return game.getPlayers();
     }
 

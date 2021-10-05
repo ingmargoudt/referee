@@ -11,6 +11,9 @@ public interface Stackable {
     void resolve(Game game);
     UUID getController();
 
+
+    UUID getId();
+
     MagicObject getSource();
 
     String getName();

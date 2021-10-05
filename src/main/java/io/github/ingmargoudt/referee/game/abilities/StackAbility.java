@@ -18,6 +18,8 @@ public class StackAbility implements Stackable {
         this.source = source;
     }
 
+
+
     @Override
     public void resolve(Game game) {
         triggeredAbility.resolve(source, game);
@@ -26,6 +28,11 @@ public class StackAbility implements Stackable {
     @Override
     public UUID getController() {
         return source.getController();
+    }
+
+    @Override
+    public UUID getId() {
+        return triggeredAbility.getId();
     }
 
     @Override

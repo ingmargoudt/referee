@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.game.zones.Hand;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import io.github.ingmargoudt.referee.players.Player;
+import lombok.Getter;
 import org.assertj.core.api.Fail;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 public class TestPlayer extends Player {
 
 
+    @Getter
     private List<TestPlayerAction> actions = new ArrayList<>();
     private TestPlayerAction currenAction;
     private List<String> options = new ArrayList<>();

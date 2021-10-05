@@ -2,13 +2,17 @@ package io.github.ingmargoudt.referee.game.objects;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.properties.Counterable;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
+import io.github.ingmargoudt.referee.game.properties.Targetable;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.UUID;
 
-public class Spell extends MagicObject implements Stackable {
+public class Spell extends MagicObject implements Stackable, Counterable, Targetable {
 
+    @Getter
     Card card;
 
     public Spell(Card card){
@@ -52,4 +56,13 @@ public class Spell extends MagicObject implements Stackable {
     }
 
 
+    @Override
+    public void counter(Game game) {
+        game.getStack().counter(this);
+    }
+
+    @Override
+    public UUID getId() {
+        return card.getId();
+    }
 }

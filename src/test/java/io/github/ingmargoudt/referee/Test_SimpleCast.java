@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee;
 import io.github.ingmargoudt.referee.base.BaseGame;
 import io.github.ingmargoudt.referee.cards.a.AngelsMercy;
 import io.github.ingmargoudt.referee.cards.c.CathedralSanctifier;
+import io.github.ingmargoudt.referee.cards.c.CounterSpell;
 import io.github.ingmargoudt.referee.cards.g.GloriousAnthem;
 import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.cards.l.LightningBolt;
@@ -106,6 +107,19 @@ class Test_SimpleCast extends BaseGame {
         start();
         assertLife(player2, 20);
         assertGraveyard(player2, bears);
+    }
+
+    @Test
+    void castSpellWithSingleTargetSpell(){
+        Card bolt = new LightningBolt();
+        Card counterspell = new CounterSpell();
+        addCard(Zone.HAND, player1, bolt);
+        addCard(Zone.HAND, player2, counterspell );
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, player2);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player2, counterspell, bolt);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertGraveyard(player1, bolt);
     }
 
     @Test
