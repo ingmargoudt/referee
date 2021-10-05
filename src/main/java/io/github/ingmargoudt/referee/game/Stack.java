@@ -25,6 +25,7 @@ public class Stack {
 
 
     public void putOnStack(Stackable stackable) {
+        passed.clear();
         stackEntries.addFirst(stackable);
         EventBus.report(stackable.getName() + " is put on the stack");
         if (stackable.hasTargets()) {
