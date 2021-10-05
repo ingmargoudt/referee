@@ -1,6 +1,6 @@
 package io.github.ingmargoudt.referee.base;
 
-import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.Phase;
 import lombok.Getter;
 

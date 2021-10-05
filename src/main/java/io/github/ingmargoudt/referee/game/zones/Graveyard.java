@@ -1,6 +1,6 @@
 package io.github.ingmargoudt.referee.game.zones;
 
-import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.objects.Card;
 
 import java.util.ArrayList;
 import java.util.List;

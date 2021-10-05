@@ -6,7 +6,7 @@ import io.github.ingmargoudt.referee.cards.c.CathedralSanctifier;
 import io.github.ingmargoudt.referee.cards.g.GloriousAnthem;
 import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.cards.l.LightningBolt;
-import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;

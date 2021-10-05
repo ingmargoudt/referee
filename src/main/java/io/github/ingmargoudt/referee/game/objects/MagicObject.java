@@ -1,5 +1,6 @@
-package io.github.ingmargoudt.referee.game;
+package io.github.ingmargoudt.referee.game.objects;
 
+import io.github.ingmargoudt.referee.game.*;
 import io.github.ingmargoudt.referee.game.abilities.Abilities;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;

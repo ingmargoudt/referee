@@ -4,6 +4,10 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.abilities.*;
 import io.github.ingmargoudt.referee.game.cost.Cost;
 import io.github.ingmargoudt.referee.game.cost.TapCost;
+import io.github.ingmargoudt.referee.game.objects.Card;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.objects.Permanent;
+import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.zones.Battlefield;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
@@ -14,8 +18,6 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Optional;
 import java.util.UUID;
-
-import java.util.*;
 
 @Log4j2
 public class Game {

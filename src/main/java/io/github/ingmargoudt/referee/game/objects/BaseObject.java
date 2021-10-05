@@ -1,4 +1,4 @@
-package io.github.ingmargoudt.referee.game;
+package io.github.ingmargoudt.referee.game.objects;
 
 import lombok.Getter;
 

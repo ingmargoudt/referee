@@ -4,7 +4,7 @@ import io.github.ingmargoudt.referee.base.BaseGame;
 import io.github.ingmargoudt.referee.cards.m.Mountain;
 import io.github.ingmargoudt.referee.cards.p.Plains;
 import io.github.ingmargoudt.referee.cards.s.Swamp;
-import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.abilities.AddBlackManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.AddRedManaAbility;

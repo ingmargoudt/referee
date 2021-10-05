@@ -1,12 +1,14 @@
-package io.github.ingmargoudt.referee.game;
+package io.github.ingmargoudt.referee.game.objects;
 
+import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.game.effects.TargetEffect;
 import lombok.Getter;
 
 import java.util.UUID;
 
 @Getter
-public class Card extends MagicObject implements Targetable{
+public class Card extends MagicObject implements Targetable {
 
     UUID owner;
 

@@ -1,6 +1,6 @@
 package io.github.ingmargoudt.referee.base;
 
-import io.github.ingmargoudt.referee.game.Targetable;
+import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.game.zones.Hand;
 import io.github.ingmargoudt.referee.game.zones.Library;
 import io.github.ingmargoudt.referee.players.Player;

@@ -1,8 +1,8 @@
 package io.github.ingmargoudt.referee.base;
 
-import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.Phase;
-import io.github.ingmargoudt.referee.game.Targetable;
+import io.github.ingmargoudt.referee.game.properties.Targetable;
 import lombok.Getter;
 
 import java.util.ArrayList;

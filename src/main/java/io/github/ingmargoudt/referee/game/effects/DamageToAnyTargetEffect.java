@@ -1,9 +1,9 @@
 package io.github.ingmargoudt.referee.game.effects;
 
-import io.github.ingmargoudt.referee.game.Damageable;
+import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.MagicObject;
-import io.github.ingmargoudt.referee.game.TargetAny;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.target.TargetAny;
 
 public class DamageToAnyTargetEffect extends OneShotEffect implements TargetEffect {
 

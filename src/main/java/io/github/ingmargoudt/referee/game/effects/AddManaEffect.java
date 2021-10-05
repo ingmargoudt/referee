@@ -1,7 +1,7 @@
 package io.github.ingmargoudt.referee.game.effects;
 
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.MagicObject;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.ManaType;
 
 public class AddManaEffect extends OneShotEffect {

@@ -1,10 +1,10 @@
 package io.github.ingmargoudt.referee.cards.b;
 
-import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.cost.PayLifeCost;
-import io.github.ingmargoudt.referee.game.effects.ComesIntoPlayTappedEffectUnlessAbility;
+import io.github.ingmargoudt.referee.game.effects.ComesIntoPlayTappedEffectUnless;
 
 public class BloodCrypt extends Card {
     public BloodCrypt() {
@@ -12,6 +12,6 @@ public class BloodCrypt extends Card {
         cardtypes.add(CardType.LAND);
         subTypes.add(SubType.MOUNTAIN);
         subTypes.add(SubType.SWAMP);
-        getReplacementEffects().add(new ComesIntoPlayTappedEffectUnlessAbility(new PayLifeCost(2)));
+        getReplacementEffects().add(new ComesIntoPlayTappedEffectUnless(new PayLifeCost(2)));
     }
 }

@@ -4,7 +4,7 @@ import io.github.ingmargoudt.referee.base.BaseGame;
 import io.github.ingmargoudt.referee.cards.b.BloodCrypt;
 import io.github.ingmargoudt.referee.cards.b.BloodMoon;
 import io.github.ingmargoudt.referee.cards.f.ForsakenSanctuary;
-import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.SubTypes;

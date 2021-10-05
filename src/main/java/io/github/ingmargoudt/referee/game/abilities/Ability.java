@@ -1,7 +1,7 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.MagicObject;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import lombok.Getter;
 
 import java.util.UUID;

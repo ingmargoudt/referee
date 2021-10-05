@@ -1,11 +1,13 @@
-package io.github.ingmargoudt.referee.game;
+package io.github.ingmargoudt.referee.game.objects;
 
+import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.properties.Stackable;
 
 import java.util.List;
 import java.util.UUID;
 
-public class Spell extends MagicObject implements Stackable{
+public class Spell extends MagicObject implements Stackable {
 
     Card card;
 

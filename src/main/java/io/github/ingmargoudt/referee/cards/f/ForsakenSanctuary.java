@@ -1,6 +1,6 @@
 package io.github.ingmargoudt.referee.cards.f;
 
-import io.github.ingmargoudt.referee.game.Card;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.abilities.AddBlackManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.AddWhiteManaAbility;

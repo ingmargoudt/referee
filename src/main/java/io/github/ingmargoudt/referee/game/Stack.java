@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.effects.TargetEffect;
+import io.github.ingmargoudt.referee.game.properties.Stackable;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

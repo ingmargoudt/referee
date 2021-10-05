@@ -1,8 +1,8 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.MagicObject;
-import io.github.ingmargoudt.referee.game.Stackable;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 
 import java.util.List;

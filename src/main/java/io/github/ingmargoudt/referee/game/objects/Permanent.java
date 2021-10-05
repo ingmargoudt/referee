@@ -1,5 +1,8 @@
-package io.github.ingmargoudt.referee.game;
+package io.github.ingmargoudt.referee.game.objects;
 
+import io.github.ingmargoudt.referee.game.*;
+import io.github.ingmargoudt.referee.game.properties.Damageable;
+import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
