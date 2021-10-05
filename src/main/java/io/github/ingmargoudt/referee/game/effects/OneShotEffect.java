@@ -3,7 +3,7 @@ package io.github.ingmargoudt.referee.game.effects;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
-import io.github.ingmargoudt.referee.game.target.Target;
+import io.github.ingmargoudt.referee.game.targets.Target;
 
 import java.util.ArrayList;
 import java.util.List;
