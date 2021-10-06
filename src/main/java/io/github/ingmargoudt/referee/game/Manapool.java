@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game;
 
 import lombok.Getter;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import java.util.Map;
 public class Manapool {
 
     @Getter
-    Map<ManaType, Integer> pool = new HashMap<>();
+    Map<ManaType, Integer> pool = new EnumMap<>(ManaType.class);
 
     public void add(ManaType... manaTypes) {
         for (ManaType manaType : manaTypes) {

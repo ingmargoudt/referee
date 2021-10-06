@@ -14,12 +14,8 @@ import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.Optional;
-import java.util.UUID;
-
 import java.util.*;
+
 @Log4j2
 public class Game {
 
@@ -30,9 +26,9 @@ public class Game {
 
     protected Player[] players = new Player[2];
     @Getter
-    static final int startingLife = 20;
+    static final int STARTING_LIFE = 20;
     @Getter
-    static final int startingHandSize = 7;
+    static final int STARTING_HAND_SIZE = 7;
     @Getter
     private boolean running;
     @Getter
@@ -87,11 +83,11 @@ public class Game {
         103.3. Each player begins the game with a starting life total of 20. Some variant games have different
         starting life totals
          */
-        Arrays.stream(players).forEach(player -> player.setLife(startingLife));
+        Arrays.stream(players).forEach(player -> player.setLife(STARTING_LIFE));
         /*
         103.4. Each player draws a number of cards equal to their starting hand size, which is normally seven.
          */
-        Arrays.stream(players).forEach(player -> player.drawCard(startingHandSize));
+        Arrays.stream(players).forEach(player -> player.drawCard(STARTING_HAND_SIZE));
         Arrays.stream(players).forEach(Player::mulligan);
         activePlayer = players[0].getId();
         setPriority(activePlayer);
@@ -161,13 +157,11 @@ public class Game {
         manaAbilities.put(SubType.SWAMP, AddBlackManaAbility.class);
         for (Permanent permanent : battlefield.getAll()) {
             manaAbilities.forEach((subtype, manaAbility) -> {
-                if (permanent.hasSubType(subtype)) {
-                    if (!permanent.hasAbility(manaAbility)) {
-                        try {
-                            permanent.addAbility(manaAbility.getConstructor(Cost[].class).newInstance((Object)new Cost[]{new TapCost()}));
-                        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                            log.error(e.getMessage());
-                        }
+                if (permanent.hasSubType(subtype) && !permanent.hasAbility(manaAbility)) {
+                    try {
+                        permanent.addAbility(manaAbility.getConstructor(Cost[].class).newInstance((Object) new Cost[]{new TapCost()}));
+                    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+                        log.error(e.getMessage());
                     }
                 }
             });
@@ -177,7 +171,7 @@ public class Game {
     private void checkStateBasedActions() {
         EventBus.report("Checking statebased actions");
         getBattlefield().getAll().forEach(permanent -> {
-            if(permanent.getReceivedDamage() >= permanent.getToughness() && permanent.isCreature()){
+            if (permanent.getReceivedDamage() >= permanent.getToughness() && permanent.isCreature()) {
                 permanent.destroy(this);
             }
         });
@@ -238,7 +232,7 @@ public class Game {
         if (!player.getId().equals(playerWithPriority)) {
             return false;
         }
-        if(!card.canBePlayed(this)){
+        if (!card.canBePlayed(this)) {
             return false;
         }
         if (!stack.isEmpty()) {
@@ -249,7 +243,9 @@ public class Game {
         return true;
     }
 
-    public List<Player> getPlayers(){return Arrays.asList(players);}
+    public List<Player> getPlayers() {
+        return Arrays.asList(players);
+    }
 
 
 }

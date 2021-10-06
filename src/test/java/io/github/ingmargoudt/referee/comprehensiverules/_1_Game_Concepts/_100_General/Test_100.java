@@ -20,7 +20,7 @@ class Test_100 extends BaseGame {
 
     //100.1b A multiplayer game is a game that begins with more than two players. See section 8,
     //“Multiplayer Rules.”
-    @Disabled
+    @Disabled("Not yet implemented")
     @Test
     void _1b(){
 

@@ -6,13 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Test_Manapool {
+class Test_Manapool {
 
     @Test
     void addMana(){
         Manapool manapool = new Manapool();
         manapool.add(ManaType.BLACK);
-        assertThat(manapool.getPool()).containsKey(ManaType.BLACK);
-        assertThat(manapool.getPool().get(ManaType.BLACK)).isEqualTo(1);
+        assertThat(manapool.getPool()).containsEntry(ManaType.BLACK, 1);
     }
 }

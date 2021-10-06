@@ -43,7 +43,7 @@ public class Stack {
     public void resolve(Game game) {
         Stackable topOfStack = stackEntries.peekFirst();
         game.getPlayer(topOfStack.getController()).ifPresent(controller -> {
-            EventBus.report(controller.getName() + " " + stackEntries.peekFirst().getName() + " resolves");
+            EventBus.report(controller.getName() + " " + topOfStack.getName() + " resolves");
             Stackable stackable = stackEntries.pop();
             stackable.resolve(game);
             game.setPriority(stackable.getController());
@@ -80,12 +80,8 @@ public class Stack {
         }
     }
 
-    public boolean containsObject(MagicObject source) {
-        return stackEntries.stream().anyMatch(stackable -> stackable.getId().equals(source.getId()));
-    }
-
     public List<Targetable> show() {
-        return stackEntries.stream().map(stackable -> (Targetable) stackable).collect(Collectors.toList());
+        return stackEntries.stream().map(Targetable.class::cast).collect(Collectors.toList());
     }
 
     public void counter(Spell spell) {
