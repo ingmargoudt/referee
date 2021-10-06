@@ -3,7 +3,6 @@ package io.github.ingmargoudt.referee.game.targets;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
-import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.players.Player;
@@ -29,11 +28,7 @@ public class TargetAny implements Target {
         if (targettedPlayer.isPresent()) {
             return Optional.of(targettedPlayer.get());
         }
-        Optional<Permanent> targetedPermanent = game.getBattlefield().getAll().stream().filter(permanent -> permanent.getId().equals(theTarget.getId())).findFirst();
-        if (targetedPermanent.isPresent()) {
-            return Optional.of(targetedPermanent.get());
-        }
-        return Optional.empty();
+        return game.getBattlefield().getAll().stream().filter(permanent -> permanent.getId().equals(theTarget.getId())).map(Targetable.class::cast).findFirst();
     }
 
     @Override
