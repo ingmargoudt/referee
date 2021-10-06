@@ -110,6 +110,22 @@ class Test_SimpleCast extends BaseGame {
     }
 
     @Test
+    void castSpellWithSingleTargetCreature_counteruponresolution(){
+        Card bolt = new LightningBolt();
+        Card bolt2 = new LightningBolt();
+        Card bears = new GrizzlyBears();
+        addCard(Zone.HAND, player1, bolt);
+        addCard(Zone.HAND, player2, bolt2);
+        addCard(Zone.BATTLEFIELD, player2, bears);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, bears);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player2, bolt2, bears);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertLife(player2, 20);
+        assertGraveyard(player2, bears);
+    }
+
+    @Test
     void castSpellWithSingleTargetSpell(){
         Card bolt = new LightningBolt();
         Card counterspell = new CounterSpell();
