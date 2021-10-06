@@ -13,13 +13,13 @@ public class CounterEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public void apply(MagicObject object, Game game) {
-        targets.get(0).resolve(game).ifPresent(theTarget -> {
+        targets.forEach(target -> target.resolve(game).ifPresent(theTarget -> {
             if (theTarget instanceof Counterable) {
                 ((Counterable) theTarget).counter(game);
             }
-        });
+        }));
 
-    }
+}
 
     @Override
     public boolean hasValidTargets(Game game) {
