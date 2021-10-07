@@ -15,8 +15,8 @@ public class Library {
         }
     }
 
-    public void setOwner(UUID owner){
-        for(Card card : cards){
+    public void setOwner(UUID owner) {
+        for (Card card : cards) {
             card.setOwner(owner);
         }
     }

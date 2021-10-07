@@ -4,9 +4,9 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.players.Player;
 
 public enum Phase {
-    BEGINNING_PHASE{
-        public void run(Game game){
-           startMessage(game);
+    BEGINNING_PHASE {
+        public void run(Game game) {
+            startMessage(game);
         }
     },
     PRECOMBAT_MAINPHASE {
@@ -40,7 +40,7 @@ public enum Phase {
 
     abstract void run(Game game);
 
-    void startMessage(Game game){
+    void startMessage(Game game) {
 
         game.getActivePlayer().ifPresent(activePlayer -> {
             EventBus.report(activePlayer.getName() + " starts " + this);
@@ -54,12 +54,12 @@ pass in succession. Simply having the stack become empty doesn’t cause such a 
 end; all players have to pass in succession with the stack empty. Because of this, each player gets a
 chance to add new things to the stack before that phase or step ends.
      */
-    void mainPhase(Game game){
-        do{
+    void mainPhase(Game game) {
+        do {
             game.getStack().checkIfAllPlayersPassed();
             game.getPlayerWithPriority().ifPresent(Player::doAction);
         }
-        while(!game.getStack().isEmpty() || (game.getStack().isEmpty() && !game.getStack().allPlayersPassed()));
+        while (!game.getStack().isEmpty() || (game.getStack().isEmpty() && !game.getStack().allPlayersPassed()));
         game.getStack().reset();
     }
 

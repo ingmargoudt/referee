@@ -17,7 +17,7 @@ public class Turn {
     phase. The beginning, combat, and ending phases are further broken down into steps, which
     proceed in order
     */
-    public Turn(){
+    public Turn() {
         phases.add(Phase.BEGINNING_PHASE);
         phases.add(Phase.PRECOMBAT_MAINPHASE);
         phases.add(Phase.COMBAT_PHASE);
@@ -26,12 +26,12 @@ public class Turn {
     }
 
 
-    public void run(Game game){
-        EventBus.report("Starting turn "+game.getTurnNumber());
-        while(!phases.isEmpty() && game.isRunning()){
+    public void run(Game game) {
+        EventBus.report("Starting turn " + game.getTurnNumber());
+        while (!phases.isEmpty() && game.isRunning()) {
             currentPhase = phases.pop();
             currentPhase.run(game);
-            if(game.getStopAtPhase() == currentPhase && game.getStopAtTurn() == game.getTurnNumber()){
+            if (game.getStopAtPhase() == currentPhase && game.getStopAtTurn() == game.getTurnNumber()) {
                 game.stop();
                 EventBus.report("Pausing game");
                 return;

@@ -6,7 +6,7 @@ import io.github.ingmargoudt.referee.game.objects.Card;
 
 public class AngelsMercy extends Card {
 
-    public AngelsMercy(){
+    public AngelsMercy() {
         super("Angel's Mercy");
         getCardtypes().add(CardType.INSTANT);
         getSpellEffects().add(new YouGainLifeEffect(7));

@@ -9,7 +9,7 @@ public abstract class ContinuousEffect {
 
     private final UUID id;
 
-    protected ContinuousEffect(){
+    protected ContinuousEffect() {
         id = UUID.randomUUID();
     }
 

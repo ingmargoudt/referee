@@ -5,11 +5,12 @@ import io.github.ingmargoudt.referee.game.objects.Permanent;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class Battlefield {
 
     private List<Permanent> permanents = new ArrayList<>();
 
-    public void add(Permanent permanent){
+    public void add(Permanent permanent) {
         permanents.add(permanent);
     }
 
@@ -17,7 +18,7 @@ public class Battlefield {
         permanents.forEach(Permanent::reset);
     }
 
-    public List<Permanent> getAll(){
+    public List<Permanent> getAll() {
         return new ArrayList<>(permanents);
     }
 

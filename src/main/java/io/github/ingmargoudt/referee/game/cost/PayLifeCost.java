@@ -7,8 +7,8 @@ public class PayLifeCost implements Cost {
 
     private final int amount;
 
-    public PayLifeCost(int amount){
-        this.amount=amount;
+    public PayLifeCost(int amount) {
+        this.amount = amount;
     }
 
 

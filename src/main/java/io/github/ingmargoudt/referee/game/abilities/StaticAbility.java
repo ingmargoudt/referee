@@ -12,7 +12,7 @@ public class StaticAbility extends Ability {
     List<ContinuousEffect> effects = new ArrayList<>();
 
     public StaticAbility(ContinuousEffect effect) {
-       super();
+        super();
         effects.add(effect);
     }
 

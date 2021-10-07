@@ -13,11 +13,10 @@ public class StackAbility implements Stackable {
     TriggeredAbility triggeredAbility;
     MagicObject source;
 
-    public StackAbility(TriggeredAbility ability, MagicObject source){
+    public StackAbility(TriggeredAbility ability, MagicObject source) {
         this.triggeredAbility = ability;
         this.source = source;
     }
-
 
 
     @Override

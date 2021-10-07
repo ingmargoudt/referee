@@ -9,7 +9,7 @@ public class BaseObject {
 
     protected final UUID id;
 
-    public BaseObject(){
+    public BaseObject() {
         id = UUID.randomUUID();
     }
 }

@@ -28,11 +28,11 @@ public class Abilities implements Iterable<Ability> {
         abilities.forEach(ability -> abilityList.add(ability));
     }
 
-    public void remove(Class<? extends Ability> abilityClass){
+    public void remove(Class<? extends Ability> abilityClass) {
         abilityList.removeIf(ability -> ability.getClass().equals(abilityClass));
     }
 
-    public void clear(){
+    public void clear() {
         abilityList.clear();
     }
 }

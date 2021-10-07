@@ -14,7 +14,7 @@ public abstract class TriggeredAbility extends Ability {
     @Getter
     private List<OneShotEffect> effects = new ArrayList<>();
 
-    protected TriggeredAbility(){
+    protected TriggeredAbility() {
         super();
     }
 

@@ -6,9 +6,11 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
 import java.util.List;
 import java.util.UUID;
+
 public interface Stackable {
 
     void resolve(Game game);
+
     UUID getController();
 
 

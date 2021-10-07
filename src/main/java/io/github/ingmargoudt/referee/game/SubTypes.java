@@ -10,11 +10,11 @@ public class SubTypes {
 
     List<SubType> subTypeList = new ArrayList<>();
 
-    public void add(SubType subType){
+    public void add(SubType subType) {
         subTypeList.add(subType);
     }
 
-    public boolean has(SubType subType){
+    public boolean has(SubType subType) {
         return subTypeList.contains(subType);
     }
 
@@ -27,7 +27,7 @@ public class SubTypes {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return subTypeList.toString();
     }
 }

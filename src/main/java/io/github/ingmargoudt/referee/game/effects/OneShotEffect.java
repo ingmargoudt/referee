@@ -12,19 +12,17 @@ import java.util.UUID;
 public abstract class OneShotEffect {
 
     private final UUID id;
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
-    }
-
-
     List<Target> targets = new ArrayList<>();
+
 
     protected OneShotEffect() {
         id = UUID.randomUUID();
     }
 
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
 
     public abstract void apply(MagicObject object, Game game);
 

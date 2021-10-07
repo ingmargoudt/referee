@@ -15,19 +15,18 @@ public class Spell extends MagicObject implements Stackable, Counterable, Target
     @Getter
     Card card;
 
-    public Spell(Card card){
+    public Spell(Card card) {
         super(card.getName());
         this.card = card;
     }
 
-    public void resolve(Game game){
-        if(card.isPermanent()){
+    public void resolve(Game game) {
+        if (card.isPermanent()) {
             game.moveToBattlefield(card);
-        }
-        else{
+        } else {
             card.getSpellEffects().forEach(effect -> effect.apply(this, game));
         }
-        
+
     }
 
     @Override
@@ -41,7 +40,7 @@ public class Spell extends MagicObject implements Stackable, Counterable, Target
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return card.getName();
     }
 

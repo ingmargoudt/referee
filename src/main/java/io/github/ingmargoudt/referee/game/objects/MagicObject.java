@@ -75,7 +75,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     }
 
 
-    public  void removeAbility(Class<? extends Ability> abilityClass) {
+    public void removeAbility(Class<? extends Ability> abilityClass) {
         getAbilities().remove(abilityClass);
 
     }

@@ -15,27 +15,24 @@ public class ComesIntoPlayTappedEffectUnless implements ReplacementEffect {
 
     Costs costs = new Costs();
 
-    @Override
-    public boolean checkEvent(Event event, MagicObject parentObject) {
-        return event instanceof EnterTheBattlefieldEvent && Objects.equals(event.getSource(), parentObject);
-
-    }
-
     public ComesIntoPlayTappedEffectUnless(Cost cost) {
         costs.addCost(cost);
 
     }
 
     @Override
-    public void apply(MagicObject source, Game game) {
-        game.getPlayer(source.getController()).ifPresent(player -> {
-            if (costs.canPay(source, game) && player.choosesOption(Arrays.asList("Yes", "No")).equals("Yes")) {
-                costs.payAll(source,game);
-            } else {
-                if (source instanceof Permanent) {
-                    ((Permanent) source).tap();
+    public void repondToEvent(Game game, Event event, MagicObject parentObject) {
+        MagicObject source = event.getSource();
+        if (event instanceof EnterTheBattlefieldEvent && Objects.equals(event.getSource(), parentObject)) {
+            game.getPlayer(source.getController()).ifPresent(player -> {
+                if (costs.canPay(source, game) && player.choosesOption(Arrays.asList("Yes", "No")).equals("Yes")) {
+                    costs.payAll(source, game);
+                } else {
+                    if (source instanceof Permanent) {
+                        ((Permanent) source).tap();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }

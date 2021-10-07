@@ -12,13 +12,11 @@ public abstract class Ability {
     UUID id;
 
 
-
-    protected Ability(){
+    protected Ability() {
         id = UUID.randomUUID();
     }
 
     public abstract void resolve(MagicObject source, Game game);
-
 
 
 }

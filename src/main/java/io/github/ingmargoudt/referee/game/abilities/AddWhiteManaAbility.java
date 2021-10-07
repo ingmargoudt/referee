@@ -8,11 +8,12 @@ import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 
 import java.util.Arrays;
 import java.util.List;
+
 public class AddWhiteManaAbility extends ActivatedManaAbility {
 
-    private static final List<OneShotEffect> addManaEffect =Arrays.asList(new AddManaEffect(ManaType.WHITE));
+    private static final List<OneShotEffect> addManaEffect = Arrays.asList(new AddManaEffect(ManaType.WHITE));
 
-    public AddWhiteManaAbility(Cost...costs) {
+    public AddWhiteManaAbility(Cost... costs) {
         super(Costs.of(costs), addManaEffect);
     }
 }

@@ -17,11 +17,12 @@ public class Stack {
     private LinkedList<Stackable> stackEntries = new LinkedList<>();
 
     private Game game;
+    private List<UUID> passed = new ArrayList<>();
+
 
     public Stack(Game game) {
         this.game = game;
     }
-
 
     public void putOnStack(Stackable stackable) {
         passed.clear();
@@ -36,8 +37,6 @@ public class Stack {
             });
         }
     }
-
-    private List<UUID> passed = new ArrayList<>();
 
     public void resolve(Game game) {
         Stackable topOfStack = stackEntries.peekFirst();

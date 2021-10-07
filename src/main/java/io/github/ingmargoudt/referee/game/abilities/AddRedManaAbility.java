@@ -13,7 +13,7 @@ public class AddRedManaAbility extends ActivatedManaAbility {
 
     private static final List<OneShotEffect> addManaEffect = Arrays.asList(new AddManaEffect(ManaType.RED));
 
-    public AddRedManaAbility(Cost...costs) {
+    public AddRedManaAbility(Cost... costs) {
         super(Costs.of(costs), addManaEffect);
     }
 }

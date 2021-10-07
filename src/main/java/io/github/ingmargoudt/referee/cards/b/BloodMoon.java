@@ -9,23 +9,24 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
 public class BloodMoon extends Card {
 
-    public BloodMoon(){
+    public BloodMoon() {
         super("Blood Moon");
         addAbility(new StaticAbility(new BloodMoonEffect()));
     }
 
 
 }
+
 class BloodMoonEffect extends ContinuousEffect {
     @Override
     public void apply(MagicObject source, Game game) {
         game.getBattlefield().getAll().forEach(permanent -> {
-            if (permanent.isLand() && !permanent.isBasic()){
-                    permanent.getAbilities().clear();
-                    permanent.getSubTypes().clear();
-                    permanent.getSubTypes().add(SubType.MOUNTAIN);
-                    permanent.getReplacementEffects().clear();
-                }
+            if (permanent.isLand() && !permanent.isBasic()) {
+                permanent.getAbilities().clear();
+                permanent.getSubTypes().clear();
+                permanent.getSubTypes().add(SubType.MOUNTAIN);
+                permanent.getReplacementEffects().clear();
+            }
         });
     }
 }

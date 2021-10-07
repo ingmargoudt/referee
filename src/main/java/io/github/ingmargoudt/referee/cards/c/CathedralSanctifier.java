@@ -7,7 +7,7 @@ import io.github.ingmargoudt.referee.game.objects.Card;
 
 public class CathedralSanctifier extends Card {
 
-    public CathedralSanctifier(){
+    public CathedralSanctifier() {
         super("Cathedral Sanctifier");
         getCardtypes().add(CardType.CREATURE);
         setPower(0);

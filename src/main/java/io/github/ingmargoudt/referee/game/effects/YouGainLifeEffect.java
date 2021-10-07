@@ -3,11 +3,11 @@ package io.github.ingmargoudt.referee.game.effects;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
-public class YouGainLifeEffect extends OneShotEffect{
+public class YouGainLifeEffect extends OneShotEffect {
 
     private int amount;
 
-    public YouGainLifeEffect(int amount){
+    public YouGainLifeEffect(int amount) {
         this.amount = amount;
     }
 

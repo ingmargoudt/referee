@@ -35,7 +35,7 @@ public class TargetAny implements Target {
     public void choose(Stackable source, Game game, OneShotEffect oneShotEffect) {
         game.getPlayer(source.getController()).ifPresent(player -> {
             this.theTarget = player.chooseTarget(validTargets(game));
-            EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() +"'s "+ oneShotEffect.toString());
+            EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.toString());
         });
     }
 

@@ -11,14 +11,14 @@ import java.util.Objects;
 public class EntersTheBattlefieldAbility extends TriggeredAbility {
 
 
-    public EntersTheBattlefieldAbility(OneShotEffect effect){
+    public EntersTheBattlefieldAbility(OneShotEffect effect) {
         super();
         getEffects().add(effect);
     }
 
     @Override
     public boolean checkTrigger(Event event, MagicObject parentObject) {
-        return event instanceof EnterTheBattlefieldEvent && Objects.equals(event.getSource(), parentObject) ;
+        return event instanceof EnterTheBattlefieldEvent && Objects.equals(event.getSource(), parentObject);
     }
 
 

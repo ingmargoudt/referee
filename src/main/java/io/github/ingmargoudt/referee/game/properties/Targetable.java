@@ -5,5 +5,6 @@ import java.util.UUID;
 public interface Targetable {
 
     UUID getId();
+
     String getName();
 }

@@ -20,16 +20,17 @@ import java.util.*;
 @Log4j2
 public class Game {
 
-    private UUID activePlayer;
-    private UUID playerWithPriority;
-    @Getter
-    protected Battlefield battlefield;
-
-    protected Player[] players = new Player[2];
     @Getter
     static final int STARTING_LIFE = 20;
     @Getter
     static final int STARTING_HAND_SIZE = 7;
+    @Getter
+    private final Stack stack;
+    @Getter
+    protected Battlefield battlefield;
+    protected Player[] players = new Player[2];
+    private UUID activePlayer;
+    private UUID playerWithPriority;
     @Getter
     private boolean running;
     @Getter
@@ -40,9 +41,6 @@ public class Game {
     private Phase stopAtPhase;
     @Getter
     private Turn currentTurn;
-
-    @Getter
-    private final Stack stack;
 
     public Game() {
         battlefield = new Battlefield();
@@ -211,9 +209,7 @@ public class Game {
                 }
             });
             permanent.getReplacementEffects().forEach(replacementEffect -> {
-                if (replacementEffect.checkEvent(event, permanent)) {
-                    replacementEffect.apply(permanent, this);
-                }
+                replacementEffect.repondToEvent(this, event, permanent);
             });
         });
     }

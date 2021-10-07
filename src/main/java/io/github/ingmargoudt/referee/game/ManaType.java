@@ -1,6 +1,6 @@
 package io.github.ingmargoudt.referee.game;
 
-public enum  ManaType {
+public enum ManaType {
     WHITE,
     BLUE,
     BLACK,

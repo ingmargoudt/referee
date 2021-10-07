@@ -8,9 +8,10 @@ public class AddManaEffect extends OneShotEffect {
 
     private final ManaType manaType;
 
-    public AddManaEffect(ManaType manaType){
+    public AddManaEffect(ManaType manaType) {
         this.manaType = manaType;
     }
+
     @Override
     public void apply(MagicObject source, Game game) {
         game.getPlayer(source.getController()).ifPresent(controller -> {

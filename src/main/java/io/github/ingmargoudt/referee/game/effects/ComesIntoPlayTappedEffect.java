@@ -10,14 +10,12 @@ import java.util.Objects;
 
 public class ComesIntoPlayTappedEffect implements ReplacementEffect {
     @Override
-    public boolean checkEvent(Event event, MagicObject parentObject) {
-        return event instanceof EnterTheBattlefieldEvent && Objects.equals(event.getSource(), parentObject);
-    }
-
-    @Override
-    public void apply(MagicObject source, Game game) {
-        if (source instanceof Permanent) {
-            ((Permanent) source).tap();
+    public void repondToEvent(Game game, Event event, MagicObject parentObject) {
+        MagicObject source = event.getSource();
+        if (event instanceof EnterTheBattlefieldEvent && Objects.equals(source, parentObject)) {
+            if (source instanceof Permanent) {
+                ((Permanent) source).tap();
+            }
         }
     }
 }

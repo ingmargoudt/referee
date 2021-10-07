@@ -22,14 +22,14 @@ public class TargetSpell implements Target {
 
     @Override
     public Optional<Targetable> resolve(Game game) {
-       return game.getStack().show().stream().filter(Spell.class::isInstance).filter(spell -> spell.getId().equals(theTarget.getId())).findFirst();
+        return game.getStack().show().stream().filter(Spell.class::isInstance).filter(spell -> spell.getId().equals(theTarget.getId())).findFirst();
     }
 
     @Override
     public void choose(Stackable source, Game game, OneShotEffect oneShotEffect) {
         game.getPlayer(source.getController()).ifPresent(player -> {
             this.theTarget = player.chooseTarget(validTargets(game));
-            EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() +"'s "+ oneShotEffect.toString());
+            EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.toString());
         });
     }
 

@@ -4,14 +4,16 @@ import java.util.UUID;
 
 public class InputBus {
 
-    private InputBus(){}
     private static InputListener listener = null;
 
-    public static void registerListener(InputListener inputListener){
+    private InputBus() {
+    }
+
+    public static void registerListener(InputListener inputListener) {
         listener = inputListener;
     }
 
-    public static String process(UUID source, String message){
+    public static String process(UUID source, String message) {
         return listener.process(source, message);
     }
 

@@ -23,11 +23,11 @@ import java.util.Optional;
 public class Player extends BaseObject implements Targetable, Damageable {
 
     private final String name;
+    protected Hand hand = new Hand();
+    protected Game gameReference;
     private Library library;
     @Getter
     private Graveyard graveyard;
-    protected Hand hand = new Hand();
-    protected Game gameReference;
     @Getter
     private Manapool manapool;
     @Getter
@@ -74,7 +74,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
     public void mulligan() {
         int mulligans = 0;
 
-        while (Question.askYesNo(getId(), "Would you like to mulligan down to "+(7-1-mulligans)) && (7-mulligans) > 0) {
+        while (Question.askYesNo(getId(), "Would you like to mulligan down to " + (7 - 1 - mulligans)) && (7 - mulligans) > 0) {
             mulligans++;
             for (Card card : hand.getCards()) {
                 putCardOnTop(card);
@@ -82,16 +82,15 @@ public class Player extends BaseObject implements Targetable, Damageable {
             shuffle();
             drawCard(7 - mulligans);
         }
-        EventBus.report(name + " keeps their hand of "+hand.getSize());
+        EventBus.report(name + " keeps their hand of " + hand.getSize());
     }
 
-    public void castSpell(Card card){
-        if(hand.remove(card)) {
+    public void castSpell(Card card) {
+        if (hand.remove(card)) {
             EventBus.report(getName() + " casts " + card.getName());
             gameReference.putOnStack(new Spell(card));
-        }
-        else{
-            EventBus.report(card.getName() + " not found in "+getName()+"'s hand");
+        } else {
+            EventBus.report(card.getName() + " not found in " + getName() + "'s hand");
         }
 
     }
@@ -101,11 +100,11 @@ public class Player extends BaseObject implements Targetable, Damageable {
         library.putOnTop(card);
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void doAction(){
+    public void doAction() {
         passPriority();
     }
 
@@ -118,9 +117,9 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     public void gainLife(Game game, int amount, MagicObject source) {
-        EventBus.report(getName() + " gains "+amount + " life");
+        EventBus.report(getName() + " gains " + amount + " life");
         game.raiseEvent(new GainLifeEvent(source));
-        life+=amount;
+        life += amount;
     }
 
     public void playLand(Card card) {
@@ -135,7 +134,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 
@@ -147,7 +146,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
         return options.get(0);
     }
 
-    public void loseLife(int amount){
-        life-=amount;
+    public void loseLife(int amount) {
+        life -= amount;
     }
 }

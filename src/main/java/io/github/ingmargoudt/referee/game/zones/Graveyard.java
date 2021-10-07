@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.game.objects.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class Graveyard {
 
     List<Card> cards = new ArrayList<>();
@@ -12,7 +13,7 @@ public class Graveyard {
         cards.add(card);
     }
 
-    public boolean contains(Card card){
+    public boolean contains(Card card) {
         return cards.contains(card);
     }
 }

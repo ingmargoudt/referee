@@ -11,9 +11,10 @@ import java.util.Optional;
 public interface Target {
 
 
-     List<Targetable> validTargets(Game game);
+    List<Targetable> validTargets(Game game);
 
-     Optional<Targetable> resolve(Game game);
-     void choose(Stackable source, Game game, OneShotEffect effect);
+    Optional<Targetable> resolve(Game game);
+
+    void choose(Stackable source, Game game, OneShotEffect effect);
 
 }

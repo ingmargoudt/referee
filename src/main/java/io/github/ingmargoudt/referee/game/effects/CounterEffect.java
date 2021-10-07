@@ -19,7 +19,7 @@ public class CounterEffect extends OneShotEffect implements TargetEffect {
             }
         }));
 
-}
+    }
 
     @Override
     public boolean hasValidTargets(Game game) {
