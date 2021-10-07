@@ -198,7 +198,7 @@ public class Game {
         raiseEvent(new EnterTheBattlefieldEvent(permanent));
     }
 
-    public void raiseEvent(Event event) {
+    public Event raiseEvent(Event event) {
         battlefield.getAll().forEach(permanent -> {
             permanent.getAbilities().forEach(ability -> {
                 if (ability instanceof TriggeredAbility) {
@@ -212,6 +212,7 @@ public class Game {
                 replacementEffect.repondToEvent(this, event, permanent);
             });
         });
+        return event;
     }
 
 

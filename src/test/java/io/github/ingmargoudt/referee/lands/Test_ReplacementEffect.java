@@ -1,6 +1,8 @@
 package io.github.ingmargoudt.referee.lands;
 
 import io.github.ingmargoudt.referee.base.BaseGame;
+import io.github.ingmargoudt.referee.cards.a.AngelOfVitality;
+import io.github.ingmargoudt.referee.cards.a.AngelsMercy;
 import io.github.ingmargoudt.referee.cards.b.BloodCrypt;
 import io.github.ingmargoudt.referee.cards.b.BloodMoon;
 import io.github.ingmargoudt.referee.cards.f.ForsakenSanctuary;
@@ -74,4 +76,18 @@ class Test_ReplacementEffect extends BaseGame {
         assertTapped(player1, bloodcrypt);
     }
 
+
+    @Test
+    void replacement_Effect_gainlife() {
+        Card angelsMercy = new AngelsMercy();
+        Card angelOfVitality = new AngelOfVitality();
+        addCard(Zone.HAND, player1, angelsMercy, 1);
+        addCard(Zone.BATTLEFIELD, player1, angelOfVitality);
+
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, angelsMercy);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertLife(player1, 28);
+
+    }
 }

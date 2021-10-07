@@ -21,7 +21,7 @@ public class AngelOfVitality extends Card {
 class AngelOfVitalityReplacementEffect implements ReplacementEffect {
     public void repondToEvent(Game game, Event event, MagicObject parentObject) {
         if (event instanceof GainLifeEvent && event.getSource().getController().equals(parentObject.getController())) {
-
+            ((GainLifeEvent) event).setAmount(((GainLifeEvent) event).getAmount() + 1);
         }
     }
 }
