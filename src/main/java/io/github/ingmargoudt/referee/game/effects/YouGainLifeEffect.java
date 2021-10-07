@@ -13,6 +13,6 @@ public class YouGainLifeEffect extends OneShotEffect{
 
     @Override
     public void apply(MagicObject source, Game game) {
-        game.getPlayer(source.getController()).ifPresent(controller -> controller.gainLife(amount));
+        game.getPlayer(source.getController()).ifPresent(controller -> controller.gainLife(game, amount, source));
     }
 }

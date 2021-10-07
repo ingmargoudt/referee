@@ -4,7 +4,6 @@ package io.github.ingmargoudt.referee.game;
 import lombok.Getter;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
 
 

@@ -4,8 +4,9 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.abilities.*;
 import io.github.ingmargoudt.referee.game.cost.Cost;
 import io.github.ingmargoudt.referee.game.cost.TapCost;
+import io.github.ingmargoudt.referee.game.events.EnterTheBattlefieldEvent;
+import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.Card;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.zones.Battlefield;
@@ -196,21 +197,21 @@ public class Game {
         Permanent permanent = new Permanent(card);
         battlefield.add(permanent);
         applyContinuousEffects();
-        raiseEvent(Event.ENTERS_THE_BATTLEFIELD, permanent);
+        raiseEvent(new EnterTheBattlefieldEvent(permanent));
     }
 
-    public void raiseEvent(Event event, MagicObject source) {
+    public void raiseEvent(Event event) {
         battlefield.getAll().forEach(permanent -> {
             permanent.getAbilities().forEach(ability -> {
                 if (ability instanceof TriggeredAbility) {
                     TriggeredAbility triggeredAbility = (TriggeredAbility) ability;
-                    if (triggeredAbility.checkTrigger(event, source, permanent)) {
+                    if (triggeredAbility.checkTrigger(event, permanent)) {
                         stack.putOnStack(new StackAbility(triggeredAbility, permanent));
                     }
                 }
             });
             permanent.getReplacementEffects().forEach(replacementEffect -> {
-                if (replacementEffect.checkEvent(event, source, permanent)) {
+                if (replacementEffect.checkEvent(event, permanent)) {
                     replacementEffect.apply(permanent, this);
                 }
             });

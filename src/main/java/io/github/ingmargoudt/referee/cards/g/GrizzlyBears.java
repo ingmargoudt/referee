@@ -1,7 +1,7 @@
 package io.github.ingmargoudt.referee.cards.g;
 
-import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.CardType;
+import io.github.ingmargoudt.referee.game.objects.Card;
 
 public class GrizzlyBears extends Card {
     public GrizzlyBears() {

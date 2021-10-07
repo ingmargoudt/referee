@@ -1,11 +1,12 @@
 package io.github.ingmargoudt.referee.game.effects;
 
-import io.github.ingmargoudt.referee.game.Event;
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
-import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.cost.Cost;
 import io.github.ingmargoudt.referee.game.cost.Costs;
+import io.github.ingmargoudt.referee.game.events.EnterTheBattlefieldEvent;
+import io.github.ingmargoudt.referee.game.events.Event;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.objects.Permanent;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -15,8 +16,8 @@ public class ComesIntoPlayTappedEffectUnless implements ReplacementEffect {
     Costs costs = new Costs();
 
     @Override
-    public boolean checkEvent(Event event, MagicObject source, MagicObject parentObject) {
-        return event == Event.ENTERS_THE_BATTLEFIELD && Objects.equals(source, parentObject);
+    public boolean checkEvent(Event event, MagicObject parentObject) {
+        return event instanceof EnterTheBattlefieldEvent && Objects.equals(event.getSource(), parentObject);
 
     }
 

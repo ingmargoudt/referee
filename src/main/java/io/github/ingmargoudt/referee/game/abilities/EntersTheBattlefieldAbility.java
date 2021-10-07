@@ -1,9 +1,10 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
-import io.github.ingmargoudt.referee.game.Event;
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.events.EnterTheBattlefieldEvent;
+import io.github.ingmargoudt.referee.game.events.Event;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
 import java.util.Objects;
 
@@ -16,8 +17,8 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
     }
 
     @Override
-    public boolean checkTrigger(Event event, MagicObject sourceOfTrigger, MagicObject parentObject) {
-        return event == Event.ENTERS_THE_BATTLEFIELD && Objects.equals(sourceOfTrigger, parentObject) ;
+    public boolean checkTrigger(Event event, MagicObject parentObject) {
+        return event instanceof EnterTheBattlefieldEvent && Objects.equals(event.getSource(), parentObject) ;
     }
 
 

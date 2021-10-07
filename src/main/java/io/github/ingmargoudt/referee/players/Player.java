@@ -2,9 +2,12 @@ package io.github.ingmargoudt.referee.players;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.framework.Question;
-import io.github.ingmargoudt.referee.game.*;
+import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.Manapool;
+import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
 import io.github.ingmargoudt.referee.game.objects.BaseObject;
 import io.github.ingmargoudt.referee.game.objects.Card;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
@@ -114,8 +117,9 @@ public class Player extends BaseObject implements Targetable, Damageable {
         graveyard.add(card);
     }
 
-    public void gainLife(int amount) {
+    public void gainLife(Game game, int amount, MagicObject source) {
         EventBus.report(getName() + " gains "+amount + " life");
+        game.raiseEvent(new GainLifeEvent(source));
         life+=amount;
     }
 

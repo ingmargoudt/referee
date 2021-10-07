@@ -2,7 +2,6 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.effects.TargetEffect;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;

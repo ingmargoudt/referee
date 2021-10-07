@@ -1,8 +1,8 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
-import io.github.ingmargoudt.referee.game.Event;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.events.Event;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -18,6 +18,6 @@ public abstract class TriggeredAbility extends Ability {
         super();
     }
 
-    public abstract boolean checkTrigger(Event event, MagicObject source, MagicObject parentObject);
+    public abstract boolean checkTrigger(Event event, MagicObject parentObject);
 
 }

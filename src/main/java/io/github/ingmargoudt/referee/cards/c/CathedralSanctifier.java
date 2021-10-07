@@ -1,9 +1,9 @@
 package io.github.ingmargoudt.referee.cards.c;
 
-import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.abilities.EntersTheBattlefieldAbility;
 import io.github.ingmargoudt.referee.game.effects.YouGainLifeEffect;
+import io.github.ingmargoudt.referee.game.objects.Card;
 
 public class CathedralSanctifier extends Card {
 

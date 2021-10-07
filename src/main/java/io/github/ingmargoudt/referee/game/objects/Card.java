@@ -1,8 +1,8 @@
 package io.github.ingmargoudt.referee.game.objects;
 
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.game.effects.TargetEffect;
+import io.github.ingmargoudt.referee.game.properties.Targetable;
 import lombok.Getter;
 
 import java.util.UUID;

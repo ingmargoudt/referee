@@ -1,10 +1,10 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.cost.Costs;
 import io.github.ingmargoudt.referee.game.effects.AddManaEffect;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
 import java.util.List;
 
