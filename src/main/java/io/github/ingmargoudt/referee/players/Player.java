@@ -117,9 +117,10 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     public void gainLife(Game game, int amount, MagicObject source) {
-        EventBus.report(getName() + " gains " + amount + " life");
-        GainLifeEvent after = (GainLifeEvent) game.raiseEvent(new GainLifeEvent(source, amount));
-        life += after.getAmount();
+        GainLifeEvent gainLifeEvent = new GainLifeEvent(source, amount);
+        game.raiseEvent(gainLifeEvent);
+        EventBus.report(getName() + " gains " + gainLifeEvent.getAmount() + " life");
+        life += gainLifeEvent.getAmount();
     }
 
     public void playLand(Card card) {
