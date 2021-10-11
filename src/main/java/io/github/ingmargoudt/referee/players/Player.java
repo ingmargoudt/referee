@@ -1,7 +1,6 @@
 package io.github.ingmargoudt.referee.players;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.framework.Question;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.Manapool;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
@@ -72,17 +71,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     public void mulligan() {
-        int mulligans = 0;
 
-        while (Question.askYesNo(getId(), "Would you like to mulligan down to " + (7 - 1 - mulligans)) && (7 - mulligans) > 0) {
-            mulligans++;
-            for (Card card : hand.getCards()) {
-                putCardOnTop(card);
-            }
-            shuffle();
-            drawCard(7 - mulligans);
-        }
-        EventBus.report(name + " keeps their hand of " + hand.getSize());
     }
 
     public void castSpell(Card card) {
