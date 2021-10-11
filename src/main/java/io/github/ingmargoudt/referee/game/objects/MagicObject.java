@@ -69,15 +69,8 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         abilities.add(ability);
     }
 
-
     public boolean isLand() {
         return getCardtypes().isLand();
-    }
-
-
-    public void removeAbility(Class<? extends Ability> abilityClass) {
-        getAbilities().remove(abilityClass);
-
     }
 
     public boolean isBasic() {

@@ -4,23 +4,20 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.TargetEffect;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
 @Getter
 public class Card extends MagicObject implements Targetable {
 
+    @Setter
     UUID owner;
 
     public Card(String name) {
         super(name);
     }
 
-    public void setOwner(UUID owner) {
-        if (this.owner == null) {
-            this.owner = owner;
-        }
-    }
 
     public boolean isPermanent() {
         return getCardtypes().isPermanent();
