@@ -30,6 +30,8 @@ public class BaseGame {
     protected TestPlayer player2;
     private TestGame game;
 
+    private Map<UUID, Integer> startingLifes = new HashMap<>();
+
     private Library createLibraries() {
         ArrayList<Card> cards = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
@@ -86,6 +88,7 @@ public class BaseGame {
 
     protected void start() {
         game.start();
+
         boolean ok = true;
         if (player1.hasRemainingActions()) {
             log.error(player1.getName() + " has remaining actions: "+player1.getActions());
@@ -220,5 +223,9 @@ public class BaseGame {
 
     protected void assertGraveyard(TestPlayer player, Card theCard){
         assertThat(player.getGraveyard().contains(theCard)).isTrue();
+    }
+
+    protected void setLife(TestPlayer player, int lifeTotal){
+        player.addAction(new TestSetLifeAction(1, Phase.PRECOMBAT_MAINPHASE, lifeTotal));
     }
 }

@@ -65,9 +65,9 @@ public class Player extends BaseObject implements Targetable, Damageable {
         }
     }
 
-    public void setLife(int startingLife) {
-        EventBus.report(name + "'s life is set to " + startingLife);
-        this.life = startingLife;
+    public void setLife(int lifeTotal) {
+        EventBus.report(name + "'s life is set to " + lifeTotal);
+        this.life = lifeTotal;
 
     }
 

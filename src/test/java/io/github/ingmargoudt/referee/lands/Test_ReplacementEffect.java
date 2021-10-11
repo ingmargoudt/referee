@@ -76,6 +76,18 @@ class Test_ReplacementEffect extends BaseGame {
         assertTapped(player1, bloodcrypt);
     }
 
+    @Test
+    void shock_land_comes_into_play_tapped_after_not_possible_paying_cost(){
+        Card bloodcrypt = new BloodCrypt();
+        addCard(Zone.HAND, player1, bloodcrypt);
+        setLife(player1, 1);
+        playLand(player1, 1, Phase.PRECOMBAT_MAINPHASE, bloodcrypt);
+        //setOption(player1,"No");
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertTapped(player1, bloodcrypt);
+    }
+
 
     @Test
     void replacement_Effect_gainlife() {

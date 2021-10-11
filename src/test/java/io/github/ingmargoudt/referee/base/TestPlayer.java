@@ -73,6 +73,11 @@ public class TestPlayer extends Player {
                     playerActionIterator.remove();
                     return;
                 }
+                if(action instanceof TestSetLifeAction ){
+                    action.execute(this);
+                    playerActionIterator.remove();
+                    return;
+                }
             };
         }
         passPriority();
