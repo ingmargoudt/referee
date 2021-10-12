@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.base.BaseGame;
 import io.github.ingmargoudt.referee.cards.a.AngelsMercy;
 import io.github.ingmargoudt.referee.cards.c.CathedralSanctifier;
 import io.github.ingmargoudt.referee.cards.c.CounterSpell;
+import io.github.ingmargoudt.referee.cards.d.DarksteelMyr;
 import io.github.ingmargoudt.referee.cards.g.GloriousAnthem;
 import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.cards.l.LightningBolt;
@@ -107,6 +108,19 @@ class Test_SimpleCast extends BaseGame {
         start();
         assertLife(player2, 20);
         assertGraveyard(player2, bears);
+    }
+
+    @Test
+    void indestructible_does_not_die_from_lethal_damage(){
+        Card bolt = new LightningBolt();
+        Card darksteelmyr = new DarksteelMyr();
+        addCard(Zone.HAND, player1, bolt);
+        addCard(Zone.BATTLEFIELD, player2, darksteelmyr);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, darksteelmyr);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertLife(player2, 20);
+        assertPermanent(Zone.BATTLEFIELD, player2, darksteelmyr, 1);
     }
 
     @Test

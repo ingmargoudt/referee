@@ -11,6 +11,10 @@ public class StaticAbility extends Ability {
 
     List<ContinuousEffect> effects = new ArrayList<>();
 
+    public StaticAbility(){
+        super();
+    }
+
     public StaticAbility(ContinuousEffect effect) {
         super();
         effects.add(effect);
