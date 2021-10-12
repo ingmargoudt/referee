@@ -5,6 +5,7 @@ import io.github.ingmargoudt.referee.game.abilities.Abilities;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
+import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -75,5 +76,9 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
 
     public boolean isBasic() {
         return superTypes.isBasic();
+    }
+
+    public boolean isControlledBy(UUID thePlayer) {
+        return getController().equals(thePlayer);
     }
 }

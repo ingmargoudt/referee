@@ -94,7 +94,7 @@ the battlefield. Every permanent has a controller.
 
 
     public boolean isControlledBy(Player thePlayer) {
-        return getController().equals(thePlayer.getId());
+        return isControlledBy(thePlayer.id);
     }
 
     @Override

@@ -13,20 +13,18 @@ public class BoostAllControlledCreatures extends ContinuousEffect {
     public BoostAllControlledCreatures(int power, int toughness) {
         this.power = power;
         this.toughness = toughness;
-        //this.source = source
     }
 
 
     public void apply(MagicObject source, Game game) {
         game.getPlayer(source.getController()).ifPresent(controller -> {
             for (Permanent permanent : game.getBattlefield().getAll()) {
-                if (permanent.isControlledBy(controller) && permanent.isCreature()) {
+                if (permanent.isControlledBy(source.getController()) && permanent.isCreature()) {
                     EventBus.report("Applying " + source.getName() + " " + getClass().getSimpleName() + " to " + controller.getName() + "'s " + permanent.getName());
                     permanent.setPower(permanent.getPower() + power);
                     permanent.setToughness(permanent.getToughness() + toughness);
                 }
             }
         });
-
     }
 }
