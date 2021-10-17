@@ -133,10 +133,10 @@ public class Game {
         battlefield.resetBase();
         EventBus.report("Applying continuous effects");
         //apply land mana abilities for the base card
-        applyLandManaAbilities();
+        ManaAbilityApplier.run(this);
         applyStaticAbilities();
         //apply land mana abilities again for the current card
-        applyLandManaAbilities();
+        ManaAbilityApplier.run(this);
     }
 
     private void applyStaticAbilities() {
@@ -146,24 +146,6 @@ public class Game {
                     ability.resolve(permanent, this);
                 }
             }
-        }
-    }
-
-    private void applyLandManaAbilities() {
-        EnumMap<SubType, Class<? extends Ability>> manaAbilities = new EnumMap<>(SubType.class);
-        manaAbilities.put(SubType.MOUNTAIN, AddRedManaAbility.class);
-        manaAbilities.put(SubType.PLAINS, AddWhiteManaAbility.class);
-        manaAbilities.put(SubType.SWAMP, AddBlackManaAbility.class);
-        for (Permanent permanent : battlefield.getAll()) {
-            manaAbilities.forEach((subtype, manaAbility) -> {
-                if (permanent.hasSubType(subtype) && !permanent.hasAbility(manaAbility)) {
-                    try {
-                        permanent.addAbility(manaAbility.getConstructor(Cost[].class).newInstance((Object) new Cost[]{new TapCost()}));
-                    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                        log.error(e.getMessage());
-                    }
-                }
-            });
         }
     }
 
@@ -187,8 +169,6 @@ public class Game {
         } else {
             setPriority(players[0].getId());
         }
-
-
     }
 
     public void moveToBattlefield(Card card) {
