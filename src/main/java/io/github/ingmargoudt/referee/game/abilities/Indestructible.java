@@ -6,7 +6,6 @@ public class Indestructible extends StaticAbility {
 
     private Indestructible() {
         super();
-        System.out.println("indestrubctuel constructor");
     }
 
     public static Indestructible getInstance(){

@@ -22,8 +22,6 @@ public class ActivatedAbility extends Ability {
 
     @Override
     public void resolve(MagicObject source, Game game) {
-        game.getPlayer(source.getController()).ifPresent(player -> {
-            effects.forEach(effect -> effect.apply(source, game));
-        });
+        game.getPlayer(source.getController()).ifPresent(player -> effects.forEach(effect -> effect.apply(source, game)));
     }
 }

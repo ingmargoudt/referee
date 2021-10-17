@@ -188,9 +188,7 @@ public class Game {
                     }
                 }
             });
-            permanent.getReplacementEffects().forEach(replacementEffect -> {
-                replacementEffect.repondToEvent(this, event, permanent);
-            });
+            permanent.getReplacementEffects().forEach(replacementEffect -> replacementEffect.repondToEvent(this, event, permanent));
         });
         return event;
     }
