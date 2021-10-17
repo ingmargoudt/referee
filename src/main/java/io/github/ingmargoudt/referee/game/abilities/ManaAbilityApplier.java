@@ -16,6 +16,30 @@ public class ManaAbilityApplier {
             processMountain(permanent);
             processSwamp(permanent);
             processPlains(permanent);
+            processIsland(permanent);
+            processForest(permanent);
+        }
+    }
+
+
+    private static void processForest(Permanent permanent) {
+        if (permanent.hasSubType(SubType.FOREST)) {
+            if (!permanent.hasAbility(AddGreenManaAbility.class)) {
+                permanent.addAbility(new AddGreenManaAbility(new TapCost()));
+            }
+        } else {
+            permanent.removeAbility(AddGreenManaAbility.class);
+        }
+    }
+
+
+    private static void processIsland(Permanent permanent) {
+        if (permanent.hasSubType(SubType.ISLAND)) {
+            if (!permanent.hasAbility(AddBlueManaAbility.class)) {
+                permanent.addAbility(new AddBlueManaAbility(new TapCost()));
+            }
+        } else {
+            permanent.removeAbility(AddBlueManaAbility.class);
         }
     }
 
