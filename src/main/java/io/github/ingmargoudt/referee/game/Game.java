@@ -34,7 +34,7 @@ public class Game {
     @Getter
     private boolean running;
     @Getter
-    private int turnNumber = 1;
+    private int turnNumber = 0;
     @Getter
     private int stopAtTurn;
     @Getter
@@ -88,14 +88,30 @@ public class Game {
          */
         Arrays.stream(players).forEach(player -> player.drawCard(STARTING_HAND_SIZE));
         Arrays.stream(players).forEach(Player::mulligan);
-        activePlayer = players[0].getId();
-        setPriority(activePlayer);
+
         while (running) {
+            turnNumber++;
             currentTurn = new Turn();
             currentTurn.run(this);
-            turnNumber++;
         }
         applyContinuousEffects();
+    }
+
+    public void assignActivePlayer() {
+        if(activePlayer == null) {
+            activePlayer = players[0].getId();
+        }
+        else if (players[0].getId().equals(activePlayer)) {
+            setActive(players[1].getId());
+        } else {
+            setActive(players[0].getId());
+        }
+        setPriority(activePlayer);
+        EventBus.report(getActivePlayer().map(player -> player + " becomes active player").orElse(""));
+    }
+
+    private void setActive(UUID playerId) {
+        activePlayer = playerId;
     }
 
     public Phase getCurrentPhase() {

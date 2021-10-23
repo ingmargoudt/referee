@@ -176,5 +176,13 @@ class Test_SimpleCast extends BaseGame {
         assertPermanentToughness(Zone.BATTLEFIELD, player2, bears, 2);
     }
 
+    @Test
+    void change_active_player_on_next_turn(){
+        disablePlayerActionLogging();
+        stopAt(2, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertActivePlayer(player2);
+    }
+
 
 }

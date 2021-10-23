@@ -228,4 +228,10 @@ public class BaseGame {
     protected void setLife(TestPlayer player, int lifeTotal){
         player.addAction(new TestSetLifeAction(1, Phase.PRECOMBAT_MAINPHASE, lifeTotal));
     }
+
+    protected void assertActivePlayer(TestPlayer testPlayer){
+        game.getActivePlayer().ifPresent(player -> {
+            assertThat(player.getId()).isEqualTo(testPlayer.getId());
+        });
+    }
 }

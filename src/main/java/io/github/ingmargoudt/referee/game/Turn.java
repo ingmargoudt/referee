@@ -27,6 +27,8 @@ public class Turn {
 
 
     public void run(Game game) {
+        game.assignActivePlayer();
+
         EventBus.report("Starting turn " + game.getTurnNumber());
         while (!phases.isEmpty() && game.isRunning()) {
             currentPhase = phases.pop();
