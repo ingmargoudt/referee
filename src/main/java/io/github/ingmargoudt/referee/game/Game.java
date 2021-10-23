@@ -2,8 +2,6 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.abilities.*;
-import io.github.ingmargoudt.referee.game.cost.Cost;
-import io.github.ingmargoudt.referee.game.cost.TapCost;
 import io.github.ingmargoudt.referee.game.events.EnterTheBattlefieldEvent;
 import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.Card;
@@ -14,8 +12,10 @@ import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Log4j2
 public class Game {
@@ -98,13 +98,16 @@ public class Game {
     }
 
     public void assignActivePlayer() {
-        if(activePlayer == null) {
+        if (activePlayer == null) {
             activePlayer = players[0].getId();
         }
-        else if (players[0].getId().equals(activePlayer)) {
-            setActive(players[1].getId());
-        } else {
-            setActive(players[0].getId());
+        else {
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getId().equals(activePlayer)) {
+                    setActive(players[(i + 1) % players.length].getId());
+                    break;
+                }
+            }
         }
         setPriority(activePlayer);
         EventBus.report(getActivePlayer().map(player -> player + " becomes active player").orElse(""));
