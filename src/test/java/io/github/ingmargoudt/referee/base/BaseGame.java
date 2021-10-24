@@ -1,6 +1,5 @@
 package io.github.ingmargoudt.referee.base;
 
-import io.github.ingmargoudt.referee.framework.ConsoleListener;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.*;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
@@ -61,8 +60,6 @@ public class BaseGame {
         player2 = new TestPlayer("Player 2", game, createLibraries());
         game.addPlayer(player1);
         game.addPlayer(player2);
-        EventBus.registerListener(new ConsoleListener());
-
     }
 
     protected void castSpell(int turn, Phase phase, TestPlayer player, Card card) {
