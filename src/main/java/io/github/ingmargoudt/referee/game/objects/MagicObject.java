@@ -5,12 +5,12 @@ import io.github.ingmargoudt.referee.game.abilities.Abilities;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
-import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -27,7 +27,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
 
     protected String name;
     protected ManaCost manaCost;
-    protected Color color;
+    protected Set<Color> color;
     protected Color colorIndicator;
     protected CardTypes cardtypes;
     protected SubTypes subTypes;
@@ -70,7 +70,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         abilities.add(ability);
     }
 
-    public void removeAbility(Class<? extends Ability> abilityClass){
+    public void removeAbility(Class<? extends Ability> abilityClass) {
         abilities.remove(abilityClass);
     }
 
@@ -84,5 +84,9 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
 
     public boolean isControlledBy(UUID thePlayer) {
         return getController().equals(thePlayer);
+    }
+
+    public boolean hasColor(Color color) {
+        return this.color.contains(color);
     }
 }

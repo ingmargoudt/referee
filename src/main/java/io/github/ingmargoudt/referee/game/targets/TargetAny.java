@@ -18,7 +18,7 @@ public class TargetAny extends Target {
 
     @Override
     public List<Targetable> validTargets(Game game) {
-        return Stream.concat(game.getPlayers().stream().map(Targetable.class::cast),
+        return Stream.concat(game.getPlayers().stream().map(Targetable.class::cast).filter(p -> filter.evaluate(p, game)),
                 game.getBattlefield().getAll().stream().map(Targetable.class::cast)).collect(Collectors.toList());
     }
 

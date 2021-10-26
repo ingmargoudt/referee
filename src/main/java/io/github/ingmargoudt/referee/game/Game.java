@@ -100,8 +100,7 @@ public class Game {
     public void assignActivePlayer() {
         if (activePlayer == null) {
             activePlayer = players[0].getId();
-        }
-        else {
+        } else {
             for (int i = 0; i < players.length; i++) {
                 if (players[i].getId().equals(activePlayer)) {
                     setActive(players[(i + 1) % players.length].getId());

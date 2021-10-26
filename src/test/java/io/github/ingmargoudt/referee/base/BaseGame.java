@@ -1,7 +1,8 @@
 package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.game.*;
+import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.SubTypes;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
@@ -15,10 +16,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,6 +29,14 @@ public class BaseGame {
     private TestGame game;
 
     private Map<UUID, Integer> startingLifes = new HashMap<>();
+
+    public BaseGame() {
+        game = new TestGame();
+        player1 = new TestPlayer("Player 1", game, createLibraries());
+        player2 = new TestPlayer("Player 2", game, createLibraries());
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+    }
 
     private Library createLibraries() {
         ArrayList<Card> cards = new ArrayList<>();
@@ -48,18 +55,10 @@ public class BaseGame {
         });
 
     }
+
     @AfterEach
-    void after(){
+    void after() {
         log.info("");
-    }
-
-
-    public BaseGame() {
-        game = new TestGame();
-        player1 = new TestPlayer("Player 1", game, createLibraries());
-        player2 = new TestPlayer("Player 2", game, createLibraries());
-        game.addPlayer(player1);
-        game.addPlayer(player2);
     }
 
     protected void castSpell(int turn, Phase phase, TestPlayer player, Card card) {
@@ -71,7 +70,7 @@ public class BaseGame {
     }
 
 
-    protected void playLand(TestPlayer player, int turnNumber, Phase phase, Card card){
+    protected void playLand(TestPlayer player, int turnNumber, Phase phase, Card card) {
         player.addAction(new PlayLandAction(turnNumber, phase, card));
     }
 
@@ -87,27 +86,26 @@ public class BaseGame {
         game.start();
 
         boolean ok = true;
+        String message = "";
         if (player1.hasRemainingActions()) {
-            log.error(player1.getName() + " has remaining actions: "+player1.getActions());
-            ok = false;
+            message += (player1.getName() + " has remaining actions: " + player1.getActions().stream().map(Object::toString).collect(Collectors.joining()));
         }
         if (player2.hasRemainingActions()) {
-            log.error(player2.getName() + " has remaining actions: "+player2.getActions());
-            ok = false;
+            message += (player2.getName() + " has remaining actions: " + player2.getActions().stream().map(Object::toString).collect(Collectors.joining()));
         }
-        if (!ok) {
-            Fail.fail("Not all actions executed");
+        if (!message.isEmpty()) {
+            Fail.fail(message);
         }
     }
 
-    protected void addCard(Zone zone, TestPlayer player, Card card){
+    protected void addCard(Zone zone, TestPlayer player, Card card) {
         addCard(zone, player, card, 1);
     }
 
     protected void addCard(Zone zone, TestPlayer player, Card card, int amount) {
         card.setController(player.getId());
         card.setOwner(player.getId());
-        for(int i = 0; i<amount; i++) {
+        for (int i = 0; i < amount; i++) {
             if (zone == Zone.HAND) {
                 player.getHand().addCard(card);
             }
@@ -137,7 +135,7 @@ public class BaseGame {
             for (Permanent permanent : game.getBattlefield().getAll()) {
                 if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
                     assertThat(permanent.getPower()).isEqualTo(power);
-                    log.info(theCard.getName() + " with power "+power +" found under control of player "+player.getName());
+                    log.info(theCard.getName() + " with power " + power + " found under control of player " + player.getName());
                 }
 
             }
@@ -150,83 +148,84 @@ public class BaseGame {
             for (Permanent permanent : game.getBattlefield().getAll()) {
                 if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
                     assertThat(permanent.getToughness()).isEqualTo(toughness);
-                    log.info(theCard.getName() + " with toughness "+toughness +" found under control of player "+player.getName());
+                    log.info(theCard.getName() + " with toughness " + toughness + " found under control of player " + player.getName());
                 }
 
             }
         }
 
     }
-    protected void assertPermanentHasAbility(TestPlayer thePlayer, Card theCard, Class<? extends Ability> theAbility){
-        for(Permanent permanent : game.getBattlefield().getAll()){
-            if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
-                assertThat(permanent.hasAbility(theAbility)).as(theCard.getName() + " does not have the " +theAbility.getSimpleName()).isTrue();
-                log.info(theCard.getName() + " of "+thePlayer.getName() + " has the "+theAbility.getSimpleName());
+
+    protected void assertPermanentHasAbility(TestPlayer thePlayer, Card theCard, Class<? extends Ability> theAbility) {
+        for (Permanent permanent : game.getBattlefield().getAll()) {
+            if (permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())) {
+                assertThat(permanent.hasAbility(theAbility)).as(theCard.getName() + " does not have the " + theAbility.getSimpleName()).isTrue();
+                log.info(theCard.getName() + " of " + thePlayer.getName() + " has the " + theAbility.getSimpleName());
             }
         }
     }
 
-    protected void assertLife(TestPlayer testPlayer, int amount){
+    protected void assertLife(TestPlayer testPlayer, int amount) {
         assertThat(testPlayer.getLife()).isEqualTo(amount);
     }
 
-    public List<Player> getPlayers(){
+    public List<Player> getPlayers() {
         return game.getPlayers();
     }
 
 
-    protected void assertTapped(TestPlayer thePlayer, Card theCard){
-        for(Permanent permanent : game.getBattlefield().getAll()){
-            if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
-                assertThat(permanent.isTapped()).as(permanent.getName()+ " is expected to be tapped").isTrue();
-                log.info(theCard.getName() + " of "+thePlayer.getName() + " is tapped");
+    protected void assertTapped(TestPlayer thePlayer, Card theCard) {
+        for (Permanent permanent : game.getBattlefield().getAll()) {
+            if (permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())) {
+                assertThat(permanent.isTapped()).as(permanent.getName() + " is expected to be tapped").isTrue();
+                log.info(theCard.getName() + " of " + thePlayer.getName() + " is tapped");
                 return;
             }
         }
-        Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
+        Fail.fail("No permanent named " + theCard.getName() + " under control of " + thePlayer);
     }
 
-    protected void assertUntapped(TestPlayer thePlayer, Card theCard){
-        for(Permanent permanent : game.getBattlefield().getAll()){
-            if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
-                assertThat(permanent.isTapped()).as(permanent.getName()+ " is expected to be untapped").isFalse();
-                log.info(theCard.getName() + " of "+thePlayer.getName() + " is untapped");
+    protected void assertUntapped(TestPlayer thePlayer, Card theCard) {
+        for (Permanent permanent : game.getBattlefield().getAll()) {
+            if (permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())) {
+                assertThat(permanent.isTapped()).as(permanent.getName() + " is expected to be untapped").isFalse();
+                log.info(theCard.getName() + " of " + thePlayer.getName() + " is untapped");
                 return;
             }
         }
-        Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
+        Fail.fail("No permanent named " + theCard.getName() + " under control of " + thePlayer);
     }
 
 
-    protected void assertSubTypes(TestPlayer thePlayer, Card theCard, SubTypes thesubtypes){
-        for(Permanent permanent : game.getBattlefield().getAll()){
-            if(permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())){
-                assertThat(permanent.getSubTypes()).as(permanent.getName()+ " has wrong set of subtypes").isEqualTo(thesubtypes);
-                log.info(theCard.getName() + " of "+thePlayer.getName() + " has subtypes "+thesubtypes);
+    protected void assertSubTypes(TestPlayer thePlayer, Card theCard, SubTypes thesubtypes) {
+        for (Permanent permanent : game.getBattlefield().getAll()) {
+            if (permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())) {
+                assertThat(permanent.getSubTypes()).as(permanent.getName() + " has wrong set of subtypes").isEqualTo(thesubtypes);
+                log.info(theCard.getName() + " of " + thePlayer.getName() + " has subtypes " + thesubtypes);
                 return;
             }
         }
-        Fail.fail("No permanent named "+theCard.getName() + " under control of "+thePlayer);
+        Fail.fail("No permanent named " + theCard.getName() + " under control of " + thePlayer);
 
     }
 
-    protected void setOption(TestPlayer testPlayer, String option){
+    protected void setOption(TestPlayer testPlayer, String option) {
         testPlayer.addOption(option);
     }
 
-    private Optional<Permanent> findPermanentByCard(TestPlayer thePlaer, Card theCard){
+    private Optional<Permanent> findPermanentByCard(TestPlayer thePlaer, Card theCard) {
         return game.getBattlefield().getAll().stream().filter(permanent -> permanent.isControlledBy(thePlaer) && permanent.getName().equals(theCard.getName())).findFirst();
     }
 
-    protected void assertGraveyard(TestPlayer player, Card theCard){
+    protected void assertGraveyard(TestPlayer player, Card theCard) {
         assertThat(player.getGraveyard().contains(theCard)).isTrue();
     }
 
-    protected void setLife(TestPlayer player, int lifeTotal){
+    protected void setLife(TestPlayer player, int lifeTotal) {
         player.addAction(new TestSetLifeAction(1, Phase.PRECOMBAT_MAINPHASE, lifeTotal));
     }
 
-    protected void assertActivePlayer(TestPlayer testPlayer){
+    protected void assertActivePlayer(TestPlayer testPlayer) {
         game.getActivePlayer().ifPresent(player -> {
             assertThat(player.getId()).isEqualTo(testPlayer.getId());
         });

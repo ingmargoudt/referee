@@ -120,4 +120,6 @@ the battlefield. Every permanent has a controller.
     public int getReceivedDamage() {
         return damageReceived;
     }
+
+
 }

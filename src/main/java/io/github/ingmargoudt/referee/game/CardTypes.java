@@ -40,4 +40,8 @@ public class CardTypes {
     public void clear() {
         cardtypesList.clear();
     }
+
+    public boolean has(CardType cardType) {
+        return cardtypesList.contains(cardType);
+    }
 }

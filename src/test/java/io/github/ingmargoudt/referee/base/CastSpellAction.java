@@ -1,7 +1,7 @@
 package io.github.ingmargoudt.referee.base;
 
-import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import lombok.Getter;
 
@@ -16,21 +16,29 @@ public class CastSpellAction extends TestPlayerAction {
     private List<Targetable> targets;
 
 
-    public CastSpellAction(int turn, Phase phase, Card card){
+    public CastSpellAction(int turn, Phase phase, Card card) {
         super(turn, phase);
         this.card = card;
     }
 
 
-    public CastSpellAction(int turn, Phase phase, Card card, Targetable target){
+    public CastSpellAction(int turn, Phase phase, Card card, Targetable target) {
         super(turn, phase);
         this.card = card;
         targets = new ArrayList<>();
         targets.add(target);
     }
 
-    public Targetable consumeTarget(){
+    public Targetable consumeTarget() {
         return targets.remove(0);
+    }
+
+    public String toString() {
+        String cast = "Cast " + card.getName();
+        if (!targets.isEmpty()) {
+            cast += " targeting " + targets.get(0).getName();
+        }
+        return cast;
     }
 
     @Override

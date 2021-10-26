@@ -13,18 +13,21 @@ import java.util.UUID;
 public class Spell extends MagicObject implements Stackable, Counterable, Targetable {
 
     @Getter
-    Card card;
+    private Card card;
+
 
     public Spell(Card card) {
         super(card.getName());
         this.card = card;
+        this.cardtypes = card.getCardtypes();
+        this.spellEffects = card.getSpellEffects();
     }
 
     public void resolve(Game game) {
         if (card.isPermanent()) {
             game.moveToBattlefield(card);
         } else {
-            card.getSpellEffects().forEach(effect -> effect.apply(this, game));
+            getSpellEffects().forEach(effect -> effect.apply(this, game));
         }
 
     }

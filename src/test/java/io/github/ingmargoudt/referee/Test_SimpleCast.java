@@ -5,13 +5,17 @@ import io.github.ingmargoudt.referee.cards.a.AngelsMercy;
 import io.github.ingmargoudt.referee.cards.c.CathedralSanctifier;
 import io.github.ingmargoudt.referee.cards.c.CounterSpell;
 import io.github.ingmargoudt.referee.cards.d.DarksteelMyr;
+import io.github.ingmargoudt.referee.cards.e.EssenceScatter;
 import io.github.ingmargoudt.referee.cards.g.GloriousAnthem;
 import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.cards.l.LightningBolt;
-import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class Test_SimpleCast extends BaseGame {
 
@@ -88,22 +92,22 @@ class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    void castSpellWithSingleTarget(){
+    void castSpellWithSingleTarget() {
         Card bolt = new LightningBolt();
         addCard(Zone.HAND, player1, bolt);
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, player2);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bolt, player2);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertLife(player2, 17);
     }
 
     @Test
-    void castSpellWithSingleTargetCreature(){
+    void castSpellWithSingleTargetCreature() {
         Card bolt = new LightningBolt();
         Card bears = new GrizzlyBears();
         addCard(Zone.HAND, player1, bolt);
         addCard(Zone.BATTLEFIELD, player2, bears);
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, bears);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bolt, bears);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertLife(player2, 20);
@@ -111,12 +115,12 @@ class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    void indestructible_does_not_die_from_lethal_damage(){
+    void indestructible_does_not_die_from_lethal_damage() {
         Card bolt = new LightningBolt();
         Card darksteelmyr = new DarksteelMyr();
         addCard(Zone.HAND, player1, bolt);
         addCard(Zone.BATTLEFIELD, player2, darksteelmyr);
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, darksteelmyr);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bolt, darksteelmyr);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertLife(player2, 20);
@@ -124,14 +128,14 @@ class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    void castSpellWithSingleTargetCreature_counteruponresolution(){
+    void castSpellWithSingleTargetCreature_counteruponresolution() {
         Card bolt = new LightningBolt();
         Card bolt2 = new LightningBolt();
         Card bears = new GrizzlyBears();
         addCard(Zone.HAND, player1, bolt);
         addCard(Zone.HAND, player2, bolt2);
         addCard(Zone.BATTLEFIELD, player2, bears);
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, bears);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bolt, bears);
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player2, bolt2, bears);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
@@ -140,16 +144,30 @@ class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    void castSpellWithSingleTargetSpell(){
+    void castSpellWithSingleTargetSpell() {
         Card bolt = new LightningBolt();
         Card counterspell = new CounterSpell();
         addCard(Zone.HAND, player1, bolt);
-        addCard(Zone.HAND, player2, counterspell );
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1,  bolt, player2);
+        addCard(Zone.HAND, player2, counterspell);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bolt, player2);
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player2, counterspell, bolt);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertGraveyard(player1, bolt);
+    }
+
+    @Test
+    void castSpellWithSingleTargetSpellFilter() {
+        Card bolt = new LightningBolt();
+        Card essenceScatter = new EssenceScatter();
+        addCard(Zone.HAND, player1, bolt);
+        addCard(Zone.HAND, player2, essenceScatter);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bolt, player2);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player2, essenceScatter, bolt);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        Throwable throwable = assertThrows(AssertionError.class, this::start);
+        assertThat(throwable.getMessage()).isEqualTo("Player 2 has remaining actions: Cast Essence Scatter targeting Lightning Bolt");
+        assertLife(player2, 17);
     }
 
     @Test
@@ -177,7 +195,7 @@ class Test_SimpleCast extends BaseGame {
     }
 
     @Test
-    void change_active_player_on_next_turn(){
+    void change_active_player_on_next_turn() {
         disablePlayerActionLogging();
         stopAt(2, Phase.PRECOMBAT_MAINPHASE);
         start();

@@ -20,20 +20,19 @@ public class TestPlayer extends Player {
     private List<String> options = new ArrayList<>();
 
 
-
     public TestPlayer(String name, TestGame game, Library library) {
         super(name, game, library);
     }
 
-    void addAction(TestPlayerAction playerAction){
+    void addAction(TestPlayerAction playerAction) {
         actions.add(playerAction);
     }
 
-    void addOption(String option){
+    void addOption(String option) {
         options.add(option);
     }
 
-    public Hand getHand(){
+    public Hand getHand() {
         return hand;
     }
 
@@ -43,42 +42,40 @@ public class TestPlayer extends Player {
     }
 
     @Override
-    public void shuffle(){
+    public void shuffle() {
 
     }
 
 
-
-    public boolean hasRemainingActions(){
+    public boolean hasRemainingActions() {
         return !actions.isEmpty();
     }
-
 
 
     @Override
     public void doAction() {
         Iterator<TestPlayerAction> playerActionIterator = actions.listIterator();
-        while(playerActionIterator.hasNext()){
+        while (playerActionIterator.hasNext()) {
             TestPlayerAction action = playerActionIterator.next();
             currenAction = action;
-            if(action.phase == gameReference.getCurrentPhase() && action.turn == gameReference.getTurnNumber())
-            {
-                if(action instanceof CastSpellAction && gameReference.isPlayable(this, ((CastSpellAction) action).getCard())){
+            if (action.phase == gameReference.getCurrentPhase() && action.turn == gameReference.getTurnNumber()) {
+                if (action instanceof CastSpellAction && gameReference.isPlayable(this, ((CastSpellAction) action).getCard())) {
                     action.execute(this);
                     playerActionIterator.remove();
                     return;
                 }
-                if(action instanceof PlayLandAction && gameReference.isPlayable(this, ((PlayLandAction) action).getCard())){
+                if (action instanceof PlayLandAction && gameReference.isPlayable(this, ((PlayLandAction) action).getCard())) {
                     action.execute(this);
                     playerActionIterator.remove();
                     return;
                 }
-                if(action instanceof TestSetLifeAction ){
+                if (action instanceof TestSetLifeAction) {
                     action.execute(this);
                     playerActionIterator.remove();
                     return;
                 }
-            };
+            }
+            ;
         }
         passPriority();
 
@@ -86,10 +83,10 @@ public class TestPlayer extends Player {
 
     @Override
     public Targetable chooseTarget(List<Targetable> validTargets) {
-        if(currenAction instanceof CastSpellAction){
+        if (currenAction instanceof CastSpellAction) {
             return ((CastSpellAction) currenAction).consumeTarget();
         }
-       return Fail.fail("Current action has no target");
+        return Fail.fail("Current action has no target");
     }
 
     @Override

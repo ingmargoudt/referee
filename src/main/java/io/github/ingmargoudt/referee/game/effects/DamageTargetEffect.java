@@ -5,7 +5,6 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.targets.Target;
-import io.github.ingmargoudt.referee.game.targets.TargetAny;
 
 public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
 

@@ -10,6 +10,8 @@ import java.util.Optional;
 
 public abstract class Target {
 
+    Filter filter = Filter.empty();
+
 
     public abstract List<Targetable> validTargets(Game game);
 

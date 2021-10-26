@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Test_Manapool {
 
     @Test
-    void addMana(){
+    void addMana() {
         Manapool manapool = new Manapool();
         manapool.add(ManaType.BLACK);
         assertThat(manapool.getPool()).containsEntry(ManaType.BLACK, 1);

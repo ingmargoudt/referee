@@ -1,7 +1,7 @@
 package io.github.ingmargoudt.referee.base;
 
-import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import lombok.Getter;
 
 public class PlayLandAction extends TestPlayerAction {
@@ -10,7 +10,7 @@ public class PlayLandAction extends TestPlayerAction {
     private Card card;
 
 
-    public PlayLandAction(int turn, Phase phase, Card card){
+    public PlayLandAction(int turn, Phase phase, Card card) {
         super(turn, phase);
         this.card = card;
     }

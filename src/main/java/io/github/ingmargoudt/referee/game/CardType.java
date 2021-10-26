@@ -1,8 +1,15 @@
 package io.github.ingmargoudt.referee.game;
 
-public enum CardType {
+import io.github.ingmargoudt.referee.game.targets.CardTypePredicate;
+import io.github.ingmargoudt.referee.game.targets.Predicate;
+
+public enum CardType implements Predicatable {
     CREATURE,
     ENCHANTMENT,
     INSTANT,
-    LAND
+    LAND;
+
+    public Predicate getPredicate() {
+        return new CardTypePredicate(this);
+    }
 }

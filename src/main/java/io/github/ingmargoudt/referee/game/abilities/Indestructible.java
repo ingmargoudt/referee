@@ -8,7 +8,7 @@ public class Indestructible extends StaticAbility {
         super();
     }
 
-    public static Indestructible getInstance(){
+    public static Indestructible getInstance() {
         return instance;
     }
 

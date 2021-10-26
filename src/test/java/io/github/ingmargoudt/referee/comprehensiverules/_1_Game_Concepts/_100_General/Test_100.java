@@ -13,7 +13,7 @@ class Test_100 extends BaseGame {
 
     //100.1a A two-player game is a game that begins with only two players.
     @Test
-    void _1a(){
+    void _1a() {
         assertThat(getPlayers()).hasSize(2);
 
     }
@@ -22,13 +22,12 @@ class Test_100 extends BaseGame {
     //“Multiplayer Rules.”
     @Disabled("Not yet implemented")
     @Test
-    void _1b(){
+    void _1b() {
 
     }
 
     //100.2. To play, each player needs their own deck of traditional Magic cards, small items to represent
     //any tokens and counters, and some way to clearly track life totals.
-
 
 
 }
