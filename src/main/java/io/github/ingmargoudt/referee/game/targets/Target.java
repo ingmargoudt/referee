@@ -8,13 +8,13 @@ import io.github.ingmargoudt.referee.game.properties.Targetable;
 import java.util.List;
 import java.util.Optional;
 
-public interface Target {
+public abstract class Target {
 
 
-    List<Targetable> validTargets(Game game);
+    public abstract List<Targetable> validTargets(Game game);
 
-    Optional<Targetable> resolve(Game game);
+    public abstract Optional<Targetable> resolve(Game game);
 
-    void choose(Stackable source, Game game, OneShotEffect effect);
+    public abstract void choose(Stackable source, Game game, OneShotEffect effect);
 
 }
