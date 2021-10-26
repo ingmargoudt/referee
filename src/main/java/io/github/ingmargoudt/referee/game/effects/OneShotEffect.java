@@ -33,4 +33,10 @@ public abstract class OneShotEffect {
     public boolean hasTargets() {
         return !targets.isEmpty();
     }
+
+
+    public boolean hasValidTargets(Game game) {
+
+        return targets.stream().noneMatch(target -> target.validTargets(game).isEmpty());
+    }
 }

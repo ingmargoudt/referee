@@ -20,9 +20,4 @@ public class CounterEffect extends OneShotEffect implements TargetEffect {
         }));
 
     }
-
-    @Override
-    public boolean hasValidTargets(Game game) {
-        return targets.stream().noneMatch(target -> target.validTargets(game).isEmpty());
-    }
 }

@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.base;
 
+import io.github.ingmargoudt.referee.framework.Console;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.SubTypes;
@@ -36,6 +37,7 @@ public class BaseGame {
         player2 = new TestPlayer("Player 2", game, createLibraries());
         game.addPlayer(player1);
         game.addPlayer(player2);
+        EventBus.registerListener(new Console());
     }
 
     private Library createLibraries() {
