@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class Test_SimpleCast extends BaseGame {
 
     private final Card bears = new GrizzlyBears();
-    private final Card gloriousAnthem = new GloriousAnthem();
     private final Card angelsMercy = new AngelsMercy();
     private final Card cathedralSanctifier = new CathedralSanctifier();
 
@@ -114,18 +113,7 @@ class Test_SimpleCast extends BaseGame {
         assertGraveyard(player2, bears);
     }
 
-    @Test
-    void indestructible_does_not_die_from_lethal_damage() {
-        Card bolt = new LightningBolt();
-        Card darksteelmyr = new DarksteelMyr();
-        addCard(Zone.HAND, player1, bolt);
-        addCard(Zone.BATTLEFIELD, player2, darksteelmyr);
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bolt, darksteelmyr);
-        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
-        start();
-        assertLife(player2, 20);
-        assertPermanent(Zone.BATTLEFIELD, player2, darksteelmyr, 1);
-    }
+
 
     @Test
     void castSpellWithSingleTargetCreature_counteruponresolution() {
@@ -141,57 +129,6 @@ class Test_SimpleCast extends BaseGame {
         start();
         assertLife(player2, 20);
         assertGraveyard(player2, bears);
-    }
-
-    @Test
-    void castSpellWithSingleTargetSpell() {
-        Card bolt = new LightningBolt();
-        Card counterspell = new CounterSpell();
-        addCard(Zone.HAND, player1, bolt);
-        addCard(Zone.HAND, player2, counterspell);
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bolt, player2);
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player2, counterspell, bolt);
-        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
-        start();
-        assertGraveyard(player1, bolt);
-    }
-
-    @Test
-    void castSpellWithSingleTargetSpellFilter() {
-        Card bolt = new LightningBolt();
-        Card essenceScatter = new EssenceScatter();
-        addCard(Zone.HAND, player1, bolt);
-        addCard(Zone.HAND, player2, essenceScatter);
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bolt, player2);
-        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player2, essenceScatter, bolt);
-        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
-        Throwable throwable = assertThrows(AssertionError.class, this::start);
-        assertThat(throwable.getMessage()).isEqualTo("Player 2 has remaining actions: Cast Essence Scatter targeting Lightning Bolt");
-        assertLife(player2, 17);
-    }
-
-    @Test
-    void gloriousAnthemBoosts() {
-        disablePlayerActionLogging();
-        addCard(Zone.BATTLEFIELD, player1, bears, 1);
-        addCard(Zone.BATTLEFIELD, player1, gloriousAnthem, 1);
-
-        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
-        start();
-        assertPermanentPower(Zone.BATTLEFIELD, player1, bears, 3);
-        assertPermanentToughness(Zone.BATTLEFIELD, player1, bears, 3);
-    }
-
-    @Test
-    void gloriousAnthemNotBoostsOtherPlayersCreature() {
-        disablePlayerActionLogging();
-        addCard(Zone.BATTLEFIELD, player2, bears, 1);
-        addCard(Zone.BATTLEFIELD, player1, gloriousAnthem, 1);
-
-        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
-        start();
-        assertPermanentPower(Zone.BATTLEFIELD, player2, bears, 2);
-        assertPermanentToughness(Zone.BATTLEFIELD, player2, bears, 2);
     }
 
     @Test
