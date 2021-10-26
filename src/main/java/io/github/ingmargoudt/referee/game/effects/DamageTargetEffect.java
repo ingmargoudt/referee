@@ -4,15 +4,16 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
+import io.github.ingmargoudt.referee.game.targets.Target;
 import io.github.ingmargoudt.referee.game.targets.TargetAny;
 
-public class DamageToAnyTargetEffect extends OneShotEffect implements TargetEffect {
+public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
 
     private int amount;
 
-    public DamageToAnyTargetEffect(int amount) {
+    public DamageTargetEffect(int amount, Target target) {
         this.amount = amount;
-        targets.add(new TargetAny());
+        targets.add(target);
     }
 
     @Override
