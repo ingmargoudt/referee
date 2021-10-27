@@ -6,8 +6,9 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.targets.Target;
 
-public class DrainTargetEffect extends OneShotEffect implements TargetEffect{
+public class DrainTargetEffect extends OneShotEffect implements TargetEffect {
     int amount;
+
     public DrainTargetEffect(int amount, Target target) {
         this.amount = amount;
         this.targets.add(target);
@@ -15,12 +16,15 @@ public class DrainTargetEffect extends OneShotEffect implements TargetEffect{
 
     @Override
     public void apply(MagicObject object, Game game) {
-        game.getPlayer(object.getController()).ifPresent(player -> targets.get(0).resolve(game).ifPresent(theTarget -> {
-            if (theTarget instanceof Damageable) {
-                EventBus.report(player.getName() + "'s " + object.getName() + " deals " + amount + " damage to " + theTarget.getName());
-                ((Damageable) theTarget).damage(amount);
-                player.gainLife(game, 2, object);
-            }
-        }));
+        game.getPlayer(object.getController())
+                .ifPresent(player ->
+                        targets.get(0).resolve(game)
+                        .filter(theTarget -> theTarget instanceof Damageable)
+                        .ifPresent(theTarget -> {
+                            EventBus.report(player.getName() + "'s " + object.getName() + " deals " + amount + " damage to " + theTarget.getName());
+                            ((Damageable) theTarget).damage(amount);
+                            player.gainLife(game, 2, object);
+
+                        }));
     }
 }
