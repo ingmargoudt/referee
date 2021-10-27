@@ -20,9 +20,10 @@ public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
         game.getPlayer(object.getController())
                 .ifPresent(player -> targets.get(0).resolve(game)
                         .filter(targetable -> targetable instanceof Damageable)
+                        .map(Damageable.class::cast)
                         .ifPresent(theTarget -> {
                             EventBus.report(player.getName() + "'s " + object.getName() + " deals " + amount + " damage to " + theTarget.getName());
-                            ((Damageable) theTarget).damage(amount);
+                            theTarget.damage(amount);
 
                         }));
 

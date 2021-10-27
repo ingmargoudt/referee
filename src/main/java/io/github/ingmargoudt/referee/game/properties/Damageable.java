@@ -4,4 +4,6 @@ public interface Damageable {
 
 
     void damage(int amount);
+
+    String getName();
 }

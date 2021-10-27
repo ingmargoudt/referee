@@ -13,11 +13,11 @@ public class CounterEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public void apply(MagicObject object, Game game) {
-        targets.forEach(target -> target.resolve(game).ifPresent(theTarget -> {
-            if (theTarget instanceof Counterable) {
-                ((Counterable) theTarget).counter(game);
-            }
-        }));
+        targets.forEach(target ->
+                target.resolve(game)
+                        .filter(targetable -> targetable instanceof Counterable)
+                        .map(Counterable.class::cast)
+                        .ifPresent(theTarget -> theTarget.counter(game)));
 
     }
 }
