@@ -17,12 +17,14 @@ public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public void apply(MagicObject object, Game game) {
-        game.getPlayer(object.getController()).ifPresent(player -> targets.get(0).resolve(game).ifPresent(theTarget -> {
-            if (theTarget instanceof Damageable) {
-                EventBus.report(player.getName() + "'s " + object.getName() + " deals " + amount + " damage to " + theTarget.getName());
-                ((Damageable) theTarget).damage(amount);
-            }
-        }));
+        game.getPlayer(object.getController())
+                .ifPresent(player -> targets.get(0).resolve(game)
+                        .filter(targetable -> targetable instanceof Damageable)
+                        .ifPresent(theTarget -> {
+                            EventBus.report(player.getName() + "'s " + object.getName() + " deals " + amount + " damage to " + theTarget.getName());
+                            ((Damageable) theTarget).damage(amount);
+
+                        }));
 
     }
 }
