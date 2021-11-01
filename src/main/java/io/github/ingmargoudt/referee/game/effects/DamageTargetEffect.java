@@ -22,9 +22,7 @@ public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
                         .filter(targetable -> targetable instanceof Damageable)
                         .map(Damageable.class::cast)
                         .ifPresent(theTarget -> {
-                            EventBus.report(player.getName() + "'s " + object.getName() + " deals " + amount + " damage to " + theTarget.getName());
-                            theTarget.damage(amount);
-
+                            theTarget.damage(player, object, amount);
                         }));
 
     }

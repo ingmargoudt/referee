@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.game.objects;
 
+import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
@@ -113,7 +114,8 @@ the battlefield. Every permanent has a controller.
 
 
     @Override
-    public void damage(int amount) {
+    public void damage(Player controller, MagicObject source, int amount) {
+        EventBus.report(controller.getName() + "'s " + source.getName() + " deals " + amount + " damage to " + getName());
         damageReceived += amount;
     }
 
