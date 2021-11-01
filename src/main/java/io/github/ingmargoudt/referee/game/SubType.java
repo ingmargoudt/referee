@@ -1,6 +1,14 @@
 package io.github.ingmargoudt.referee.game;
 
-public enum SubType {
+import io.github.ingmargoudt.referee.game.targets.Predicate;
+import io.github.ingmargoudt.referee.game.targets.SubTypePredicate;
 
-    PLAINS, MOUNTAIN, ISLAND, FOREST, SWAMP
+public enum SubType implements Predicatable {
+
+    PLAINS, MOUNTAIN, ISLAND, FOREST, SLIVER, SWAMP;
+
+    @Override
+    public Predicate getPredicate() {
+        return new SubTypePredicate(this);
+    }
 }
