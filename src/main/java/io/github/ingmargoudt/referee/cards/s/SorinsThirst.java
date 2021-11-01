@@ -9,6 +9,6 @@ public class SorinsThirst extends Card {
     public SorinsThirst() {
         super("Sorin's Thirst");
         cardtypes.add(CardType.INSTANT);
-        spellEffects.add(new DrainTargetEffect( 2, new TargetCreature()));
+        spellEffects.add(new DrainTargetEffect(2, new TargetCreature()));
     }
 }

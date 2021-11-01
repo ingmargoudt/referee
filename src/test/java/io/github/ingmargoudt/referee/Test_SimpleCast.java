@@ -3,19 +3,12 @@ package io.github.ingmargoudt.referee;
 import io.github.ingmargoudt.referee.base.BaseGame;
 import io.github.ingmargoudt.referee.cards.a.AngelsMercy;
 import io.github.ingmargoudt.referee.cards.c.CathedralSanctifier;
-import io.github.ingmargoudt.referee.cards.c.CounterSpell;
-import io.github.ingmargoudt.referee.cards.d.DarksteelMyr;
-import io.github.ingmargoudt.referee.cards.e.EssenceScatter;
-import io.github.ingmargoudt.referee.cards.g.GloriousAnthem;
 import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.cards.l.LightningBolt;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class Test_SimpleCast extends BaseGame {
 
@@ -112,7 +105,6 @@ class Test_SimpleCast extends BaseGame {
         assertLife(player2, 20);
         assertGraveyard(player2, bears);
     }
-
 
 
     @Test

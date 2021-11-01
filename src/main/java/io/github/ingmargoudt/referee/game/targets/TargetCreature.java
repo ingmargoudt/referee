@@ -5,12 +5,10 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
-import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class TargetCreature extends Target {
 
@@ -23,7 +21,7 @@ public class TargetCreature extends Target {
 
     @Override
     public Optional<Targetable> resolve(Game game) {
-        return game.getBattlefield().getAll().stream().filter(permanent -> permanent.getId().equals(theTarget.getId())).filter(theTarget-> filter.evaluate(theTarget, game)).map(Targetable.class::cast).findFirst();
+        return game.getBattlefield().getAll().stream().filter(permanent -> permanent.getId().equals(theTarget.getId())).filter(it -> filter.evaluate(it, game)).map(Targetable.class::cast).findFirst();
     }
 
     @Override

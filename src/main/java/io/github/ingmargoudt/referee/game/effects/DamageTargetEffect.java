@@ -1,6 +1,5 @@
 package io.github.ingmargoudt.referee.game.effects;
 
-import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
@@ -19,7 +18,7 @@ public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
     public void apply(MagicObject object, Game game) {
         game.getPlayer(object.getController())
                 .ifPresent(player -> targets.get(0).resolve(game)
-                        .filter(targetable -> targetable instanceof Damageable)
+                        .filter(Damageable.class::isInstance)
                         .map(Damageable.class::cast)
                         .ifPresent(theTarget -> {
                             theTarget.damage(player, object, amount);

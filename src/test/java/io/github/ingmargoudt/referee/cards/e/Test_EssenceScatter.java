@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class Test_EssenceScatter extends BaseGame {
+class Test_EssenceScatter extends BaseGame {
 
     @Test
     void cannotCounterNonCreatureSpell() {
@@ -37,6 +37,6 @@ public class Test_EssenceScatter extends BaseGame {
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player2, essenceScatter, bears);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
-        assertGraveyard(player1 , bears);
+        assertGraveyard(player1, bears);
     }
 }

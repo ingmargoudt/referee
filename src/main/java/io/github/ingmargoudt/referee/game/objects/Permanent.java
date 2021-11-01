@@ -57,10 +57,6 @@ the battlefield. Every permanent has a controller.
 
     }
 
-    public UUID getOwner() {
-        return base.getOwner();
-    }
-
     public void tap() {
         tapped = true;
     }
