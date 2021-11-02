@@ -14,6 +14,6 @@ public class SinewSliver extends Card {
         subTypes.add(SubType.SLIVER);
         setPower(1);
         setToughness(1);
-        addAbility(new StaticAbility(new BoostAllCreatures(Filter.by(SubType.SLIVER.getPredicate()), 1, 1)));
+        addAbility(new StaticAbility(new BoostAllCreatures(Filter.by(SubType.SLIVER), 1, 1)));
     }
 }
