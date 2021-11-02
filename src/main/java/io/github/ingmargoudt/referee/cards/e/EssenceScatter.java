@@ -11,6 +11,6 @@ public class EssenceScatter extends Card {
     public EssenceScatter() {
         super("Essence Scatter");
         cardtypes.add(CardType.INSTANT);
-        getSpellEffects().add(new CounterEffect(new TargetSpell(Filter.by(CardType.CREATURE.getPredicate()))));
+        getSpellEffects().add(new CounterEffect(new TargetSpell(Filter.by(CardType.CREATURE))));
     }
 }

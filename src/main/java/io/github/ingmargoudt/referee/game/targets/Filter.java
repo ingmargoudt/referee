@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game.targets;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.Predicatable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 
 import java.util.ArrayList;
@@ -16,6 +17,10 @@ public class Filter {
 
     public static Filter by(Predicate predicate) {
         return new Filter().addPredicate(predicate);
+    }
+
+    public static Filter by(Predicatable predicatable){
+        return new Filter().addPredicate(predicatable.getPredicate());
     }
 
     public static Filter empty() {
