@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class Test_SinewSliver extends BaseGame {
 
     @Test
-    void boostOwnSliver(){
+    void boostOwnSliver() {
         Card sinewSliver = new SinewSliver();
         addCard(Zone.BATTLEFIELD, player1, sinewSliver);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
@@ -19,7 +19,7 @@ class Test_SinewSliver extends BaseGame {
     }
 
     @Test
-    void boostAllSliver(){
+    void boostAllSliver() {
         Card sinewSliver = new SinewSliver();
         Card sinewSliver2 = new SinewSliver();
         addCard(Zone.BATTLEFIELD, player1, sinewSliver);
@@ -31,7 +31,7 @@ class Test_SinewSliver extends BaseGame {
     }
 
     @Test
-    void doNotBoostOwnGrizzlyBears(){
+    void doNotBoostOwnGrizzlyBears() {
         Card sinewSliver = new SinewSliver();
         Card bears = new GrizzlyBears();
         addCard(Zone.BATTLEFIELD, player1, sinewSliver);
