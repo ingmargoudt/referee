@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.game.targets.Predicate;
 public enum CardType implements Predicatable {
     CREATURE,
     ENCHANTMENT,
+    ARTIFACT,
     INSTANT,
     LAND;
 

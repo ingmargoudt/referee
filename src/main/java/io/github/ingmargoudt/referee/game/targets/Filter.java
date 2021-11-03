@@ -19,7 +19,7 @@ public class Filter {
         return new Filter().addPredicate(predicate);
     }
 
-    public static Filter by(Predicatable predicatable){
+    public static Filter by(Predicatable predicatable) {
         return new Filter().addPredicate(predicatable.getPredicate());
     }
 
