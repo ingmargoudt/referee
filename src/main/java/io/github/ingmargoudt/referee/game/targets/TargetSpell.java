@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game.targets;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
@@ -25,12 +26,12 @@ public class TargetSpell extends Target {
 
     @Override
     public List<Targetable> validTargets(Game game) {
-        return game.getStack().show().stream().filter(Spell.class::isInstance).filter(spell -> filter.evaluate(spell, game)).collect(Collectors.toList());
+        return game.getStack().show().stream().filter(Spell.class::isInstance).filter(spell -> filter.evaluate(spell, game, source)).collect(Collectors.toList());
     }
 
     @Override
     public Optional<Targetable> resolve(Game game) {
-        return game.getStack().show().stream().filter(Spell.class::isInstance).filter(spell -> spell.getId().equals(theTarget.getId())).filter(spell -> filter.evaluate(spell, game)).findFirst();
+        return game.getStack().show().stream().filter(Spell.class::isInstance).filter(spell -> spell.getId().equals(theTarget.getId())).filter(spell -> filter.evaluate(spell, game, source)).findFirst();
     }
 
     @Override

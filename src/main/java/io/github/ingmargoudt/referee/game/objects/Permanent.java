@@ -50,6 +50,8 @@ the battlefield. Every permanent has a controller.
         this.getCardtypes().addAll(base.getCardtypes());
         this.getSubTypes().clear();
         this.getSubTypes().addAll(base.getSubTypes());
+        this.getSuperTypes().clear();
+        this.getSuperTypes().addAll(base.getSuperTypes());
         this.getSpellEffects().clear();
         this.getSpellEffects().addAll(base.getSpellEffects());
         this.getReplacementEffects().clear();

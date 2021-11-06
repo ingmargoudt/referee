@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.game.targets;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.Predicatable;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 
 import java.util.Arrays;
@@ -21,7 +22,7 @@ public class OrPredicate implements Predicate {
     }
 
     @Override
-    public boolean evaluate(Targetable target, Game game) {
-        return predicates.stream().anyMatch(predicate -> predicate.evaluate(target, game));
+    public boolean evaluate(Targetable target, Game game, MagicObject source) {
+        return predicates.stream().anyMatch(predicate -> predicate.evaluate(target, game, source));
     }
 }

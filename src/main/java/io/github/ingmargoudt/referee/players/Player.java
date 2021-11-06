@@ -18,6 +18,7 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class Player extends BaseObject implements Targetable, Damageable {
 
@@ -139,5 +140,9 @@ public class Player extends BaseObject implements Targetable, Damageable {
 
     public void loseLife(int amount) {
         life -= amount;
+    }
+
+    public UUID getController(){
+        throw new IllegalArgumentException();
     }
 }

@@ -5,7 +5,7 @@ import io.github.ingmargoudt.referee.game.targets.SubTypePredicate;
 
 public enum SubType implements Predicatable {
 
-    PLAINS, MOUNTAIN, ISLAND, FOREST, SLIVER, SWAMP;
+    PLAINS, MOUNTAIN, ISLAND, FOREST, SLIVER, SWAMP, DJINN;
 
     @Override
     public Predicate getPredicate() {

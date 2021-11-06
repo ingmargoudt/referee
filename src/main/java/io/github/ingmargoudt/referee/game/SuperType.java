@@ -1,6 +1,14 @@
 package io.github.ingmargoudt.referee.game;
 
-public enum SuperType {
+import io.github.ingmargoudt.referee.game.targets.Predicate;
+import io.github.ingmargoudt.referee.game.targets.SuperTypePredicate;
 
-    BASIC
+public enum SuperType implements Predicatable {
+
+    BASIC;
+
+    @Override
+    public Predicate getPredicate() {
+        return new SuperTypePredicate(this);
+    }
 }

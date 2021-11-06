@@ -2,22 +2,23 @@ package io.github.ingmargoudt.referee.game.targets;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
+import io.github.ingmargoudt.referee.game.SuperType;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 
-public class SubTypePredicate implements Predicate {
+public class SuperTypePredicate implements Predicate {
 
-    SubType theSubType;
+    SuperType theSuperType;
 
-    public SubTypePredicate(SubType subType) {
-        this.theSubType = subType;
+    public SuperTypePredicate(SuperType superType) {
+        this.theSuperType = superType;
     }
 
     @Override
     public boolean evaluate(Targetable target, Game game, MagicObject source) {
         if (target instanceof Permanent) {
-            return ((Permanent) target).getSubTypes().has(theSubType);
+            return ((Permanent) target).getSuperTypes().has(theSuperType);
         }
         return false;
     }

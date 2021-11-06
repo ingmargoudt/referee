@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.game.targets;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.Predicatable;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 
 import java.util.ArrayList;
@@ -23,6 +24,14 @@ public class Filter {
         return new Filter().addPredicate(predicatable.getPredicate());
     }
 
+    public static Filter by(Predicatable... predicatables) {
+        Filter newFilter = new Filter();
+        for (Predicatable predicatable : predicatables) {
+            newFilter.addPredicate(predicatable.getPredicate());
+        }
+        return newFilter;
+    }
+
     public static Filter empty() {
         return new Filter();
     }
@@ -32,7 +41,7 @@ public class Filter {
         return this;
     }
 
-    public boolean evaluate(Targetable target, Game game) {
-        return predicates.stream().allMatch(predicate -> predicate.evaluate(target, game));
+    public boolean evaluate(Targetable target, Game game, MagicObject source) {
+        return predicates.stream().allMatch(predicate -> predicate.evaluate(target, game, source));
     }
 }

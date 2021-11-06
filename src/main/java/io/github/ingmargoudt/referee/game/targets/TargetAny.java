@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game.targets;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.players.Player;
@@ -18,7 +19,7 @@ public class TargetAny extends Target {
 
     @Override
     public List<Targetable> validTargets(Game game) {
-        return Stream.concat(game.getPlayers().stream().map(Targetable.class::cast).filter(p -> filter.evaluate(p, game)),
+        return Stream.concat(game.getPlayers().stream().map(Targetable.class::cast).filter(p -> filter.evaluate(p, game, source)),
                 game.getBattlefield().getAll().stream().map(Targetable.class::cast)).collect(Collectors.toList());
     }
 

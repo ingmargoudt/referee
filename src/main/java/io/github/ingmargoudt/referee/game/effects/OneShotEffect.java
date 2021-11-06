@@ -35,8 +35,8 @@ public abstract class OneShotEffect {
     }
 
 
-    public boolean hasValidTargets(Game game) {
+    public boolean hasValidTargets(Game game, MagicObject object) {
 
-        return targets.stream().noneMatch(target -> target.validTargets(game).isEmpty());
+        return targets.stream().noneMatch(target -> target.from(object).validTargets(game).isEmpty());
     }
 }

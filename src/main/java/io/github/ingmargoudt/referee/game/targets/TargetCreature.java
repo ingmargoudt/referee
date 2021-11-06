@@ -16,12 +16,12 @@ public class TargetCreature extends Target {
 
     @Override
     public List<Targetable> validTargets(Game game) {
-        return game.getBattlefield().getAll().stream().map(Targetable.class::cast).filter(targetable -> filter.evaluate(targetable, game)).collect(Collectors.toList());
+        return game.getBattlefield().getAll().stream().map(Targetable.class::cast).filter(targetable -> filter.evaluate(targetable, game, source)).collect(Collectors.toList());
     }
 
     @Override
     public Optional<Targetable> resolve(Game game) {
-        return game.getBattlefield().getAll().stream().filter(permanent -> permanent.getId().equals(theTarget.getId())).filter(it -> filter.evaluate(it, game)).map(Targetable.class::cast).findFirst();
+        return game.getBattlefield().getAll().stream().filter(permanent -> permanent.getId().equals(theTarget.getId())).filter(it -> filter.evaluate(it, game, source)).map(Targetable.class::cast).findFirst();
     }
 
     @Override

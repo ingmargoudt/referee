@@ -22,7 +22,7 @@ public class BoostAllCreatures extends ContinuousEffect {
     public void apply(MagicObject source, Game game) {
         game.getPlayer(source.getController()).ifPresent(controller -> {
             for (Permanent permanent : game.getBattlefield().getAll()) {
-                if (permanent.isCreature() && filter.evaluate(permanent, game)) {
+                if (permanent.isCreature() && filter.evaluate(permanent, game, source)) {
                     EventBus.report("Applying " + controller.getName() + "'s " + source.getName() + " " + getClass().getSimpleName() + " to " + game.getPlayer(permanent.getController()).map(Player::getName) + "'s " + permanent.getName());
                     permanent.setPower(permanent.getPower() + power);
                     permanent.setToughness(permanent.getToughness() + toughness);

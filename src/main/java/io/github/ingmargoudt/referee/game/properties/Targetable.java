@@ -7,4 +7,6 @@ public interface Targetable {
     UUID getId();
 
     String getName();
+
+    UUID getController();
 }
