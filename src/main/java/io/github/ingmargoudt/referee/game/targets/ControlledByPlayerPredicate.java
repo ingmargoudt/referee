@@ -14,7 +14,7 @@ public class ControlledByPlayerPredicate implements Predicate {
 
     @Override
     public boolean evaluate(Targetable target, Game game, MagicObject source) {
-        if(thePlayerSelector == ControlledByPlayerSelector.YOU){
+        if (thePlayerSelector == ControlledByPlayerSelector.YOU) {
             return source.getController().equals(target.getController());
         }
         return false;
