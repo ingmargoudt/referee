@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class OneShotEffect {
+public abstract class OneShotEffect extends Effect{
 
     private final UUID id;
     List<Target> targets = new ArrayList<>();

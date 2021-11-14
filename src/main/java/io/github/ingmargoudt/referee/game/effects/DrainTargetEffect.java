@@ -25,4 +25,9 @@ public class DrainTargetEffect extends OneShotEffect implements TargetEffect {
                                     player.gainLife(game, amount, object);
                                 }));
     }
+
+    @Override
+    public String getRule() {
+        return "";
+    }
 }

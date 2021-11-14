@@ -25,4 +25,9 @@ public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
                         }));
 
     }
+
+    @Override
+    public String getRule() {
+        return "{this} deals "+amount + " damage to target "+targets.toString();
+    }
 }

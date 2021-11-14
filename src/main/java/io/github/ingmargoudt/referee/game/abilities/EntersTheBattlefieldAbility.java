@@ -5,8 +5,10 @@ import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.events.EnterTheBattlefieldEvent;
 import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.properties.Ruleable;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class EntersTheBattlefieldAbility extends TriggeredAbility {
 
@@ -25,5 +27,10 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
     @Override
     public void resolve(MagicObject source, Game game) {
         getEffects().forEach(effect -> effect.apply(source, game));
+    }
+
+    @Override
+    public String getRule() {
+        return "When {this} enters the battlefield, " + getEffects().stream().map(Ruleable::getRule).collect(Collectors.joining());
     }
 }

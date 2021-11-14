@@ -30,4 +30,9 @@ public class BoostAllCreatures extends ContinuousEffect {
             }
         });
     }
+
+    @Override
+    public String getRule() {
+        return "All " + filter.getRule() + " get +"+power +"/+"+toughness;
+    }
 }

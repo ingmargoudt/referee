@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.cost.Costs;
+import io.github.ingmargoudt.referee.game.effects.Effect;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
@@ -24,4 +25,10 @@ public class ActivatedAbility extends Ability {
     public void resolve(MagicObject source, Game game) {
         game.getPlayer(source.getController()).ifPresent(player -> effects.forEach(effect -> effect.apply(source, game)));
     }
+
+    @Override
+    public String getRule(){
+        return costs.toString() + " " + effects.toString();
+    }
+
 }

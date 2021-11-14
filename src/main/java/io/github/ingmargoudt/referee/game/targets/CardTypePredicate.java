@@ -25,4 +25,9 @@ public class CardTypePredicate implements Predicate {
         }
         return false;
     }
+
+    @Override
+    public String toString(){
+        return theCardType.toString();
+    }
 }

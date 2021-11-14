@@ -19,4 +19,14 @@ public class ControlledByPlayerPredicate implements Predicate {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        switch (thePlayerSelector) {
+            case YOU:
+                return "you control";
+
+        }
+        return "";
+    }
 }

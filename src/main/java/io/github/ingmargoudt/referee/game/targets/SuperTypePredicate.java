@@ -22,4 +22,9 @@ public class SuperTypePredicate implements Predicate {
         }
         return false;
     }
+
+    @Override
+    public String toString(){
+        return theSuperType.toString().toLowerCase();
+    }
 }

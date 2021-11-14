@@ -10,4 +10,6 @@ public enum ControlledByPlayerSelector implements Predicatable {
     public Predicate getPredicate() {
         return new ControlledByPlayerPredicate(this);
     }
+
+
 }

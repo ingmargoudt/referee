@@ -3,12 +3,14 @@ package io.github.ingmargoudt.referee.game.targets;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.Predicatable;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Filter {
+public class Filter implements Ruleable {
 
     List<Predicate> predicates = new ArrayList<>();
 
@@ -43,5 +45,9 @@ public class Filter {
 
     public boolean evaluate(Targetable target, Game game, MagicObject source) {
         return predicates.stream().allMatch(predicate -> predicate.evaluate(target, game, source));
+    }
+
+    public String getRule(){
+        return predicates.stream().map(Object::toString).collect(Collectors.joining(" "));
     }
 }

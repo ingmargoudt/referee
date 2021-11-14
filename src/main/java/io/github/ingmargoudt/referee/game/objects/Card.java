@@ -1,7 +1,9 @@
 package io.github.ingmargoudt.referee.game.objects;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.effects.TargetEffect;
+import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +11,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Getter
-public class Card extends MagicObject implements Targetable {
+public class Card extends MagicObject implements Targetable, Ruleable {
 
     @Setter
     UUID owner;
@@ -27,4 +29,13 @@ public class Card extends MagicObject implements Targetable {
         return getSpellEffects().stream().filter(TargetEffect.class::isInstance).map(TargetEffect.class::cast).allMatch(target -> target.hasValidTargets(game, this));
     }
 
+    @Override
+    public String getRule() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        abilities.forEach(ability -> stringBuilder.append(ability.getRule()));
+        String cardtext = stringBuilder.toString();
+        cardtext = cardtext.replace("{this}", name);
+        return cardtext;
+    }
 }
