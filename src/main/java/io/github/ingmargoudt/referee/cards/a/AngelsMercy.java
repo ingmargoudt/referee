@@ -9,6 +9,6 @@ public class AngelsMercy extends Card {
     public AngelsMercy() {
         super("Angel's Mercy");
         getCardtypes().add(CardType.INSTANT);
-        getSpellEffects().add(new YouGainLifeEffect(7));
+        getSpellEffects().addEffect(new YouGainLifeEffect(7));
     }
 }

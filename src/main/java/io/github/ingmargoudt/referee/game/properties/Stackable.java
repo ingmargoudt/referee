@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game.properties;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
@@ -22,5 +23,5 @@ public interface Stackable {
 
     boolean hasTargets();
 
-    List<OneShotEffect> getEffects();
+    Effects<OneShotEffect> getEffects();
 }

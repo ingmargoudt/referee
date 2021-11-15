@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
@@ -50,7 +51,7 @@ public class StackAbility implements Stackable {
     }
 
     @Override
-    public List<OneShotEffect> getEffects() {
-        return triggeredAbility.getEffects();
+    public Effects<OneShotEffect> getEffects() {
+        return triggeredAbility.effects;
     }
 }

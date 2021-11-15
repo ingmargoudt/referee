@@ -29,12 +29,7 @@ public class Stack {
         stackEntries.addFirst(stackable);
         EventBus.report(stackable.getName() + " is put on the stack");
         if (stackable.hasTargets()) {
-            stackable.getEffects().forEach(effect -> {
-                if (effect instanceof TargetEffect) {
-                    TargetEffect targetEffect = (TargetEffect) effect;
-                    targetEffect.choose(stackable, game);
-                }
-            });
+            stackable.getEffects().chooseTargets(stackable, game);
         }
     }
 

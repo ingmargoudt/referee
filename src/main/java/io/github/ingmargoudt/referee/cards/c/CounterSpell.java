@@ -9,6 +9,6 @@ public class CounterSpell extends Card {
     public CounterSpell() {
         super("Counterspell");
         cardtypes.add(CardType.INSTANT);
-        getSpellEffects().add(new CounterEffect(new TargetSpell()));
+        getSpellEffects().addEffect(new CounterEffect(new TargetSpell()));
     }
 }

@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game.objects;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.properties.Counterable;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
@@ -27,7 +28,7 @@ public class Spell extends MagicObject implements Stackable, Counterable, Target
         if (card.isPermanent()) {
             game.moveToBattlefield(card);
         } else {
-            getSpellEffects().forEach(effect -> effect.apply(this, game));
+            getSpellEffects().apply(this, game);
         }
 
     }
@@ -49,11 +50,11 @@ public class Spell extends MagicObject implements Stackable, Counterable, Target
 
     @Override
     public boolean hasTargets() {
-        return card.getSpellEffects().stream().anyMatch(OneShotEffect::hasTargets);
+        return card.getSpellEffects().hasTargets();
     }
 
     @Override
-    public List<OneShotEffect> getEffects() {
+    public Effects<OneShotEffect> getEffects() {
         return card.getSpellEffects();
     }
 

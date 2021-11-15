@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game.objects;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
+import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.players.Player;
@@ -52,8 +53,7 @@ the battlefield. Every permanent has a controller.
         this.getSubTypes().addAll(base.getSubTypes());
         this.getSuperTypes().clear();
         this.getSuperTypes().addAll(base.getSuperTypes());
-        this.getSpellEffects().clear();
-        this.getSpellEffects().addAll(base.getSpellEffects());
+        this.spellEffects = new Effects<>(base.getSpellEffects());
         this.getReplacementEffects().clear();
         this.getReplacementEffects().addAll(base.getReplacementEffects());
 

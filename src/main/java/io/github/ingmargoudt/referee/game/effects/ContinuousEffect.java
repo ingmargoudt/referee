@@ -18,6 +18,5 @@ public abstract class ContinuousEffect extends Effect {
         filter = Filter.empty();
     }
 
-    public abstract void apply(MagicObject source, Game game);
 
 }

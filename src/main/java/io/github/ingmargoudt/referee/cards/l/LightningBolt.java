@@ -9,6 +9,6 @@ public class LightningBolt extends Card {
     public LightningBolt() {
         super("Lightning Bolt");
         getCardtypes().add(CardType.INSTANT);
-        getSpellEffects().add(new DamageTargetEffect(3, new TargetAny()));
+        getSpellEffects().addEffect(new DamageTargetEffect(3, new TargetAny()));
     }
 }

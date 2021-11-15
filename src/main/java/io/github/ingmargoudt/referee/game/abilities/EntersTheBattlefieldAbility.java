@@ -15,7 +15,7 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
 
     public EntersTheBattlefieldAbility(OneShotEffect effect) {
         super();
-        getEffects().add(effect);
+        effects.addEffect(effect);
     }
 
     @Override
@@ -26,11 +26,11 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
 
     @Override
     public void resolve(MagicObject source, Game game) {
-        getEffects().forEach(effect -> effect.apply(source, game));
+        effects.apply(source, game);
     }
 
     @Override
     public String getRule() {
-        return "When {this} enters the battlefield, " + getEffects().stream().map(Ruleable::getRule).collect(Collectors.joining());
+        return "When {this} enters the battlefield, " + effects.toString();
     }
 }

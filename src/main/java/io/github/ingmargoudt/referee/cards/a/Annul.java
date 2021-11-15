@@ -12,6 +12,6 @@ public class Annul extends Card {
     public Annul() {
         super("Annul");
         cardtypes.add(CardType.INSTANT);
-        spellEffects.add(new CounterEffect(new TargetSpell(Filter.by(or(CardType.ENCHANTMENT, CardType.ARTIFACT)))));
+        spellEffects.addEffect(new CounterEffect(new TargetSpell(Filter.by(or(CardType.ENCHANTMENT, CardType.ARTIFACT)))));
     }
 }

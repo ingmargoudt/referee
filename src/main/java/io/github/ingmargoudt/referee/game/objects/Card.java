@@ -26,7 +26,7 @@ public class Card extends MagicObject implements Targetable, Ruleable {
     }
 
     public boolean canBePlayed(Game game) {
-        return getSpellEffects().stream().filter(TargetEffect.class::isInstance).map(TargetEffect.class::cast).allMatch(target -> target.hasValidTargets(game, this));
+        return getSpellEffects().canBePlayed(game, this);
     }
 
     @Override

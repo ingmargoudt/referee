@@ -12,6 +12,6 @@ public class Negate extends Card {
     public Negate() {
         super("Negate");
         cardtypes.add(CardType.INSTANT);
-        getSpellEffects().add(new CounterEffect(new TargetSpell(Filter.by(not(CardType.CREATURE.getPredicate())))));
+        getSpellEffects().addEffect(new CounterEffect(new TargetSpell(Filter.by(not(CardType.CREATURE.getPredicate())))));
     }
 }

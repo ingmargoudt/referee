@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game.objects;
 import io.github.ingmargoudt.referee.game.*;
 import io.github.ingmargoudt.referee.game.abilities.Abilities;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
+import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
 import lombok.Getter;
@@ -41,7 +42,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     protected int handmodifier;
     protected int lifemodifier;
 
-    protected List<OneShotEffect> spellEffects;
+    protected Effects<OneShotEffect> spellEffects;
     protected List<ReplacementEffect> replacementEffects;
 
     @Setter
@@ -54,7 +55,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         subTypes = new SubTypes();
         superTypes = new SuperTypes();
         abilities = new Abilities();
-        spellEffects = new ArrayList<>();
+        spellEffects = new Effects<>();
         replacementEffects = new ArrayList<>();
     }
 
