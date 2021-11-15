@@ -22,8 +22,7 @@ public class SubTypePredicate implements Predicate {
         return false;
     }
 
-    @Override
-    public String toString(){
+    public String getRule() {
         return theSubType.toString().toLowerCase();
     }
 }

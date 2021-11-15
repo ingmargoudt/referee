@@ -8,7 +8,6 @@ import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import lombok.Getter;
 
-import java.util.List;
 import java.util.UUID;
 
 public class Spell extends MagicObject implements Stackable, Counterable, Targetable {

@@ -6,7 +6,6 @@ import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 
-import java.util.List;
 import java.util.UUID;
 
 public class StackAbility implements Stackable {

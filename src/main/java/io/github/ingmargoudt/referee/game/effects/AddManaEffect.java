@@ -21,6 +21,6 @@ public class AddManaEffect extends OneShotEffect {
 
     @Override
     public String getRule() {
-        return "Add "+manaType+ " to your manapool";
+        return "Add " + manaType + " to your manapool";
     }
 }

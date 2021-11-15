@@ -142,7 +142,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
         life -= amount;
     }
 
-    public UUID getController(){
+    public UUID getController() {
         throw new IllegalArgumentException();
     }
 }

@@ -20,8 +20,7 @@ public class ControlledByPlayerPredicate implements Predicate {
         return false;
     }
 
-    @Override
-    public String toString() {
+    public String getRule() {
         switch (thePlayerSelector) {
             case YOU:
                 return "you control";

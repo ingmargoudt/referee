@@ -25,6 +25,6 @@ public class CounterEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public String getRule() {
-        return "Counter target " + targets.stream().map(Object::toString).collect(Collectors.joining());
+        return "Counter target " + targets.stream().map(Target::getRule).collect(Collectors.joining());
     }
 }

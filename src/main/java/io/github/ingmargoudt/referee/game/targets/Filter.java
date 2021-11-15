@@ -47,7 +47,7 @@ public class Filter implements Ruleable {
         return predicates.stream().allMatch(predicate -> predicate.evaluate(target, game, source));
     }
 
-    public String getRule(){
-        return predicates.stream().map(Object::toString).collect(Collectors.joining(" "));
+    public String getRule() {
+        return predicates.stream().map(Predicate::getRule).collect(Collectors.joining(" "));
     }
 }

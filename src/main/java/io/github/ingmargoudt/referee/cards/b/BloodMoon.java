@@ -30,7 +30,7 @@ class BloodMoonEffect extends ContinuousEffect {
         });
     }
 
-    public String getRule(){
+    public String getRule() {
         return "Nonbasic lands are Mountains";
     }
 }

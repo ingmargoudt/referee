@@ -1,7 +1,6 @@
 package io.github.ingmargoudt.referee.game.targets;
 
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.SuperType;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
@@ -23,8 +22,7 @@ public class SuperTypePredicate implements Predicate {
         return false;
     }
 
-    @Override
-    public String toString(){
+    public String getRule() {
         return theSuperType.toString().toLowerCase();
     }
 }

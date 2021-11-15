@@ -20,4 +20,8 @@ public class NotPredicate implements Predicate {
     public boolean evaluate(Targetable target, Game game, MagicObject source) {
         return !predicate.evaluate(target, game, source);
     }
+
+    public String getRule() {
+        return "non" + predicate.getRule();
+    }
 }

@@ -3,13 +3,14 @@ package io.github.ingmargoudt.referee.game.targets;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 
 import java.util.List;
 import java.util.Optional;
 
-public abstract class Target {
+public abstract class Target implements Ruleable {
 
     Filter filter = Filter.empty();
     MagicObject source;
@@ -24,5 +25,9 @@ public abstract class Target {
     public Target from(MagicObject source) {
         this.source = source;
         return this;
+    }
+
+    public String getRule() {
+        return filter.getRule();
     }
 }

@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 class Test_TempestDjinn extends BaseGame {
 
     @Test
-    void boostedByIslands(){
-        Card tempestDjinn =new TempestDjinn();
-        int numIslands= 3;
-        for(int i = 0; i< numIslands; i++){
+    void boostedByIslands() {
+        Card tempestDjinn = new TempestDjinn();
+        int numIslands = 3;
+        for (int i = 0; i < numIslands; i++) {
             addCard(Zone.BATTLEFIELD, player1, new Island());
         }
         addCard(Zone.BATTLEFIELD, player2, new Island());

@@ -20,14 +20,13 @@ public class CardTypePredicate implements Predicate {
         if (target instanceof Spell) {
             return ((Spell) target).getCard().getCardtypes().has(theCardType);
         }
-        if(target instanceof Permanent){
+        if (target instanceof Permanent) {
             return ((Permanent) target).getCardtypes().has(theCardType);
         }
         return false;
     }
 
-    @Override
-    public String toString(){
-        return theCardType.toString();
+    public String getRule() {
+        return theCardType.toString().toLowerCase();
     }
 }

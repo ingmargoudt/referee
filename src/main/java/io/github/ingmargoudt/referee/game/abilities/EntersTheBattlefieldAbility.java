@@ -5,10 +5,8 @@ import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.events.EnterTheBattlefieldEvent;
 import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
-import io.github.ingmargoudt.referee.game.properties.Ruleable;
 
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class EntersTheBattlefieldAbility extends TriggeredAbility {
 

@@ -10,7 +10,7 @@ public class SuperTypes {
         return supertypesList.contains(SuperType.BASIC);
     }
 
-    public void add(SuperType superType){
+    public void add(SuperType superType) {
         supertypesList.add(superType);
     }
 

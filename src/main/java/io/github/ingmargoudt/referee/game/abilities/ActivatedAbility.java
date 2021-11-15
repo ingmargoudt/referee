@@ -2,7 +2,6 @@ package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.cost.Costs;
-import io.github.ingmargoudt.referee.game.effects.Effect;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
@@ -27,7 +26,7 @@ public class ActivatedAbility extends Ability {
     }
 
     @Override
-    public String getRule(){
+    public String getRule() {
         return costs.toString() + " " + effects.toString();
     }
 

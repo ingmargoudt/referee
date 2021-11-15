@@ -35,6 +35,6 @@ public class BoostAllControlledCreatures extends ContinuousEffect {
 
     @Override
     public String getRule() {
-        return "All " + filter.getRule() + " get +"+power +"/+"+toughness;
+        return "All " + filter.getRule() + " get +" + power + "/+" + toughness;
     }
 }

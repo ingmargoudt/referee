@@ -31,8 +31,8 @@ public class BoostThisCreatureEffect extends ContinuousEffect {
         }
     }
 
-    public String getRule(){
-        return "{this} gets +"+power+"/+"+toughness + " for each "+filter.getRule();
+    public String getRule() {
+        return "{this} gets +" + power + "/+" + toughness + " for each " + filter.getRule();
     }
 
 }

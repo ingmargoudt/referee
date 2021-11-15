@@ -5,6 +5,8 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.targets.Target;
 
+import java.util.stream.Collectors;
+
 public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
 
     private int amount;
@@ -28,6 +30,6 @@ public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public String getRule() {
-        return "{this} deals "+amount + " damage to target "+targets.toString();
+        return "{this} deals " + amount + " damage to " + targets.stream().map(Target::getRule).collect(Collectors.joining());
     }
 }

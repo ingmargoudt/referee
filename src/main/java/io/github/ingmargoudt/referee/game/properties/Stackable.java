@@ -5,7 +5,6 @@ import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface Stackable {

@@ -6,8 +6,8 @@ import io.github.ingmargoudt.referee.game.SuperType;
 import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
 import io.github.ingmargoudt.referee.game.effects.BoostThisCreatureEffect;
 import io.github.ingmargoudt.referee.game.objects.Card;
-import io.github.ingmargoudt.referee.game.targets.Filter;
 import io.github.ingmargoudt.referee.game.targets.ControlledByPlayerSelector;
+import io.github.ingmargoudt.referee.game.targets.Filter;
 
 public class TempestDjinn extends Card {
     public TempestDjinn() {
@@ -15,7 +15,7 @@ public class TempestDjinn extends Card {
         cardtypes.add(CardType.CREATURE);
         subTypes.add(SubType.DJINN);
         setToughness(4);
-        abilities.add(new StaticAbility(new BoostThisCreatureEffect(1, 0, Filter.by(SubType.ISLAND, SuperType.BASIC, ControlledByPlayerSelector.YOU))));
+        abilities.add(new StaticAbility(new BoostThisCreatureEffect(1, 0, Filter.by(SuperType.BASIC, SubType.ISLAND, ControlledByPlayerSelector.YOU))));
     }
 }
 

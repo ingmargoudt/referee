@@ -2,7 +2,6 @@ package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.ContinuousEffect;
-import io.github.ingmargoudt.referee.game.effects.Effect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import lombok.Getter;
@@ -33,7 +32,7 @@ public class StaticAbility extends Ability {
     }
 
     @Override
-    public String getRule(){
+    public String getRule() {
         return effects.stream().map(Ruleable::getRule).collect(Collectors.joining());
     }
 }
