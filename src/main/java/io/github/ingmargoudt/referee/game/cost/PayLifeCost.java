@@ -22,4 +22,9 @@ public class PayLifeCost implements Cost {
     public boolean canPay(MagicObject source, Game game) {
         return game.getPlayer(source.getController()).map(player -> player.getLife() >= amount).orElse(false);
     }
+
+    @Override
+    public String getRule() {
+        return "pay "+amount + " life";
+    }
 }

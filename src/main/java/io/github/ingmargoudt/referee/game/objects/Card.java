@@ -1,12 +1,14 @@
 package io.github.ingmargoudt.referee.game.objects;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
 import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Getter
 public class Card extends MagicObject implements Targetable, Ruleable {
@@ -30,12 +32,16 @@ public class Card extends MagicObject implements Targetable, Ruleable {
     @Override
     public String getRule() {
         StringBuilder stringBuilder = new StringBuilder();
+        String cardText = "";
+        cardText += replacementEffects.stream().map(ReplacementEffect::getRule).collect(Collectors.joining("\n"));
+        if(!cardText.isEmpty()){
+            cardText += "\n";
+        }
+        abilities.forEach(ability -> stringBuilder.append(ability.getRule()).append("\n"));
+        cardText += stringBuilder.toString();
+        cardText += spellEffects.toString();
+        cardText = cardText.replace("{this}", name);
 
-        abilities.forEach(ability -> stringBuilder.append(ability.getRule()));
-        String cardtext = stringBuilder.toString();
-        cardtext += spellEffects.toString();
-        cardtext = cardtext.replace("{this}", name);
-
-        return cardtext;
+        return cardText;
     }
 }

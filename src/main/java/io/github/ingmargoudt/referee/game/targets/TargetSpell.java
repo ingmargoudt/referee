@@ -42,7 +42,7 @@ public class TargetSpell extends Target {
     }
 
     public String getRule() {
-        return filter.getRule() + " spell";
+        return filter.getRule() + "spell";
     }
 
 

@@ -8,4 +8,6 @@ public interface Cost {
     void pay(MagicObject source, Game game);
 
     boolean canPay(MagicObject source, Game game);
+
+    String getRule();
 }

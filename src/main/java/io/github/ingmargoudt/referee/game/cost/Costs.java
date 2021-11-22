@@ -2,11 +2,13 @@ package io.github.ingmargoudt.referee.game.cost;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.properties.Ruleable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Costs {
+public class Costs implements Ruleable {
 
     private List<Cost> theCosts = new ArrayList<>();
 
@@ -29,5 +31,15 @@ public class Costs {
     public void payAll(MagicObject source, Game game) {
         theCosts.forEach(cost -> cost.pay(source, game));
 
+    }
+
+    @Override
+    public String getRule() {
+        return theCosts.stream().map(Cost::getRule).collect(Collectors.joining(", "))+ ": ";
+    }
+
+    @Override
+    public String toString(){
+        return theCosts.stream().map(Cost::getRule).collect(Collectors.joining(", "));
     }
 }

@@ -2,6 +2,8 @@ package io.github.ingmargoudt.referee.game.abilities;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.cost.Costs;
+import io.github.ingmargoudt.referee.game.effects.Effect;
+import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
@@ -10,9 +12,9 @@ import java.util.List;
 public class ActivatedAbility extends Ability {
 
     protected Costs costs;
-    protected List<OneShotEffect> effects;
+    protected Effects<OneShotEffect> effects;
 
-    public ActivatedAbility(Costs costs, List<OneShotEffect> effects) {
+    public ActivatedAbility(Costs costs, Effects<OneShotEffect> effects) {
         super();
         this.costs = costs;
         this.effects = effects;
@@ -22,12 +24,12 @@ public class ActivatedAbility extends Ability {
 
     @Override
     public void resolve(MagicObject source, Game game) {
-        game.getPlayer(source.getController()).ifPresent(player -> effects.forEach(effect -> effect.apply(source, game)));
+        game.getPlayer(source.getController()).ifPresent(player -> effects.apply(source, game));
     }
 
     @Override
     public String getRule() {
-        return costs.toString() + " " + effects.toString();
+        return costs.getRule() + " " + effects.toString();
     }
 
 }

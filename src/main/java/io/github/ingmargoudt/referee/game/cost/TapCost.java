@@ -19,4 +19,9 @@ public class TapCost implements Cost {
         }
         return false;
     }
+
+    @Override
+    public String getRule() {
+        return "(T)";
+    }
 }

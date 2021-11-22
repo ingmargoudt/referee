@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.game.ManaType;
 import io.github.ingmargoudt.referee.game.cost.Cost;
 import io.github.ingmargoudt.referee.game.cost.Costs;
 import io.github.ingmargoudt.referee.game.effects.AddManaEffect;
+import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class AddRedManaAbility extends ActivatedManaAbility {
 
-    private static final List<OneShotEffect> addManaEffect = Arrays.asList(new AddManaEffect(ManaType.RED));
+    private static final Effects<OneShotEffect> addManaEffect = new Effects<>(new AddManaEffect(ManaType.RED));
 
     public AddRedManaAbility(Cost... costs) {
         super(Costs.of(costs), addManaEffect);

@@ -29,6 +29,8 @@ public class EntersTheBattlefieldAbility extends TriggeredAbility {
 
     @Override
     public String getRule() {
-        return "When {this} enters the battlefield, " + effects.toString();
+        String effect = effects.toString();
+        effect = effect.substring(0,1).toLowerCase() + effect.substring(1);
+        return "When {this} enters the battlefield, " + effect;
     }
 }

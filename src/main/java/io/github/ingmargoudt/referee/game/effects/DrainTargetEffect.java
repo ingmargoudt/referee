@@ -28,6 +28,6 @@ public class DrainTargetEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public String getRule() {
-        return "";
+        return "{this} deals "+amount+" damage to "+targets.get(0).getRule() + " and you gain "+amount+ " life";
     }
 }

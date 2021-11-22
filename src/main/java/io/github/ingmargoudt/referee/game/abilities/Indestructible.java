@@ -12,5 +12,10 @@ public class Indestructible extends StaticAbility {
         return instance;
     }
 
+    @Override
+    public String getRule(){
+        return "Indestructible";
+    }
+
 
 }

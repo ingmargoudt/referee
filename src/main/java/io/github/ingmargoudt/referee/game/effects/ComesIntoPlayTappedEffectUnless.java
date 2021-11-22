@@ -7,11 +7,12 @@ import io.github.ingmargoudt.referee.game.events.EnterTheBattlefieldEvent;
 import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
+import io.github.ingmargoudt.referee.game.properties.Ruleable;
 
 import java.util.Arrays;
 import java.util.Objects;
 
-public class ComesIntoPlayTappedEffectUnless implements ReplacementEffect {
+public class ComesIntoPlayTappedEffectUnless implements ReplacementEffect, Ruleable {
 
     Costs costs = new Costs();
 
@@ -34,5 +35,11 @@ public class ComesIntoPlayTappedEffectUnless implements ReplacementEffect {
                 }
             });
         }
+    }
+
+    @Override
+    public String getRule() {
+        return "As {this} enters the battlefield, you may "+costs.toString() +
+                ". If you don't, it enters the battlefield tapped.";
     }
 }

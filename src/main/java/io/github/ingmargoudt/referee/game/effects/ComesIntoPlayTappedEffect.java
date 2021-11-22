@@ -18,4 +18,9 @@ public class ComesIntoPlayTappedEffect implements ReplacementEffect {
             }
         }
     }
+
+    @Override
+    public String getRule() {
+        return "{this} comes into play tapped";
+    }
 }

@@ -8,4 +8,6 @@ public interface ReplacementEffect {
 
     void repondToEvent(Game game, Event event, MagicObject parentObject);
 
+    String getRule();
+
 }

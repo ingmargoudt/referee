@@ -23,6 +23,6 @@ public class SubTypePredicate implements Predicate {
     }
 
     public String getRule() {
-        return theSubType.toString().toLowerCase();
+        return theSubType.toString().charAt(0)+ theSubType.toString().substring(1).toLowerCase()+ " ";
     }
 }

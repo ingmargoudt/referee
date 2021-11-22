@@ -24,4 +24,11 @@ class AngelOfVitalityReplacementEffect implements ReplacementEffect {
             ((GainLifeEvent) event).setAmount(((GainLifeEvent) event).getAmount() + 1);
         }
     }
+
+    @Override
+    public String getRule() {
+        return "If you would gain life, you gain that much life plus 1 instead";
+    }
+
+
 }

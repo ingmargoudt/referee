@@ -18,6 +18,10 @@ public class Effects<T extends Effect> {
 
     }
 
+    public Effects(T effect){
+        effects.add(effect);
+    }
+
     public Effects(Effects<T> spellEffects) {
         this.effects = spellEffects.effects;
     }

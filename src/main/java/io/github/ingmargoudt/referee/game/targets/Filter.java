@@ -48,6 +48,10 @@ public class Filter implements Ruleable {
     }
 
     public String getRule() {
-        return predicates.stream().map(Predicate::getRule).collect(Collectors.joining(" "));
+        String filterRule = predicates.stream().map(Predicate::getRule).collect(Collectors.joining(" "));
+        if(!filterRule.isEmpty()){
+            filterRule += " ";
+        }
+        return filterRule;
     }
 }
