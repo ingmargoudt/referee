@@ -39,7 +39,7 @@ public class Card extends MagicObject implements Targetable, Ruleable {
         }
         abilities.forEach(ability -> stringBuilder.append(ability.getRule()).append("\n"));
         cardText += stringBuilder.toString();
-        cardText += spellEffects.toString();
+        cardText += spellEffects.getRule();
         cardText = cardText.replace("{this}", name);
 
         return cardText;

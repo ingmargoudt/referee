@@ -31,8 +31,7 @@ public class Effects<T extends Effect> {
         effects.add(effect);
     }
 
-    @Override
-    public String toString() {
+    public String getRule() {
         return effects.stream().map(Ruleable::getRule).collect(Collectors.joining());
     }
 

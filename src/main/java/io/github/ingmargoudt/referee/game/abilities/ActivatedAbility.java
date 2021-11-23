@@ -29,7 +29,7 @@ public class ActivatedAbility extends Ability {
 
     @Override
     public String getRule() {
-        return costs.getRule() + " " + effects.toString();
+        return costs.getRule() + " " + effects.getRule();
     }
 
 }
