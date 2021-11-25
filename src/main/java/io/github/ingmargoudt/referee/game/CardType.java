@@ -8,7 +8,7 @@ public enum CardType implements Predicatable {
     ENCHANTMENT,
     ARTIFACT,
     INSTANT,
-    LAND;
+    LAND, SORCERY;
 
     public Predicate getPredicate() {
         return new CardTypePredicate(this);

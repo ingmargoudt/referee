@@ -3,7 +3,6 @@ package io.github.ingmargoudt.referee.game.targets;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 
@@ -11,13 +10,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class TargetCreature extends Target {
+public class TargetPermanent extends Target {
 
     Targetable theTarget;
 
+    public TargetPermanent(Filter filter) {
+        super();
+        this.filter = filter;
+    }
+
     @Override
     public List<Targetable> validTargets(Game game) {
-        return game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).map(Targetable.class::cast).filter(targetable -> filter.evaluate(targetable, game, source)).collect(Collectors.toList());
+        return game.getBattlefield().getAll().stream().map(Targetable.class::cast).filter(targetable -> filter.evaluate(targetable, game, source)).collect(Collectors.toList());
     }
 
     @Override
@@ -34,7 +38,7 @@ public class TargetCreature extends Target {
     }
 
     public String getRule() {
-        return "target " + filter.getRule() + "creature";
+        return "target " + filter.getRule();
     }
 
 

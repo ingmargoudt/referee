@@ -12,7 +12,7 @@ import java.util.UUID;
 public abstract class OneShotEffect extends Effect {
 
     private final UUID id;
-    List<Target> targets = new ArrayList<>();
+    protected List<Target> targets = new ArrayList<>();
 
 
     protected OneShotEffect() {
