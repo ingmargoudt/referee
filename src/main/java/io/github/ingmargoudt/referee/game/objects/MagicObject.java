@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
+import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Getter
-public class MagicObject extends BaseObject {
+public class MagicObject extends BaseObject implements Ruleable {
 
     /*
     109.3. An object’s characteristics are name, mana cost, color, color indicator, card type, subtype,
@@ -89,5 +91,25 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
 
     public boolean hasColor(Color color) {
         return this.color.contains(color);
+    }
+
+    public boolean isSorcery() {
+        return cardtypes.has(CardType.SORCERY);
+    }
+
+    @Override
+    public String getRule() {
+        StringBuilder stringBuilder = new StringBuilder();
+        String cardText = "";
+        cardText += replacementEffects.stream().map(ReplacementEffect::getRule).collect(Collectors.joining("\n"));
+        if(!cardText.isEmpty()){
+            cardText += "\n";
+        }
+        abilities.forEach(ability -> stringBuilder.append(ability.getRule()).append("\n"));
+        cardText += stringBuilder.toString();
+        cardText += spellEffects.getRule();
+        cardText = cardText.replace("{this}", name);
+
+        return cardText;
     }
 }

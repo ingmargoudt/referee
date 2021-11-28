@@ -1,6 +1,8 @@
 package io.github.ingmargoudt.referee;
 
+import io.github.ingmargoudt.referee.game.abilities.ManaAbilityApplier;
 import io.github.ingmargoudt.referee.game.objects.Card;
+import io.github.ingmargoudt.referee.game.objects.Permanent;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 
@@ -19,8 +21,16 @@ class Test_Rules {
 
             try {
                 Card card = (Card) theClass.getDeclaredConstructors()[0].newInstance();
-                System.out.println(card.getName());
-                System.out.println(card.getRule());
+                if(card.isPermanent()) {
+                    Permanent permanent = new Permanent(card);
+                    ManaAbilityApplier.run(permanent);
+                    System.out.println();
+                    System.out.println(permanent.getName());
+                    System.out.println(permanent.getRule());
+                }else {
+                    System.out.println(card.getName());
+                    System.out.println(card.getRule());
+                }
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {

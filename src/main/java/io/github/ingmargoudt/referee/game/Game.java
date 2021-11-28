@@ -230,7 +230,7 @@ public class Game {
             return false;
         }
         if (!stack.isEmpty()) {
-            if (card.isPermanent()) {
+            if (card.isPermanent() || card.isSorcery()) {
                 return false;
             }
         }

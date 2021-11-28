@@ -4,6 +4,7 @@ package io.github.ingmargoudt.referee.game.abilities;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.cost.TapCost;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import lombok.experimental.UtilityClass;
 
@@ -13,12 +14,16 @@ public class ManaAbilityApplier {
 
     public static void run(Game game) {
         for (Permanent permanent : game.getBattlefield().getAll()) {
-            processMountain(permanent);
-            processSwamp(permanent);
-            processPlains(permanent);
-            processIsland(permanent);
-            processForest(permanent);
+            run(permanent);
         }
+    }
+
+    public static void run(Permanent permanent){
+        processMountain(permanent);
+        processSwamp(permanent);
+        processPlains(permanent);
+        processIsland(permanent);
+        processForest(permanent);
     }
 
 

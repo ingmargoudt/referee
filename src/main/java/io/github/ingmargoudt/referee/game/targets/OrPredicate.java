@@ -28,6 +28,6 @@ public class OrPredicate implements Predicate, Ruleable {
     }
 
     public String getRule() {
-        return predicates.stream().map(Predicate::getRule).collect(Collectors.joining(" or "));
+        return predicates.stream().map(Predicate::getRule).collect(Collectors.joining("or "));
     }
 }

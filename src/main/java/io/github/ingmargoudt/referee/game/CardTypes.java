@@ -17,12 +17,11 @@ public class CardTypes {
     }
 
     public boolean isPermanent() {
-        return cardtypesList.contains(CardType.CREATURE);
+        return cardtypesList.contains(CardType.CREATURE) || cardtypesList.contains(CardType.LAND);
     }
 
     public void add(CardType... types) {
         cardtypesList.addAll(Arrays.asList(types));
-
     }
 
     public boolean isCreature() {
