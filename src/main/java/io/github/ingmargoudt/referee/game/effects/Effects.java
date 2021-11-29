@@ -14,16 +14,16 @@ public class Effects<T extends Effect> {
 
     List<T> effects = new ArrayList<>();
 
-    public Effects() {
+    public Effects(){
 
     }
 
-    public Effects(T effect){
+    public Effects(T effect) {
         effects.add(effect);
     }
 
     public Effects(Effects<T> spellEffects) {
-        this.effects = spellEffects.effects;
+        this.effects = new ArrayList<>(spellEffects.effects);
     }
 
 

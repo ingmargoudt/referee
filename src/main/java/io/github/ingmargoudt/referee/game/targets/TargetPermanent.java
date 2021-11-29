@@ -37,6 +37,7 @@ public class TargetPermanent extends Target {
         });
     }
 
+    @Override
     public String getRule() {
         return "target " + filter.getRule();
     }

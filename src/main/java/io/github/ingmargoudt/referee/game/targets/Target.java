@@ -26,8 +26,4 @@ public abstract class Target implements Ruleable {
         this.source = source;
         return this;
     }
-
-    public String getRule() {
-        return filter.getRule();
-    }
 }

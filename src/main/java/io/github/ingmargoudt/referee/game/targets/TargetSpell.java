@@ -41,6 +41,7 @@ public class TargetSpell extends Target {
         });
     }
 
+    @Override
     public String getRule() {
         return filter.getRule() + "spell";
     }

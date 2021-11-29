@@ -33,6 +33,7 @@ public class TargetCreature extends Target {
         });
     }
 
+    @Override
     public String getRule() {
         return "target " + filter.getRule() + "creature";
     }
