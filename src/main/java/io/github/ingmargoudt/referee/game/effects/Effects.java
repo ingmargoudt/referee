@@ -12,23 +12,30 @@ import java.util.stream.Collectors;
 
 public class Effects<T extends Effect> {
 
-    List<T> effects = new ArrayList<>();
+    List<Effect> effects = new ArrayList<>();
+    Class<T> effectType;
 
-    public Effects(){
-
+    public Effects(Class<T> effectType) {
+        this.effectType = effectType;
     }
 
     public Effects(T effect) {
         effects.add(effect);
+        effectType = (Class<T>) effect.getClass();
     }
 
     public Effects(Effects<T> spellEffects) {
         this.effects = new ArrayList<>(spellEffects.effects);
+        this.effectType = spellEffects.effectType;
     }
 
 
-    public void addEffect(T effect) {
-        effects.add(effect);
+    public void addEffect(Effect effect) {
+        if (effect instanceof ContinuousEffect && effectType == OneShotEffect.class) {
+            effects.add(new ContinuousEffectInitializer((ContinuousEffect) effect));
+        } else {
+            effects.add(effect);
+        }
     }
 
     public String getRule() {
@@ -36,7 +43,13 @@ public class Effects<T extends Effect> {
     }
 
     public void apply(MagicObject source, Game game) {
-        effects.forEach(effect -> effect.apply(source, game));
+        effects.forEach(effect -> {
+            if (effect instanceof ContinuousEffectInitializer) {
+                ((ContinuousEffectInitializer) effect).getContinuousEffect().lockInObjects(game, source);
+
+            }
+            effect.apply(source, game);
+        });
     }
 
     public boolean hasTargets() {

@@ -2,9 +2,11 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.abilities.*;
+import io.github.ingmargoudt.referee.game.effects.ContinuousEffect;
 import io.github.ingmargoudt.referee.game.events.EnterTheBattlefieldEvent;
 import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.Card;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.zones.Battlefield;
@@ -12,10 +14,7 @@ import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Log4j2
 public class Game {
@@ -42,9 +41,12 @@ public class Game {
     @Getter
     private Turn currentTurn;
 
+    private Map<MagicObject, ContinuousEffect> continuousEffects;
+
     public Game() {
         battlefield = new Battlefield();
         stack = new Stack(this);
+        continuousEffects = new HashMap<>();
     }
 
     public void addPlayer(Player player) {
@@ -158,6 +160,7 @@ public class Game {
     }
 
     private void applyStaticAbilities() {
+        continuousEffects.forEach((source, effect) -> effect.apply(source, this));
         for (Permanent permanent : battlefield.getAll()) {
             for (Ability ability : permanent.getAbilities()) {
                 if (ability instanceof StaticAbility) {
@@ -242,4 +245,8 @@ public class Game {
     }
 
 
+    public void addEffect(MagicObject source, ContinuousEffect continuousEffect) {
+        continuousEffect.getDuration().setTurn(this.getTurnNumber() + continuousEffect.getDuration().getDurationType().getOffset());
+        continuousEffects.put(source, continuousEffect);
+    }
 }

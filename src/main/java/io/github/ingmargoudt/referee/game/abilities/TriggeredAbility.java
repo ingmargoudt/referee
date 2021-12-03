@@ -8,7 +8,7 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 public abstract class TriggeredAbility extends Ability {
 
 
-    protected Effects<OneShotEffect> effects = new Effects<>();
+    protected Effects<OneShotEffect> effects = new Effects<>(OneShotEffect.class);
 
     protected TriggeredAbility() {
         super();

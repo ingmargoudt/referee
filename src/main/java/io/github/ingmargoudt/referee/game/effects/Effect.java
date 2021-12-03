@@ -8,4 +8,5 @@ public abstract class Effect implements Ruleable {
 
 
     public abstract void apply(MagicObject source, Game game);
+
 }

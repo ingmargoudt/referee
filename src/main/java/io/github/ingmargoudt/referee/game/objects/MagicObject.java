@@ -57,7 +57,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         subTypes = new SubTypes();
         superTypes = new SuperTypes();
         abilities = new Abilities();
-        spellEffects = new Effects<>();
+        spellEffects = new Effects<>(OneShotEffect.class);
         replacementEffects = new ArrayList<>();
     }
 

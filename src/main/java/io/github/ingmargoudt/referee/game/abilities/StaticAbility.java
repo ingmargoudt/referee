@@ -4,12 +4,16 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.ContinuousEffect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.properties.DurationType;
+import io.github.ingmargoudt.referee.game.targets.Filter;
 import lombok.Getter;
+
+import java.util.UUID;
 
 @Getter
 public class StaticAbility extends Ability {
 
-    Effects<ContinuousEffect> effects = new Effects<>();
+    Effects<ContinuousEffect> effects = new Effects<>(ContinuousEffect.class);
 
     public StaticAbility() {
         super();
@@ -29,4 +33,6 @@ public class StaticAbility extends Ability {
     public String getRule() {
         return effects.getRule();
     }
+
+
 }
