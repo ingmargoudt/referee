@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
+import io.github.ingmargoudt.referee.game.properties.DurationType;
 import io.github.ingmargoudt.referee.players.Player;
 
 public enum Phase {
@@ -34,6 +35,7 @@ public enum Phase {
         @Override
         void run(Game game) {
             startMessage(game);
+            game.getContinuousEffects().values().removeIf(continuousEffect -> continuousEffect.getDuration().getDurationType() == DurationType.UNTIL_END_OF_TURN && continuousEffect.getDuration().getTurn() == game.getTurnNumber());
 
         }
     };

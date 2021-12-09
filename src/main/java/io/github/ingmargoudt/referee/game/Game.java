@@ -41,6 +41,7 @@ public class Game {
     @Getter
     private Turn currentTurn;
 
+    @Getter
     private Map<MagicObject, ContinuousEffect> continuousEffects;
 
     public Game() {

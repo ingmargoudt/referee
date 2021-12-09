@@ -9,6 +9,7 @@ import io.github.ingmargoudt.referee.game.properties.DurationType;
 import io.github.ingmargoudt.referee.game.targets.ControlledByPlayerSelector;
 import io.github.ingmargoudt.referee.game.targets.Filter;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class BoostAllControlledCreatures extends ContinuousEffect {
@@ -31,8 +32,12 @@ public class BoostAllControlledCreatures extends ContinuousEffect {
 
     @Override
     public void lockInObjects(Game game, MagicObject source){
-        getAffectedObjects().addAll(game.getBattlefield().getAll().stream().filter(f -> filter.evaluate(f, game, source)).collect(Collectors.toList()));
+        getAffectedObjects().addAll(search(game, source));
         setAffectedObjectsDetermined(true);
+    }
+
+    private List<Permanent> search(Game game, MagicObject source) {
+        return game.getBattlefield().getAll().stream().filter(f -> filter.evaluate(f, game, source)).collect(Collectors.toList());
     }
 
 
@@ -40,7 +45,7 @@ public class BoostAllControlledCreatures extends ContinuousEffect {
 
         game.getPlayer(source.getController()).ifPresent(controller -> {
             if(getDuration().getDurationType() == DurationType.CONTINUOUS) {
-                for (Permanent permanent : game.getBattlefield().getAll().stream().filter(f -> filter.evaluate(f, game, source)).collect(Collectors.toList())) {
+                for (Permanent permanent : search(game, source)) {
                     EventBus.report("Applying " + source.getName() + " " + getClass().getSimpleName() + " to " + controller.getName() + "'s " + permanent.getName());
                     permanent.setPower(permanent.getPower() + power);
                     permanent.setToughness(permanent.getToughness() + toughness);
