@@ -10,6 +10,7 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.zones.Battlefield;
+import io.github.ingmargoudt.referee.game.zones.Zone;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -127,7 +128,7 @@ public class Game {
         stack.putOnStack(spell);
     }
 
-    public void putOnStack(ActivatedAbility activatedAbility, Permanent source){
+    public void putOnStack(ActivatedAbility activatedAbility, MagicObject source){
         stack.putOnStack(new StackAbility(activatedAbility, source));
     }
 
@@ -228,11 +229,11 @@ public class Game {
         });
     }
 
-    public boolean isPlayable(Player player, ActivatedAbility ability, Permanent permanent){
+    public boolean isPlayable(Player player, ActivatedAbility ability, MagicObject magicObject){
         if (!player.getId().equals(playerWithPriority)) {
             return false;
         }
-        if(!ability.canBePlayed(permanent, ability, this)){
+        if(!ability.canBePlayed(magicObject, this)){
             return false;
         }
         return true;
@@ -264,5 +265,23 @@ public class Game {
         continuousEffect.getDuration().setTurn(this.getTurnNumber() + continuousEffect.getDuration().getDurationType().getOffset());
         continuousEffects.putIfAbsent(source, new ArrayList<>());
         continuousEffects.get(source).add(continuousEffect);
+    }
+
+    public Zone locate(MagicObject object) {
+        if(object instanceof Permanent){
+            if(getBattlefield().getAll().stream().anyMatch(p->p.getId().equals(object.getId()))){
+                return Zone.BATTLEFIELD;
+            }
+        }
+        if(object instanceof Card){
+            Optional<Player> controller = getPlayer(object.getController());
+            if(controller.isPresent()){
+                if(controller.get().getHand().getCards().contains(object)) {
+                    return Zone.HAND;
+                }
+            }
+
+        }
+        return null;
     }
 }

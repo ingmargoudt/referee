@@ -22,6 +22,7 @@ import java.util.UUID;
 public class Player extends BaseObject implements Targetable, Damageable {
 
     private final String name;
+    @Getter
     protected Hand hand = new Hand();
     protected Game gameReference;
     private Library library;
@@ -84,7 +85,8 @@ public class Player extends BaseObject implements Targetable, Damageable {
 
     }
 
-    public void activateAbility(ActivatedAbility activatedAbility, Permanent source){
+    public void activateAbility(ActivatedAbility activatedAbility, MagicObject source){
+        activatedAbility.payCosts(source, gameReference);
         gameReference.putOnStack(activatedAbility, source);
     }
 
@@ -147,5 +149,11 @@ public class Player extends BaseObject implements Targetable, Damageable {
 
     public UUID getController() {
         throw new IllegalArgumentException();
+    }
+
+    public void discard(Card card) {
+        EventBus.report(getName() + " discards "+card.getName());
+        hand.remove(card);
+        putCardInGraveyard(card);
     }
 }

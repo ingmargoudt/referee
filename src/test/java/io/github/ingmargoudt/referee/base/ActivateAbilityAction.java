@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.base;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
 import io.github.ingmargoudt.referee.game.objects.Card;
+import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import lombok.Getter;
@@ -16,10 +17,10 @@ public class ActivateAbilityAction extends TestPlayerAction {
     private ActivatedAbility activatedAbility;
 
     @Getter
-    private Permanent source;
+    private MagicObject source;
 
 
-    public ActivateAbilityAction(int turn, Phase phase, ActivatedAbility activatedAbility, Permanent source) {
+    public ActivateAbilityAction(int turn, Phase phase, ActivatedAbility activatedAbility, MagicObject source) {
         super(turn, phase);
         this.activatedAbility = activatedAbility;
         this.source = source;

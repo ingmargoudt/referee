@@ -80,6 +80,14 @@ public class BaseGame {
                         }
                     }
                 });
+        Iterator<Ability> cardAbilities = card.getAbilities().iterator();
+        while (cardAbilities.hasNext()) {
+            Ability ability = cardAbilities.next();
+            if (ability instanceof ActivatedAbility) {
+                player.addAction(new ActivateAbilityAction(1, phase, (ActivatedAbility) ability, card));
+                return;
+            }
+        }
     }
 
 

@@ -19,7 +19,7 @@ public class StackAbility implements Stackable {
         this.source = source;
     }
 
-    public StackAbility(ActivatedAbility ability, Permanent source){
+    public StackAbility(ActivatedAbility ability, MagicObject source){
         this.stackableAbility = ability;
         this.source = source;
     }
