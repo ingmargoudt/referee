@@ -69,8 +69,9 @@ public class BaseGame {
     }
 
     protected void activateAbility(int turn, Phase phase, TestPlayer player, Card card) {
-        findPermanentByCard(player, card)
-                .ifPresent(permanent -> {
+        Optional<Permanent> p = findPermanentByCard(player, card);
+        if(p.isPresent()){
+            Permanent permanent = p.get();
                     Iterator<Ability> iterator = permanent.getAbilities().iterator();
                     while (iterator.hasNext()) {
                         Ability ability = iterator.next();
@@ -79,13 +80,15 @@ public class BaseGame {
                             return;
                         }
                     }
-                });
-        Iterator<Ability> cardAbilities = card.getAbilities().iterator();
-        while (cardAbilities.hasNext()) {
-            Ability ability = cardAbilities.next();
-            if (ability instanceof ActivatedAbility) {
-                player.addAction(new ActivateAbilityAction(1, phase, (ActivatedAbility) ability, card));
-                return;
+                }
+        else {
+            Iterator<Ability> cardAbilities = card.getAbilities().iterator();
+            while (cardAbilities.hasNext()) {
+                Ability ability = cardAbilities.next();
+                if (ability instanceof ActivatedAbility) {
+                    player.addAction(new ActivateAbilityAction(1, phase, (ActivatedAbility) ability, card));
+                    return;
+                }
             }
         }
     }
