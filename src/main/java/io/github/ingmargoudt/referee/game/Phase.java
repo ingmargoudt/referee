@@ -35,7 +35,10 @@ public enum Phase {
         @Override
         void run(Game game) {
             startMessage(game);
-            game.getContinuousEffects().values().removeIf(continuousEffect -> continuousEffect.getDuration().getDurationType() == DurationType.UNTIL_END_OF_TURN && continuousEffect.getDuration().getTurn() == game.getTurnNumber());
+            game.getContinuousEffects().values()
+                    .forEach(continuousEffectSource ->
+                            continuousEffectSource.removeIf(continuousEffect -> continuousEffect.getDuration().getDurationType() == DurationType.UNTIL_END_OF_TURN
+                                    && continuousEffect.getDuration().getTurn() == game.getTurnNumber()));
 
         }
     };

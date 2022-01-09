@@ -42,7 +42,7 @@ public class Game {
     private Turn currentTurn;
 
     @Getter
-    private Map<MagicObject, ContinuousEffect> continuousEffects;
+    private Map<MagicObject, List<ContinuousEffect>> continuousEffects;
 
     public Game() {
         battlefield = new Battlefield();
@@ -165,7 +165,7 @@ public class Game {
     }
 
     private void applyStaticAbilities() {
-        continuousEffects.forEach((source, effect) -> effect.apply(source, this));
+        continuousEffects.forEach((source, effects) -> effects.forEach(effect -> effect.apply(source, this)));
         for (Permanent permanent : battlefield.getAll()) {
             for (Ability ability : permanent.getAbilities()) {
                 if (ability instanceof StaticAbility) {
@@ -262,6 +262,7 @@ public class Game {
 
     public void addEffect(MagicObject source, ContinuousEffect continuousEffect) {
         continuousEffect.getDuration().setTurn(this.getTurnNumber() + continuousEffect.getDuration().getDurationType().getOffset());
-        continuousEffects.put(source, continuousEffect);
+        continuousEffects.putIfAbsent(source, new ArrayList<>());
+        continuousEffects.get(source).add(continuousEffect);
     }
 }
