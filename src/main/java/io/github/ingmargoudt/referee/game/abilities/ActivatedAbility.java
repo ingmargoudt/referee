@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.game.effects.Effect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.objects.Permanent;
 
 import java.util.List;
 
@@ -38,4 +39,7 @@ public class ActivatedAbility extends StackableAbility {
         return costs.getRule() + " " + effects.getRule();
     }
 
+    public boolean canBePlayed(Permanent permanent, Ability ability, Game game) {
+        return costs.canPay(permanent , game);
+    }
 }

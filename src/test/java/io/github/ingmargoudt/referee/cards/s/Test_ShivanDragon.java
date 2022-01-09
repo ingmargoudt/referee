@@ -17,4 +17,15 @@ public class Test_ShivanDragon extends BaseGame {
         start();
         assertPermanentPower(Zone.BATTLEFIELD, player1, shivanDragon, 6);
     }
+
+    @Test
+    void boostTwicee(){
+        Card shivanDragon = new ShivanDragon();
+        addCard(Zone.BATTLEFIELD, player1, shivanDragon);
+        activateAbility(1, Phase.PRECOMBAT_MAINPHASE, player1, shivanDragon);
+        activateAbility(1, Phase.PRECOMBAT_MAINPHASE, player1, shivanDragon);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertPermanentPower(Zone.BATTLEFIELD, player1, shivanDragon, 7);
+    }
 }

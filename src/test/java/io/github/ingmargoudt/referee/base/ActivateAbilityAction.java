@@ -15,6 +15,7 @@ public class ActivateAbilityAction extends TestPlayerAction {
     @Getter
     private ActivatedAbility activatedAbility;
 
+    @Getter
     private Permanent source;
 
 
@@ -27,7 +28,7 @@ public class ActivateAbilityAction extends TestPlayerAction {
 
 
     public String toString() {
-        return "Activating " + activatedAbility.toString();
+        return "Activating " + activatedAbility.getClass().getSimpleName();
     }
 
     @Override

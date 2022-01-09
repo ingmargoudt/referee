@@ -228,6 +228,16 @@ public class Game {
         });
     }
 
+    public boolean isPlayable(Player player, ActivatedAbility ability, Permanent permanent){
+        if (!player.getId().equals(playerWithPriority)) {
+            return false;
+        }
+        if(!ability.canBePlayed(permanent, ability, this)){
+            return false;
+        }
+        return true;
+    }
+
 
     public boolean isPlayable(Player player, Card card) {
 

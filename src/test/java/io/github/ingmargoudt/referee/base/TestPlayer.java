@@ -74,7 +74,7 @@ public class TestPlayer extends Player {
                     playerActionIterator.remove();
                     return;
                 }
-                if(action instanceof ActivateAbilityAction){
+                if(action instanceof ActivateAbilityAction && gameReference.isPlayable(this, ((ActivateAbilityAction) action).getActivatedAbility(), ((ActivateAbilityAction) action).getSource())){
                     action.execute(this);
                     playerActionIterator.remove();
                     return;
