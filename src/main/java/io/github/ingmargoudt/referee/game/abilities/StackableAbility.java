@@ -5,14 +5,8 @@ import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
-public abstract class TriggeredAbility extends StackableAbility {
+public abstract class StackableAbility extends Ability {
 
-
-
-    protected TriggeredAbility() {
-        super();
-    }
-
-    public abstract boolean checkTrigger(Event event, MagicObject parentObject);
+    protected Effects<OneShotEffect> effects = new Effects<>(OneShotEffect.class);
 
 }

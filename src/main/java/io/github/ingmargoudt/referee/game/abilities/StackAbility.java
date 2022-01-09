@@ -10,18 +10,22 @@ import java.util.UUID;
 
 public class StackAbility implements Stackable {
 
-    TriggeredAbility triggeredAbility;
+    StackableAbility stackableAbility;
     MagicObject source;
 
     public StackAbility(TriggeredAbility ability, MagicObject source) {
-        this.triggeredAbility = ability;
+        this.stackableAbility = ability;
         this.source = source;
+    }
+
+    public StackAbility(ActivatedAbility ability){
+        this.stackableAbility = ability;
     }
 
 
     @Override
     public void resolve(Game game) {
-        triggeredAbility.resolve(source, game);
+        stackableAbility.resolve(source, game);
     }
 
     @Override
@@ -31,7 +35,7 @@ public class StackAbility implements Stackable {
 
     @Override
     public UUID getId() {
-        return triggeredAbility.getId();
+        return stackableAbility.getId();
     }
 
     @Override
@@ -41,7 +45,7 @@ public class StackAbility implements Stackable {
 
     @Override
     public String getName() {
-        return triggeredAbility.getClass().getSimpleName() + " of " + source.getName();
+        return stackableAbility.getClass().getSimpleName() + " of " + source.getName();
     }
 
     @Override
@@ -51,6 +55,6 @@ public class StackAbility implements Stackable {
 
     @Override
     public Effects<OneShotEffect> getEffects() {
-        return triggeredAbility.effects;
+        return stackableAbility.effects;
     }
 }

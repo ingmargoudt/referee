@@ -9,7 +9,7 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
 import java.util.List;
 
-public class ActivatedAbility extends Ability {
+public class ActivatedAbility extends StackableAbility {
 
     protected Costs costs;
     protected Effects<OneShotEffect> effects;

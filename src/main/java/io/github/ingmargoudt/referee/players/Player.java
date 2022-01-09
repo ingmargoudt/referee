@@ -3,6 +3,8 @@ package io.github.ingmargoudt.referee.players;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.Manapool;
+import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
+import io.github.ingmargoudt.referee.game.abilities.StackAbility;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
 import io.github.ingmargoudt.referee.game.objects.BaseObject;
 import io.github.ingmargoudt.referee.game.objects.Card;
@@ -83,6 +85,10 @@ public class Player extends BaseObject implements Targetable, Damageable {
             EventBus.report(card.getName() + " not found in " + getName() + "'s hand");
         }
 
+    }
+
+    public void activateAbility(ActivatedAbility activatedAbility){
+        gameReference.putOnStack(activatedAbility);
     }
 
 

@@ -127,6 +127,10 @@ public class Game {
         stack.putOnStack(spell);
     }
 
+    public void putOnStack(ActivatedAbility activatedAbility){
+        stack.putOnStack(new StackAbility(activatedAbility));
+    }
+
     public Optional<Player> getPlayer(UUID controller) {
         return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst();
     }
