@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 
 import java.util.UUID;
@@ -18,8 +19,9 @@ public class StackAbility implements Stackable {
         this.source = source;
     }
 
-    public StackAbility(ActivatedAbility ability){
+    public StackAbility(ActivatedAbility ability, Permanent source){
         this.stackableAbility = ability;
+        this.source = source;
     }
 
 

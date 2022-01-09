@@ -74,6 +74,11 @@ public class TestPlayer extends Player {
                     playerActionIterator.remove();
                     return;
                 }
+                if(action instanceof ActivateAbilityAction){
+                    action.execute(this);
+                    playerActionIterator.remove();
+                    return;
+                }
             }
             ;
         }

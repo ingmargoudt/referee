@@ -6,10 +6,7 @@ import io.github.ingmargoudt.referee.game.Manapool;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
 import io.github.ingmargoudt.referee.game.abilities.StackAbility;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
-import io.github.ingmargoudt.referee.game.objects.BaseObject;
-import io.github.ingmargoudt.referee.game.objects.Card;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
-import io.github.ingmargoudt.referee.game.objects.Spell;
+import io.github.ingmargoudt.referee.game.objects.*;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.game.zones.Graveyard;
@@ -87,8 +84,8 @@ public class Player extends BaseObject implements Targetable, Damageable {
 
     }
 
-    public void activateAbility(ActivatedAbility activatedAbility){
-        gameReference.putOnStack(activatedAbility);
+    public void activateAbility(ActivatedAbility activatedAbility, Permanent source){
+        gameReference.putOnStack(activatedAbility, source);
     }
 
 

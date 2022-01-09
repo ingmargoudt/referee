@@ -127,8 +127,8 @@ public class Game {
         stack.putOnStack(spell);
     }
 
-    public void putOnStack(ActivatedAbility activatedAbility){
-        stack.putOnStack(new StackAbility(activatedAbility));
+    public void putOnStack(ActivatedAbility activatedAbility, Permanent source){
+        stack.putOnStack(new StackAbility(activatedAbility, source));
     }
 
     public Optional<Player> getPlayer(UUID controller) {

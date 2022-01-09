@@ -5,6 +5,7 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.SubTypes;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
+import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
@@ -66,6 +67,21 @@ public class BaseGame {
     protected void castSpell(int turn, Phase phase, TestPlayer player, Card card) {
         player.addAction(new CastSpellAction(turn, phase, card));
     }
+
+    protected void activateAbility(int turn, Phase phase, TestPlayer player, Card card) {
+        findPermanentByCard(player, card)
+                .ifPresent(permanent -> {
+                    Iterator<Ability> iterator = permanent.getAbilities().iterator();
+                    while (iterator.hasNext()) {
+                        Ability ability = iterator.next();
+                        if (ability instanceof ActivatedAbility) {
+                            player.addAction(new ActivateAbilityAction(1, phase, (ActivatedAbility) ability, permanent));
+                            return;
+                        }
+                    }
+                });
+    }
+
 
     protected void castSpell(int turn, Phase phase, TestPlayer player, Card card, Targetable targetable) {
         player.addAction(new CastSpellAction(turn, phase, card, targetable));
@@ -158,7 +174,8 @@ public class BaseGame {
 
     }
 
-    protected void assertPermanentHasAbility(TestPlayer thePlayer, Card theCard, Class<? extends Ability> theAbility) {
+    protected void assertPermanentHasAbility(TestPlayer thePlayer, Card theCard, Class<? extends
+            Ability> theAbility) {
         for (Permanent permanent : game.getBattlefield().getAll()) {
             if (permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())) {
                 assertThat(permanent.hasAbility(theAbility)).as(theCard.getName() + " does not have the " + theAbility.getSimpleName()).isTrue();

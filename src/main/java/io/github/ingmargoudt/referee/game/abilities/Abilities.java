@@ -16,8 +16,6 @@ public class Abilities implements Iterable<Ability> {
 
     public boolean has(Class<? extends Ability> abilityClass) {
         return abilityList.stream().map(Ability::getClass).anyMatch(cl -> cl.equals(abilityClass));
-
-
     }
 
     public void add(Ability ability) {
