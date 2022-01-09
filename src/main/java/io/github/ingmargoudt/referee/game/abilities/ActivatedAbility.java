@@ -21,6 +21,12 @@ public class ActivatedAbility extends Ability {
 
     }
 
+    public ActivatedAbility(Costs costs, Effect effect){
+        this.costs = costs;
+        effects = new Effects<>(OneShotEffect.class);
+        effects.addEffect(effect);
+    }
+
 
     @Override
     public void resolve(MagicObject source, Game game) {

@@ -6,34 +6,33 @@ import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.DurationType;
 import io.github.ingmargoudt.referee.game.targets.Filter;
 
-public class BoostThisCreatureEffect extends ContinuousEffect {
+public class BoostThisCreatureForEachEffect extends ContinuousEffect {
 
     final int power;
     final int toughness;
 
-    public BoostThisCreatureEffect(int power, int toughness, DurationType durationType) {
-        super(durationType);
+    public BoostThisCreatureForEachEffect(int power, int toughness, Filter filter) {
         this.power = power;
         this.toughness = toughness;
-
+        this.filter = filter;
     }
-
 
     @Override
     public void apply(MagicObject source, Game game) {
 
         if (source instanceof Permanent) {
+            int amount = (int) game.getBattlefield().getAll().stream().filter(p -> filter.evaluate(p, game, source)).count();
             if (power > 0) {
-                source.setPower(source.getPower() +  power);
+                source.setPower(amount * power);
             }
             if (toughness > 0) {
-                source.setToughness(source.getToughness() + toughness);
+                source.setToughness(amount * toughness);
             }
         }
     }
 
     public String getRule() {
-        return "{this} gets +" + power + "/+" + toughness + getDuration().toString();
+        return "{this} gets +" + power + "/+" + toughness + " for each " + filter.getRule();
     }
 
 }
