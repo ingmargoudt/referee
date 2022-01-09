@@ -23,6 +23,6 @@ public class ManaCost implements Cost {
 
     @Override
     public String getRule() {
-        return null;
+        return type;
     }
 }
