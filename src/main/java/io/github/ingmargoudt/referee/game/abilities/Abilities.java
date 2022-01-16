@@ -33,4 +33,8 @@ public class Abilities implements Iterable<Ability> {
     public void clear() {
         abilityList.clear();
     }
+
+    public int count() {
+        return abilityList.size();
+    }
 }

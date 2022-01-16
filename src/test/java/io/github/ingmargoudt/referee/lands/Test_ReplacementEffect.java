@@ -5,6 +5,7 @@ import io.github.ingmargoudt.referee.cards.a.AngelOfVitality;
 import io.github.ingmargoudt.referee.cards.a.AngelsMercy;
 import io.github.ingmargoudt.referee.cards.b.BloodCrypt;
 import io.github.ingmargoudt.referee.cards.b.BloodMoon;
+import io.github.ingmargoudt.referee.cards.b.BloodSun;
 import io.github.ingmargoudt.referee.cards.f.ForsakenSanctuary;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.SubType;
@@ -101,5 +102,17 @@ class Test_ReplacementEffect extends BaseGame {
         start();
         assertLife(player1, 28);
 
+    }
+
+    @Test
+    void bloodSun(){
+        Card bloodSun = new BloodSun();
+        addCard(Zone.HAND, player1, bloodSun);
+        Card forsakenSanctuary = new ForsakenSanctuary();
+        addCard(Zone.BATTLEFIELD, player1, forsakenSanctuary);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bloodSun);
+        stopAt(1, Phase.POSTCOMBAT_MAINPHASE);
+        start();
+        assertAbilityCount(player1, forsakenSanctuary, 0);
     }
 }

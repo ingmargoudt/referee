@@ -70,18 +70,17 @@ public class BaseGame {
 
     protected void activateAbility(int turn, Phase phase, TestPlayer player, Card card) {
         Optional<Permanent> p = findPermanentByCard(player, card);
-        if(p.isPresent()){
+        if (p.isPresent()) {
             Permanent permanent = p.get();
-                    Iterator<Ability> iterator = permanent.getAbilities().iterator();
-                    while (iterator.hasNext()) {
-                        Ability ability = iterator.next();
-                        if (ability instanceof ActivatedAbility) {
-                            player.addAction(new ActivateAbilityAction(1, phase, (ActivatedAbility) ability, permanent));
-                            return;
-                        }
-                    }
+            Iterator<Ability> iterator = permanent.getAbilities().iterator();
+            while (iterator.hasNext()) {
+                Ability ability = iterator.next();
+                if (ability instanceof ActivatedAbility) {
+                    player.addAction(new ActivateAbilityAction(1, phase, (ActivatedAbility) ability, permanent));
+                    return;
                 }
-        else {
+            }
+        } else {
             Iterator<Ability> cardAbilities = card.getAbilities().iterator();
             while (cardAbilities.hasNext()) {
                 Ability ability = cardAbilities.next();
@@ -191,6 +190,14 @@ public class BaseGame {
             if (permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())) {
                 assertThat(permanent.hasAbility(theAbility)).as(theCard.getName() + " does not have the " + theAbility.getSimpleName()).isTrue();
                 log.info(theCard.getName() + " of " + thePlayer.getName() + " has the " + theAbility.getSimpleName());
+            }
+        }
+    }
+
+    protected void assertAbilityCount(TestPlayer thePlayer, Card theCard, int count) {
+        for (Permanent permanent : game.getBattlefield().getAll()) {
+            if (permanent.isControlledBy(thePlayer) && permanent.getName().equals(theCard.getName())) {
+                assertThat(permanent.getAbilities().count() + permanent.getReplacementEffects().size()).isEqualTo(count);
             }
         }
     }

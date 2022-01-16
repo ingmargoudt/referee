@@ -17,7 +17,7 @@ public class CardTypes {
     }
 
     public boolean isPermanent() {
-        return cardtypesList.contains(CardType.CREATURE) || cardtypesList.contains(CardType.LAND);
+        return cardtypesList.contains(CardType.CREATURE) || cardtypesList.contains(CardType.LAND) || cardtypesList.contains(CardType.ENCHANTMENT);
     }
 
     public void add(CardType... types) {
