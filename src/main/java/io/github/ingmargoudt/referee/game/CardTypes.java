@@ -6,15 +6,16 @@ import java.util.List;
 
 public class CardTypes {
 
-    private List<CardType> cardtypesList = new ArrayList<>();
+    private final List<CardType> cardtypesList = new ArrayList<>();
 
     public CardTypes() {
 
     }
 
-    public CardTypes(List<CardType> cardTypes) {
-        this.cardtypesList.addAll(cardTypes);
+    public int count(){
+        return cardtypesList.size();
     }
+
 
     public boolean isPermanent() {
         return cardtypesList.contains(CardType.CREATURE) || cardtypesList.contains(CardType.LAND) || cardtypesList.contains(CardType.ENCHANTMENT);

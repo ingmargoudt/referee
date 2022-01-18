@@ -2,7 +2,7 @@ package io.github.ingmargoudt.referee.game.abilities;
 
 public class Indestructible extends StaticAbility {
 
-    private static Indestructible instance = new Indestructible();
+    private static final Indestructible instance = new Indestructible();
 
     private Indestructible() {
         super();

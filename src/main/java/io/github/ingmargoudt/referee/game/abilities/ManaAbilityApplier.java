@@ -4,7 +4,6 @@ package io.github.ingmargoudt.referee.game.abilities;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.cost.TapCost;
-import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import lombok.experimental.UtilityClass;
 

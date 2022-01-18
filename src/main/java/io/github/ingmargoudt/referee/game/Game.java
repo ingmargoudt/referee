@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Log4j2
 public class Game {
@@ -43,7 +44,7 @@ public class Game {
     private Turn currentTurn;
 
     @Getter
-    private Map<MagicObject, List<ContinuousEffect>> continuousEffects;
+    private final Map<MagicObject, List<ContinuousEffect>> continuousEffects;
 
     public Game() {
         battlefield = new Battlefield();
@@ -147,6 +148,7 @@ public class Game {
 
     public void setPriority(UUID playerId) {
         playerWithPriority = playerId;
+        EventBus.report(battlefield.getAll().stream().map(p->p.getName()).collect(Collectors.joining()));
         getPlayer(playerWithPriority).ifPresent(player -> {
 
             EventBus.report(player.getName() + " gets priority");
@@ -233,10 +235,7 @@ public class Game {
         if (!player.getId().equals(playerWithPriority)) {
             return false;
         }
-        if(!ability.canBePlayed(magicObject, this)){
-            return false;
-        }
-        return true;
+        return ability.canBePlayed(magicObject, this);
     }
 
 
@@ -249,9 +248,7 @@ public class Game {
             return false;
         }
         if (!stack.isEmpty()) {
-            if (card.isPermanent() || card.isSorcery()) {
-                return false;
-            }
+            return !card.isPermanent() && !card.isSorcery();
         }
         return true;
     }

@@ -7,9 +7,6 @@ import io.github.ingmargoudt.referee.game.effects.AddManaEffect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class AddBlackManaAbility extends ActivatedManaAbility {
 
     private static final Effects<OneShotEffect> addManaEffect = new Effects<>(new AddManaEffect(ManaType.BLACK));

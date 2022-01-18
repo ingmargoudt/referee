@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Battlefield {
 
-    private List<Permanent> permanents = new ArrayList<>();
+    private final List<Permanent> permanents = new ArrayList<>();
 
     public void add(Permanent permanent) {
         permanents.add(permanent);

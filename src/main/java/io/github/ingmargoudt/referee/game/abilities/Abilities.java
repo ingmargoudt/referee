@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Abilities implements Iterable<Ability> {
 
-    private List<Ability> abilityList = new ArrayList<>();
+    private final List<Ability> abilityList = new ArrayList<>();
 
     @Override
     public Iterator<Ability> iterator() {

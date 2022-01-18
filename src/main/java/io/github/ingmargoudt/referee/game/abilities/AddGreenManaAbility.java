@@ -7,11 +7,8 @@ import io.github.ingmargoudt.referee.game.effects.AddManaEffect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class AddGreenManaAbility extends ActivatedManaAbility {
-    private static final Effects<OneShotEffect> addManaEffect = new Effects(new AddManaEffect(ManaType.GREEN));
+    private static final Effects<OneShotEffect> addManaEffect = new Effects<>(new AddManaEffect(ManaType.GREEN));
 
     public AddGreenManaAbility(Cost... costs) {
         super(Costs.of(costs), addManaEffect);

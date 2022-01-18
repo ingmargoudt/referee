@@ -5,7 +5,7 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
 public class YouGainLifeEffect extends OneShotEffect {
 
-    private int amount;
+    private final int amount;
 
     public YouGainLifeEffect(int amount) {
         this.amount = amount;

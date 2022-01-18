@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class Turn {
 
-    private LinkedList<Phase> phases = new LinkedList<>();
+    private final LinkedList<Phase> phases = new LinkedList<>();
     @Getter
     private Phase currentPhase;
 

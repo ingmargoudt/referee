@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Spell extends MagicObject implements Stackable, Counterable, Targetable {
 
     @Getter
-    private Card card;
+    private final Card card;
 
 
     public Spell(Card card) {

@@ -3,7 +3,6 @@ package io.github.ingmargoudt.referee.game.targets;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 

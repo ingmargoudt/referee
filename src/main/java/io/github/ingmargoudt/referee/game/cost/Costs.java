@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class Costs implements Ruleable {
 
-    private List<Cost> theCosts = new ArrayList<>();
+    private final List<Cost> theCosts = new ArrayList<>();
 
     public static Costs of(Cost... costs) {
         Costs c = new Costs();

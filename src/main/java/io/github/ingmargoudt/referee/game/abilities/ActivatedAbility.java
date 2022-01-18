@@ -6,15 +6,11 @@ import io.github.ingmargoudt.referee.game.effects.Effect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
-import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.zones.Zone;
-
-import java.util.List;
 
 public class ActivatedAbility extends StackableAbility {
 
     protected Costs costs;
-    protected Effects<OneShotEffect> effects;
     protected Zone activatedFrom = Zone.BATTLEFIELD;
 
     public ActivatedAbility(Costs costs, Effects<OneShotEffect> effects) {

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class EventBus {
 
-    private static List<EventListener> listeners = new ArrayList<>();
+    private static final List<EventListener> listeners = new ArrayList<>();
 
     private EventBus() {
     }

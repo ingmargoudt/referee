@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 
 public class Stack {
 
-    private LinkedList<Stackable> stackEntries = new LinkedList<>();
+    private final LinkedList<Stackable> stackEntries = new LinkedList<>();
 
-    private Game game;
-    private List<UUID> passed = new ArrayList<>();
+    private final Game game;
+    private final List<UUID> passed = new ArrayList<>();
 
 
     public Stack(Game game) {

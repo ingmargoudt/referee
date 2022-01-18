@@ -15,5 +15,6 @@ public class Test_FlameJet extends BaseGame {
         activateAbility(1, Phase.PRECOMBAT_MAINPHASE, player1, flameJet);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
+        assertGraveyard(player1, flameJet);
     }
 }

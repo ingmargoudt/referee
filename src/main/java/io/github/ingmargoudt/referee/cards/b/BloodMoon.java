@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.cards.b;
 
+import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
@@ -11,6 +12,7 @@ public class BloodMoon extends Card {
 
     public BloodMoon() {
         super("Blood Moon");
+        cardtypes.add(CardType.ENCHANTMENT);
         addAbility(new StaticAbility(new BloodMoonEffect()));
     }
 

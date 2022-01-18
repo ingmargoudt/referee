@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
 
-    private int amount;
+    private final int amount;
 
     public DamageTargetEffect(int amount, Target target) {
         this.amount = amount;

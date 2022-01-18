@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Library {
 
-    private LinkedList<Card> cards = new LinkedList<>();
+    private final LinkedList<Card> cards = new LinkedList<>();
 
     public Library(List<Card> cardList) {
         for (Card c : cardList) {

@@ -4,7 +4,6 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.DurationType;
-import io.github.ingmargoudt.referee.game.targets.Filter;
 
 public class BoostThisCreatureEffect extends ContinuousEffect {
 
