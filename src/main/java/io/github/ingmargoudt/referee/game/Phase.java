@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
+import io.github.ingmargoudt.referee.game.events.AtTheBeginningOfStepEvent;
 import io.github.ingmargoudt.referee.game.properties.DurationType;
 import io.github.ingmargoudt.referee.players.Player;
 
@@ -8,6 +9,7 @@ public enum Phase {
     BEGINNING_PHASE {
         public void run(Game game) {
             startMessage(game);
+            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.UPKEEP, game.getActivePlayer().get().getId()));
         }
     },
     PRECOMBAT_MAINPHASE {

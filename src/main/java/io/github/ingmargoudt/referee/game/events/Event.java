@@ -11,4 +11,8 @@ public abstract class Event {
     protected Event(MagicObject source) {
         this.source = source;
     }
+
+    protected Event(){
+
+    }
 }
