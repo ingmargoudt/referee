@@ -35,7 +35,7 @@ jobs:
           java-version: 8
       - run: mvn -B verify -P coverage --no-transfer-progress
 
-      - uses: codecov/codecov-action@v2.1.0
+      - uses: codecov/codecov-action@v3.0.0
         with:
           name: codecov
 
