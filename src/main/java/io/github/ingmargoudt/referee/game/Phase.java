@@ -50,7 +50,7 @@ public enum Phase {
     void startMessage(Game game) {
 
             EventBus.report(game.getActivePlayer().getName() + " starts " + this);
-            game.setPriority(game.getActivePlayer().getId());
+            game.setPriority(game.getActivePlayer());
 
     }
 
@@ -63,7 +63,7 @@ chance to add new things to the stack before that phase or step ends.
     void mainPhase(Game game) {
         do {
             game.getStack().checkIfAllPlayersPassed();
-            game.getPlayerWithPriority().ifPresent(Player::doAction);
+            game.getPlayerWithPriority().doAction();
         }
         while (!game.getStack().isEmpty() || (game.getStack().isEmpty() && !game.getStack().allPlayersPassed()));
         game.getStack().reset();

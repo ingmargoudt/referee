@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
+import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -38,7 +39,7 @@ public class Stack {
             EventBus.report(controller.getName() + " " + topOfStack.getName() + " resolves");
             Stackable stackable = stackEntries.pop();
             stackable.resolve(game);
-            game.setPriority(stackable.getController());
+            game.setPriority(controller);
         });
         passed.clear();
     }
@@ -56,13 +57,13 @@ public class Stack {
         return passed.size() == 2;
     }
 
-    public void pass(Game game, UUID playerWithPriority) {
-        passed.add(playerWithPriority);
+    public void pass(Game game, Player playerWithPriority) {
+        passed.add(playerWithPriority.getId());
         if (stackEntries.isEmpty()) {
-            game.getPlayer(playerWithPriority).ifPresent(player -> EventBus.report(player.getName() + " passes on empty stack"));
+            EventBus.report(playerWithPriority.getName() + " passes on empty stack");
         } else {
 
-            game.getPlayer(playerWithPriority).ifPresent(player -> EventBus.report(player.getName() + " passes on " + stackEntries.peekFirst().getName()));
+            EventBus.report(playerWithPriority.getName() + " passes on " + stackEntries.peekFirst().getName());
         }
     }
 

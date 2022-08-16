@@ -13,7 +13,7 @@ public class CastSpellAction extends TestPlayerAction {
     @Getter
     private Card card;
 
-    private List<Targetable> targets;
+    private List<Targetable> targets = new ArrayList<>();
 
 
     public CastSpellAction(int turn, Phase phase, Card card) {
@@ -25,7 +25,6 @@ public class CastSpellAction extends TestPlayerAction {
     public CastSpellAction(int turn, Phase phase, Card card, Targetable target) {
         super(turn, phase);
         this.card = card;
-        targets = new ArrayList<>();
         targets.add(target);
     }
 

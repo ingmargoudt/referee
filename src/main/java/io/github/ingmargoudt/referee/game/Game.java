@@ -32,7 +32,8 @@ public class Game {
     protected Player[] players = new Player[2];
     @Getter
     private Player activePlayer;
-    private UUID playerWithPriority;
+    @Getter
+    private Player playerWithPriority;
     @Getter
     private boolean running;
     @Getter
@@ -114,7 +115,7 @@ public class Game {
                 }
             }
         }
-        setPriority(activePlayer.getId());
+        setPriority(activePlayer);
         EventBus.report(getActivePlayer() + " becomes active player");
     }
 
@@ -130,7 +131,7 @@ public class Game {
         stack.putOnStack(spell);
     }
 
-    public void putOnStack(ActivatedAbility activatedAbility, MagicObject source){
+    public void putOnStack(ActivatedAbility activatedAbility, MagicObject source) {
         stack.putOnStack(new StackAbility(activatedAbility, source));
     }
 
@@ -138,20 +139,16 @@ public class Game {
         return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst();
     }
 
-    public Optional<Player> getPlayerWithPriority() {
-        return Arrays.stream(players).filter(player -> player.getId().equals(playerWithPriority)).findFirst();
-    }
+
+    public void setPriority(Player newPlayerWithPriority) {
+        playerWithPriority = newPlayerWithPriority;
+        EventBus.report(battlefield.getAll().stream().map(MagicObject::getName).collect(Collectors.joining()));
 
 
-    public void setPriority(UUID playerId) {
-        playerWithPriority = playerId;
-        EventBus.report(battlefield.getAll().stream().map(p->p.getName()).collect(Collectors.joining()));
-        getPlayer(playerWithPriority).ifPresent(player -> {
+        EventBus.report(newPlayerWithPriority.getName() + " gets priority");
+        applyContinuousEffects();
+        checkStateBasedActions();
 
-            EventBus.report(player.getName() + " gets priority");
-            applyContinuousEffects();
-            checkStateBasedActions();
-        });
     }
 
     private void applyContinuousEffects() {
@@ -190,10 +187,10 @@ public class Game {
         if (stack.allPlayersPassed()) {
             return;
         }
-        if (players[0].getId().equals(playerWithPriority)) {
-            setPriority(players[1].getId());
+        if (players[0].getId().equals(playerWithPriority.getId())) {
+            setPriority(players[1]);
         } else {
-            setPriority(players[0].getId());
+            setPriority(players[0]);
         }
     }
 
@@ -228,8 +225,8 @@ public class Game {
         });
     }
 
-    public boolean isPlayable(Player player, ActivatedAbility ability, MagicObject magicObject){
-        if (!player.getId().equals(playerWithPriority)) {
+    public boolean isPlayable(Player player, ActivatedAbility ability, MagicObject magicObject) {
+        if (!player.getId().equals(playerWithPriority.getId())) {
             return false;
         }
         return ability.canBePlayed(magicObject, this);
@@ -238,7 +235,7 @@ public class Game {
 
     public boolean isPlayable(Player player, Card card) {
 
-        if (!player.getId().equals(playerWithPriority)) {
+        if (!player.getId().equals(playerWithPriority.getId())) {
             return false;
         }
         if (!card.canBePlayed(this)) {
@@ -262,15 +259,15 @@ public class Game {
     }
 
     public Zone locate(MagicObject object) {
-        if(object instanceof Permanent){
-            if(getBattlefield().getAll().stream().anyMatch(p->p.getId().equals(object.getId()))){
+        if (object instanceof Permanent) {
+            if (getBattlefield().getAll().stream().anyMatch(p -> p.getId().equals(object.getId()))) {
                 return Zone.BATTLEFIELD;
             }
         }
-        if(object instanceof Card){
+        if (object instanceof Card) {
             Optional<Player> controller = getPlayer(object.getController());
-            if(controller.isPresent()){
-                if(controller.get().getHand().getCards().contains(object)) {
+            if (controller.isPresent()) {
+                if (controller.get().getHand().getCards().contains(object)) {
                     return Zone.HAND;
                 }
             }
