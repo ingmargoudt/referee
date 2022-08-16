@@ -263,8 +263,7 @@ public class BaseGame {
     }
 
     protected void assertActivePlayer(TestPlayer testPlayer) {
-        game.getActivePlayer().ifPresent(player -> {
-            assertThat(player.getId()).isEqualTo(testPlayer.getId());
-        });
+            assertThat(game.getActivePlayer().getId()).isEqualTo(testPlayer.getId());
+
     }
 }

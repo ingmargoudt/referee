@@ -9,7 +9,7 @@ public enum Phase {
     BEGINNING_PHASE {
         public void run(Game game) {
             startMessage(game);
-            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.UPKEEP, game.getActivePlayer().get().getId()));
+            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.UPKEEP, game.getActivePlayer().getId()));
         }
     },
     PRECOMBAT_MAINPHASE {
@@ -49,10 +49,9 @@ public enum Phase {
 
     void startMessage(Game game) {
 
-        game.getActivePlayer().ifPresent(activePlayer -> {
-            EventBus.report(activePlayer.getName() + " starts " + this);
-            game.setPriority(activePlayer.getId());
-        });
+            EventBus.report(game.getActivePlayer().getName() + " starts " + this);
+            game.setPriority(game.getActivePlayer().getId());
+
     }
 
     /*

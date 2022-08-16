@@ -30,7 +30,8 @@ public class Game {
     @Getter
     protected Battlefield battlefield;
     protected Player[] players = new Player[2];
-    private UUID activePlayer;
+    @Getter
+    private Player activePlayer;
     private UUID playerWithPriority;
     @Getter
     private boolean running;
@@ -104,21 +105,21 @@ public class Game {
 
     public void assignActivePlayer() {
         if (activePlayer == null) {
-            activePlayer = players[0].getId();
+            activePlayer = players[0];
         } else {
             for (int i = 0; i < players.length; i++) {
-                if (players[i].getId().equals(activePlayer)) {
-                    setActive(players[(i + 1) % players.length].getId());
+                if (players[i].getId().equals(activePlayer.getId())) {
+                    setActive(players[(i + 1) % players.length]);
                     break;
                 }
             }
         }
-        setPriority(activePlayer);
-        EventBus.report(getActivePlayer().map(player -> player + " becomes active player").orElse(""));
+        setPriority(activePlayer.getId());
+        EventBus.report(getActivePlayer() + " becomes active player");
     }
 
-    private void setActive(UUID playerId) {
-        activePlayer = playerId;
+    private void setActive(Player theActivePlayer) {
+        activePlayer = theActivePlayer;
     }
 
     public Phase getCurrentPhase() {
@@ -135,10 +136,6 @@ public class Game {
 
     public Optional<Player> getPlayer(UUID controller) {
         return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst();
-    }
-
-    public Optional<Player> getActivePlayer() {
-        return Arrays.stream(players).filter(player -> player.getId().equals(activePlayer)).findFirst();
     }
 
     public Optional<Player> getPlayerWithPriority() {
