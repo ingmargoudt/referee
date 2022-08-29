@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.targets.Target;
+import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.stream.Collectors;
 
@@ -18,13 +19,13 @@ public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public void apply(MagicObject object, Game game) {
-        game.getPlayer(object.getController())
-                .ifPresent(player -> targets.get(0).resolve(game)
-                        .filter(Damageable.class::isInstance)
-                        .map(Damageable.class::cast)
-                        .ifPresent(theTarget -> {
-                            theTarget.damage(player, object, amount);
-                        }));
+        Player player = object.getController();
+        targets.get(0).resolve(game)
+                .filter(Damageable.class::isInstance)
+                .map(Damageable.class::cast)
+                .ifPresent(theTarget -> {
+                    theTarget.damage(player, object, amount);
+                });
 
     }
 

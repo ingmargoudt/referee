@@ -7,6 +7,7 @@ import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
 import io.github.ingmargoudt.referee.game.properties.Ruleable;
+import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,7 +49,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
     protected List<ReplacementEffect> replacementEffects;
 
     @Setter
-    protected UUID controller;
+    protected Player controller;
 
 
     public MagicObject(String name) {
@@ -85,7 +86,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         return superTypes.isBasic();
     }
 
-    public boolean isControlledBy(UUID thePlayer) {
+    public boolean isControlledBy(Player thePlayer) {
         return getController().equals(thePlayer);
     }
 
@@ -102,7 +103,7 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         StringBuilder stringBuilder = new StringBuilder();
         String cardText = "";
         cardText += replacementEffects.stream().map(ReplacementEffect::getRule).collect(Collectors.joining("\n"));
-        if(!cardText.isEmpty()){
+        if (!cardText.isEmpty()) {
             cardText += "\n";
         }
         abilities.forEach(ability -> stringBuilder.append(ability.getRule()).append("\n"));

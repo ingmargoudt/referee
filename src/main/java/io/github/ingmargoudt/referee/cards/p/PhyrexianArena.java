@@ -7,6 +7,7 @@ import io.github.ingmargoudt.referee.game.abilities.AtTheBeginningOfYourStepAbil
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
+import io.github.ingmargoudt.referee.players.Player;
 
 public class PhyrexianArena extends Card {
     public PhyrexianArena() {
@@ -21,10 +22,10 @@ public class PhyrexianArena extends Card {
 class PhyrexianArenaEffect extends OneShotEffect {
     @Override
     public void apply(MagicObject object, Game game) {
-        game.getPlayer(object.getController()).ifPresent(controller -> {
-            controller.drawCard();
-            controller.loseLife(1);
-        });
+        Player controller = object.getController();
+        controller.drawCard();
+        controller.loseLife(1);
+
     }
 
     @Override

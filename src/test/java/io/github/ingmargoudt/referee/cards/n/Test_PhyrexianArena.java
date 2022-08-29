@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class Test_PhyrexianArena extends BaseGame {
 
     @Test
-    void drawCardAndLoseLife(){
+    void drawCardAndLoseLife() {
         Card arena = new PhyrexianArena();
         addCard(Zone.BATTLEFIELD, player1, arena);
         stopAt(2, Phase.PRECOMBAT_MAINPHASE);

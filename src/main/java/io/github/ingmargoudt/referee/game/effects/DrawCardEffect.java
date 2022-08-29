@@ -7,8 +7,7 @@ import io.github.ingmargoudt.referee.players.Player;
 public class DrawCardEffect extends OneShotEffect{
     @Override
     public void apply(MagicObject object, Game game) {
-        game.getPlayer(object.getController())
-                .ifPresent(Player::drawCard);
+        object.getController().drawCard();
     }
 
     @Override

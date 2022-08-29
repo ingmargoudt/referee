@@ -24,19 +24,19 @@ public class TargetAny extends Target {
 
     @Override
     public Optional<Targetable> resolve(Game game) {
-        Optional<Player> targettedPlayer = game.getPlayer(theTarget.getId());
-        if (targettedPlayer.isPresent()) {
-            return Optional.of(targettedPlayer.get());
+        if (theTarget instanceof Player) {
+            return Optional.of(theTarget);
         }
+
         return game.getBattlefield().getAll().stream().filter(permanent -> permanent.getId().equals(theTarget.getId())).map(Targetable.class::cast).findFirst();
     }
 
     @Override
     public void choose(Stackable source, Game game, OneShotEffect oneShotEffect) {
-        game.getPlayer(source.getController()).ifPresent(player -> {
-            this.theTarget = player.chooseTarget(validTargets(game));
-            EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.toString());
-        });
+        Player player = source.getController();
+        this.theTarget = player.chooseTarget(validTargets(game));
+        EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.toString());
+
     }
 
     @Override

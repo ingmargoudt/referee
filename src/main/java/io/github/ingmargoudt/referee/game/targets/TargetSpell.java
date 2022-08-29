@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
+import io.github.ingmargoudt.referee.players.Player;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -35,10 +36,10 @@ public class TargetSpell extends Target {
 
     @Override
     public void choose(Stackable source, Game game, OneShotEffect oneShotEffect) {
-        game.getPlayer(source.getController()).ifPresent(player -> {
-            this.theTarget = player.chooseTarget(validTargets(game));
-            EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.toString());
-        });
+        Player player = source.getController();
+        this.theTarget = player.chooseTarget(validTargets(game));
+        EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.toString());
+
     }
 
     @Override

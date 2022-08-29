@@ -9,6 +9,7 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.targets.Filter;
 import io.github.ingmargoudt.referee.game.targets.TargetPermanent;
+import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.stream.Collectors;
 
@@ -28,16 +29,16 @@ class DevastateEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public void apply(MagicObject object, Game game) {
-        game.getPlayer(object.getController()).ifPresent(controllerOfSpell ->
+        Player controllerOfSpell = object.getController();
 
-                targets.forEach(target ->
-                        target.resolve(game).ifPresent(targetable -> {
-                            if (targetable instanceof Permanent) {
-                                ((Permanent) targetable).destroy(game);
-                                game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).collect(Collectors.toList()).forEach(creature -> creature.damage(controllerOfSpell, object, 1));
-                                game.getPlayers().forEach(player -> player.damage(controllerOfSpell, object, 1));
-                            }
-                        })));
+        targets.forEach(target ->
+                target.resolve(game).ifPresent(targetable -> {
+                    if (targetable instanceof Permanent) {
+                        ((Permanent) targetable).destroy(game);
+                        game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).collect(Collectors.toList()).forEach(creature -> creature.damage(controllerOfSpell, object, 1));
+                        game.getPlayers().forEach(player -> player.damage(controllerOfSpell, object, 1));
+                    }
+                }));
     }
 
     @Override

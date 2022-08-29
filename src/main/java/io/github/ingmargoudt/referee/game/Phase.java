@@ -9,7 +9,7 @@ public enum Phase {
     BEGINNING_PHASE {
         public void run(Game game) {
             startMessage(game);
-            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.UPKEEP, game.getActivePlayer().getId()));
+            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.UPKEEP, game.getActivePlayer()));
         }
     },
     PRECOMBAT_MAINPHASE {

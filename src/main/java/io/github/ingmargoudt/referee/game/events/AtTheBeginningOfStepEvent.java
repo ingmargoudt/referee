@@ -14,9 +14,9 @@ import java.util.UUID;
 public class AtTheBeginningOfStepEvent extends Event {
 
     private Step step;
-    private UUID controller;
+    private Player controller;
 
-    public AtTheBeginningOfStepEvent(Step step, UUID thePlayer) {
+    public AtTheBeginningOfStepEvent(Step step, Player thePlayer) {
         this.step = step;
         this.controller = thePlayer;
     }

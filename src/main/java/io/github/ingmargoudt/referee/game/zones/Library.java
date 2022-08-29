@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game.zones;
 
 import io.github.ingmargoudt.referee.game.objects.Card;
+import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class Library {
         }
     }
 
-    public void setOwner(UUID owner) {
+    public void setOwner(Player owner) {
         for (Card card : cards) {
             card.setOwner(owner);
         }

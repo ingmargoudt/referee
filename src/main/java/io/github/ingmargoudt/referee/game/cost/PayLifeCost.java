@@ -14,13 +14,13 @@ public class PayLifeCost implements Cost {
 
     @Override
     public void pay(MagicObject source, Game game) {
-        game.getPlayer(source.getController()).ifPresent(player -> player.loseLife(amount));
+        source.getController().loseLife(amount);
 
     }
 
     @Override
     public boolean canPay(MagicObject source, Game game) {
-        return game.getPlayer(source.getController()).map(player -> player.getLife() >= amount).orElse(false);
+        return source.getController().getLife() >= amount;
     }
 
     @Override

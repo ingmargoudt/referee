@@ -7,6 +7,7 @@ import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.zones.Zone;
+import io.github.ingmargoudt.referee.players.Player;
 
 public class ActivatedAbility extends StackableAbility {
 
@@ -20,28 +21,29 @@ public class ActivatedAbility extends StackableAbility {
 
     }
 
-    public ActivatedAbility(Costs costs, Effect effect){
+    public ActivatedAbility(Costs costs, Effect effect) {
         this.costs = costs;
         effects = new Effects<>(OneShotEffect.class);
         effects.addEffect(effect);
     }
 
-    public ActivatedAbility(Costs costs, Effect effect, Zone activatedFrom){
+    public ActivatedAbility(Costs costs, Effect effect, Zone activatedFrom) {
         this.costs = costs;
         effects = new Effects<>(OneShotEffect.class);
         effects.addEffect(effect);
         this.activatedFrom = activatedFrom;
     }
 
-    public void payCosts(MagicObject source, Game game){
+    public void payCosts(MagicObject source, Game game) {
         costs.payAll(source, game);
     }
 
 
     @Override
     public void resolve(MagicObject source, Game game) {
-        game.getPlayer(source.getController()).ifPresent(player -> effects.apply(source, game));
+        effects.apply(source, game);
     }
+
 
     @Override
     public String getRule() {
@@ -49,7 +51,7 @@ public class ActivatedAbility extends StackableAbility {
     }
 
     public boolean canBePlayed(MagicObject object, Game game) {
-        if(this.activatedFrom == game.locate(object)){
+        if (this.activatedFrom == game.locate(object)) {
             return costs.canPay(object, game);
         }
         return false;

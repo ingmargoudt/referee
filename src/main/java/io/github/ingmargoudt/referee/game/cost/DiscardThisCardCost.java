@@ -11,22 +11,17 @@ import java.util.Optional;
 public class DiscardThisCardCost implements Cost {
     @Override
     public void pay(MagicObject source, Game game) {
-        game.getPlayer(source.getController()).ifPresent(controller ->
-        {
             if(source instanceof Card) {
-                controller.discard((Card)source);
+                source.getController().discard((Card)source);
             }
-        });
+
     }
 
     @Override
     public boolean canPay(MagicObject source, Game game) {
-        Optional<Player> controller = game.getPlayer(source.getController());
-        if(controller.isPresent() && source instanceof Card){
-            Hand hand = controller.get().getHand();
+            Hand hand = source.getController().getHand();
             return hand.getCards().contains(source);
-        }
-        return false;
+
     }
 
     @Override

@@ -135,11 +135,6 @@ public class Game {
         stack.putOnStack(new StackAbility(activatedAbility, source));
     }
 
-    public Optional<Player> getPlayer(UUID controller) {
-        return Arrays.stream(players).filter(player -> player.getId().equals(controller)).findFirst();
-    }
-
-
     public void setPriority(Player newPlayerWithPriority) {
         playerWithPriority = newPlayerWithPriority;
         EventBus.report(battlefield.getAll().stream().map(MagicObject::getName).collect(Collectors.joining()));
@@ -218,11 +213,8 @@ public class Game {
 
 
     public void moveToGraveyard(Card card) {
-        getPlayer(card.getController()).ifPresent(controller -> {
-            battlefield.remove(card);
-            controller.putCardInGraveyard(card);
-
-        });
+        battlefield.remove(card);
+        card.getController().putCardInGraveyard(card);
     }
 
     public boolean isPlayable(Player player, ActivatedAbility ability, MagicObject magicObject) {
@@ -264,14 +256,11 @@ public class Game {
                 return Zone.BATTLEFIELD;
             }
         }
+        Player controller = object.getController();
         if (object instanceof Card) {
-            Optional<Player> controller = getPlayer(object.getController());
-            if (controller.isPresent()) {
-                if (controller.get().getHand().getCards().contains(object)) {
-                    return Zone.HAND;
-                }
+            if (controller.getHand().getCards().contains(object)) {
+                return Zone.HAND;
             }
-
         }
         return null;
     }

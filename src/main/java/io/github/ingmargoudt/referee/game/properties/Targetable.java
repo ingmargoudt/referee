@@ -1,5 +1,7 @@
 package io.github.ingmargoudt.referee.game.properties;
 
+import io.github.ingmargoudt.referee.players.Player;
+
 import java.util.UUID;
 
 public interface Targetable {
@@ -8,5 +10,5 @@ public interface Targetable {
 
     String getName();
 
-    UUID getController();
+    Player getController();
 }

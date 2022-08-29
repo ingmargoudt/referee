@@ -14,9 +14,9 @@ public class AddManaEffect extends OneShotEffect {
 
     @Override
     public void apply(MagicObject source, Game game) {
-        game.getPlayer(source.getController()).ifPresent(controller -> {
-            controller.getManapool().add(manaType);
-        });
+
+        source.getController().getManapool().add(manaType);
+
     }
 
     @Override

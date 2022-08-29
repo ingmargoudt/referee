@@ -131,8 +131,8 @@ public class BaseGame {
     }
 
     protected void addCard(Zone zone, TestPlayer player, Card card, int amount) {
-        card.setController(player.getId());
-        card.setOwner(player.getId());
+        card.setController(player);
+        card.setOwner(player);
         for (int i = 0; i < amount; i++) {
             if (zone == Zone.HAND) {
                 player.getHand().addCard(card);

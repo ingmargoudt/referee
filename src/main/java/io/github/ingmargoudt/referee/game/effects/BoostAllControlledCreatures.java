@@ -31,7 +31,7 @@ public class BoostAllControlledCreatures extends ContinuousEffect {
     }
 
     @Override
-    public void lockInObjects(Game game, MagicObject source){
+    public void lockInObjects(Game game, MagicObject source) {
         getAffectedObjects().addAll(search(game, source));
         setAffectedObjectsDetermined(true);
     }
@@ -43,23 +43,21 @@ public class BoostAllControlledCreatures extends ContinuousEffect {
 
     public void apply(MagicObject source, Game game) {
 
-        game.getPlayer(source.getController()).ifPresent(controller -> {
-            if(getDuration().getDurationType() == DurationType.CONTINUOUS) {
-                for (Permanent permanent : search(game, source)) {
-                    EventBus.report("Applying " + source.getName() + " " + getClass().getSimpleName() + " to " + controller.getName() + "'s " + permanent.getName());
-                    permanent.setPower(permanent.getPower() + power);
-                    permanent.setToughness(permanent.getToughness() + toughness);
-                }
+        if (getDuration().getDurationType() == DurationType.CONTINUOUS) {
+            for (Permanent permanent : search(game, source)) {
+                EventBus.report("Applying " + source.getName() + " " + getClass().getSimpleName() + " to " + source.getController().getName() + "'s " + permanent.getName());
+                permanent.setPower(permanent.getPower() + power);
+                permanent.setToughness(permanent.getToughness() + toughness);
             }
-            else{
-                for(MagicObject magicObject : getAffectedObjects()){
-                    Permanent permanent = (Permanent) magicObject;
-                    permanent.setPower(permanent.getPower() + power);
-                    permanent.setToughness(permanent.getToughness() + toughness);
-                }
+        } else {
+            for (MagicObject magicObject : getAffectedObjects()) {
+                Permanent permanent = (Permanent) magicObject;
+                permanent.setPower(permanent.getPower() + power);
+                permanent.setToughness(permanent.getToughness() + toughness);
             }
-        });
+        }
     }
+
 
     @Override
     public String getRule() {

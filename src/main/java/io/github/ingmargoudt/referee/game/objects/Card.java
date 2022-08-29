@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
 import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
+import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public class Card extends MagicObject implements Targetable, Ruleable {
 
     @Setter
-    UUID owner;
+    Player owner;
 
     public Card(String name) {
         super(name);

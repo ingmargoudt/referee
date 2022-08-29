@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.properties.Counterable;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
+import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
 import java.util.UUID;
@@ -33,7 +34,7 @@ public class Spell extends MagicObject implements Stackable, Counterable, Target
     }
 
     @Override
-    public UUID getController() {
+    public Player getController() {
         return card.getController();
     }
 

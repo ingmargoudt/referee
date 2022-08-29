@@ -93,7 +93,7 @@ the battlefield. Every permanent has a controller.
 
 
     public boolean isControlledBy(Player thePlayer) {
-        return isControlledBy(thePlayer.id);
+        return super.isControlledBy(thePlayer);
     }
 
     @Override

@@ -35,12 +35,11 @@ public class Stack {
 
     public void resolve(Game game) {
         Stackable topOfStack = stackEntries.peekFirst();
-        game.getPlayer(topOfStack.getController()).ifPresent(controller -> {
-            EventBus.report(controller.getName() + " " + topOfStack.getName() + " resolves");
-            Stackable stackable = stackEntries.pop();
-            stackable.resolve(game);
-            game.setPriority(controller);
-        });
+        Player controller = topOfStack.getController();
+        EventBus.report(controller.getName() + " " + topOfStack.getName() + " resolves");
+        Stackable stackable = stackEntries.pop();
+        stackable.resolve(game);
+        game.setPriority(controller);
         passed.clear();
     }
 

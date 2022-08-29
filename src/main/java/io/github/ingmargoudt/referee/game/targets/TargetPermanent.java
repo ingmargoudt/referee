@@ -5,6 +5,7 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
+import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,10 +32,10 @@ public class TargetPermanent extends Target {
 
     @Override
     public void choose(Stackable source, Game game, OneShotEffect oneShotEffect) {
-        game.getPlayer(source.getController()).ifPresent(player -> {
-            this.theTarget = player.chooseTarget(validTargets(game));
-            EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.toString());
-        });
+        Player player = source.getController();
+        this.theTarget = player.chooseTarget(validTargets(game));
+        EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.toString());
+
     }
 
     @Override

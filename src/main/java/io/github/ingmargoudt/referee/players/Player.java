@@ -40,7 +40,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
         this.name = name;
         gameReference = game;
         this.library = library;
-        this.library.setOwner(this.id);
+        this.library.setOwner(this);
         manapool = new Manapool();
         graveyard = new Graveyard();
     }
@@ -149,7 +149,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
         life -= amount;
     }
 
-    public UUID getController() {
+    public Player getController() {
         throw new IllegalArgumentException();
     }
 
