@@ -6,7 +6,7 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
 public interface ReplacementEffect {
 
-    void repondToEvent(Game game, Event event, MagicObject parentObject);
+    void respondToEvent(Game game, Event event, MagicObject parentObject);
 
     String getRule();
 

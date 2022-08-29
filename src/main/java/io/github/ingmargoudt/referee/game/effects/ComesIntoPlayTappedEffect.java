@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class ComesIntoPlayTappedEffect implements ReplacementEffect {
     @Override
-    public void repondToEvent(Game game, Event event, MagicObject parentObject) {
+    public void respondToEvent(Game game, Event event, MagicObject parentObject) {
         MagicObject source = event.getSource();
         if (event instanceof EnterTheBattlefieldEvent && Objects.equals(source, parentObject)) {
             if (source instanceof Permanent) {

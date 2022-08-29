@@ -22,7 +22,7 @@ public class ComesIntoPlayTappedEffectUnless implements ReplacementEffect, Rulea
     }
 
     @Override
-    public void repondToEvent(Game game, Event event, MagicObject parentObject) {
+    public void respondToEvent(Game game, Event event, MagicObject parentObject) {
         MagicObject source = event.getSource();
         if (event instanceof EnterTheBattlefieldEvent && Objects.equals(event.getSource(), parentObject)) {
                 if (costs.canPay(source, game) && source.getController().choosesOption(Arrays.asList("Yes", "No")).equals("Yes")) {
