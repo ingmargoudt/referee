@@ -3,6 +3,9 @@ package io.github.ingmargoudt.referee.game;
 import io.github.ingmargoudt.referee.game.cost.Cost;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ManaCost implements Cost {
 
     private final String type;
@@ -24,5 +27,13 @@ public class ManaCost implements Cost {
     @Override
     public String getRule() {
         return type;
+    }
+
+    public Set<Color> getColors() {
+        Set<Color> colors = new HashSet<>();
+        if(this.type.contains("{G}")){
+            colors.add(Color.GREEN);
+        }
+        return colors;
     }
 }

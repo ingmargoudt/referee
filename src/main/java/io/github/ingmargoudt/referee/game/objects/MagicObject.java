@@ -11,10 +11,7 @@ import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -60,6 +57,15 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         abilities = new Abilities();
         spellEffects = new Effects<>(OneShotEffect.class);
         replacementEffects = new ArrayList<>();
+        color = new HashSet<>();
+    }
+
+    public Set<Color> getColor(){
+        Set<Color> results = new HashSet<>();
+        results.addAll(color);
+        results.addAll(manaCost.getColors());
+        return results;
+
     }
 
     public boolean isCreature() {

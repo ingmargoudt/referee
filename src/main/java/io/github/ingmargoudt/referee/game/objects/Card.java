@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game.objects;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.ManaCost;
 import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
 import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
@@ -19,6 +20,11 @@ public class Card extends MagicObject implements Targetable, Ruleable {
 
     public Card(String name) {
         super(name);
+    }
+
+    public Card(String name, String manaCost) {
+        super(name);
+        this.manaCost = new ManaCost(manaCost);
     }
 
 

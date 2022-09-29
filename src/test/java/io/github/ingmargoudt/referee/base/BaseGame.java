@@ -92,6 +92,30 @@ public class BaseGame {
         }
     }
 
+    protected void activateAbility(int turn, Phase phase, TestPlayer player, Card card, Targetable targetable) {
+        Optional<Permanent> p = findPermanentByCard(player, card);
+        if (p.isPresent()) {
+            Permanent permanent = p.get();
+            Iterator<Ability> iterator = permanent.getAbilities().iterator();
+            while (iterator.hasNext()) {
+                Ability ability = iterator.next();
+                if (ability instanceof ActivatedAbility) {
+                    player.addAction(new ActivateAbilityAction(turn, phase, (ActivatedAbility) ability, permanent, targetable));
+                    return;
+                }
+            }
+        } else {
+            Iterator<Ability> cardAbilities = card.getAbilities().iterator();
+            while (cardAbilities.hasNext()) {
+                Ability ability = cardAbilities.next();
+                if (ability instanceof ActivatedAbility) {
+                    player.addAction(new ActivateAbilityAction(turn, phase, (ActivatedAbility) ability, card, targetable));
+                    return;
+                }
+            }
+        }
+    }
+
 
     protected void castSpell(int turn, Phase phase, TestPlayer player, Card card, Targetable targetable) {
         player.addAction(new CastSpellAction(turn, phase, card, targetable));

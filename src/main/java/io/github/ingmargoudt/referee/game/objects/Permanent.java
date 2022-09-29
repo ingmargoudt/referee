@@ -5,14 +5,16 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
+import io.github.ingmargoudt.referee.game.properties.Destroyable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
 
 import java.util.UUID;
 
-public class Permanent extends MagicObject implements Targetable, Damageable {
+public class Permanent extends MagicObject implements Targetable, Damageable, Destroyable {
 
+    @Getter
     Card base;
 
     /*
@@ -56,6 +58,7 @@ the battlefield. Every permanent has a controller.
         this.spellEffects = new Effects<>(base.getSpellEffects());
         this.getReplacementEffects().clear();
         this.getReplacementEffects().addAll(base.getReplacementEffects());
+        this.manaCost = base.getManaCost();
 
     }
 
@@ -122,4 +125,8 @@ the battlefield. Every permanent has a controller.
     }
 
 
+    @Override
+    public void destroy(Game game, Player controller, MagicObject source) {
+        game.moveToGraveyard(base);
+    }
 }

@@ -91,7 +91,10 @@ public class TestPlayer extends Player {
         if (currenAction instanceof CastSpellAction) {
             return ((CastSpellAction) currenAction).consumeTarget();
         }
-        return Fail.fail("Current action has no target");
+        if(currenAction instanceof ActivateAbilityAction){
+            return ((ActivateAbilityAction) currenAction).consumeTarget();
+        }
+        return Fail.fail("Current action has no (legal) target");
     }
 
     @Override

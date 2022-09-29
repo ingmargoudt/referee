@@ -20,10 +20,20 @@ public class ActivateAbilityAction extends TestPlayerAction {
     private MagicObject source;
 
 
+    private List<Targetable> targets = new ArrayList<>();
+
+
     public ActivateAbilityAction(int turn, Phase phase, ActivatedAbility activatedAbility, MagicObject source) {
         super(turn, phase);
         this.activatedAbility = activatedAbility;
         this.source = source;
+    }
+
+    public ActivateAbilityAction(int turn, Phase phase, ActivatedAbility activatedAbility, MagicObject source, Targetable targetable) {
+        super(turn, phase);
+        this.activatedAbility = activatedAbility;
+        this.source = source;
+        targets.add(targetable);
     }
 
 
@@ -35,5 +45,9 @@ public class ActivateAbilityAction extends TestPlayerAction {
     @Override
     public void execute(TestPlayer player) {
         player.activateAbility(activatedAbility, source);
+    }
+
+    public Targetable consumeTarget() {
+        return targets.remove(0);
     }
 }

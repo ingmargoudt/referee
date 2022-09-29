@@ -52,7 +52,7 @@ public class StackAbility implements Stackable {
 
     @Override
     public boolean hasTargets() {
-        return false;
+        return stackableAbility.effects.hasTargets();
     }
 
     @Override

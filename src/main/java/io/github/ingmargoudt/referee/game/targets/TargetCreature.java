@@ -16,6 +16,15 @@ public class TargetCreature extends Target {
 
     Targetable theTarget;
 
+    public TargetCreature() {
+
+    }
+
+    public TargetCreature(Filter filter) {
+        super();
+        this.filter = filter;
+    }
+
     @Override
     public List<Targetable> validTargets(Game game) {
         return game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).map(Targetable.class::cast).filter(targetable -> filter.evaluate(targetable, game, source)).collect(Collectors.toList());
