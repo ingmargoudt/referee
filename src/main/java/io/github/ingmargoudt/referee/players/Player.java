@@ -19,7 +19,6 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public class Player extends BaseObject implements Targetable, Damageable {
 
@@ -126,8 +125,8 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     @Override
-    public void damage(Player controller, MagicObject source, int amount) {
-        EventBus.report(controller.getName() + "'s " + source.getName() + " deals " + amount + " damage to " + getName());
+    public void damage(MagicObject source, int amount) {
+        EventBus.report(source.getController().getName() + "'s " + source.getName() + " deals " + amount + " damage to " + getName());
         life -= amount;
 
     }

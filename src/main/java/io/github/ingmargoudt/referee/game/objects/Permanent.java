@@ -115,8 +115,8 @@ the battlefield. Every permanent has a controller.
 
 
     @Override
-    public void damage(Player controller, MagicObject source, int amount) {
-        EventBus.report(controller.getName() + "'s " + source.getName() + " deals " + amount + " damage to " + getName());
+    public void damage(MagicObject source, int amount) {
+        EventBus.report(source.getController().getName() + "'s " + source.getName() + " deals " + amount + " damage to " + getName());
         damageReceived += amount;
     }
 

@@ -21,7 +21,7 @@ public class DrainTargetEffect extends OneShotEffect implements TargetEffect {
                 .filter(Damageable.class::isInstance)
                 .map(Damageable.class::cast)
                 .ifPresent(theTarget -> {
-                    theTarget.damage(player, object, amount);
+                    theTarget.damage(object, amount);
                     player.gainLife(game, amount, object);
                 });
     }
