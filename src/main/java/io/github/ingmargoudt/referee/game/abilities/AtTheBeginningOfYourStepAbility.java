@@ -7,11 +7,9 @@ import io.github.ingmargoudt.referee.game.events.AtTheBeginningOfStepEvent;
 import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 
-import java.util.Objects;
-
 public class AtTheBeginningOfYourStepAbility extends TriggeredAbility {
 
-    private Step theStep;
+    private final Step theStep;
 
     public AtTheBeginningOfYourStepAbility(Step step, OneShotEffect effect) {
         super();
@@ -21,7 +19,7 @@ public class AtTheBeginningOfYourStepAbility extends TriggeredAbility {
 
     @Override
     public boolean checkTrigger(Event event, MagicObject parentObject) {
-        return event instanceof AtTheBeginningOfStepEvent && ((AtTheBeginningOfStepEvent) event).getController().equals(parentObject.getController() ) && theStep == ((AtTheBeginningOfStepEvent) event).getStep();
+        return event instanceof AtTheBeginningOfStepEvent && event.isControlledBy(parentObject.getController() ) && theStep == ((AtTheBeginningOfStepEvent) event).getStep();
     }
 
 

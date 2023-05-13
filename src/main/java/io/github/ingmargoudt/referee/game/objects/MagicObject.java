@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
+import io.github.ingmargoudt.referee.game.properties.Controllable;
 import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 
 
 @Getter
-public class MagicObject extends BaseObject implements Ruleable {
+public class MagicObject extends BaseObject implements Ruleable, Controllable {
 
     /*
     109.3. An object’s characteristics are name, mana cost, color, color indicator, card type, subtype,
@@ -92,9 +93,6 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         return superTypes.isBasic();
     }
 
-    public boolean isControlledBy(Player thePlayer) {
-        return getController().equals(thePlayer);
-    }
 
     public boolean hasColor(Color color) {
         return this.color.contains(color);
@@ -118,5 +116,10 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         cardText = cardText.replace("{this}", name);
 
         return cardText;
+    }
+
+    @Override
+    public boolean isControlledBy(Player thePlayer) {
+        return getController().equals(thePlayer);
     }
 }
