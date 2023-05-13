@@ -11,11 +11,10 @@ import lombok.Setter;
 public class AtTheBeginningOfStepEvent extends Event {
 
     private Step step;
-    private Player controller;
+    private Player activePlayer;
 
     public AtTheBeginningOfStepEvent(Step step, Player thePlayer) {
-        super();
         this.step = step;
-        this.controller = thePlayer;
+        this.activePlayer = thePlayer;
     }
 }
