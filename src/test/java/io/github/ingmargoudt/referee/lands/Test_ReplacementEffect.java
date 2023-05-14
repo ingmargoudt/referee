@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.cards.a.AngelsMercy;
 import io.github.ingmargoudt.referee.cards.b.BloodCrypt;
 import io.github.ingmargoudt.referee.cards.b.BloodMoon;
 import io.github.ingmargoudt.referee.cards.b.BloodSun;
+import io.github.ingmargoudt.referee.cards.f.Forest;
 import io.github.ingmargoudt.referee.cards.f.ForsakenSanctuary;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.SubType;
@@ -89,6 +90,19 @@ class Test_ReplacementEffect extends BaseGame {
         assertTapped(player1, bloodcrypt);
     }
 
+    @Test
+    void blood_moon_does_not_hit_basic_lands() {
+        Card forest = new Forest();
+        Card bloodmoon = new BloodMoon();
+        addCard(Zone.BATTLEFIELD, player1, bloodmoon);
+        addCard(Zone.BATTLEFIELD, player1, forest);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        SubTypes expectedSubTypes = new SubTypes();
+        expectedSubTypes.add(SubType.FOREST);
+        assertSubTypes(player1, forest, expectedSubTypes);
+    }
+
 
     @Test
     void replacement_Effect_gainlife() {
@@ -101,6 +115,20 @@ class Test_ReplacementEffect extends BaseGame {
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertLife(player1, 28);
+
+    }
+
+    @Test
+    void replacement_Effect_controlled_by_opponent_do_not_gainlife() {
+        Card angelsMercy = new AngelsMercy();
+        Card angelOfVitality = new AngelOfVitality();
+        addCard(Zone.HAND, player1, angelsMercy, 1);
+        addCard(Zone.BATTLEFIELD, player2, angelOfVitality);
+
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, angelsMercy);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertLife(player1, 27);
 
     }
 

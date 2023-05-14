@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.cards.f;
 
 import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.SubType;
+import io.github.ingmargoudt.referee.game.SuperType;
 import io.github.ingmargoudt.referee.game.objects.Card;
 
 public class Forest extends Card {
@@ -9,5 +10,6 @@ public class Forest extends Card {
         super("Forest");
         cardtypes.add(CardType.LAND);
         subTypes.add(SubType.FOREST);
+        superTypes.add(SuperType.BASIC);
     }
 }
