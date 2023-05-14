@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.lands;
 
 import io.github.ingmargoudt.referee.base.BaseGame;
 import io.github.ingmargoudt.referee.cards.f.Forest;
+import io.github.ingmargoudt.referee.cards.f.ForsakenSanctuary;
 import io.github.ingmargoudt.referee.cards.i.Island;
 import io.github.ingmargoudt.referee.cards.m.Mountain;
 import io.github.ingmargoudt.referee.cards.p.Plains;
@@ -63,5 +64,15 @@ class Test_lands_have_mana_abilities extends BaseGame {
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertPermanentHasAbility(player1, swamp, AddGreenManaAbility.class);
+    }
+
+    @Test
+    void forsakenSanctuary(){
+        Card forsakenSanctuary = new ForsakenSanctuary();
+        addCard(Zone.BATTLEFIELD, player1, forsakenSanctuary, 1);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        activateAbility(1, Phase.PRECOMBAT_MAINPHASE, player1, forsakenSanctuary);
+        start();
+        assertTapped(player1, forsakenSanctuary);
     }
 }

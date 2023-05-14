@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.Manapool;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
+import io.github.ingmargoudt.referee.game.abilities.ActivatedManaAbility;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
 import io.github.ingmargoudt.referee.game.objects.BaseObject;
 import io.github.ingmargoudt.referee.game.objects.Card;
@@ -88,7 +89,11 @@ public class Player extends BaseObject implements Targetable, Damageable {
 
     public void activateAbility(ActivatedAbility activatedAbility, MagicObject source){
         activatedAbility.payCosts(source, gameReference);
-        gameReference.putOnStack(activatedAbility, source);
+        if (activatedAbility instanceof ActivatedManaAbility) {
+            activatedAbility.resolve(source, gameReference);
+        } else {
+            gameReference.putOnStack(activatedAbility, source);
+        }
     }
 
 
