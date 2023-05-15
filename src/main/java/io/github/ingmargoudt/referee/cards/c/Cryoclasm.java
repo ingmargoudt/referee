@@ -30,14 +30,10 @@ class CryoClasmEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public void apply(MagicObject object, Game game) {
-        Player controllerOfSpell = object.getController();
         targets.forEach(target ->
                 target.resolve(game).ifPresent(targetable -> {
-                    if (targetable instanceof Permanent) {
                         ((Permanent) targetable).destroy(game);
                         targetable.getController().damage(object, 3);
-
-                    }
                 }));
     }
 
