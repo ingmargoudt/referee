@@ -17,4 +17,14 @@ public class Test_FlameJet extends BaseGame {
         start();
         assertGraveyard(player1, flameJet);
     }
+
+    @Test
+    void castFlameJetToPlayer(){
+        Card flameJet = new FlameJet();
+        addCard(Zone.HAND, player1, flameJet);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, flameJet, player2);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertLife(player2, 18);
+    }
 }
