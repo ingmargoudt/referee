@@ -136,11 +136,13 @@ public class Game {
     }
 
     public void setPriority(Player newPlayerWithPriority) {
+        String verb = "gets";
+        if(playerWithPriority != null && playerWithPriority.equals(newPlayerWithPriority)){
+            verb = "keeps";
+        }
         playerWithPriority = newPlayerWithPriority;
-        EventBus.report(battlefield.getAll().stream().map(MagicObject::getName).collect(Collectors.joining()));
 
-
-        EventBus.report(newPlayerWithPriority.getName() + " gets priority");
+        EventBus.report(newPlayerWithPriority.getName() + " "+verb+ " priority");
         applyContinuousEffects();
         checkStateBasedActions();
 
@@ -197,17 +199,19 @@ public class Game {
     }
 
     public Event raiseEvent(Event event) {
+        List<StackAbility> triggeredAbilities = new ArrayList<>();
         battlefield.getAll().forEach(permanent -> {
             permanent.getAbilities().forEach(ability -> {
                 if (ability instanceof TriggeredAbility) {
                     TriggeredAbility triggeredAbility = (TriggeredAbility) ability;
                     if (triggeredAbility.checkTrigger(event, permanent)) {
-                        stack.putOnStack(new StackAbility(triggeredAbility, permanent));
+                        triggeredAbilities.add(new StackAbility(triggeredAbility, permanent));
                     }
                 }
             });
             permanent.getReplacementEffects().forEach(replacementEffect -> replacementEffect.respondToEvent(this, event, permanent));
         });
+        triggeredAbilities.forEach(stack::putOnStack);
         return event;
     }
 

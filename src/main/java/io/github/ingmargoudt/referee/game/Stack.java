@@ -31,6 +31,7 @@ public class Stack {
         if (stackable.hasTargets()) {
             stackable.getEffects().chooseTargets(stackable, game);
         }
+        game.setPriority(game.getActivePlayer());
     }
 
     public void resolve(Game game) {
@@ -39,7 +40,7 @@ public class Stack {
         EventBus.report(controller.getName() + " " + topOfStack.getName() + " resolves");
         Stackable stackable = stackEntries.pop();
         stackable.resolve(game);
-        game.setPriority(controller);
+        game.setPriority(game.getActivePlayer());
         passed.clear();
     }
 
