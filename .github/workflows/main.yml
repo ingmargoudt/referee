@@ -6,6 +6,11 @@ name: Java CI with Maven
 on:
   push:
     branches: [ main ]
+  workflow_call:
+    secrets:
+      codecov_token:
+        required: true
+  workflow_dispatch:
 
 jobs:
   build:
@@ -38,6 +43,7 @@ jobs:
         with:
           name: codecov
           token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
 
 
   sonar:
