@@ -32,7 +32,12 @@ public class Effects<T extends Effect> {
 
     public void addEffect(Effect effect) {
         if (effect instanceof ContinuousEffect && effectType == OneShotEffect.class) {
-            effects.add(new ContinuousEffectInitializer((ContinuousEffect) effect));
+            ContinuousEffectInitializer ci = new ContinuousEffectInitializer((ContinuousEffect) effect);
+            if(effect instanceof TargetEffect){
+                ci.targets = ((TargetEffect) effect).getTargets();
+            }
+
+            effects.add(ci);
         } else {
             effects.add(effect);
         }
@@ -53,15 +58,22 @@ public class Effects<T extends Effect> {
     }
 
     public boolean hasTargets() {
-        return effects.stream().anyMatch(effect -> effect instanceof OneShotEffect && ((OneShotEffect) effect).hasTargets());
+        return effects.stream().anyMatch(effect -> (effect instanceof OneShotEffect && ((OneShotEffect) effect).hasTargets()) ||
+                (effect instanceof ContinuousEffectInitializer && ((ContinuousEffectInitializer) effect).continuousEffect instanceof TargetEffect && ((ContinuousEffectInitializer) effect).hasTargets()));
     }
 
     public void chooseTargets(Stackable stackable, Game game) {
         effects.forEach(effect -> {
-            if (effect instanceof TargetEffect) {
+            if (effect instanceof TargetEffect ) {
+
                 TargetEffect targetEffect = (TargetEffect) effect;
                 targetEffect.choose(stackable, game);
             }
+            else if (effect instanceof ContinuousEffectInitializer ) {
+                TargetEffect targetEffect = (TargetEffect) ((ContinuousEffectInitializer) effect).continuousEffect;
+                targetEffect.choose(stackable, game);
+            }
+
         });
     }
 

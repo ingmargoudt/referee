@@ -18,7 +18,7 @@ public class Test_Charge extends BaseGame {
         addCard(Zone.HAND, player1, charge, 1);
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, charge);
 
-        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        stopAt(1, Phase.POSTCOMBAT_MAINPHASE);
         start();
         assertPermanentPower(Zone.BATTLEFIELD, player1, bears, 3);
         assertPermanentToughness(Zone.BATTLEFIELD, player1, bears, 3);

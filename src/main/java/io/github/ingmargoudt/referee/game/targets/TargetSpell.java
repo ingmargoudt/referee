@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game.targets;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.effects.TargetEffect;
 import io.github.ingmargoudt.referee.game.objects.Spell;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
@@ -35,7 +36,7 @@ public class TargetSpell extends Target {
     }
 
     @Override
-    public void choose(Stackable source, Game game, OneShotEffect oneShotEffect) {
+    public void choose(Stackable source, Game game, TargetEffect oneShotEffect) {
         Player player = source.getController();
         this.theTarget = player.chooseTarget(validTargets(game));
         EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.toString());
