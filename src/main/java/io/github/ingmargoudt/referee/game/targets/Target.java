@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.game.targets;
 
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
+import io.github.ingmargoudt.referee.game.effects.TargetEffect;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Ruleable;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
@@ -20,7 +21,7 @@ public abstract class Target implements Ruleable {
 
     public abstract Optional<Targetable> resolve(Game game);
 
-    public abstract void choose(Stackable source, Game game, OneShotEffect effect);
+    public abstract void choose(Stackable source, Game game, TargetEffect effect);
 
     public Target from(MagicObject source) {
         this.source = source;
