@@ -185,7 +185,7 @@ public class BaseGame {
     protected void assertPermanentPower(Zone zone, TestPlayer player, Card theCard, int power) {
         if (zone == Zone.BATTLEFIELD) {
             for (Permanent permanent : game.getBattlefield().getAll()) {
-                if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
+                if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player) && permanent.getBase().getId().equals(theCard.getId())) {
                     assertThat(permanent.getPower()).isEqualTo(power);
                     log.info(theCard.getName() + " with power " + power + " found under control of player " + player.getName());
                 }
@@ -198,7 +198,7 @@ public class BaseGame {
     protected void assertPermanentToughness(Zone zone, TestPlayer player, Card theCard, int toughness) {
         if (zone == Zone.BATTLEFIELD) {
             for (Permanent permanent : game.getBattlefield().getAll()) {
-                if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player)) {
+                if (permanent.getName().equals(theCard.getName()) && permanent.isControlledBy(player) && permanent.getBase().getId().equals(theCard.getId())) {
                     assertThat(permanent.getToughness()).isEqualTo(toughness);
                     log.info(theCard.getName() + " with toughness " + toughness + " found under control of player " + player.getName());
                 }

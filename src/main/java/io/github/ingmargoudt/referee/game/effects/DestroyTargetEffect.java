@@ -19,7 +19,7 @@ public class DestroyTargetEffect extends OneShotEffect implements TargetEffect {
         targets.get(0).resolve(game)
                 .map(Destroyable.class::cast)
                 .ifPresent(theTarget -> {
-                    theTarget.destroy(game, player, object);
+                    theTarget.destroy(game, object);
                 });
     }
 

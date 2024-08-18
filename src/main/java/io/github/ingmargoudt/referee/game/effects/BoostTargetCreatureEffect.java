@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.game.effects;
 
+import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
@@ -9,6 +10,7 @@ import io.github.ingmargoudt.referee.game.targets.Target;
 import io.github.ingmargoudt.referee.game.targets.TargetCreature;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class BoostTargetCreatureEffect extends ContinuousEffect implements TargetEffect {
@@ -28,9 +30,11 @@ public class BoostTargetCreatureEffect extends ContinuousEffect implements Targe
     public void apply(MagicObject source, Game game) {
         targetCreature.resolve(game)
                 .map(Permanent.class::cast).ifPresent(permanent -> {
+                    EventBus.report(permanent.getName() + " gets +"+power+ " +"+toughness + " "+getDuration().toString());
                 permanent.setPower(permanent.getPower() + power);
                 permanent.setToughness(permanent.getToughness() + toughness);
         });
+
     }
 
     public String getRule() {
@@ -51,6 +55,6 @@ public class BoostTargetCreatureEffect extends ContinuousEffect implements Targe
 
     @Override
     public List<Target> getTargets() {
-        return Arrays.asList(targetCreature);
+        return Collections.singletonList(targetCreature);
     }
 }

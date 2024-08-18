@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game.objects;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
+import io.github.ingmargoudt.referee.game.abilities.Indestructible;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.properties.Destroyable;
@@ -110,6 +111,8 @@ the battlefield. Every permanent has a controller.
 
 
     public void destroy(Game game) {
+        EventBus.report(this.getName() + " dies");
+
         game.moveToGraveyard(base);
     }
 
@@ -124,9 +127,18 @@ the battlefield. Every permanent has a controller.
         return damageReceived;
     }
 
+    public boolean wouldDieFromDamage(){
+        return getReceivedDamage() >= getToughness() && isCreature() && !hasAbility(Indestructible.class);
+    }
+
+    public boolean hasZeroToughness(){
+        return toughness <=0 && isCreature() && !hasAbility(Indestructible.class);
+    }
 
     @Override
-    public void destroy(Game game, Player controller, MagicObject source) {
+    public void destroy(Game game, MagicObject source) {
+        EventBus.report(this.getName() + " dies from "+source.getName());
+
         game.moveToGraveyard(base);
     }
 }

@@ -31,7 +31,7 @@ public class Stack {
         if (stackable.hasTargets()) {
             stackable.getEffects().chooseTargets(stackable, game);
         }
-        game.setPriority(game.getActivePlayer());
+        game.setPriority(stackable.getController());
     }
 
     public void resolve(Game game) {

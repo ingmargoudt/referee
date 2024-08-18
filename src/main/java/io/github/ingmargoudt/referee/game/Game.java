@@ -172,7 +172,7 @@ public class Game {
     private void checkStateBasedActions() {
         EventBus.report("Checking statebased actions");
         getBattlefield().getAll().forEach(permanent -> {
-            if (permanent.getReceivedDamage() >= permanent.getToughness() && permanent.isCreature() && !permanent.hasAbility(Indestructible.class)) {
+            if (permanent.wouldDieFromDamage() || permanent.hasZeroToughness()) {
                 permanent.destroy(this);
             }
         });

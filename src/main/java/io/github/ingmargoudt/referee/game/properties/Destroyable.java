@@ -7,5 +7,5 @@ import io.github.ingmargoudt.referee.players.Player;
 public interface Destroyable {
 
 
-    void destroy(Game game, Player controller, MagicObject source);
+    void destroy(Game game, MagicObject source);
 }
