@@ -137,7 +137,6 @@ public class BaseGame {
     protected void start() {
         game.start();
 
-        boolean ok = true;
         String message = "";
         if (player1.hasRemainingActions()) {
             message += (player1.getName() + " has remaining actions: " + player1.getActions().stream().map(Object::toString).collect(Collectors.joining()));

@@ -23,6 +23,8 @@ public enum Phase {
         @Override
         void run(Game game) {
             startMessage(game);
+            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.BEGINNING_OF_COMBAT, game.getActivePlayer()));
+            mainPhase(game);
 
         }
     },

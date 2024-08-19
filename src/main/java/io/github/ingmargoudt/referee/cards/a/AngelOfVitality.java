@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.cards.a;
 
 import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.effects.ReplacementEffect;
 import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
@@ -12,6 +13,7 @@ public class AngelOfVitality extends Card {
     public AngelOfVitality() {
         super("Angel of Vitality");
         cardtypes.add(CardType.CREATURE);
+        subTypes.add(SubType.ANGEL);
         setPower(2);
         setToughness(2);
         replacementEffects.add(new AngelOfVitalityReplacementEffect());
