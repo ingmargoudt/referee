@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
+import io.github.ingmargoudt.referee.game.abilities.FirstStrike;
 import io.github.ingmargoudt.referee.game.events.AtTheBeginningOfStepEvent;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.DurationType;
@@ -36,22 +37,53 @@ public enum Phase {
             handlePriority(game);
 
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.COMBAT_DAMAGE_STEP, game.getActivePlayer()));
-            List<Permanent> attackers = game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker()).collect(Collectors.toList());
+
+            // firststrike + double strike
+            List<Permanent> attackers = game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker() ).collect(Collectors.toList());
             for (Permanent attacker : attackers) {
-                if (attacker.getBlockers().isEmpty()) {
+                if (attacker.getBlockers().isEmpty() && attacker.hasAbility(FirstStrike.class)) {
                     EventBus.report(attacker.getName() + " is not blocked");
-                    game.getNonActivePlayer().damage(game, attacker, attacker.getPower());
+                    game.getNonActivePlayer().receiveDamage(game, attacker, attacker.getPower());
                     continue;
                 }
                 int damageGiven = 0;
                 for (Permanent blocker : attacker.getBlockers()) {
-                    attacker.damage(game, blocker, blocker.getPower());
-                    if (damageGiven < attacker.getPower()) {
-                        blocker.damage(game, attacker, attacker.getPower() - damageGiven);
+                    if(blocker.hasAbility(FirstStrike.class)) {
+                        attacker.receiveDamage(game, blocker, blocker.getPower());
+                    }
+                    if (attacker.hasAbility(FirstStrike.class) && damageGiven < attacker.getPower()) {
+                        blocker.receiveDamage(game, attacker, attacker.getPower() - damageGiven);
                         damageGiven += attacker.getPower();
                     }
                 }
             }
+            handlePriority(game);
+            game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker()).forEach(attacker -> {
+                attacker.getBlockers().removeIf(blocker -> blocker.getReceivedDamage() >= blocker.getToughness());
+            });
+            // regular + double strike
+
+            attackers = game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker()).collect(Collectors.toList());
+            for (Permanent attacker : attackers) {
+                if (attacker.getBlockers().isEmpty() && !attacker.hasAbility(FirstStrike.class)) {
+                    EventBus.report(attacker.getName() + " is not blocked");
+                    game.getNonActivePlayer().receiveDamage(game, attacker, attacker.getPower());
+                    continue;
+                }
+                int damageGiven = 0;
+                for (Permanent blocker : attacker.getBlockers()) {
+                    if(!blocker.hasAbility(FirstStrike.class)) {
+                        attacker.receiveDamage(game, blocker, blocker.getPower());
+                    }
+                    if (damageGiven < attacker.getPower()) {
+                        if(!attacker.hasAbility(FirstStrike.class)) {
+                            blocker.receiveDamage(game, attacker, attacker.getPower() - damageGiven);
+                            damageGiven += attacker.getPower();
+                        }
+                    }
+                }
+            }
+            handlePriority(game);
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.END_OF_COMBAT_STEP, game.getActivePlayer()));
             game.getBattlefield().getAll().forEach(p-> {
                 p.setDeclaredAsAttacker(false);

@@ -10,7 +10,6 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.targets.Filter;
 import io.github.ingmargoudt.referee.game.targets.TargetPermanent;
-import io.github.ingmargoudt.referee.players.Player;
 
 import static io.github.ingmargoudt.referee.game.targets.OrPredicate.or;
 
@@ -33,7 +32,7 @@ class CryoClasmEffect extends OneShotEffect implements TargetEffect {
         targets.forEach(target ->
                 target.resolve(game).ifPresent(targetable -> {
                         ((Permanent) targetable).destroy(game);
-                        targetable.getController().damage(game, object, 3);
+                        targetable.getController().receiveDamage(game, object, 3);
                 }));
     }
 

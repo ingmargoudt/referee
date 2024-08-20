@@ -6,7 +6,7 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 public interface Damageable {
 
 
-    void damage(Game game, MagicObject source, int amount);
+    void receiveDamage(Game game, MagicObject source, int amount);
 
     String getName();
 }

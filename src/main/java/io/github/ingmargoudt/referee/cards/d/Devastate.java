@@ -9,7 +9,6 @@ import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.targets.Filter;
 import io.github.ingmargoudt.referee.game.targets.TargetPermanent;
-import io.github.ingmargoudt.referee.players.Player;
 
 import java.util.stream.Collectors;
 
@@ -33,8 +32,8 @@ class DevastateEffect extends OneShotEffect implements TargetEffect {
         targets.forEach(target ->
                 target.resolve(game).ifPresent(targetable -> {
                         ((Permanent) targetable).destroy(game);
-                        game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).collect(Collectors.toList()).forEach(creature -> creature.damage(game, object, 1));
-                        game.getPlayers().forEach(player -> player.damage(game, object, 1));
+                        game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).collect(Collectors.toList()).forEach(creature -> creature.receiveDamage(game, object, 1));
+                        game.getPlayers().forEach(player -> player.receiveDamage(game, object, 1));
 
                 }));
     }

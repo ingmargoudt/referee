@@ -131,7 +131,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     @Override
-    public void damage(Game game, MagicObject source, int amount) {
+    public void receiveDamage(Game game, MagicObject source, int amount) {
         EventBus.report(source.getController().getName() + "'s " + source.getName() + " deals " + amount + " damage to " + getName());
         life -= amount;
         if(source.hasAbility(Lifelink.class)){
