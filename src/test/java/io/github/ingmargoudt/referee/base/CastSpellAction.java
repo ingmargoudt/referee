@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.Step;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import lombok.Getter;
@@ -24,6 +25,12 @@ public class CastSpellAction extends TestPlayerAction {
 
     public CastSpellAction(int turn, Phase phase, Card card, Targetable target) {
         super(turn, phase);
+        this.card = card;
+        targets.add(target);
+    }
+
+    public CastSpellAction(int turn, Step step, Card card, Targetable target) {
+        super(turn, step);
         this.card = card;
         targets.add(target);
     }

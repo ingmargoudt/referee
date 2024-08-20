@@ -2,9 +2,11 @@ package io.github.ingmargoudt.referee.abilities;
 
 import io.github.ingmargoudt.referee.base.BaseGame;
 import io.github.ingmargoudt.referee.cards.b.BrightbladeStoat;
+import io.github.ingmargoudt.referee.cards.g.GiantGrowth;
 import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.cards.s.ShivanDragon;
 import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.Step;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
@@ -68,5 +70,23 @@ public class Test_Firststrike extends BaseGame {
         assertLife(player1, 22);
         assertGraveyard(player1, brightbladeStoat);
         assertPermanent(Zone.BATTLEFIELD, player2, shivanDragon, 1);
+    }
+
+    @Test
+    void FirststrikeBlockedByBiggerCreatureBoostAfterDeclareBlockers(){
+        Card brightbladeStoat = new BrightbladeStoat();
+        Card shivanDragon = new ShivanDragon();
+        Card giantGrowth = new GiantGrowth();
+        addCard(Zone.BATTLEFIELD, player1, brightbladeStoat);
+        addCard(Zone.BATTLEFIELD, player2, shivanDragon);
+        addCard(Zone.HAND, player1, giantGrowth);
+        attack(player1, 1, brightbladeStoat);
+        block(player2, 1, shivanDragon, brightbladeStoat);
+        castSpell(1,  Step.DECLARE_BLOCKERS, player1, giantGrowth, brightbladeStoat);
+        stopAt(1, Phase.POSTCOMBAT_MAINPHASE);
+        start();
+        assertLife(player1, 25);
+        assertGraveyard(player2, shivanDragon);
+        assertPermanent(Zone.BATTLEFIELD, player1, brightbladeStoat, 1);
     }
 }

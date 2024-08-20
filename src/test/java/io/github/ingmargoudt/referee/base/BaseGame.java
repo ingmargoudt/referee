@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.base;
 import io.github.ingmargoudt.referee.framework.Console;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.Step;
 import io.github.ingmargoudt.referee.game.SubTypes;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
@@ -119,6 +120,10 @@ public class BaseGame {
 
     protected void castSpell(int turn, Phase phase, TestPlayer player, Card card, Targetable targetable) {
         player.addAction(new CastSpellAction(turn, phase, card, targetable));
+    }
+
+    protected void castSpell(int turn, Step step, TestPlayer player, Card card, Targetable targetable) {
+        player.addAction(new CastSpellAction(turn, step, card, targetable));
     }
 
 

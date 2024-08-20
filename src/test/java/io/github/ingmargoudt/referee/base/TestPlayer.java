@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.base;
 
+import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.Step;
 import io.github.ingmargoudt.referee.game.objects.Card;
@@ -73,7 +74,7 @@ public class TestPlayer extends Player {
                 playerActionIterator.remove();
                 return;
             }
-            if (action.phase == gameReference.getCurrentPhase() && action.turn == gameReference.getTurnNumber()) {
+            if ((action.phase == gameReference.getCurrentPhase() || action.step == gameReference.getCurrentStep()) && action.turn == gameReference.getTurnNumber()) {
                 if (action instanceof CastSpellAction && gameReference.isPlayable(this, ((CastSpellAction) action).getCard())) {
                     action.execute(this);
                     playerActionIterator.remove();
@@ -119,6 +120,7 @@ public class TestPlayer extends Player {
     public void declareBlocker(Card blocker, Card toBlock) {
         gameReference.getBattlefield().getAll().stream().filter(p->p.getBase().getId().equals(blocker.getId())).findFirst().ifPresent(b -> {
             gameReference.getBattlefield().getAll().stream().filter(p -> p.getBase().getId().equals(toBlock.getId())).findFirst().ifPresent(p -> p.getBlockers().add(b));
+            EventBus.report(blocker.getName() + " is declared to block "+toBlock.getName());
         });
     }
 }
