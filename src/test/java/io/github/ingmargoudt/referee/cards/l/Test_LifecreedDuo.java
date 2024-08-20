@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.cards.l;
 
 import io.github.ingmargoudt.referee.base.BaseGame;
+import io.github.ingmargoudt.referee.cards.g.GloriousAnthem;
 import io.github.ingmargoudt.referee.cards.g.GrizzlyBears;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.objects.Card;
@@ -33,5 +34,17 @@ public class Test_LifecreedDuo extends BaseGame {
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
         assertLife(player1, 22);
+    }
+
+    @Test
+    void notTriggerOfNonCreature() {
+        Card lifecreedDuo = new LifecreedDuo();
+        Card anthem = new GloriousAnthem();
+        addCard(Zone.BATTLEFIELD, player1, lifecreedDuo);
+        addCard(Zone.HAND, player1, anthem);
+        castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, anthem);
+        stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+        start();
+        assertLife(player1, 20);
     }
 }
