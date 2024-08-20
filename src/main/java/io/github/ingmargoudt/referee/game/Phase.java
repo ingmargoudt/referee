@@ -2,8 +2,11 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.events.AtTheBeginningOfStepEvent;
+import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.DurationType;
-import io.github.ingmargoudt.referee.players.Player;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Phase {
     BEGINNING_PHASE {
@@ -16,7 +19,7 @@ public enum Phase {
         @Override
         void run(Game game) {
             startMessage(game);
-            mainPhase(game);
+            handlePriority(game);
         }
     },
     COMBAT_PHASE {
@@ -24,14 +27,27 @@ public enum Phase {
         void run(Game game) {
             startMessage(game);
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.BEGINNING_OF_COMBAT, game.getActivePlayer()));
-            mainPhase(game);
-
+            handlePriority(game);
+            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.DECLARE_ATTACKERS, game.getActivePlayer()));
+            game.getActivePlayer().doAction();
+            handlePriority(game);
+            List<Permanent> attackers = game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker()).collect(Collectors.toList());
+            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.DECLARE_BLOCKERS, game.getActivePlayer()));
+            game.getNonActivePlayer().doAction();
+            handlePriority(game);
+            attackers.forEach(attacker -> {
+                if(attacker.getBlockers().isEmpty()){
+                    EventBus.report(attacker.getName() + " is not blocked");
+                    game.getNonActivePlayer().damage(attacker, attacker.getPower());
+                }
+            });
         }
     },
     POSTCOMBAT_MAINPHASE {
         @Override
         void run(Game game) {
             startMessage(game);
+            handlePriority(game);
 
         }
     },
@@ -62,7 +78,7 @@ pass in succession. Simply having the stack become empty doesn’t cause such a 
 end; all players have to pass in succession with the stack empty. Because of this, each player gets a
 chance to add new things to the stack before that phase or step ends.
      */
-    void mainPhase(Game game) {
+    void handlePriority(Game game) {
         do {
             game.getStack().checkIfAllPlayersPassed();
             game.getPlayerWithPriority().doAction();

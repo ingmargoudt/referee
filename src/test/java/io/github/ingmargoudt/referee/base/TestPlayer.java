@@ -58,6 +58,12 @@ public class TestPlayer extends Player {
         while (playerActionIterator.hasNext()) {
             TestPlayerAction action = playerActionIterator.next();
             currenAction = action;
+
+            if(action instanceof AttackAction && action.turn == gameReference.getTurnNumber()){
+                action.execute(this);
+                playerActionIterator.remove();
+                return;
+            }
             if (action.phase == gameReference.getCurrentPhase() && action.turn == gameReference.getTurnNumber()) {
                 if (action instanceof CastSpellAction && gameReference.isPlayable(this, ((CastSpellAction) action).getCard())) {
                     action.execute(this);
@@ -80,7 +86,6 @@ public class TestPlayer extends Player {
                     return;
                 }
             }
-            ;
         }
         passPriority();
 

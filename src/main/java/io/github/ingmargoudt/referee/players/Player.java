@@ -162,4 +162,8 @@ public class Player extends BaseObject implements Targetable, Damageable {
         hand.remove(card);
         putCardInGraveyard(card);
     }
+
+    public void declareAttacker(Card card) {
+        gameReference.getBattlefield().getAll().stream().filter(p->p.getBase().getId().equals(card.getId())).findFirst().ifPresent(p->p.setDeclaredAsAttacker(true));
+    }
 }

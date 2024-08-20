@@ -126,6 +126,10 @@ public class BaseGame {
         player.addAction(new PlayLandAction(turnNumber, phase, card));
     }
 
+    protected void attack(TestPlayer player, int turnNumber, Card card){
+        player.addAction(new AttackAction(turnNumber, card));
+    }
+
     protected void disablePlayerActionLogging() {
         EventBus.clear();
     }

@@ -10,7 +10,10 @@ import io.github.ingmargoudt.referee.game.properties.Destroyable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.players.Player;
 import lombok.Getter;
+import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Permanent extends MagicObject implements Targetable, Damageable, Destroyable {
@@ -31,6 +34,12 @@ Each permanent always has one of these values for each of these categories.
 
     int damageReceived = 0;
 
+    @Getter
+    @Setter
+    boolean declaredAsAttacker;
+    @Getter
+    List<Permanent> blockers;
+
 
     /*
     110.2. A permanent’s owner is the same as the owner of the card that represents it (unless it’s a token;
@@ -41,6 +50,7 @@ the battlefield. Every permanent has a controller.
         super(card.getName());
         this.base = card;
         this.controller = base.getOwner();
+        this.blockers = new ArrayList<>();
         reset();
     }
 
@@ -60,7 +70,6 @@ the battlefield. Every permanent has a controller.
         this.getReplacementEffects().clear();
         this.getReplacementEffects().addAll(base.getReplacementEffects());
         this.manaCost = base.getManaCost();
-
     }
 
     public void tap() {

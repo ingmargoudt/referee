@@ -268,4 +268,13 @@ public class Game {
         }
         return null;
     }
+
+    public Player getNonActivePlayer() {
+        for(Player player : players){
+            if(!player.getId().equals(activePlayer.getId())){
+                return player;
+            }
+        }
+        throw new IllegalStateException("Non active player not found");
+    }
 }
