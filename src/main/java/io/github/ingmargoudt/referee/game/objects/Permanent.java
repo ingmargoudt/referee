@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.abilities.Indestructible;
+import io.github.ingmargoudt.referee.game.abilities.Lifelink;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.properties.Destroyable;
@@ -127,9 +128,13 @@ the battlefield. Every permanent has a controller.
 
 
     @Override
-    public void damage(MagicObject source, int amount) {
+    public void damage(Game game, MagicObject source, int amount) {
+
         EventBus.report(source.getController().getName() + "'s " + source.getName() + " deals " + amount + " damage to " + getName());
         damageReceived += amount;
+        if(source.hasAbility(Lifelink.class)){
+            source.getController().gainLife(game, amount, source);
+        }
     }
 
     public int getReceivedDamage() {

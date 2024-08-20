@@ -40,14 +40,14 @@ public enum Phase {
             for (Permanent attacker : attackers) {
                 if (attacker.getBlockers().isEmpty()) {
                     EventBus.report(attacker.getName() + " is not blocked");
-                    game.getNonActivePlayer().damage(attacker, attacker.getPower());
+                    game.getNonActivePlayer().damage(game, attacker, attacker.getPower());
                     continue;
                 }
                 int damageGiven = 0;
                 for (Permanent blocker : attacker.getBlockers()) {
-                    attacker.damage(blocker, blocker.getPower());
+                    attacker.damage(game, blocker, blocker.getPower());
                     if (damageGiven < attacker.getPower()) {
-                        blocker.damage(attacker, attacker.getPower() - damageGiven);
+                        blocker.damage(game, attacker, attacker.getPower() - damageGiven);
                         damageGiven += attacker.getPower();
                     }
                 }

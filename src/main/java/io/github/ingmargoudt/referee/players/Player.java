@@ -5,6 +5,7 @@ import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.Manapool;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedManaAbility;
+import io.github.ingmargoudt.referee.game.abilities.Lifelink;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
 import io.github.ingmargoudt.referee.game.objects.BaseObject;
 import io.github.ingmargoudt.referee.game.objects.Card;
@@ -120,7 +121,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
     public void gainLife(Game game, int amount, MagicObject source) {
         GainLifeEvent gainLifeEvent = new GainLifeEvent(source, amount);
         game.raiseEvent(gainLifeEvent);
-        EventBus.report(getName() + " gains " + gainLifeEvent.getAmount() + " life");
+        EventBus.report(getName() + " gains " + gainLifeEvent.getAmount() + " life from "+source.getName());
         life += gainLifeEvent.getAmount();
     }
 
@@ -130,9 +131,12 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     @Override
-    public void damage(MagicObject source, int amount) {
+    public void damage(Game game, MagicObject source, int amount) {
         EventBus.report(source.getController().getName() + "'s " + source.getName() + " deals " + amount + " damage to " + getName());
         life -= amount;
+        if(source.hasAbility(Lifelink.class)){
+            source.getController().gainLife(game, amount, source);
+        }
 
     }
 

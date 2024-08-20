@@ -33,7 +33,7 @@ class CryoClasmEffect extends OneShotEffect implements TargetEffect {
         targets.forEach(target ->
                 target.resolve(game).ifPresent(targetable -> {
                         ((Permanent) targetable).destroy(game);
-                        targetable.getController().damage(object, 3);
+                        targetable.getController().damage(game, object, 3);
                 }));
     }
 
