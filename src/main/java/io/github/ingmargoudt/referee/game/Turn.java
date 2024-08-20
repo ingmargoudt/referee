@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.LinkedList;
 
@@ -10,6 +11,9 @@ public class Turn {
     private final LinkedList<Phase> phases = new LinkedList<>();
     @Getter
     private Phase currentPhase;
+    @Setter
+    @Getter
+    private Step step;
 
     /*
     500.1. A turn consists of five phases, in this order: beginning, precombat main, combat, postcombat

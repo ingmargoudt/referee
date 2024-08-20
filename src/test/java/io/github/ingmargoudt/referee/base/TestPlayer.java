@@ -1,5 +1,8 @@
 package io.github.ingmargoudt.referee.base;
 
+import io.github.ingmargoudt.referee.game.Phase;
+import io.github.ingmargoudt.referee.game.Step;
+import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.game.zones.Hand;
 import io.github.ingmargoudt.referee.game.zones.Library;
@@ -52,6 +55,7 @@ public class TestPlayer extends Player {
     }
 
 
+
     @Override
     public void doAction() {
         Iterator<TestPlayerAction> playerActionIterator = actions.listIterator();
@@ -59,7 +63,12 @@ public class TestPlayer extends Player {
             TestPlayerAction action = playerActionIterator.next();
             currenAction = action;
 
-            if(action instanceof AttackAction && action.turn == gameReference.getTurnNumber()){
+            if(action instanceof AttackAction && action.turn == gameReference.getTurnNumber() && gameReference.getCurrentStep() == Step.DECLARE_ATTACKERS){
+                action.execute(this);
+                playerActionIterator.remove();
+                return;
+            }
+            if(action instanceof BlockAction && action.turn == gameReference.getTurnNumber()&& gameReference.getCurrentStep() == Step.DECLARE_BLOCKERS){
                 action.execute(this);
                 playerActionIterator.remove();
                 return;
@@ -105,5 +114,11 @@ public class TestPlayer extends Player {
     @Override
     public String choosesOption(List<String> options) {
         return this.options.remove(0);
+    }
+
+    public void declareBlocker(Card blocker, Card toBlock) {
+        gameReference.getBattlefield().getAll().stream().filter(p->p.getBase().getId().equals(blocker.getId())).findFirst().ifPresent(b -> {
+            gameReference.getBattlefield().getAll().stream().filter(p -> p.getBase().getId().equals(toBlock.getId())).findFirst().ifPresent(p -> p.getBlockers().add(b));
+        });
     }
 }

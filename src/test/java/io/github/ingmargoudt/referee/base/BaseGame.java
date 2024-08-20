@@ -130,6 +130,10 @@ public class BaseGame {
         player.addAction(new AttackAction(turnNumber, card));
     }
 
+    protected void block(TestPlayer player, int turnNumber, Card blocker, Card toBlock){
+        player.addAction(new BlockAction(turnNumber, blocker, toBlock));
+    }
+
     protected void disablePlayerActionLogging() {
         EventBus.clear();
     }

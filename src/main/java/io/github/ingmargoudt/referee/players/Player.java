@@ -164,6 +164,9 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     public void declareAttacker(Card card) {
-        gameReference.getBattlefield().getAll().stream().filter(p->p.getBase().getId().equals(card.getId())).findFirst().ifPresent(p->p.setDeclaredAsAttacker(true));
+        gameReference.getBattlefield().getAll().stream().filter(p->p.getBase().getId().equals(card.getId())).findFirst().ifPresent(p->{
+            EventBus.report(this.getName() + " declares "+card.getName() + " to attack");
+            p.setDeclaredAsAttacker(true);
+        });
     }
 }

@@ -3,6 +3,7 @@ package io.github.ingmargoudt.referee.game;
 import io.github.ingmargoudt.referee.framework.EventBus;
 import io.github.ingmargoudt.referee.game.abilities.*;
 import io.github.ingmargoudt.referee.game.effects.ContinuousEffect;
+import io.github.ingmargoudt.referee.game.events.AtTheBeginningOfStepEvent;
 import io.github.ingmargoudt.referee.game.events.EnterTheBattlefieldEvent;
 import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.Card;
@@ -127,6 +128,10 @@ public class Game {
         return currentTurn.getCurrentPhase();
     }
 
+    public Step getCurrentStep(){
+        return currentTurn.getStep();
+    }
+
     public void putOnStack(Spell spell) {
         stack.putOnStack(spell);
     }
@@ -199,6 +204,9 @@ public class Game {
     }
 
     public Event raiseEvent(Event event) {
+        if(event instanceof AtTheBeginningOfStepEvent){
+            currentTurn.setStep(((AtTheBeginningOfStepEvent) event).getStep());
+        }
         List<StackAbility> triggeredAbilities = new ArrayList<>();
         battlefield.getAll().forEach(permanent -> {
             permanent.getAbilities().forEach(ability -> {

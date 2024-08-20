@@ -31,16 +31,34 @@ public enum Phase {
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.DECLARE_ATTACKERS, game.getActivePlayer()));
             game.getActivePlayer().doAction();
             handlePriority(game);
-            List<Permanent> attackers = game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker()).collect(Collectors.toList());
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.DECLARE_BLOCKERS, game.getActivePlayer()));
             game.getNonActivePlayer().doAction();
             handlePriority(game);
-            attackers.forEach(attacker -> {
-                if(attacker.getBlockers().isEmpty()){
+
+            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.COMBAT_DAMAGE_STEP, game.getActivePlayer()));
+            List<Permanent> attackers = game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker()).collect(Collectors.toList());
+            for (Permanent attacker : attackers) {
+                if (attacker.getBlockers().isEmpty()) {
                     EventBus.report(attacker.getName() + " is not blocked");
                     game.getNonActivePlayer().damage(attacker, attacker.getPower());
+                    continue;
                 }
+                int damageGiven = 0;
+                for (Permanent blocker : attacker.getBlockers()) {
+                    attacker.damage(blocker, blocker.getPower());
+                    if (damageGiven < attacker.getPower()) {
+                        blocker.damage(attacker, attacker.getPower() - damageGiven);
+                        damageGiven += attacker.getPower();
+                    }
+                }
+            }
+            game.raiseEvent(new AtTheBeginningOfStepEvent(Step.END_OF_COMBAT_STEP, game.getActivePlayer()));
+            game.getBattlefield().getAll().forEach(p-> {
+                p.setDeclaredAsAttacker(false);
+                p.getBlockers().clear();
             });
+            handlePriority(game);
+
         }
     },
     POSTCOMBAT_MAINPHASE {
@@ -79,6 +97,8 @@ end; all players have to pass in succession with the stack empty. Because of thi
 chance to add new things to the stack before that phase or step ends.
      */
     void handlePriority(Game game) {
+
+        game.setPriority(game.getActivePlayer());
         do {
             game.getStack().checkIfAllPlayersPassed();
             game.getPlayerWithPriority().doAction();
