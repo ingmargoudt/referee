@@ -5,6 +5,7 @@ import io.github.ingmargoudt.referee.game.objects.Permanent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Battlefield {
 
@@ -24,5 +25,9 @@ public class Battlefield {
 
     public void remove(Card card) {
         permanents.removeIf(permanent -> permanent.getId().equals(card.getId()));
+    }
+
+    public Optional<Permanent> findPermanent(Card card){
+        return permanents.stream().filter(p->p.getBase().getId().equals(card.getId())).findFirst();
     }
 }

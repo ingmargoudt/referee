@@ -1,7 +1,6 @@
 package io.github.ingmargoudt.referee.base;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.Step;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
@@ -20,7 +19,7 @@ public class TestPlayer extends Player {
 
     @Getter
     private List<TestPlayerAction> actions = new ArrayList<>();
-    private TestPlayerAction currenAction;
+    private TestPlayerAction currentAction;
     private List<String> options = new ArrayList<>();
 
 
@@ -62,7 +61,7 @@ public class TestPlayer extends Player {
         Iterator<TestPlayerAction> playerActionIterator = actions.listIterator();
         while (playerActionIterator.hasNext()) {
             TestPlayerAction action = playerActionIterator.next();
-            currenAction = action;
+            currentAction = action;
 
             if(action instanceof AttackAction && action.turn == gameReference.getTurnNumber() && gameReference.getCurrentStep() == Step.DECLARE_ATTACKERS){
                 action.execute(this);
@@ -103,11 +102,11 @@ public class TestPlayer extends Player {
 
     @Override
     public Targetable chooseTarget(List<Targetable> validTargets) {
-        if (currenAction instanceof CastSpellAction) {
-            return ((CastSpellAction) currenAction).consumeTarget();
+        if (currentAction instanceof CastSpellAction) {
+            return ((CastSpellAction) currentAction).consumeTarget();
         }
-        if(currenAction instanceof ActivateAbilityAction){
-            return ((ActivateAbilityAction) currenAction).consumeTarget();
+        if(currentAction instanceof ActivateAbilityAction){
+            return ((ActivateAbilityAction) currentAction).consumeTarget();
         }
         return Fail.fail("Current action has no (legal) target");
     }
@@ -118,9 +117,13 @@ public class TestPlayer extends Player {
     }
 
     public void declareBlocker(Card blocker, Card toBlock) {
-        gameReference.getBattlefield().getAll().stream().filter(p->p.getBase().getId().equals(blocker.getId())).findFirst().ifPresent(b -> {
-            gameReference.getBattlefield().getAll().stream().filter(p -> p.getBase().getId().equals(toBlock.getId())).findFirst().ifPresent(p -> p.getBlockers().add(b));
+        gameReference.getBattlefield().findPermanent(blocker).ifPresent(b -> {
+            gameReference.getBattlefield().findPermanent(toBlock).ifPresent(p -> p.getBlockers().add(b));
             EventBus.report(blocker.getName() + " is declared to block "+toBlock.getName());
         });
+    }
+
+    public void declareAttacker(Card card){
+        gameReference.getBattlefield().findPermanent(card).ifPresent(this::declareAttacker);
     }
 }

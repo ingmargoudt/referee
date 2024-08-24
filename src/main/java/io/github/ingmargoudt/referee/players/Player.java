@@ -7,10 +7,7 @@ import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.Lifelink;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
-import io.github.ingmargoudt.referee.game.objects.BaseObject;
-import io.github.ingmargoudt.referee.game.objects.Card;
-import io.github.ingmargoudt.referee.game.objects.MagicObject;
-import io.github.ingmargoudt.referee.game.objects.Spell;
+import io.github.ingmargoudt.referee.game.objects.*;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.game.zones.Graveyard;
@@ -167,11 +164,16 @@ public class Player extends BaseObject implements Targetable, Damageable {
         putCardInGraveyard(card);
     }
 
-    public void declareAttacker(Card card) {
-        gameReference.getBattlefield().getAll().stream().filter(p->p.getBase().getId().equals(card.getId()) && !p.isTapped()).findFirst().ifPresent(p->{
-            EventBus.report(this.getName() + " declares "+card.getName() + " to attack");
-            p.setDeclaredAsAttacker(true);
-            p.tap();
-        });
+    public void declareAttacker(Permanent p) {
+            if(!p.isTapped()) {
+                EventBus.report(this.getName() + " declares " + p.getName() + " to attack");
+                p.setDeclaredAsAttacker(true);
+                p.tap();
+            }
+    }
+
+    public void declareBlocker(Permanent blocker, Permanent toBlock){
+            toBlock.getBlockers().add(blocker);
+            EventBus.report(blocker.getName() + " is declared to block "+toBlock.getName());
     }
 }
