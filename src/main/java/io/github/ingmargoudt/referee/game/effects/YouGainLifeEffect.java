@@ -18,6 +18,6 @@ public class YouGainLifeEffect extends OneShotEffect {
 
     @Override
     public String getRule() {
-        return "You gain " + amount + " life";
+        return "You gain " + amount + " life ";
     }
 }

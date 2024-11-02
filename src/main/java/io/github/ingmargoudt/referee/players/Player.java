@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.game.Manapool;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.Lifelink;
+import io.github.ingmargoudt.referee.game.events.DrawCardEvent;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
 import io.github.ingmargoudt.referee.game.objects.*;
 import io.github.ingmargoudt.referee.game.properties.Damageable;
@@ -59,6 +60,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
 
         if (drawnCard.isPresent()) {
             EventBus.report(name + " draws a card");
+            gameReference.raiseEvent(new DrawCardEvent(this));
             hand.addCard(drawnCard.get());
         } else {
 
@@ -118,8 +120,8 @@ public class Player extends BaseObject implements Targetable, Damageable {
     public void gainLife(Game game, int amount, MagicObject source) {
         GainLifeEvent gainLifeEvent = new GainLifeEvent(source, amount);
         game.raiseEvent(gainLifeEvent);
-        EventBus.report(getName() + " gains " + gainLifeEvent.getAmount() + " life from "+source.getName());
         life += gainLifeEvent.getAmount();
+        EventBus.report(getName() + " gains " + gainLifeEvent.getAmount() + " life from "+source.getName() + "("+getLife()+")");
     }
 
     public void playLand(Card card) {

@@ -78,7 +78,6 @@ public class Game {
         if (running) {
             return;
         }
-        running = true;
         /*
         . 103.2
         After the starting player has been determined, each player shuffles their deck so that the cards
@@ -97,10 +96,12 @@ public class Game {
         Arrays.stream(players).forEach(player -> player.drawCard(STARTING_HAND_SIZE));
         Arrays.stream(players).forEach(Player::mulligan);
 
+        running = true;
         while (running) {
             turnNumber++;
             currentTurn = new Turn();
             currentTurn.run(this);
+
         }
         applyContinuousEffects();
     }
@@ -204,6 +205,9 @@ public class Game {
     }
 
     public Event raiseEvent(Event event) {
+        if(!running){
+            return null;
+        }
         if(event instanceof AtTheBeginningOfStepEvent){
             currentTurn.setStep(((AtTheBeginningOfStepEvent) event).getStep());
         }

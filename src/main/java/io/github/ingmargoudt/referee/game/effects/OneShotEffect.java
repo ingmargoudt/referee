@@ -3,8 +3,10 @@ package io.github.ingmargoudt.referee.game.effects;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
+import io.github.ingmargoudt.referee.game.properties.Targetable;
 import io.github.ingmargoudt.referee.game.targets.Target;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +18,13 @@ public abstract class OneShotEffect extends Effect {
     @Getter
     protected List<Target> targets = new ArrayList<>();
 
+    @Getter
+    protected Targetable reflectedSource;
+
 
     protected OneShotEffect() {
         id = UUID.randomUUID();
+        reflectedSource = null;
     }
 
     @Override
@@ -39,5 +45,9 @@ public abstract class OneShotEffect extends Effect {
     public boolean hasValidTargets(Game game, MagicObject object) {
 
         return targets.stream().noneMatch(target -> target.from(object).validTargets(game).isEmpty());
+    }
+
+    public void setReflectedSource(Targetable targetable){
+        this.reflectedSource = targetable;
     }
 }

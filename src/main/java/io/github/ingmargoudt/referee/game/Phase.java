@@ -14,6 +14,9 @@ public enum Phase {
         public void run(Game game) {
             startMessage(game);
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.UPKEEP, game.getActivePlayer()));
+            handlePriority(game);
+            game.getActivePlayer().drawCard();
+            handlePriority(game);
         }
     },
     PRECOMBAT_MAINPHASE {

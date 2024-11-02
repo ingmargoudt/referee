@@ -118,8 +118,8 @@ public class TestPlayer extends Player {
 
     public void declareBlocker(Card blocker, Card toBlock) {
         gameReference.getBattlefield().findPermanent(blocker).ifPresent(b -> {
-            gameReference.getBattlefield().findPermanent(toBlock).ifPresent(p -> p.getBlockers().add(b));
-            EventBus.report(blocker.getName() + " is declared to block "+toBlock.getName());
+            gameReference.getBattlefield().findPermanent(toBlock).ifPresent(tb -> this.declareBlocker(b, tb));
+
         });
     }
 
