@@ -4,10 +4,8 @@ import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.abilities.DrawsACardAbility;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
-import io.github.ingmargoudt.referee.game.effects.YouGainLifeEffect;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
-import io.github.ingmargoudt.referee.game.targets.PlayerSelector;
 import io.github.ingmargoudt.referee.players.Player;
 
 public class SheoldredTheApocalypse extends Card {
