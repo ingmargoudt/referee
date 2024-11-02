@@ -2,7 +2,7 @@ package io.github.ingmargoudt.referee.cards.s;
 
 import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.abilities.DrawsACardAbility;
+import io.github.ingmargoudt.referee.game.abilities.triggered.DrawsACardAbility;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;

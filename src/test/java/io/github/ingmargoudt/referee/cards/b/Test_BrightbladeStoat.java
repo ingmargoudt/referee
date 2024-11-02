@@ -1,9 +1,8 @@
 package io.github.ingmargoudt.referee.cards.b;
 
 import io.github.ingmargoudt.referee.base.BaseGame;
-import io.github.ingmargoudt.referee.game.Phase;
-import io.github.ingmargoudt.referee.game.abilities.FirstStrike;
-import io.github.ingmargoudt.referee.game.abilities.Lifelink;
+import io.github.ingmargoudt.referee.game.abilities.statics.FirstStrike;
+import io.github.ingmargoudt.referee.game.abilities.statics.Lifelink;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,8 @@
 package io.github.ingmargoudt.referee.cards.f;
 
 import io.github.ingmargoudt.referee.game.CardType;
-import io.github.ingmargoudt.referee.game.abilities.AddBlackManaAbility;
-import io.github.ingmargoudt.referee.game.abilities.AddWhiteManaAbility;
+import io.github.ingmargoudt.referee.game.abilities.mana.AddBlackManaAbility;
+import io.github.ingmargoudt.referee.game.abilities.mana.AddWhiteManaAbility;
 import io.github.ingmargoudt.referee.game.cost.TapCost;
 import io.github.ingmargoudt.referee.game.effects.ComesIntoPlayTappedEffect;
 import io.github.ingmargoudt.referee.game.objects.Card;

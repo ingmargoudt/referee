@@ -1,4 +1,4 @@
-package io.github.ingmargoudt.referee.game.abilities;
+package io.github.ingmargoudt.referee.game.abilities.mana;
 
 import io.github.ingmargoudt.referee.game.ManaType;
 import io.github.ingmargoudt.referee.game.cost.Cost;
@@ -7,11 +7,11 @@ import io.github.ingmargoudt.referee.game.effects.AddManaEffect;
 import io.github.ingmargoudt.referee.game.effects.Effects;
 import io.github.ingmargoudt.referee.game.effects.OneShotEffect;
 
-public class AddWhiteManaAbility extends ActivatedManaAbility {
+public class AddRedManaAbility extends ActivatedManaAbility {
 
-    private static final Effects<OneShotEffect> addManaEffect = new Effects<>(new AddManaEffect(ManaType.WHITE));
+    private static final Effects<OneShotEffect> addManaEffect = new Effects<>(new AddManaEffect(ManaType.RED));
 
-    public AddWhiteManaAbility(Cost... costs) {
+    public AddRedManaAbility(Cost... costs) {
         super(Costs.of(costs), addManaEffect);
     }
 }

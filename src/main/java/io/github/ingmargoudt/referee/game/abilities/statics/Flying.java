@@ -1,4 +1,6 @@
-package io.github.ingmargoudt.referee.game.abilities;
+package io.github.ingmargoudt.referee.game.abilities.statics;
+
+import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
 
 public class Flying extends StaticAbility {
 

@@ -1,7 +1,7 @@
 package io.github.ingmargoudt.referee.cards.d;
 
 import io.github.ingmargoudt.referee.game.CardType;
-import io.github.ingmargoudt.referee.game.abilities.Indestructible;
+import io.github.ingmargoudt.referee.game.abilities.statics.Indestructible;
 import io.github.ingmargoudt.referee.game.objects.Card;
 
 public class DarksteelMyr extends Card {

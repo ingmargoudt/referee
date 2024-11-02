@@ -8,7 +8,7 @@ import io.github.ingmargoudt.referee.cards.m.Mountain;
 import io.github.ingmargoudt.referee.cards.p.Plains;
 import io.github.ingmargoudt.referee.cards.s.Swamp;
 import io.github.ingmargoudt.referee.game.Phase;
-import io.github.ingmargoudt.referee.game.abilities.*;
+import io.github.ingmargoudt.referee.game.abilities.mana.*;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;

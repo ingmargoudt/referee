@@ -1,4 +1,4 @@
-package io.github.ingmargoudt.referee.game.abilities;
+package io.github.ingmargoudt.referee.game.abilities.mana;
 
 import io.github.ingmargoudt.referee.game.ManaType;
 import io.github.ingmargoudt.referee.game.cost.Cost;

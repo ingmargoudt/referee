@@ -1,10 +1,8 @@
 package io.github.ingmargoudt.referee.cards.b;
 
 import io.github.ingmargoudt.referee.game.CardType;
-import io.github.ingmargoudt.referee.game.SubType;
-import io.github.ingmargoudt.referee.game.SuperType;
 import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
-import io.github.ingmargoudt.referee.game.abilities.Trampling;
+import io.github.ingmargoudt.referee.game.abilities.statics.Trampling;
 import io.github.ingmargoudt.referee.game.effects.BoostThisCreatureForEachEffect;
 import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.targets.ControlledByPlayerSelector;

@@ -1,7 +1,7 @@
 package io.github.ingmargoudt.referee.game;
 
 import io.github.ingmargoudt.referee.framework.EventBus;
-import io.github.ingmargoudt.referee.game.abilities.FirstStrike;
+import io.github.ingmargoudt.referee.game.abilities.statics.FirstStrike;
 import io.github.ingmargoudt.referee.game.events.AtTheBeginningOfStepEvent;
 import io.github.ingmargoudt.referee.game.objects.Permanent;
 import io.github.ingmargoudt.referee.game.properties.DurationType;

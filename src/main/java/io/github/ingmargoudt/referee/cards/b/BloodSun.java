@@ -2,7 +2,7 @@ package io.github.ingmargoudt.referee.cards.b;
 
 import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.Game;
-import io.github.ingmargoudt.referee.game.abilities.EntersTheBattlefieldAbility;
+import io.github.ingmargoudt.referee.game.abilities.triggered.EntersTheBattlefieldAbility;
 import io.github.ingmargoudt.referee.game.abilities.StaticAbility;
 import io.github.ingmargoudt.referee.game.effects.ContinuousEffect;
 import io.github.ingmargoudt.referee.game.effects.DrawCardEffect;
