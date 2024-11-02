@@ -35,6 +35,11 @@ public enum Phase {
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.DECLARE_ATTACKERS, game.getActivePlayer()));
             game.getActivePlayer().doAction();
             handlePriority(game);
+            List<Permanent> attackers = game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker() ).collect(Collectors.toList());
+            if(attackers.isEmpty()){
+                EventBus.report("No attackers declares, skipping combat phase");
+                return;
+            }
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.DECLARE_BLOCKERS, game.getActivePlayer()));
             game.getNonActivePlayer().doAction();
             handlePriority(game);
@@ -42,7 +47,6 @@ public enum Phase {
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.COMBAT_DAMAGE_STEP, game.getActivePlayer()));
 
             // firststrike + double strike
-            List<Permanent> attackers = game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker() ).collect(Collectors.toList());
             for (Permanent attacker : attackers) {
                 if (attacker.getBlockers().isEmpty() && attacker.hasAbility(FirstStrike.class)) {
                     EventBus.report(attacker.getName() + " is not blocked");
@@ -133,7 +137,7 @@ chance to add new things to the stack before that phase or step ends.
      */
     void handlePriority(Game game) {
 
-        game.setPriority(game.getActivePlayer());
+        //game.setPriority(game.getActivePlayer());
         do {
             game.getStack().checkIfAllPlayersPassed();
             game.getPlayerWithPriority().doAction();

@@ -17,7 +17,7 @@ public class Stack {
     private final LinkedList<Stackable> stackEntries = new LinkedList<>();
 
     private final Game game;
-    private final List<UUID> passed = new ArrayList<>();
+    private final List<Player> passed = new ArrayList<>();
 
 
     public Stack(Game game) {
@@ -58,7 +58,7 @@ public class Stack {
     }
 
     public void pass(Game game, Player playerWithPriority) {
-        passed.add(playerWithPriority.getId());
+        passed.add(playerWithPriority);
         if (stackEntries.isEmpty()) {
             EventBus.report(playerWithPriority.getName() + " passes on empty stack");
         } else {

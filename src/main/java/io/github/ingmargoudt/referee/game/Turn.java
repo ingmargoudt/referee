@@ -31,10 +31,10 @@ public class Turn {
 
 
     public void run(Game game) {
-        game.assignActivePlayer();
         EventBus.report("***********************");
         EventBus.report("*** Starting turn " + game.getTurnNumber() +" ***");
         EventBus.report("***********************");
+        game.assignActivePlayer();
         while (!phases.isEmpty() && game.isRunning()) {
             currentPhase = phases.pop();
             currentPhase.run(game);

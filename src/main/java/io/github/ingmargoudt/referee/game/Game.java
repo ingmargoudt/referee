@@ -117,7 +117,7 @@ public class Game {
                 }
             }
         }
-        setPriority(activePlayer);
+        //setPriority(activePlayer);
         EventBus.report(getActivePlayer() + " becomes active player");
     }
 
@@ -156,7 +156,7 @@ public class Game {
 
     private void applyContinuousEffects() {
         battlefield.resetBase();
-        EventBus.report("Applying continuous effects");
+        //EventBus.report("Applying continuous effects");
         //apply land mana abilities for the base card
         ManaAbilityApplier.run(this);
         applyStaticAbilities();
@@ -176,7 +176,7 @@ public class Game {
     }
 
     private void checkStateBasedActions() {
-        EventBus.report("Checking statebased actions");
+        //EventBus.report("Checking statebased actions");
         getBattlefield().getAll().forEach(permanent -> {
             if (permanent.wouldDieFromDamage() || permanent.hasZeroToughness()) {
                 permanent.destroy(this);
