@@ -6,6 +6,7 @@ import io.github.ingmargoudt.referee.game.Manapool;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
 import io.github.ingmargoudt.referee.game.abilities.mana.ActivatedManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.statics.Lifelink;
+import io.github.ingmargoudt.referee.game.abilities.statics.Phasing;
 import io.github.ingmargoudt.referee.game.events.DrawCardEvent;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
 import io.github.ingmargoudt.referee.game.objects.*;
@@ -178,4 +179,11 @@ public class Player extends BaseObject implements Targetable, Damageable {
             toBlock.getBlockers().add(blocker);
             EventBus.report(blocker.getName() + " is declared to block "+toBlock.getName());
     }
+
+    public void executeUntapStep() {
+        gameReference.getBattlefield().getAll().stream().filter(permanent -> permanent.isControlledBy(this) && permanent.isTapped()).forEach(Permanent::untap);
+        gameReference.getBattlefield().getAll().stream().filter(permanent -> permanent.isControlledBy(this) && permanent.hasAbility(Phasing.class) && permanent.isPhasedOut()).forEach(Permanent::phaseIn);
+        gameReference.getBattlefield().getAll().stream().filter(permanent -> permanent.isControlledBy(this) && permanent.hasAbility(Phasing.class) && !permanent.isPhasedOut()).forEach(Permanent::phaseOut);
+    }
+
 }

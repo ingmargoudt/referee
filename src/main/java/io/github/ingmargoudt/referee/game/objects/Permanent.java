@@ -30,9 +30,10 @@ Each permanent always has one of these values for each of these categories.
      */
     @Getter
     boolean tapped;
-    boolean isFlipped;
-    boolean isFacedown;
-    boolean isPhasedOut;
+    boolean flipped;
+    boolean facedown;
+    @Getter
+    boolean phasedOut;
 
     int damageReceived = 0;
 
@@ -83,27 +84,27 @@ the battlefield. Every permanent has a controller.
     }
 
     public void flip() {
-        isFlipped = true;
+        flipped = true;
     }
 
     public void unflip() {
-        isFlipped = false;
+        flipped = false;
     }
 
     public void faseUp() {
-        isFacedown = false;
+        facedown = false;
     }
 
     public void faseDown() {
-        isFacedown = true;
+        facedown = true;
     }
 
     public void phaseIn() {
-        isPhasedOut = false;
+        phasedOut = false;
     }
 
     public void phaseOut() {
-        isPhasedOut = true;
+        phasedOut = true;
     }
 
 

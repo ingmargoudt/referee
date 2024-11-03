@@ -13,6 +13,7 @@ public enum Phase {
     BEGINNING_PHASE {
         public void run(Game game) {
             startMessage(game);
+            game.getActivePlayer().executeUntapStep();
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.UPKEEP, game.getActivePlayer()));
             handlePriority(game);
             game.getActivePlayer().drawCard();
