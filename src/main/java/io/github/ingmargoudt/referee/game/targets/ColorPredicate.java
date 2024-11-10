@@ -16,11 +16,11 @@ public class ColorPredicate implements Predicate {
 
     @Override
     public boolean evaluate(Targetable target, Game game, MagicObject source) {
-        if (target instanceof Spell) {
-            return ((Spell) target).getColor().contains(color);
+        if (target instanceof Spell spell) {
+            return spell.getColor().contains(color);
         }
-        if (target instanceof Permanent) {
-            return ((Permanent) target).getColor().contains(color);
+        if (target instanceof Permanent permanent) {
+            return permanent.getColor().contains(color);
         }
         return false;
     }

@@ -20,7 +20,9 @@ public class AtTheBeginningOfYourStepAbility extends TriggeredAbility {
 
     @Override
     public boolean checkTrigger(Event event, MagicObject parentObject) {
-        return event instanceof AtTheBeginningOfStepEvent && ((AtTheBeginningOfStepEvent) event).getActivePlayer().equals(parentObject.getController()) && theStep == ((AtTheBeginningOfStepEvent) event).getStep();
+        return event instanceof AtTheBeginningOfStepEvent atTheBeginningOfStepEvent &&
+                atTheBeginningOfStepEvent.getActivePlayer().equals(parentObject.getController()) &&
+                theStep == atTheBeginningOfStepEvent.getStep();
     }
 
 
@@ -31,7 +33,7 @@ public class AtTheBeginningOfYourStepAbility extends TriggeredAbility {
 
     @Override
     public String getRule() {
-        String effect = effects.getRule();
+        var effect = effects.getRule();
         effect = effect.substring(0,1).toLowerCase() + effect.substring(1);
         return "At the beginning of your " + effect;
     }

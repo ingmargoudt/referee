@@ -52,7 +52,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     public void drawCard(int amount) {
-        for (int i = 0; i < amount; i++) {
+        for (var i = 0; i < amount; i++) {
             drawCard();
         }
     }
@@ -120,7 +120,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     public void gainLife(Game game, int amount, MagicObject source) {
-        GainLifeEvent gainLifeEvent = new GainLifeEvent(source, amount);
+        var gainLifeEvent = new GainLifeEvent(source, amount);
         game.raiseEvent(gainLifeEvent);
         life += gainLifeEvent.getAmount();
         EventBus.report(getName() + " gains " + gainLifeEvent.getAmount() + " life from "+source.getName() + "("+getLife()+")");
@@ -138,7 +138,6 @@ public class Player extends BaseObject implements Targetable, Damageable {
         if(source.hasAbility(Lifelink.class)){
             source.getController().gainLife(game, amount, source);
         }
-
     }
 
     @Override

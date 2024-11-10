@@ -131,7 +131,7 @@ the battlefield. Every permanent has a controller.
 
     @Override
     public void receiveDamage(Game game, MagicObject source, int amount) {
-        String firststrike = source.hasAbility(FirstStrike.class) ? "(First strike) " : "";
+        var firststrike = source.hasAbility(FirstStrike.class) ? "(First strike) " : "";
         EventBus.report(source.getController().getName() + "'s " + source.getName() + " deals " + amount +" damage "+firststrike+"to " + getName());
         damageReceived += amount;
         if(source.hasAbility(Lifelink.class)){

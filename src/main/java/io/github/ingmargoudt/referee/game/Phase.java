@@ -48,14 +48,14 @@ public enum Phase {
             game.raiseEvent(new AtTheBeginningOfStepEvent(Step.COMBAT_DAMAGE_STEP, game));
 
             // firststrike + double strike
-            for (Permanent attacker : attackers) {
+            for (var attacker : attackers) {
                 if (attacker.getBlockers().isEmpty() && attacker.hasAbility(FirstStrike.class)) {
                     EventBus.report(attacker.getName() + " is not blocked");
                     game.getNonActivePlayer().receiveDamage(game, attacker, attacker.getPower());
                     continue;
                 }
                 int damageGiven = 0;
-                for (Permanent blocker : attacker.getBlockers()) {
+                for (var blocker : attacker.getBlockers()) {
                     if(blocker.hasAbility(FirstStrike.class)) {
                         attacker.receiveDamage(game, blocker, blocker.getPower());
                     }
@@ -72,14 +72,14 @@ public enum Phase {
             // regular + double strike
 
             attackers = game.getBattlefield().getAll().stream().filter(p->p.isControlledBy(game.getActivePlayer()) && p.isDeclaredAsAttacker()).collect(Collectors.toList());
-            for (Permanent attacker : attackers) {
+            for (var attacker : attackers) {
                 if (attacker.getBlockers().isEmpty() && !attacker.hasAbility(FirstStrike.class)) {
                     EventBus.report(attacker.getName() + " is not blocked");
                     game.getNonActivePlayer().receiveDamage(game, attacker, attacker.getPower());
                     continue;
                 }
                 int damageGiven = 0;
-                for (Permanent blocker : attacker.getBlockers()) {
+                for (var blocker : attacker.getBlockers()) {
                     if(!blocker.hasAbility(FirstStrike.class)) {
                         attacker.receiveDamage(game, blocker, blocker.getPower());
                     }

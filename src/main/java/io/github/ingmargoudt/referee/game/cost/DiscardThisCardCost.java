@@ -19,7 +19,7 @@ public class DiscardThisCardCost implements Cost {
 
     @Override
     public boolean canPay(MagicObject source, Game game) {
-            Hand hand = source.getController().getHand();
+            var hand = source.getController().getHand();
             return hand.getCards().contains(source);
 
     }

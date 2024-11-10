@@ -16,8 +16,8 @@ public class SuperTypePredicate implements Predicate {
 
     @Override
     public boolean evaluate(Targetable target, Game game, MagicObject source) {
-        if (target instanceof Permanent) {
-            return ((Permanent) target).getSuperTypes().has(theSuperType);
+        if (target instanceof Permanent permanent) {
+            return permanent.getSuperTypes().has(theSuperType);
         }
         return false;
     }

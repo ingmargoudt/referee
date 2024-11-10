@@ -16,7 +16,7 @@ public class DrainTargetEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public void apply(MagicObject object, Game game) {
-        Player player = object.getController();
+        var player = object.getController();
         targets.get(0).resolve(game)
                 .filter(Damageable.class::isInstance)
                 .map(Damageable.class::cast)

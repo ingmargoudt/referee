@@ -32,7 +32,7 @@ class DevastateEffect extends OneShotEffect implements TargetEffect {
         targets.forEach(target ->
                 target.resolve(game).ifPresent(targetable -> {
                         ((Permanent) targetable).destroy(game);
-                        game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).collect(Collectors.toList()).forEach(creature -> creature.receiveDamage(game, object, 1));
+                        game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).toList().forEach(creature -> creature.receiveDamage(game, object, 1));
                         game.getPlayers().forEach(player -> player.receiveDamage(game, object, 1));
 
                 }));

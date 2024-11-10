@@ -17,11 +17,11 @@ public class CardTypePredicate implements Predicate {
 
     @Override
     public boolean evaluate(Targetable target, Game game, MagicObject source) {
-        if (target instanceof Spell) {
-            return ((Spell) target).getCard().getCardtypes().has(theCardType);
+        if (target instanceof Spell spell) {
+            return spell.getCard().getCardtypes().has(theCardType);
         }
-        if (target instanceof Permanent) {
-            return ((Permanent) target).getCardtypes().has(theCardType);
+        if (target instanceof Permanent permanent) {
+            return permanent.getCardtypes().has(theCardType);
         }
         return false;
     }

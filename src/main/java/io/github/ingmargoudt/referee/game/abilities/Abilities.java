@@ -23,7 +23,7 @@ public class Abilities implements Iterable<Ability> {
     }
 
     public void addAll(Abilities abilities) {
-        abilities.forEach(ability -> abilityList.add(ability));
+        abilities.forEach(abilityList::add);
     }
 
     public void remove(Class<? extends Ability> abilityClass) {

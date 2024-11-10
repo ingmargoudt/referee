@@ -20,8 +20,7 @@ public class SheoldredTheApocalypse extends Card {
     private class SheoldredDrawAndLoseOrGainLifeEffect extends OneShotEffect {
         @Override
         public void apply(MagicObject object, Game game) {
-           if(reflectedSource instanceof DrawCardEvent){
-               DrawCardEvent drawCardEvent = (DrawCardEvent) reflectedSource;
+           if(reflectedSource instanceof DrawCardEvent drawCardEvent){
                if(drawCardEvent.getPlayer() != object.getController()) {
                    drawCardEvent.getPlayer().loseLife(2);
                }

@@ -35,8 +35,8 @@ public class Stack {
     }
 
     public void resolve(Game game) {
-        Stackable topOfStack = stackEntries.peekFirst();
-        Player controller = topOfStack.getController();
+        var topOfStack = stackEntries.peekFirst();
+        var controller = topOfStack.getController();
         EventBus.report(controller.getName() + " " + topOfStack.getName() + " resolves");
         Stackable stackable = stackEntries.pop();
         stackable.resolve(game);

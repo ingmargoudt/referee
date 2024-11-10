@@ -27,8 +27,8 @@ public class Filter implements Ruleable {
     }
 
     public static Filter by(Predicatable... predicatables) {
-        Filter newFilter = new Filter();
-        for (Predicatable predicatable : predicatables) {
+        var newFilter = new Filter();
+        for (var predicatable : predicatables) {
             newFilter.addPredicate(predicatable.getPredicate());
         }
         return newFilter;
@@ -48,7 +48,7 @@ public class Filter implements Ruleable {
     }
 
     public String getRule() {
-        String filterRule = predicates.stream().map(Predicate::getRule).collect(Collectors.joining(" "));
+        var filterRule = predicates.stream().map(Predicate::getRule).collect(Collectors.joining(" "));
         if(!filterRule.isEmpty()){
             filterRule += " ";
         }

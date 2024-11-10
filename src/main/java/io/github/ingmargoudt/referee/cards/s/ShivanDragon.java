@@ -4,6 +4,7 @@ import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.ManaCost;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
+import io.github.ingmargoudt.referee.game.abilities.statics.Flying;
 import io.github.ingmargoudt.referee.game.cost.Costs;
 import io.github.ingmargoudt.referee.game.effects.BoostThisCreatureEffect;
 import io.github.ingmargoudt.referee.game.objects.Card;
@@ -17,6 +18,7 @@ public class ShivanDragon extends Card {
 
         setPower(5);
         setToughness(5);
+        addAbility(Flying.getInstance());
         addAbility(new ActivatedAbility(Costs.of(new ManaCost("{R}")), new BoostThisCreatureEffect(1, 0, DurationType.UNTIL_END_OF_TURN)));
     }
 }

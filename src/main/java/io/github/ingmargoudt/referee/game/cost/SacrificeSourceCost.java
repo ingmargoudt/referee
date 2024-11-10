@@ -9,8 +9,8 @@ import io.github.ingmargoudt.referee.game.zones.Hand;
 public class SacrificeSourceCost implements Cost {
     @Override
     public void pay(MagicObject source, Game game) {
-        if (source instanceof Permanent) {
-            source.getController().putCardInGraveyard(((Permanent) source).getBase());
+        if (source instanceof Permanent permanent) {
+            source.getController().putCardInGraveyard(permanent.getBase());
         }
 
     }

@@ -16,8 +16,8 @@ public class SubTypePredicate implements Predicate {
 
     @Override
     public boolean evaluate(Targetable target, Game game, MagicObject source) {
-        if (target instanceof Permanent) {
-            return ((Permanent) target).getSubTypes().has(theSubType);
+        if (target instanceof Permanent permanent) {
+            return permanent.getSubTypes().has(theSubType);
         }
         return false;
     }

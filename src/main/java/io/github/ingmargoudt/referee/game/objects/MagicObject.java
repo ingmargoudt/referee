@@ -104,8 +104,8 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
 
     @Override
     public String getRule() {
-        StringBuilder stringBuilder = new StringBuilder();
-        String cardText = "";
+        var stringBuilder = new StringBuilder();
+        var cardText = "";
         cardText += replacementEffects.stream().map(ReplacementEffect::getRule).collect(Collectors.joining("\n"));
         if (!cardText.isEmpty()) {
             cardText += "\n";
