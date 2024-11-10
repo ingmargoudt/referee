@@ -1,6 +1,7 @@
 package io.github.ingmargoudt.referee.game.effects;
 
 import io.github.ingmargoudt.referee.game.Game;
+import io.github.ingmargoudt.referee.game.events.Event;
 import io.github.ingmargoudt.referee.game.objects.MagicObject;
 import io.github.ingmargoudt.referee.game.properties.Stackable;
 import io.github.ingmargoudt.referee.game.properties.Targetable;
@@ -19,7 +20,7 @@ public abstract class OneShotEffect extends Effect {
     protected List<Target> targets = new ArrayList<>();
 
     @Getter
-    protected Targetable reflectedSource;
+    protected Event reflectedSource;
 
 
     protected OneShotEffect() {
@@ -47,7 +48,7 @@ public abstract class OneShotEffect extends Effect {
         return targets.stream().noneMatch(target -> target.from(object).validTargets(game).isEmpty());
     }
 
-    public void setReflectedSource(Targetable targetable){
-        this.reflectedSource = targetable;
+    public void setReflectedSource(Event resultOfEvent){
+        this.reflectedSource = resultOfEvent;
     }
 }
