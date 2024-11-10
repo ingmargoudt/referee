@@ -7,6 +7,7 @@ import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
 import io.github.ingmargoudt.referee.game.abilities.mana.ActivatedManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.statics.Lifelink;
 import io.github.ingmargoudt.referee.game.abilities.statics.Phasing;
+import io.github.ingmargoudt.referee.game.abilities.statics.Vigilance;
 import io.github.ingmargoudt.referee.game.events.DrawCardEvent;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
 import io.github.ingmargoudt.referee.game.objects.*;
@@ -171,7 +172,9 @@ public class Player extends BaseObject implements Targetable, Damageable {
             if(!p.isTapped()) {
                 EventBus.report(this.getName() + " declares " + p.getName() + " to attack");
                 p.setDeclaredAsAttacker(true);
-                p.tap();
+                if(!p.hasAbility(Vigilance.class)) {
+                    p.tap();
+                }
             }
     }
 

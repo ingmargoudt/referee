@@ -117,7 +117,7 @@ public class Game {
                 }
             }
         }
-        //setPriority(activePlayer);
+        setPriority(activePlayer);
         EventBus.report(getActivePlayer() + " becomes active player");
     }
 
