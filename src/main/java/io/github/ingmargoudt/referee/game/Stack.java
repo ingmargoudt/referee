@@ -57,13 +57,13 @@ public class Stack {
         return passed.size() == 2;
     }
 
-    public void pass(Game game, Player playerWithPriority) {
+    public void pass(Player playerWithPriority) {
         passed.add(playerWithPriority);
-        if (stackEntries.isEmpty()) {
+        Stackable topOfStack = stackEntries.peekFirst();
+        if (topOfStack == null) {
             EventBus.report(playerWithPriority.getName() + " passes on empty stack");
         } else {
-
-            EventBus.report(playerWithPriority.getName() + " passes on " + stackEntries.peekFirst().getName());
+            EventBus.report(playerWithPriority.getName() + " passes on " + topOfStack.getName());
         }
     }
 

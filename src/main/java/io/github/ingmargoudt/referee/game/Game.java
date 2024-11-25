@@ -117,7 +117,6 @@ public class Game {
                 }
             }
         }
-        //setPriority(activePlayer);
         EventBus.report(getActivePlayer() + " becomes active player");
     }
 
@@ -186,7 +185,7 @@ public class Game {
 
 
     public void passPriority() {
-        stack.pass(this, playerWithPriority);
+        stack.pass(playerWithPriority);
         if (stack.allPlayersPassed()) {
             return;
         }
