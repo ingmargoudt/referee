@@ -11,13 +11,13 @@ public class Library {
     private final LinkedList<Card> cards = new LinkedList<>();
 
     public Library(List<Card> cardList) {
-        for (Card c : cardList) {
+        for (var c : cardList) {
             cards.addFirst(c);
         }
     }
 
     public void setOwner(Player owner) {
-        for (Card card : cards) {
+        for (var card : cards) {
             card.setOwner(owner);
         }
     }

@@ -13,8 +13,8 @@ public class ComesIntoPlayTappedEffect implements ReplacementEffect {
     public void respondToEvent(Game game, Event event, MagicObject parentObject) {
         MagicObject source = event.getSource();
         if (event instanceof EnterTheBattlefieldEvent && Objects.equals(source, parentObject)) {
-            if (source instanceof Permanent) {
-                ((Permanent) source).tap();
+            if (source instanceof Permanent permanent) {
+               permanent.tap();
             }
         }
     }

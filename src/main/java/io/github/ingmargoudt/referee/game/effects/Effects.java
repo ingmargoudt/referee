@@ -33,10 +33,9 @@ public class Effects<T extends Effect> {
     public void addEffect(Effect effect) {
         if (effect instanceof ContinuousEffect && effectType == OneShotEffect.class) {
             ContinuousEffectInitializer ci = new ContinuousEffectInitializer((ContinuousEffect) effect);
-            if(effect instanceof TargetEffect){
-                ci.targets = ((TargetEffect) effect).getTargets();
+            if(effect instanceof TargetEffect targetEffect){
+                ci.targets = targetEffect.getTargets();
             }
-
             effects.add(ci);
         } else {
             effects.add(effect);
@@ -49,8 +48,8 @@ public class Effects<T extends Effect> {
 
     public void apply(MagicObject source, Game game) {
         effects.forEach(effect -> {
-            if (effect instanceof ContinuousEffectInitializer) {
-                ((ContinuousEffectInitializer) effect).getContinuousEffect().lockInObjects(game, source);
+            if (effect instanceof ContinuousEffectInitializer continuousEffectInitializer) {
+                continuousEffectInitializer.getContinuousEffect().lockInObjects(game, source);
 
             }
             effect.apply(source, game);
@@ -59,18 +58,18 @@ public class Effects<T extends Effect> {
 
     public boolean hasTargets() {
         return effects.stream().anyMatch(effect -> (effect instanceof OneShotEffect && ((OneShotEffect) effect).hasTargets()) ||
-                (effect instanceof ContinuousEffectInitializer && ((ContinuousEffectInitializer) effect).continuousEffect instanceof TargetEffect && ((ContinuousEffectInitializer) effect).hasTargets()));
+                (effect instanceof ContinuousEffectInitializer continuousEffectInitializer &&
+                        continuousEffectInitializer.continuousEffect instanceof TargetEffect &&
+                        continuousEffectInitializer.hasTargets()));
     }
 
     public void chooseTargets(Stackable stackable, Game game) {
         effects.forEach(effect -> {
-            if (effect instanceof TargetEffect ) {
-
-                TargetEffect targetEffect = (TargetEffect) effect;
+            if (effect instanceof TargetEffect targetEffect) {
                 targetEffect.choose(stackable, game);
             }
-            else if (effect instanceof ContinuousEffectInitializer ) {
-                TargetEffect targetEffect = (TargetEffect) ((ContinuousEffectInitializer) effect).continuousEffect;
+            else if (effect instanceof ContinuousEffectInitializer continuousEffectInitializer ) {
+                TargetEffect targetEffect = (TargetEffect) continuousEffectInitializer.continuousEffect;
                 targetEffect.choose(stackable, game);
             }
 

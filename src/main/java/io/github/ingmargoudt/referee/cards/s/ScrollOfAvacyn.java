@@ -24,7 +24,7 @@ class ScrollOfAvacynEffect extends OneShotEffect {
 
     @Override
     public void apply(MagicObject source, Game game) {
-        Player controller = source.getController();
+        var controller = source.getController();
         controller.drawCard();
         if(game.getBattlefield().getAll().stream().anyMatch(p-> p.isControlledBy(source.getController()) && p.hasSubType(SubType.ANGEL))){
             controller.gainLife(game, 5, source);

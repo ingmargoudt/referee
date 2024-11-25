@@ -39,7 +39,7 @@ public class TargetCreature extends Target {
 
     @Override
     public void choose(Stackable source, Game game, TargetEffect oneShotEffect) {
-        Player player = source.getController();
+        var player = source.getController();
         this.theTarget = player.chooseTarget(validTargets(game));
         EventBus.report(player.getName() + " chooses " + theTarget.getClass().getSimpleName() + " for " + source.getName() + "'s " + oneShotEffect.getClass().getSimpleName());
     }

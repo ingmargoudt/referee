@@ -22,7 +22,7 @@ public class PhyrexianArena extends Card {
 class PhyrexianArenaEffect extends OneShotEffect {
     @Override
     public void apply(MagicObject object, Game game) {
-        Player controller = object.getController();
+        var controller = object.getController();
         controller.drawCard();
         controller.loseLife(1);
 

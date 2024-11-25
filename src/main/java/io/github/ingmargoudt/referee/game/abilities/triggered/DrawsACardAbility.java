@@ -19,7 +19,7 @@ public class DrawsACardAbility extends TriggeredAbility {
     public boolean checkTrigger(Event event, MagicObject parentObject) {
 
         if(event instanceof DrawCardEvent) {
-            oneshotEffect.setReflectedSource(((DrawCardEvent) event).getPlayer());
+            oneshotEffect.setReflectedSource(event);
             return true;
         }
         return false;

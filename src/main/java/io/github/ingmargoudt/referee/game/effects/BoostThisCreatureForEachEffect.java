@@ -20,7 +20,7 @@ public class BoostThisCreatureForEachEffect extends ContinuousEffect {
     public void apply(MagicObject source, Game game) {
 
         if (source instanceof Permanent) {
-            int amount = (int) game.getBattlefield().getAll().stream().filter(p -> filter.evaluate(p, game, source)).count();
+            var amount = (int) game.getBattlefield().getAll().stream().filter(p -> filter.evaluate(p, game, source)).count();
             if (power > 0) {
                 source.setPower(amount * power);
             }

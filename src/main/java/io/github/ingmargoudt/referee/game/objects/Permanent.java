@@ -30,9 +30,10 @@ Each permanent always has one of these values for each of these categories.
      */
     @Getter
     boolean tapped;
-    boolean isFlipped;
-    boolean isFacedown;
-    boolean isPhasedOut;
+    boolean flipped;
+    boolean facedown;
+    @Getter
+    boolean phasedOut;
 
     int damageReceived = 0;
 
@@ -83,27 +84,27 @@ the battlefield. Every permanent has a controller.
     }
 
     public void flip() {
-        isFlipped = true;
+        flipped = true;
     }
 
     public void unflip() {
-        isFlipped = false;
+        flipped = false;
     }
 
     public void faseUp() {
-        isFacedown = false;
+        facedown = false;
     }
 
     public void faseDown() {
-        isFacedown = true;
+        facedown = true;
     }
 
     public void phaseIn() {
-        isPhasedOut = false;
+        phasedOut = false;
     }
 
     public void phaseOut() {
-        isPhasedOut = true;
+        phasedOut = true;
     }
 
 
@@ -130,7 +131,7 @@ the battlefield. Every permanent has a controller.
 
     @Override
     public void receiveDamage(Game game, MagicObject source, int amount) {
-        String firststrike = source.hasAbility(FirstStrike.class) ? "(First strike) " : "";
+        var firststrike = source.hasAbility(FirstStrike.class) ? "(First strike) " : "";
         EventBus.report(source.getController().getName() + "'s " + source.getName() + " deals " + amount +" damage "+firststrike+"to " + getName());
         damageReceived += amount;
         if(source.hasAbility(Lifelink.class)){

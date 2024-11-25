@@ -13,8 +13,8 @@ public class Costs implements Ruleable {
     private final List<Cost> theCosts = new ArrayList<>();
 
     public static Costs of(Cost... costs) {
-        Costs c = new Costs();
-        for (Cost cost : costs) {
+        var c = new Costs();
+        for (var cost : costs) {
             c.addCost(cost);
         }
         return c;

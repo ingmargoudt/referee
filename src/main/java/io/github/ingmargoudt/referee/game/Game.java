@@ -165,8 +165,8 @@ public class Game {
 
     private void applyStaticAbilities() {
         continuousEffects.forEach((source, effects) -> effects.forEach(effect -> effect.apply(source, this)));
-        for (Permanent permanent : battlefield.getAll()) {
-            for (Ability ability : permanent.getAbilities()) {
+        for (var permanent : battlefield.getAll()) {
+            for (var ability : permanent.getAbilities()) {
                 if (ability instanceof StaticAbility) {
                     ability.resolve(permanent, this);
                 }
@@ -197,7 +197,7 @@ public class Game {
     }
 
     public void moveToBattlefield(Card card) {
-        Permanent permanent = new Permanent(card);
+        var permanent = new Permanent(card);
         battlefield.add(permanent);
         applyContinuousEffects();
         raiseEvent(new EnterTheBattlefieldEvent(permanent));
@@ -213,8 +213,7 @@ public class Game {
         List<StackAbility> triggeredAbilities = new ArrayList<>();
         battlefield.getAll().forEach(permanent -> {
             permanent.getAbilities().forEach(ability -> {
-                if (ability instanceof TriggeredAbility) {
-                    TriggeredAbility triggeredAbility = (TriggeredAbility) ability;
+                if (ability instanceof TriggeredAbility triggeredAbility) {
                     if (triggeredAbility.checkTrigger(event, permanent)) {
                         triggeredAbilities.add(new StackAbility(triggeredAbility, permanent));
                     }
@@ -281,7 +280,7 @@ public class Game {
     }
 
     public Player getNonActivePlayer() {
-        for(Player player : players){
+        for(var player : players){
             if(!player.getId().equals(activePlayer.getId())){
                 return player;
             }

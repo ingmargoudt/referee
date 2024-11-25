@@ -6,6 +6,8 @@ import io.github.ingmargoudt.referee.game.Manapool;
 import io.github.ingmargoudt.referee.game.abilities.ActivatedAbility;
 import io.github.ingmargoudt.referee.game.abilities.mana.ActivatedManaAbility;
 import io.github.ingmargoudt.referee.game.abilities.statics.Lifelink;
+import io.github.ingmargoudt.referee.game.abilities.statics.Phasing;
+import io.github.ingmargoudt.referee.game.abilities.statics.Vigilance;
 import io.github.ingmargoudt.referee.game.events.DrawCardEvent;
 import io.github.ingmargoudt.referee.game.events.GainLifeEvent;
 import io.github.ingmargoudt.referee.game.objects.*;
@@ -50,7 +52,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     public void drawCard(int amount) {
-        for (int i = 0; i < amount; i++) {
+        for (var i = 0; i < amount; i++) {
             drawCard();
         }
     }
@@ -118,7 +120,7 @@ public class Player extends BaseObject implements Targetable, Damageable {
     }
 
     public void gainLife(Game game, int amount, MagicObject source) {
-        GainLifeEvent gainLifeEvent = new GainLifeEvent(source, amount);
+        var gainLifeEvent = new GainLifeEvent(source, amount);
         game.raiseEvent(gainLifeEvent);
         life += gainLifeEvent.getAmount();
         EventBus.report(getName() + " gains " + gainLifeEvent.getAmount() + " life from "+source.getName() + "("+getLife()+")");
@@ -136,7 +138,6 @@ public class Player extends BaseObject implements Targetable, Damageable {
         if(source.hasAbility(Lifelink.class)){
             source.getController().gainLife(game, amount, source);
         }
-
     }
 
     @Override
@@ -170,7 +171,9 @@ public class Player extends BaseObject implements Targetable, Damageable {
             if(!p.isTapped()) {
                 EventBus.report(this.getName() + " declares " + p.getName() + " to attack");
                 p.setDeclaredAsAttacker(true);
-                p.tap();
+                if(!p.hasAbility(Vigilance.class)) {
+                    p.tap();
+                }
             }
     }
 
@@ -178,4 +181,11 @@ public class Player extends BaseObject implements Targetable, Damageable {
             toBlock.getBlockers().add(blocker);
             EventBus.report(blocker.getName() + " is declared to block "+toBlock.getName());
     }
+
+    public void executeUntapStep() {
+        gameReference.getBattlefield().getAll().stream().filter(permanent -> permanent.isControlledBy(this) && permanent.isTapped()).forEach(Permanent::untap);
+        gameReference.getBattlefield().getAll().stream().filter(permanent -> permanent.isControlledBy(this) && permanent.hasAbility(Phasing.class) && permanent.isPhasedOut()).forEach(Permanent::phaseIn);
+        gameReference.getBattlefield().getAll().stream().filter(permanent -> permanent.isControlledBy(this) && permanent.hasAbility(Phasing.class) && !permanent.isPhasedOut()).forEach(Permanent::phaseOut);
+    }
+
 }

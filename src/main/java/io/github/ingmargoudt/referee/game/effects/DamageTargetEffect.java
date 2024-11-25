@@ -19,7 +19,6 @@ public class DamageTargetEffect extends OneShotEffect implements TargetEffect {
 
     @Override
     public void apply(MagicObject object, Game game) {
-        Player player = object.getController();
         targets.get(0).resolve(game)
                 .filter(Damageable.class::isInstance)
                 .map(Damageable.class::cast)

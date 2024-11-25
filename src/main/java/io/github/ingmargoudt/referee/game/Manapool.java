@@ -13,8 +13,8 @@ public class Manapool {
     Map<ManaType, Integer> pool = new EnumMap<>(ManaType.class);
 
     public void add(ManaType... manaTypes) {
-        for (ManaType manaType : manaTypes) {
-            int amount = pool.getOrDefault(manaType, 0) + 1;
+        for (var manaType : manaTypes) {
+            var amount = pool.getOrDefault(manaType, 0) + 1;
             pool.put(manaType, amount);
         }
     }
