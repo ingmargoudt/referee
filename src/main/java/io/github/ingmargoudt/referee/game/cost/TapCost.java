@@ -14,8 +14,8 @@ public class TapCost implements Cost {
 
     @Override
     public boolean canPay(MagicObject source, Game game) {
-        if (source instanceof Permanent) {
-            return !((Permanent) source).isTapped();
+        if (source instanceof Permanent permanent) {
+            return !permanent.isTapped();
         }
         return false;
     }

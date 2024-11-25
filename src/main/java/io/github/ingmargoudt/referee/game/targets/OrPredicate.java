@@ -15,7 +15,7 @@ public class OrPredicate implements Predicate, Ruleable {
     List<Predicate> predicates;
 
     private OrPredicate(Predicatable... predicate) {
-        this.predicates = Arrays.stream(predicate).map(Predicatable::getPredicate).collect(Collectors.toList());
+        this.predicates = Arrays.stream(predicate).map(Predicatable::getPredicate).toList();
     }
 
     public static OrPredicate or(Predicatable... predicate) {

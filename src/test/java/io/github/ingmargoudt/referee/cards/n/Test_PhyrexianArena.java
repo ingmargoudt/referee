@@ -7,7 +7,7 @@ import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
 
-public class Test_PhyrexianArena extends BaseGame {
+class Test_PhyrexianArena extends BaseGame {
 
     @Test
     void drawCardAndLoseLife() {

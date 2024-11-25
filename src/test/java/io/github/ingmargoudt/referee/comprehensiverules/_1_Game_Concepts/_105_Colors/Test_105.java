@@ -14,10 +14,10 @@ class Test_105 {
     @Test
     void _1051() {
         assertThat(Color.values()).hasSize(5);
-        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).collect(Collectors.toList())).contains("white");
-        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).collect(Collectors.toList())).contains("blue");
-        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).collect(Collectors.toList())).contains("black");
-        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).collect(Collectors.toList())).contains("red");
-        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).collect(Collectors.toList())).contains("green");
+        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).toList()).contains("white");
+        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).toList()).contains("blue");
+        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).toList()).contains("black");
+        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).toList()).contains("red");
+        assertThat(Arrays.stream(Color.values()).map(p -> p.toString().toLowerCase()).toList()).contains("green");
     }
 }

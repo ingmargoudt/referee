@@ -18,7 +18,7 @@ public class TargetPlayer extends Target {
 
     @Override
     public List<Targetable> validTargets(Game game) {
-        return game.getPlayers().stream().map(Targetable.class::cast).collect(Collectors.toList());
+        return game.getPlayers().stream().map(Targetable.class::cast).toList();
     }
 
     @Override

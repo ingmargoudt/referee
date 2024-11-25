@@ -6,7 +6,7 @@ import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
 
-public class Test_ShivanDragon extends BaseGame {
+class Test_ShivanDragon extends BaseGame {
 
     @Test
     void boostOnce(){

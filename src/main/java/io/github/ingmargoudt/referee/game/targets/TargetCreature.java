@@ -29,7 +29,7 @@ public class TargetCreature extends Target {
 
     @Override
     public List<Targetable> validTargets(Game game) {
-        return game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).map(Targetable.class::cast).filter(targetable -> filter.evaluate(targetable, game, source)).collect(Collectors.toList());
+        return game.getBattlefield().getAll().stream().filter(MagicObject::isCreature).map(Targetable.class::cast).filter(targetable -> filter.evaluate(targetable, game, source)).toList();
     }
 
     @Override

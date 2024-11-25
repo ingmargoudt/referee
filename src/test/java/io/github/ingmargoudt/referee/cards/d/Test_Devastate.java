@@ -10,7 +10,7 @@ import io.github.ingmargoudt.referee.game.objects.Card;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
 
-public class Test_Devastate extends BaseGame {
+class Test_Devastate extends BaseGame {
 
     @Test
     void destroyPlains() {

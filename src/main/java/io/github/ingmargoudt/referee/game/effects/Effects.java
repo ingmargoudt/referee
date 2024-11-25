@@ -31,8 +31,8 @@ public class Effects<T extends Effect> {
 
 
     public void addEffect(Effect effect) {
-        if (effect instanceof ContinuousEffect && effectType == OneShotEffect.class) {
-            ContinuousEffectInitializer ci = new ContinuousEffectInitializer((ContinuousEffect) effect);
+        if (effect instanceof ContinuousEffect continuousEffect && effectType == OneShotEffect.class) {
+            ContinuousEffectInitializer ci = new ContinuousEffectInitializer(continuousEffect);
             if(effect instanceof TargetEffect targetEffect){
                 ci.targets = targetEffect.getTargets();
             }
@@ -57,7 +57,7 @@ public class Effects<T extends Effect> {
     }
 
     public boolean hasTargets() {
-        return effects.stream().anyMatch(effect -> (effect instanceof OneShotEffect && ((OneShotEffect) effect).hasTargets()) ||
+        return effects.stream().anyMatch(effect -> (effect instanceof OneShotEffect oneShotEffect && oneShotEffect.hasTargets()) ||
                 (effect instanceof ContinuousEffectInitializer continuousEffectInitializer &&
                         continuousEffectInitializer.continuousEffect instanceof TargetEffect &&
                         continuousEffectInitializer.hasTargets()));
