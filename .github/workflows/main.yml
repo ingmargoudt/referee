@@ -39,7 +39,7 @@ jobs:
           distribution: zulu
       - run: mvn -B verify -P coverage --no-transfer-progress
 
-      - uses: codecov/codecov-action@v5.0.7
+      - uses: codecov/codecov-action@v5.1.2
         with:
           name: codecov
           token: ${{ secrets.CODECOV_TOKEN }}
