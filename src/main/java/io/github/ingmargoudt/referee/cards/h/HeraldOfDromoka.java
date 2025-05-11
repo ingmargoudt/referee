@@ -23,7 +23,7 @@ class HeraldOfDromokaAbility extends Ability{
                 .filter(p->p.isControlledBy(source.getController()))
                 .filter(MagicObject::isCreature)
                 .filter(p->!p.getId().equals(source.getId()))
-                .filter(c->c.getSubTypes().has(SubType.WARRIOR))
+                .filter(c->c.hasSubType(SubType.WARRIOR))
                 .forEach(c -> c.addAbility(Vigilance.getInstance()));
 
     }

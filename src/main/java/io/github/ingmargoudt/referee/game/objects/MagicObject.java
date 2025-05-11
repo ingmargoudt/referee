@@ -93,6 +93,9 @@ target, an object’s owner or controller, what an Aura enchants, and so on.
         return superTypes.isBasic();
     }
 
+    public int getPower(){
+        return power + counters.getOrDefault(CounterType.P1P1,0);
+    }
 
     public boolean hasColor(Color color) {
         return this.color.contains(color);
