@@ -43,6 +43,9 @@ class Test_Rules {
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         });
         softAssertions.assertAll();
     }

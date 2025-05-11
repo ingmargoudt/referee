@@ -1,5 +1,6 @@
 package io.github.ingmargoudt.referee.cards.h;
 
+import io.github.ingmargoudt.referee.game.CardType;
 import io.github.ingmargoudt.referee.game.Game;
 import io.github.ingmargoudt.referee.game.SubType;
 import io.github.ingmargoudt.referee.game.abilities.Ability;
@@ -11,6 +12,7 @@ public class HeraldOfDromoka extends Card {
     public HeraldOfDromoka() {
         super("Herald of Dromoka");
         addAbility(new HeraldOfDromokaAbility());
+        cardtypes.add(CardType.CREATURE);
     }
 }
 class HeraldOfDromokaAbility extends Ability{
