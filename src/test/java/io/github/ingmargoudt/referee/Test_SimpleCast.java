@@ -18,7 +18,7 @@ class Test_SimpleCast extends BaseGame {
 
     @Test
     void simple_cast_and_resolve() {
-        addCard(Zone.HAND, player1, bears, 1);
+        addCard(Zone.HAND, player1, bears);
 
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bears);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
@@ -30,8 +30,8 @@ class Test_SimpleCast extends BaseGame {
     @Test
     void simple_cast_and_resolve_two_permanents() {
         Card otherbear = new GrizzlyBears();
-        addCard(Zone.HAND, player1, bears, 1);
-        addCard(Zone.HAND, player1, otherbear, 1);
+        addCard(Zone.HAND, player1, bears);
+        addCard(Zone.HAND, player1, otherbear);
 
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, bears);
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, otherbear);
@@ -42,7 +42,7 @@ class Test_SimpleCast extends BaseGame {
 
     @Test
     void simple_cast_and_resolve_trigger() {
-        addCard(Zone.HAND, player1, cathedralSanctifier, 1);
+        addCard(Zone.HAND, player1, cathedralSanctifier);
 
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, cathedralSanctifier);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
@@ -53,7 +53,7 @@ class Test_SimpleCast extends BaseGame {
 
     @Test
     void simple_cast_instant_and_resolve() {
-        addCard(Zone.HAND, player1, angelsMercy, 1);
+        addCard(Zone.HAND, player1, angelsMercy);
 
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, angelsMercy);
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
@@ -66,7 +66,7 @@ class Test_SimpleCast extends BaseGame {
     @Test
     void creatureHasPower() {
         disablePlayerActionLogging();
-        addCard(Zone.BATTLEFIELD, player1, bears, 1);
+        addCard(Zone.BATTLEFIELD, player1, bears);
 
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
@@ -76,7 +76,7 @@ class Test_SimpleCast extends BaseGame {
     @Test
     void creatureHasToughness() {
         disablePlayerActionLogging();
-        addCard(Zone.BATTLEFIELD, player1, bears, 1);
+        addCard(Zone.BATTLEFIELD, player1, bears);
 
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();

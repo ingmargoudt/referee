@@ -2,6 +2,7 @@ package io.github.ingmargoudt.referee.cards.a;
 
 import io.github.ingmargoudt.referee.base.BaseGame;
 import io.github.ingmargoudt.referee.cards.i.InspiringCleric;
+import io.github.ingmargoudt.referee.cards.s.SoulWarden;
 import io.github.ingmargoudt.referee.game.Phase;
 import io.github.ingmargoudt.referee.game.zones.Zone;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,24 @@ start();
         // Assert
         assertPermanentPower(Zone.BATTLEFIELD, player1,pridemate,2);
 
+        }
+
+        @Test
+    void ajanisPridemateWithSoulwarden() {
+
+            var pridemate = new AjanisPridemate();
+            var soulwarden = new SoulWarden();
+            // Arrange
+            addCard(Zone.HAND, player1, pridemate);
+            addCard(Zone.BATTLEFIELD, player1, soulwarden);
+            // Act
+            castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, pridemate);
+
+            stopAt(1, Phase.PRECOMBAT_MAINPHASE);
+            start();
+
+            // Assert
+            assertPermanentPower(Zone.BATTLEFIELD, player1, pridemate, 3);
         }
 
 }

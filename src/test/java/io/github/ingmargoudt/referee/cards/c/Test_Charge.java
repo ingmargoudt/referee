@@ -14,8 +14,8 @@ class Test_Charge extends BaseGame {
     void chargeThisTurn() {
         Card bears = new GrizzlyBears();
         Card charge = new Charge();
-        addCard(Zone.BATTLEFIELD, player1, bears, 1);
-        addCard(Zone.HAND, player1, charge, 1);
+        addCard(Zone.BATTLEFIELD, player1, bears);
+        addCard(Zone.HAND, player1, charge);
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, charge);
 
         stopAt(1, Phase.POSTCOMBAT_MAINPHASE);
@@ -28,7 +28,7 @@ class Test_Charge extends BaseGame {
     void chargeNotOnNextTurn() {
         Card bears = new GrizzlyBears();
         Card charge = new Charge();
-        addCard(Zone.BATTLEFIELD, player1, bears, 1);
+        addCard(Zone.BATTLEFIELD, player1, bears);
         addCard(Zone.HAND, player1, charge, 1);
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, charge);
 

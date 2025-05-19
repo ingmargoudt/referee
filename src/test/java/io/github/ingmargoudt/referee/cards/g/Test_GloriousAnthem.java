@@ -14,8 +14,8 @@ class Test_GloriousAnthem extends BaseGame {
     @Test
     void gloriousAnthemBoosts() {
         disablePlayerActionLogging();
-        addCard(Zone.BATTLEFIELD, player1, bears, 1);
-        addCard(Zone.BATTLEFIELD, player1, gloriousAnthem, 1);
+        addCard(Zone.BATTLEFIELD, player1, bears);
+        addCard(Zone.BATTLEFIELD, player1, gloriousAnthem);
 
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();
@@ -26,8 +26,8 @@ class Test_GloriousAnthem extends BaseGame {
     @Test
     void gloriousAnthemNotBoostsOtherPlayersCreature() {
         disablePlayerActionLogging();
-        addCard(Zone.BATTLEFIELD, player2, bears, 1);
-        addCard(Zone.BATTLEFIELD, player1, gloriousAnthem, 1);
+        addCard(Zone.BATTLEFIELD, player2, bears);
+        addCard(Zone.BATTLEFIELD, player1, gloriousAnthem);
 
         stopAt(1, Phase.PRECOMBAT_MAINPHASE);
         start();

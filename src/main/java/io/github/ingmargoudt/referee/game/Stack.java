@@ -34,7 +34,7 @@ public class Stack {
         game.setPriority(stackable.getController());
     }
 
-    public void resolve(Game game) {
+    public void resolve() {
         var topOfStack = stackEntries.peekFirst();
         var controller = topOfStack.getController();
         EventBus.report(controller.getName() + " " + topOfStack.getName() + " resolves");
@@ -59,7 +59,7 @@ public class Stack {
 
     public void pass(Player playerWithPriority) {
         passed.add(playerWithPriority);
-        Stackable topOfStack = stackEntries.peekFirst();
+        var topOfStack = stackEntries.peekFirst();
         if (topOfStack == null) {
             EventBus.report(playerWithPriority.getName() + " passes on empty stack");
         } else {
@@ -69,7 +69,7 @@ public class Stack {
 
     public void checkIfAllPlayersPassed() {
         if (allPlayersPassed()) {
-            resolve(game);
+            resolve();
         }
     }
 

@@ -108,7 +108,7 @@ class Test_ReplacementEffect extends BaseGame {
     void replacement_Effect_gainlife() {
         Card angelsMercy = new AngelsMercy();
         Card angelOfVitality = new AngelOfVitality();
-        addCard(Zone.HAND, player1, angelsMercy, 1);
+        addCard(Zone.HAND, player1, angelsMercy);
         addCard(Zone.BATTLEFIELD, player1, angelOfVitality);
 
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, angelsMercy);
@@ -122,7 +122,7 @@ class Test_ReplacementEffect extends BaseGame {
     void replacement_Effect_controlled_by_opponent_do_not_gainlife() {
         Card angelsMercy = new AngelsMercy();
         Card angelOfVitality = new AngelOfVitality();
-        addCard(Zone.HAND, player1, angelsMercy, 1);
+        addCard(Zone.HAND, player1, angelsMercy);
         addCard(Zone.BATTLEFIELD, player2, angelOfVitality);
 
         castSpell(1, Phase.PRECOMBAT_MAINPHASE, player1, angelsMercy);
